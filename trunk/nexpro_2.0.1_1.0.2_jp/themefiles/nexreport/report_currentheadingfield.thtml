@@ -1,0 +1,6 @@
+<th nowrap>
+    <a href="{actionurl}?id={reportid}&page={page}&order={order}&prevorder={prevorder}&lastdir={dir}{filter}">{label}</a>
+    <span style="padding-left:5px;padding-right:5px;">
+        <a href="{actionurl}?id={reportid}&page={page}&order={order}&prevorder={prevorder}&lastdir={dir}{filter}"><img src="{column_imageurl}" border="0"></a>
+    </span>
+</th>

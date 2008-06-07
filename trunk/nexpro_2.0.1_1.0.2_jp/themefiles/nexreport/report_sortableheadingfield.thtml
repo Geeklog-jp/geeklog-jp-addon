@@ -1,0 +1,1 @@
+<th><a href="{actionurl}?id={reportid}&page={page}&order={order}&prevorder={prevorder}&lastdir={dir}{filter}">{label}</a></th>
