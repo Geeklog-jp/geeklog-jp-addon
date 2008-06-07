@@ -1,0 +1,72 @@
+/* Start of nexPro CSS Definitions */
+a.info{
+    position:relative; /*this is the key*/
+    z-index:24;
+    color:#000;
+    text-decoration:none
+}
+
+a.info:hover  {
+    z-index:25;
+    padding-top:5px;
+    padding-bottom:5px;
+    text-decoration:none
+}
+
+a.info span{display: none}
+
+a.info:hover span { /*the span will display just on :hover state*/
+    font-family:Verdana, Tahoma, Arial; 
+    font-style:normal;
+    font-size: 7pt;
+    display:block;
+    position:absolute;
+    top:3em; left:-15em; width:22em;
+    border:1px solid #5D96B9;
+    background-color:#FFFFA0; color:#555;
+    padding:2px;
+    text-align: left;
+    text-decoration:none
+}
+
+ul.homepagelists { 
+  padding: 0px; 
+  margin-left: 15px; 
+} 
+
+ul.homepagelists li{ 
+  list-style-type: disc; 
+  list-style-position:outside;
+}
+
+
+.floatleft       { float                : left;
+                   padding              : 0 10px 0 0;
+                 }
+.fl100           { float                : left;
+                   width                : 100%;
+                 }
+
+.divfix          { clear                : both;
+                   width                : 100%;
+                   display              : table;
+                 }
+
+.clearboth {
+  clear:both;
+}
+.clearleft {
+  clear:left;
+}
+.clearfix {
+  display:inline-block;
+}
+.clearfix:after { /* clear floats by applying the clearfix class to float-encasing block !*/
+  clear:both;
+  content:".";
+  display:block;
+  height:0;
+  visibility: hidden;
+}
+
+/* End of nexPro CSS Definitions */

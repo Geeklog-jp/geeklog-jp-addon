@@ -1,0 +1,47 @@
+{startblock}
+<table width="100%" style="display:{showfilter};" border="0">
+    <tr>
+        <td width="10%" nowrap style="vertical-align:top;padding:10px 5px 0px 5px;">Select Date Range for Report</td>
+        <td style="vertical-align:top;"><b>Start:</b>&nbsp;
+            <form style="display:inline; margin:0px;" action="{actionurl}" method="post">
+               <input type="hidden" name="page" value="1">
+               <input type="hidden" name="id" value="{reportid}">
+               <input type="hidden" name="filter" value="{filter}">
+
+                  <div  class="popupcal" id="cala"></div>
+                     <input type="text" name="searchdate1" id="searchdate1" value="{date1}" size="10">&nbsp;<b>End:</b>&nbsp;
+                  <div  class="popupcal" id="calb"></div>
+                     <input type="text" name="searchdate2" id="searchdate2" value="{date2}" size="10">
+
+                    <input type="submit" value="Go">
+                    <span style="padding-left:10px;"><a href="{actionurl}?filter={filter}">Reset</a></span>
+            </form>
+         </td>
+    </tr>
+</table>
+<table width="100%">
+    <tr>
+        <td width="15%" style="text-align:center;padding:5px;" nowrap>Number of Records:&nbsp;{record_count}</td>
+        <td width="80%" style="text-align:center;padding:5px;">{page_navigation}</td>
+        <td style="vertical-align:top;float:right;"><a href="{actionurl}?id={reportid}&order={sortorder}&mode=export{filter}"><img src="{layout_url}/nexreport/images/xls.gif" border="0" TITLE="Click to export report to Excel"></a></td>
+    </tr>
+    <tr style="display:{show_message};">
+        <td colspan="3" class="pluginInfo">{report_message}</td>
+    </tr>
+</table>
+<table width="100%" class="plugin" border="0" style="border:1px solid #CCC;">
+<tr class="pluginHeader pluginLinks">
+    {heading_fields}
+</tr>
+    {report_lines}
+
+</table>
+<div style="padding:5px;">{page_navigation}</div>
+{endblock}
+
+<script language="javascript">
+    v1=new nexYUICal;
+    v1.init('cala','searchdate1');
+    v2=new nexYUICal;
+    v2.init('calb','searchdate2');
+</script
