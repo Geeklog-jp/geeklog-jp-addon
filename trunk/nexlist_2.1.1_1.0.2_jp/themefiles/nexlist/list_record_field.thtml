@@ -1,0 +1,6 @@
+            <td class="pluginRow{cssid}">
+                <div id="vfield{fieldid}_{rowid}" style="margin-left:5px;">{field_value}</div>
+                <div id="efield{fieldid}_{rowid}" style="display:none;">
+                    {edit_field_html}
+                </div>
+            </td>

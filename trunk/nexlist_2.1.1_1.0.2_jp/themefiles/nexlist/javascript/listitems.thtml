@@ -1,0 +1,250 @@
+    function showhide_addListitem() {
+        if (document.getElementById('new_listitem').style.display == 'none') {
+            document.getElementById('new_listitem').style.display = '';
+            document.getElementById('add_listitem').style.visibility='hidden'
+        } else {
+            document.getElementById('new_listitem').style.display='none';
+            document.getElementById('add_listitem').style.visibility=''
+        }
+    }
+
+    function cancelUpdateField(recid) {
+        for (var j = 0; j < {num_fields}; j++ ) {
+            document.getElementById('vfield' +j + '_' +recid).style.display = '';
+            document.getElementById('efield' +j + '_' +recid).style.display = 'none';
+        }
+        document.getElementById('updatelabel_'+recid).style.display='none';
+        document.getElementById('editlabel_'+recid).style.display='';
+    }
+
+    function showOrderField(recid) {
+        // Switch all list records back into view mode
+        for (var i = 1; i <= {num_records}; i++ ) {
+            document.getElementById('editlabel_'+i).style.display='';
+            document.getElementById('orderlabel_'+i).style.display='none';
+            document.getElementById('updatelabel_'+i).style.display='none';
+            for (var j = 0; j < {num_fields}; j++ ) {
+                document.getElementById('vfield' +j + '_' +i).style.display = '';
+                document.getElementById('efield' +j + '_' +i).style.display = 'none';
+            }
+        }
+
+        document.getElementById('editlabel_'+recid).style.display='none';
+        document.getElementById('orderlabel_'+recid).style.display='';
+    }
+
+    function cancelOrderField(recid) {
+        document.getElementById('orderlabel_'+recid).style.display='none';
+        document.getElementById('editlabel_'+recid).style.display='';
+    }
+
+    function addAction() {
+        if (window.event && window.event.srcElement)  {  // IE Method
+            var id = window.event.srcElement.id;
+        } else {
+            var id = this.id;
+        }
+        var recid = id.split('_');
+        //alert('id is:' + id + ' and recid is:' + recid);
+
+        if (recid[0] == 'editlist') {
+            // Enable the edit fields
+            for (var j = 0; j < {num_fields}; j++ ) {
+                document.getElementById('vfield' +j + '_' +recid[1]).style.display = 'none';
+                var obj = document.getElementById('efield' +j + '_' +recid[1])
+                obj.style.display = '';
+            }
+
+            // Enable the edit labels
+            document.getElementById('editlabel_'+recid[1]).style.display='none';
+            document.getElementById('orderlabel_'+recid[1]).style.display='none';
+            document.getElementById('updatelabel_'+recid[1]).style.display='';
+
+            // Switch any other list records back into view mode
+            for (var i = 1; i <= {num_records}; i++ ) {
+                if (i != recid[1]) {
+                    document.getElementById('editlabel_'+i).style.display='';
+                    document.getElementById('orderlabel_'+i).style.display='none';
+                    document.getElementById('updatelabel_'+i).style.display='none';
+                    for (var j = 0; j < {num_fields}; j++ ) {
+                        document.getElementById('vfield' +j + '_' +i).style.display = '';
+                        document.getElementById('efield' +j + '_' +i).style.display = 'none';
+                    }
+                }
+            }
+        } else if (recid[0] == 'deletelist') {
+            var v1 = eval('document.editlist.listrec_'+recid[1]);
+            //alert ('delete list item: ' + recid[1] + ' is itemrec: ' + v1.value);
+            document.editlist.op.value='delete_item';
+            document.editlist.itemid.value=v1.value;
+            document.editlist.submit();
+            return true;
+        }
+
+        return false;
+    }
+
+
+    function installListeners() {
+        for (var i = 1; i <= {num_records}; i++ ) {
+            var obj1 = document.getElementById('editlist_'+i);
+            var obj2 = document.getElementById('deletelist_'+i);
+            addEvent(obj1,'click', addAction, false);
+            addEvent(obj2,'click', addAction, false);
+        }
+    }
+
+    addEvent(window,'load', installListeners,false);
+
+    function addEvent(elm, evType, fn, useCapture)
+    // cross-browser event handling for IE5+, NS6+ and Mozilla/Gecko
+    // By Scott Andrew
+    {
+        if (elm.addEventListener) {
+          elm.addEventListener(evType, fn, useCapture); 
+          return true; 
+        } else if (elm.attachEvent) {
+          var r = elm.attachEvent('on' + evType, fn); 
+          return r; 
+        } else {
+          elm['on' + evType] = fn;
+        }
+    }
+
+    function setOp(opval, recid) {
+        document.editlist.op.value = opval;
+        document.editlist.activerec.value = recid;
+    }
+
+    // AJAX Related Functions
+
+    var xmlhttp = null;
+
+    // Template Variable Admin Ajax Support Functions 
+    function ajaxUpdateField(op,rid) {
+        var validcmd = false;
+        var message = '';
+
+        if (op == 'updateItemField') {
+            validcmd = true;
+             var odid = eval('document.editlist.listid');
+             var did = odid.value;
+
+            // Get Field ID
+            var fields = new Array();
+            for (var i = 0; i < {num_fields}; i++ ) {
+                var ofid = eval('document.editlist.item_'+rid+'_field'+i);
+
+                // Check and see if this field has multiple values (as in a multi-select)
+                if (ofid.length > 0) {
+                    selcnt = 0;
+                    selvalue = '';
+                    for (k = 0; k < ofid.length; k++)
+                     if (ofid[k].selected == true){
+                        selcnt++;
+                        //alert('Selected: ' + ofid[k].value + ' , selected:' + selcnt);
+                        if (selcnt > 1) {
+                            selvalue = selvalue + ':' + ofid[k].value;
+                        } else {
+                            selvalue = ofid[k].value;
+                        }
+                     }
+                    fields[fields.length] = selvalue;
+                    //alert('value: '+ ofid.name + ' = ' + selvalue);
+                } else {
+                    var tmp = ofid.value;
+                    while (tmp.indexOf(',') != -1) {
+                        tmp = tmp.replace(',', '&#44;');
+                    }
+                    while (tmp.indexOf(':') != -1) {
+                        tmp = tmp.replace(':', '&#58;');
+                    }
+                    fields[fields.length] = tmp;
+                    //alert('editlist.item_'+rid+'_field'+i + ': ' + ofid.value);
+                }
+            }
+            v1 = fields;
+            // Get the actual List item id - assign to the variable rid (record id vs row id)
+            oitemid = eval('document.editlist.listrec_'+rid);
+            itemid = oitemid.value;
+            message = 'Updating Fields ...';
+        }
+        if (validcmd) {
+
+            var fa = document.getElementById('fieldaction_' + rid);
+            var fs = document.getElementById('fieldstatus_' + rid);
+            fa.style.display='none';
+            fs.style.display='';
+            fs.firstChild.nodeValue=message;
+
+            xmlhttp = new XMLHttpRequest();
+            var qs = '?op=' + op + '&did='+did + '&rid='+rid + '&itemid=' + itemid;
+            if (v1) {
+                qs = qs + '&var1='+ escape(v1);
+            }
+            xmlhttp.open('GET', 'ajaxupdate.php' + qs, true);
+            xmlhttp.onreadystatechange = function() {
+               if (xmlhttp.readyState == 4) {
+                    receiveRequestUpdatenexlist(xmlhttp.responseXML);
+                  }
+           };
+            xmlhttp.send(null);
+
+            // Set fields back to readonly mode
+            if (op == 'updateField' || op == 'deleteField') {
+                cancelUpdateListField(rid,field);
+            }
+        }
+
+    }
+
+    function receiveRequestUpdatenexlist(dom) {
+
+        var did = dom.getElementsByTagName('did')[0].firstChild.nodeValue;
+        var data = dom.getElementsByTagName('data')[0].firstChild.nodeValue;
+        var op = dom.getElementsByTagName('operation')[0].firstChild.nodeValue;
+        var rid = dom.getElementsByTagName('rid')[0].firstChild.nodeValue;
+
+        //alert ('Return Data: rid is: ' + rid + ' and data: ' + data);
+        cancelUpdateField(rid);
+
+        // Remove updating... status and show buttons
+        var fa = document.getElementById('fieldaction_'+rid);
+        var fs = document.getElementById('fieldstatus_'+rid);
+        fs.firstChild.nodeValue='&nbsp;';
+        fa.style.display='';
+        fs.style.display='none';
+
+        if (op == 'addField' || op == 'deleteField') {
+            // Get HTML content returned and updated displayed Template Variables
+            var obj = document.getElementById('dfield_container'+did);
+            if (obj.parentNode) {
+                // Check for 3 chunks of data returning - look into using the DOM normalize method
+                html = odata[0].childNodes[0].nodeValue;
+                if (odata[0].childNodes[1]) {
+                    html = html + odata[0].childNodes[1].nodeValue;
+                }
+                if (odata[0].childNodes[2]) {
+                    html = html + odata[0].childNodes[2].nodeValue;
+                }
+                obj.parentNode.innerHTML = html;
+            }
+        } else if (op == 'updateItemField') {
+            // Update the displayed item field values
+            var adata = data.split(':');
+            for (var i = 0; i < adata.length; i++) {
+                var obj = document.getElementById('vfield' +i + '_' +rid);
+                if (obj.firstChild) {
+                    obj.firstChild.nodeValue= adata[i];
+                } else {
+                    var textnode = document.createTextNode(adata[i]);
+                    obj.appendChild(textnode);
+                }
+            }
+        }
+
+
+
+    }
+
+    // End of AJAX Functions

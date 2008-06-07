@@ -1,0 +1,63 @@
+
+<script type="text/javascript">
+    {javascript_code}
+</script>
+
+    <div id="add_listitem" style="padding:10px;visibility:{showhide_additem};"><a href="#" onClick="showhide_addListitem();">New Item</a></div>       
+    <table class="plugin" cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr>
+            <td class="pluginCellTitle" width="25%">List Name</td>
+            <td class="pluginCellText" width="75%">{listname}</td>
+        </tr>
+        <tr>
+            <td class="pluginCellTitle">Description</td>
+            <td class="pluginCellText">{listdesc}</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding:0px;">
+                <table class="plugin" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                        <td colspan="6" class="pluginInfo">{help_msg}</td>
+                    </tr>
+                    <tr id="new_listitem" class="pluginRow1" style="display:none;">
+                        <td colspan="6" style="padding:1px;">
+                            <form method="post" action="{actionurl}" style="margin:0px;">
+                                <input type="hidden" name="op" value="add_item">
+                                <input type="hidden" name="listid" value="{listid}">
+                                <input type="hidden" name="numfields" value="{num_fields}">
+                                <input type="hidden" name="catmode" value="{catmode}">
+                                <input type="hidden" name="pluginmode" value="{pluginmode}">
+                                <table class="plugin" cellspacing="1" cellpadding="1" border="0" width="100%" style="border:0px;">
+                                        {additem_record}
+                                    <tr style="vertical-align:top;">
+                                        <td colspan="2" style="padding:5px;text-align:center;">
+                                            <input type="submit" value="&nbsp;Add&nbsp;">&nbsp;<input type="button" value="Cancel" onClick=' showhide_addListitem()'>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </td>
+                    </tr>
+                        <td colspan="6" style="padding:0px;">
+                            <form name="editlist" method="post" action="{actionurl}" style="margin:0px;">
+                                <input type="hidden" name="op" value="">
+                                <input type="hidden" name="activerec" value="">
+                                <input type="hidden" name="listid" value="{listid}">
+                                <input type="hidden" name="itemid" value="{listid}">
+                                <input type="hidden" name="catmode" value="{catmode}">
+                                <input type="hidden" name="pluginmode" value="{pluginmode}">
+                                <table cellspacing="1" cellpadding="1" border="0" width="100%">
+                                    <tr>
+                                        {heading_fields}
+                                    </tr>
+                                        {list_records}
+                                </table>
+                                {pagenavigation}
+                            </form>
+                       </td>
+                    </tr>
+                </table>
+           </td>
+       </tr>
+    </table>
+</form>

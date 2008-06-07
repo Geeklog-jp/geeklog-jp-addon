@@ -1,0 +1,67 @@
+<script type="text/javascript">
+    {javascript_code}
+</script>
+<div id="add_definition" style="padding:10px 0px 10px 10px;display:{hide_adddef};">
+    <a href="#" onClick="showhide_addDefinition();">New Definition</a>
+</div>
+    <table class="plugin" cellspacing="1" cellpadding="1" border="0" width="100%">
+        <tr>
+            <td colspan="6" class="pluginInfo">The following are the nexList List Defintions. Click on [View] to view a particular list. Click on [New Definition] to add.</td>
+        </tr>
+        <tr id="new_definition" class="pluginRow1" style="display:none;">
+            <td colspan="6">
+                <form name="add_definition" method="post" action="{actionurl}" style="margin:0px;">
+                <input type="hidden" name="op" value="add_definition">
+                <input type="hidden" name="pluginmode" value="{pluginmode}">
+                <input type="hidden" name="catmode" value="{catmode}">
+                <table class="plugin" cellspacing="1" cellpadding="1" border="0" width="100%" style="background-color:#CCC;">
+                    <tr style="vertical-align:top;">
+                        <td class="pluginTitle">Name:</td>
+                        <td><input type="text" name="definition_name" value="" size="30" ></td>
+                    </tr>
+                    <tr style="vertical-align:top;" style="display:{show_plugin};">
+                        <td class="pluginTitle">Plugin:</td>
+                        <td>
+                            <select name="definition_plugin" style="width:140px;">{new_plugin_options}</select>
+                        </td>
+                    </tr>
+                    <tr style="vertical-align:top;" style="display:{show_category};">
+                        <td class="pluginTitle">Category:</td>
+                        <td><input type="text" name="definition_category" value="{new_category}" size="30" ></td>
+                    </tr>
+                    <tr style="vertical-align:top;">
+                        <td class="pluginTitle">View Permission:</td>
+                        <td><select name="definition_viewperm" style="width:140px;">{new_editperms}</select></td>
+                    </tr>
+                    <tr style="vertical-align:top;">
+                        <td class="pluginTitle">Edit Permission:</td>
+                        <td><select name="definition_editperm" style="width:140px;">{new_editperms}</select></td>
+                    </tr>
+                    <tr style="vertical-align:top;">
+                        <td class="pluginTitle">Description:</td>
+                        <td><textarea name="definition_description" cols=50" rows="3"></textarea></td>
+                    </tr>
+                    <tr style="vertical-align:top;">
+                        <td colspan="2" style="text-align:center;">
+                            <input type="submit" value="&nbsp;Add&nbsp;">&nbsp;<input type="button" value="Cancel" onClick=' showhide_addDefinition()'>
+                        </td>
+                    </tr>
+                </table>
+                </form>
+            </td>
+        </tr>
+            <td colspan="6" style="padding:0px;">
+                <table cellspacing="1" cellpadding="1" border="0" width="100%">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th style="display:{show_plugin};">Plugin</th>
+                        <th style="display:{show_category};">Category</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                </tr>
+                   {definition_records}
+                </table>
+            </td>
+       </tr>
+   </table>
