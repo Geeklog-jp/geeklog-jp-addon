@@ -1,0 +1,22 @@
+            <tr>
+                <td class="pluginRow{cssid}">{list_order}</td>
+                <td class="pluginRow{cssid}">{list_recid}</td>
+                {listrec_fields}
+                <td style="display:{show_edit_actions};">
+                    <div style="width:180px;" id="fieldaction_{rowid}">
+                        <span id="editlabel_{rowid}">
+                            [&nbsp;<a id="editlist_{rowid}" href="#">Edit</a>&nbsp;]&nbsp;[&nbsp;<a id="orderlist_{rowid}" href="#" onClick="showOrderField({rowid}); return false;">Order</a>&nbsp;]&nbsp;[&nbsp;<a id="deletelist_{rowid}" href="#">Delete</a>&nbsp;]
+                         </span>
+                        <span id="updatelabel_{rowid}" style="display:none;">
+                            <input type="button" value="Save" onClick='ajaxUpdateField("updateItemField",{rowid});'>&nbsp;
+                            <input type="button" value="Cancel" onClick='cancelUpdateField({rowid});'>
+                        </span>
+                        <span id="orderlabel_{rowid}" style="display:none;">
+                            <input type="text" name="order{list_recid}" value="{list_order}" size="6">
+                            <input type="submit" value="Save" onFocus="setOp('order', {list_recid});">
+                        </span>
+                    </div>
+                    <div id="fieldstatus_{rowid}" class="pluginInfo"  style="width:170px;display:none;">&nbsp;</div>
+                        <input type="hidden" name="listrec_{rowid}" value="{list_recid}">
+                </td>
+            </tr>

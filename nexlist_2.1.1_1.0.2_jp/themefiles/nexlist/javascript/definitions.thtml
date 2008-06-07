@@ -1,0 +1,340 @@
+// Javascript functions for nexList List Definition Admin Pages
+
+    function showhide_addDefinition() {
+        if (document.getElementById('new_definition').style.display == 'none') {
+            document.getElementById('new_definition').style.display = '';
+            document.getElementById('add_definition').style.visibility='hidden'
+        } else {
+            document.getElementById('new_definition').style.display='none';
+            document.getElementById('add_definition').style.visibility=''
+        }
+    }
+
+    function editDefinition(rid) {
+        var v1 = eval('document.dform_' +rid+ '.definition_name');
+        v1.readOnly=false;
+        document.getElementById('editdef'+rid+'_plugin').style.display = '{show_plugin}';
+        document.getElementById('editdef'+rid+'_category').style.display = '{show_category}';
+        document.getElementById('editdef'+rid+'_perms1').style.display = '';            
+        document.getElementById('editdef'+rid+'_perms2').style.display = '';
+        document.getElementById('editdef'+rid+'_description').style.display = '';
+        document.getElementById('editdef'+rid+'_editlink').style.display = 'none';
+        document.getElementById('updatedef'+rid+'_savebtns').style.display = '';
+        document.getElementById('addfieldlabel'+rid).style.display = 'none';
+        document.getElementById('divshowfields'+rid).style.display = 'none';
+    }
+
+    function cancelEditDefinition(rid) {
+        var v1 = eval('document.dform_' +rid+ '.definition_name');
+        v1.readOnly=true;
+        document.getElementById('editdef'+rid+'_plugin').style.display = 'none';
+        document.getElementById('editdef'+rid+'_category').style.display = 'none';
+        document.getElementById('editdef'+rid+'_perms1').style.display = 'none';
+        document.getElementById('editdef'+rid+'_perms2').style.display = 'none';            
+        document.getElementById('editdef'+rid+'_description').style.display = 'none';
+        document.getElementById('editdef'+rid+'_editlink').style.display = '';
+        document.getElementById('updatedef'+rid+'_savebtns').style.display = 'none';
+        document.getElementById('addfieldlabel'+rid).style.display = '';
+        // Check if there are any fields setup for this definition
+        var ofid = eval('document.dvars'+rid+'.field1_name');
+        if(ofid) {
+            document.getElementById('divshowfields'+rid).style.display = '';
+        }
+    }
+
+    function updateDefinition(rid) {
+        var frm = eval('document.dform_'+rid);
+        var op = eval('document.dform_'+rid+'.op');
+        op.value='update_definition';
+        frm.submit();
+    }
+
+   // Function attached to "Add Field" link on the nexList definition detail form.
+   function addField(i) {
+        document.getElementById('newfield_container'+i).style.display = '';
+        document.getElementById('addfield'+i+'_function').style.display = '';
+        if (document.getElementById('divshowfields'+i)) {
+            document.getElementById('divshowfields'+i).style.display = '';
+        }
+        document.getElementById('addfieldlabel'+i).style.display = 'none';
+   }
+
+   function editListField(rid,field) {
+        // Hide the [edit] link and show the Save/Cancel buttons
+        document.getElementById('editlabel_' +rid + '_' +field).style.display = 'none';
+        document.getElementById('updatelabel_' +rid + '_' +field).style.display = '';
+
+        // Set the input fields to be not readonly now for editing
+        var v1 = eval('document.dvars'+rid+'.field' +field+'_name');
+        v1.readOnly=false;
+        var v2 = eval('document.dvars'+rid+'.field' +field+'_value');
+        v2.readOnly=false;
+        var v3 = eval('document.dvars'+rid+'.field' +field+'_width');
+        v3.readOnly=false;
+        var v4 = eval('document.dvars'+rid+'.field' +field+'_fvalue');
+        v4.disabled=false;
+
+        var v5 = document.getElementById('field' +rid+ '_' +field+'_function');
+        v5.style.display = '';
+
+        v1.focus();
+   }
+
+    function cancelUpdateListField(rid,fid) {
+       document.getElementById('addfieldlabel'+rid).style.display = '';
+       document.getElementById('newfield_container'+rid).style.display = 'none';
+       if (fid) {
+           resetFieldActions(rid,fid)
+       }
+    }
+
+    function resetRecordActions(rid) {
+        document.getElementById('dview'+rid).style.display = '';
+        document.getElementById('dedit'+rid).style.display = 'none';
+
+        document.getElementById('addfieldlabel'+rid).style.display = '';
+        document.getElementById('newfield_container'+rid).style.display = 'none';
+        
+        cancelEditDefinition(rid);
+
+        // Switch any other definition fieds back into view mode
+         for (var fid = 1; fid <= {max_numfields}; fid++ ) {
+           var v1 = eval('document.dvars'+rid+'.field' +fid+'_name');
+           if (v1 && !v1.readOnly) {
+                resetFieldActions(rid,fid) 
+           }
+         }
+    }
+
+    function resetFieldActions(rid,fid) {
+        var v1 = eval('document.dvars' +rid+ '.field' +fid+ '_name');
+        if (v1 && !v1.readOnly) {
+            //alert('v1 readOnly: ' + v1.readOnly + ' id test: document.dvars'+rid+'.field' +fid+'_name')
+            v1.readOnly=true;
+            var v2 = eval('document.dvars' +rid+ '.field' +fid+ '_value');
+            v2.readOnly=true;
+            var v3 = eval('document.dvars' +rid+ '.field' +fid+ '_width');
+            v3.readOnly=true;
+            var v4 = eval('document.dvars' +rid+ '.field' +fid+ '_fvalue');
+            v4.disabled=true;
+
+            var v5 = document.getElementById('field' +rid+ '_' +fid+'_function');
+            v5.style.display = 'none';
+
+            document.getElementById('editlabel_' +rid + '_' +fid).style.display = '';
+            obj = document.getElementById('updatelabel_' +rid + '_' +fid).style.display = 'none';
+        }
+    }
+
+    function editAction() {
+        if (window.event && window.event.srcElement)  {  // IE Method
+            var id = window.event.srcElement.parentNode.id;
+        } else {
+            var id = this.id;
+        }
+        var recid = id.split('_');
+        //alert('id is:' + id + ' and recid is:' + recid);
+        document.getElementById('dview'+recid[1]).style.display = 'none';
+        document.getElementById('dedit'+recid[1]).style.display = '';
+        var rid=recid[1];
+        document.getElementById('add_definition').style.visibility = 'hidden';
+
+        // Hide any other template record details
+        for (var i = 1; i <= {num_records}; i++ ) {
+            if (i != rid) {
+                resetRecordActions(i);
+            }
+        }
+        return false;
+    }
+
+    // Function action attached to click event when user clicks on "Cancel" button
+    // Restore all form defaults
+    function restoreAction() {
+        document.getElementById('add_definition').style.visibility = '';
+        document.getElementById('new_definition').style.display = 'none';
+
+        // Hide any other template record details
+        for (var i = 1; i <= {num_records}; i++ ) {
+            resetRecordActions(i)
+        }
+    }
+
+
+    function installListeners() {
+        for (var i = 1; i <= {num_records}; i++ ) {
+            var obj1 = document.getElementById('edefinition_'+i);
+            var obj2 = document.getElementById('dcancel_'+i);
+            if (obj1) addEvent(obj1,'click', editAction, false);
+            if (obj2) addEvent(obj2,'click', restoreAction, false);
+        }
+    }
+
+    addEvent(window,'load', installListeners,false);
+
+    function addEvent(elm, evType, fn, useCapture)
+    // cross-browser event handling for IE5+, NS6+ and Mozilla/Gecko
+    // By Scott Andrew
+    {
+        if (elm.addEventListener) {
+          elm.addEventListener(evType, fn, useCapture); 
+          return true; 
+        } else if (elm.attachEvent) {
+          var r = elm.attachEvent('on' + evType, fn); 
+          return r;
+        } else {
+          elm['on' + evType] = fn;
+        }
+    }
+
+    function populateFunctionDropDown(rid, fid) {
+        if (fid == -1) {
+            if (document.getElementById('addfield'+rid+'_usefunction').checked) {
+                document.getElementById('addfield'+rid+'_ftext').style.display = 'none';
+                document.getElementById('addfield'+rid+'_fddown').style.display = '';
+            }
+            else {
+                document.getElementById('addfield'+rid+'_fddown').style.display = 'none';
+                document.getElementById('addfield'+rid+'_ftext').style.display = '';
+            }
+        }
+        else {
+            if (eval('document.dvars' +rid+ '.field' +fid+ '_usefunction').checked) {
+                document.getElementById('field' + rid + '_' + fid + '_ftext').style.display = 'none';
+                document.getElementById('field' + rid + '_' + fid + '_fddown').style.display = '';
+            }
+            else {
+                document.getElementById('field' + rid + '_' + fid + '_fddown').style.display = 'none';
+                document.getElementById('field' + rid + '_' + fid + '_ftext').style.display = '';
+            }
+        }
+    }
+
+    // AJAX Related Functions
+
+    var xmlhttp = null;
+
+    // Template Variable Admin Ajax Support Functions 
+    function ajaxUpdateDefinition(op,rid,field) {
+        var validcmd = false;
+        var message = '';
+        // Get Defintion ID
+        var odid = eval('document.dform_'+rid+'.defid');
+        var did = odid.value;
+        if (op == 'updateField') {
+            validcmd = true;
+            // Get Field ID
+            var ofid = eval('document.dvars'+rid+'.fieldrecid_'+field);
+            var fid = ofid.value;
+            message = 'Updating Field ...';
+
+            // Get field input values
+            var v1 = eval('document.dvars'+rid+'.field' +field+'_name');
+            if (eval('document.dvars' +rid+ '.field' +field+ '_usefunction').checked) {
+                var v2 = eval('document.dvars'+rid+'.field' +field+'_fvalue');
+                var v4 = 1;
+            }
+            else {
+                var v2 = eval('document.dvars'+rid+'.field' +field+'_value');
+                var v4 = 0;
+            }
+            var v3 = eval('document.dvars'+rid+'.field' +field+'_width');
+        } else if (op == 'addField') {
+            validcmd = true;
+            message = 'Adding Field ...';
+            // Get field input values
+            var v1 = eval('document.dvars'+rid+'.addfield_name');
+            if (document.getElementById('addfield'+rid+'_usefunction').checked) {
+                var v2 = eval('document.dvars'+rid+'.addfield_fvalue');
+                var v4 = 1;
+            }
+            else {
+                var v2 = eval('document.dvars'+rid+'.addfield_value');
+                var v4 = 0;
+            }
+            var v3 = eval('document.dvars'+rid+'.addfield_width');
+        } else if (op == 'deleteField') {
+            validcmd = true;
+            // Get Field ID
+            var ofid = eval('document.dvars'+rid+'.fieldrecid_'+field);
+            var fid = ofid.value;
+            message = 'Deleting Field ...';
+            // Get field input values
+        }
+        if (validcmd) {
+
+            var fa = document.getElementById('fieldaction_' + did);
+            var fs = document.getElementById('fieldstatus_' + did);
+            fa.style.display='none';
+            fs.style.display='';
+            fs.firstChild.nodeValue=message;
+
+            xmlhttp = new XMLHttpRequest();
+            var qs = '?op=' + op + '&did=' + did + '&rid=' + rid;
+            if (fid) {
+                qs = qs + '&fid=' + fid;
+            }
+            if (v1) {
+                qs = qs + '&var1='+ escape(v1.value);
+            }
+            if (v2) {
+                qs = qs + '&var2='+ escape(v2.value);
+            }
+            if (v3) {
+                qs = qs + '&var3='+ escape(v3.value);
+            }
+            if (v4) {
+                qs = qs + '&var4='+ escape(v4);
+            }
+            xmlhttp.open('GET', 'ajaxupdate.php' + qs, true);
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4) {
+                    receiveRequestUpdatenexlist(xmlhttp.responseXML);
+                }
+            };
+            xmlhttp.send(null);
+
+            // Set fields back to readonly mode
+            if (op == 'updateField' || op == 'deleteField') {
+                cancelUpdateListField(rid,field);
+            }
+        }
+
+    }
+
+    function receiveRequestUpdatenexlist(dom) {
+        var did = dom.getElementsByTagName('did')[0].firstChild.nodeValue;
+        var op = dom.getElementsByTagName('operation')[0].firstChild.nodeValue;
+        var rid = dom.getElementsByTagName('rid')[0].firstChild.nodeValue;
+
+        //alert ('Return Data: did: ' + did + ' rid is: ' + rid);
+
+         cancelUpdateListField(rid);
+
+        // Remove updating... status and show buttons
+        var fa = document.getElementById('fieldaction_'+did);
+        var fs = document.getElementById('fieldstatus_'+did);
+        fs.firstChild.nodeValue='&nbsp;';
+        fa.style.display='';
+        fs.style.display='none';
+
+        if (op == 'addField' || op == 'deleteField') {
+            // Get HTML content returned and updated displayed Template Variables
+            var odata = dom.getElementsByTagName('data');
+            var obj = document.getElementById('dfield_container'+did);
+            if (obj.parentNode) {
+                // Check for 3 chunks of data returning - look into using the DOM normalize method
+                html = odata[0].childNodes[0].nodeValue;
+                if (odata[0].childNodes[1]) {
+                    html = html + odata[0].childNodes[1].nodeValue;
+                }
+                if (odata[0].childNodes[2]) {
+                    html = html + odata[0].childNodes[2].nodeValue;
+                }
+                obj.parentNode.innerHTML = html;
+            }
+        }
+
+    }
+
+    // End of AJAX Functions

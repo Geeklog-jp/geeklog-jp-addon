@@ -1,0 +1,11 @@
+/* Note: A few new CSS declarations that will be added to our default installation. */
+/* Review to see if they need to be added */
+/* August 3/ 2005 Blaine Lang */
+
+.plugin                { color: #000; background-color: #EFEFEF; font-weight: plain; font-size: 12pt; font-family: Verdana, sans-serif; border:1px solid #CCC }
+.plugin th             { color: #000; font-size: .9em; background-color: #B7C1DC; padding:5px; text-align:left;}
+.plugin tr             { vertical-align:top; }
+.plugin td             { padding:2px 5px 2px 5px; }
+.pluginSubTable        { color: #000; background-color: #CCC; font-weight: plain; font-size: 12pt; font-family: Verdana, sans-serif; border:1px solid #CCC }
+.pluginSubTable th     { color: #000; font-size: .7em; background-color: #C9D1E4; padding:5px; text-align:left;}
+.pluginSubTable tr     { vertical-align:top; }

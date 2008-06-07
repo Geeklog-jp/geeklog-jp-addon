@@ -1,0 +1,86 @@
+        <tr  id="dview{rowid}" class="pluginRow{cssid}">
+            <td>{definition_id}</td>
+            <td width="20%">{definition_name}</td>
+            <td style="display:{show_plugin};">{plugin}</td>
+            <td style="display:{show_category};">{category}</td>
+            <td>{description}</td>
+            <td nowrap>
+                <a href="{view_definition_url}"><img src="{view_definition_icon}" border="0" TITLE="View Definition"></a>&nbsp;{editperms_link}&nbsp;{copyperms_link}&nbsp;{delperms_link}&nbsp
+            </td>
+       </tr>
+        <tr id="dedit{rowid}" class="pluginRow{cssid}" style="vertical-align:top;display:none;">
+            <td width="5%" style="padding-left:5px;">{definition_id}</td>
+            <td width="95%" colspan="5">
+                <form name="dform_{rowid}" method="post" action="{actionurl}"  style="margin:0px;">
+                <input type="hidden" name="op" value="">
+                <input type="hidden" name="defid" value="{definition_id}">
+                <input type="hidden" name="pluginmode" value="{pluginmode}">
+                <input type="hidden" name="catmode" value="{catmode}">
+                <table class="pluginSubTable" cellspacing="0" cellpadding="1" border="0" width="100%" style="margin-top:5px;">
+                    <tr>
+                        <td width="10%" style="padding:5px 5px 5px 10px;" nowrap>Name:</td>
+                        <td width="55%" style="padding:5px 5px 5px 10px;" nowrap>
+                            <input type="text" name="definition_name" size="30" value="{definition_name}" READONLY>
+                        </td>
+                        <td style="padding:5px 5px 5px 10px;" nowrap>
+                            <span id="editdef{rowid}_editlink">{editdef_link}</span>
+                            <span id="updatedef{rowid}_savebtns" style="display:none;">
+                                <input type="button" value="Save" onClick='updateDefinition({rowid});'>&nbsp;
+                                <input type="button" value="Cancel" onClick='cancelEditDefinition({rowid});' >
+                            </span>
+                         </td>
+                        <td width="30%" style="text-align:right;padding:5px;" nowrap>
+                            <span id="fieldaction_{definition_id}">
+                                <input id="dcancel_{rowid}" type="button" value="Close">
+                             </span>
+                             <span id="fieldstatus_{definition_id}" class="pluginInfo"  style="display:none;">&nbsp;</span>
+                        </td>
+                    </tr>
+                    <tr id="editdef{rowid}_plugin" style="display:none;">
+                        <td width="10%" style="padding-left:10px;" nowrap>Plugin:</td>
+                        <td colspan="3" width="45%" style="padding-left:10px;" nowrap>
+                            <select name="definition_plugin" style="width:140px;">{plugin_options}</select>
+                        </td>
+                    </tr>
+                    <tr id="editdef{rowid}_category" style="display:none;">
+                        <td width="10%" style="padding-left:10px;" nowrap>Category:</td>
+                        <td colspan="3" width="45%" style="padding-left:10px;" nowrap>
+                            <input type="text" name="definition_category" size="30" value="{category}">
+                        </td>
+                    </tr>
+                    <tr id="editdef{rowid}_perms1" style="display:none;">
+                        <td width="10%" style="padding-left:10px;" nowrap>View Permission:</td>
+                        <td colspan="3" width="45%" style="padding-left:10px;" nowrap>
+                            <select name="definition_viewperm" style="width:140px;">{viewperms}</select>
+                        </td>
+                    </tr>
+                    <tr id="editdef{rowid}_perms2" style="display:none;">
+                        <td width="10%" style="padding-left:10px;" nowrap>Edit Permission:</td>
+                        <td colspan="3" width="45%" style="padding-left:10px;" nowrap>
+                            <select name="definition_editperm" style="width:140px;">{editperms}</select>
+                        </td>
+                    </tr>                    
+                    <tr id="editdef{rowid}_description" style="display:none;">
+                        <td width="10%" style="padding-left:10px;" nowrap>Description:</td>
+                        <td colspan="3" width="45%" style="padding-left:10px;padding-bottom:10px;" nowrap>
+                            <textarea name="definition_description" cols="50" rows="5">{edit_description}</textarea>
+                        </td>
+                    </tr>
+                </table>
+                </form>
+                <table cellspacing="0" cellpadding="1" border="0" width="60%" style="margin-top:5px;padding-left:20px;padding-right:20px;">
+                    <tr>
+                        <td width="100%" nowrap>
+                            <div id="addfieldlabel{rowid}" style="padding:7px 5px 0px 5px;">[&nbsp;<a href="#" onClick="addField({rowid});return false;">Add&nbsp;Field</a>&nbsp;]</div>
+                            <div id="divshowfields{rowid}" style="padding-left:10px;display:{show_fields};">
+                                <fieldset style="margin:10px 10px 10px 0px;padding:10px;"><legend>Definition Fields</legend>
+                                    <form name="dvars{rowid}" style="margin:0px;">
+                                        {definition_fields}
+                                    </form>
+                                </fieldset>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
