@@ -1,21 +1,21 @@
                 <table class="pluginSubTable" id="dfield_container{definition_id}" cellspacing="1" cellpadding="1" border="0" width="100%" style="margin-top:5px;">
                     <tr>
-                        <th>Field Name</th>
-                        <th>Function (if applicable)</th>
-                        <th>Width %</th>
-                        <th>Actions</th>
+                        <th>フィールド名</th>
+                        <th>関数 (該当する場合)</th>
+                        <th>幅 %</th>
+                        <th>アクション</th>
                     </tr>
                     {definition_field_records}
                 </table>
                 <table id="newfield_container{rowid}" cellspacing="1" cellpadding="1" border="0" width="70%" style="margin-top:5px;display:none;">
                     <tr>
-                        <td style="padding:5px;" nowrap>Name:&nbsp;<input type="text" size="20" name="addfield_name"></td>
+                        <td style="padding:5px;" nowrap>名称:&nbsp;<input type="text" size="20" name="addfield_name"></td>
                         <td style="padding:5px;" nowrap>
-                            <div id="addfield{rowid}_ftext">Value:&nbsp;<input type="text" size="20" name="addfield_value"></div>
-                            <div id="addfield{rowid}_fddown" style="display:none;"><select name="addfield_fvalue"><option value="">Select Function</option>{function_dropdown_options}</select></div>
-                            <div id="addfield{rowid}_function" style="display:none;"><input type="checkbox" id="addfield{rowid}_usefunction" name="addfield_usefunction" onClick="populateFunctionDropDown({rowid}, -1);">Use a predefined function for the value</div>
+                            <div id="addfield{rowid}_ftext">値:&nbsp;<input type="text" size="20" name="addfield_value"></div>
+                            <div id="addfield{rowid}_fddown" style="display:none;"><select name="addfield_fvalue"><option value="">関数選択</option>{function_dropdown_options}</select></div>
+                            <div id="addfield{rowid}_function" style="display:none;"><input type="checkbox" id="addfield{rowid}_usefunction" name="addfield_usefunction" onClick="populateFunctionDropDown({rowid}, -1);">定義済みの関数の値を使用する</div>
                         </td>
-                        <td style="padding:5px;" nowrap>Width %:&nbsp;<input type="text" size="5" name="addfield_width"></td>
+                        <td style="padding:5px;" nowrap>幅 %:&nbsp;<input type="text" size="5" name="addfield_width"></td>
                         <td><input type="button" name="operation" value="Add Field" onClick='ajaxUpdateDefinition("addField",{rowid});'></td>
                     </tr>
                 </table>

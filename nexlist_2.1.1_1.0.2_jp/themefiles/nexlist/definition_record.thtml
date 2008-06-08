@@ -18,7 +18,7 @@
                 <input type="hidden" name="catmode" value="{catmode}">
                 <table class="pluginSubTable" cellspacing="0" cellpadding="1" border="0" width="100%" style="margin-top:5px;">
                     <tr>
-                        <td width="10%" style="padding:5px 5px 5px 10px;" nowrap>Name:</td>
+                        <td width="10%" style="padding:5px 5px 5px 10px;" nowrap>名称:</td>
                         <td width="55%" style="padding:5px 5px 5px 10px;" nowrap>
                             <input type="text" name="definition_name" size="30" value="{definition_name}" READONLY>
                         </td>
@@ -37,31 +37,31 @@
                         </td>
                     </tr>
                     <tr id="editdef{rowid}_plugin" style="display:none;">
-                        <td width="10%" style="padding-left:10px;" nowrap>Plugin:</td>
+                        <td width="10%" style="padding-left:10px;" nowrap>プラグイン:</td>
                         <td colspan="3" width="45%" style="padding-left:10px;" nowrap>
                             <select name="definition_plugin" style="width:140px;">{plugin_options}</select>
                         </td>
                     </tr>
                     <tr id="editdef{rowid}_category" style="display:none;">
-                        <td width="10%" style="padding-left:10px;" nowrap>Category:</td>
+                        <td width="10%" style="padding-left:10px;" nowrap>カテゴリ:</td>
                         <td colspan="3" width="45%" style="padding-left:10px;" nowrap>
                             <input type="text" name="definition_category" size="30" value="{category}">
                         </td>
                     </tr>
                     <tr id="editdef{rowid}_perms1" style="display:none;">
-                        <td width="10%" style="padding-left:10px;" nowrap>View Permission:</td>
+                        <td width="10%" style="padding-left:10px;" nowrap>パーミッション閲覧:</td>
                         <td colspan="3" width="45%" style="padding-left:10px;" nowrap>
                             <select name="definition_viewperm" style="width:140px;">{viewperms}</select>
                         </td>
                     </tr>
                     <tr id="editdef{rowid}_perms2" style="display:none;">
-                        <td width="10%" style="padding-left:10px;" nowrap>Edit Permission:</td>
+                        <td width="10%" style="padding-left:10px;" nowrap>パーミッション編集:</td>
                         <td colspan="3" width="45%" style="padding-left:10px;" nowrap>
                             <select name="definition_editperm" style="width:140px;">{editperms}</select>
                         </td>
                     </tr>                    
                     <tr id="editdef{rowid}_description" style="display:none;">
-                        <td width="10%" style="padding-left:10px;" nowrap>Description:</td>
+                        <td width="10%" style="padding-left:10px;" nowrap>説明:</td>
                         <td colspan="3" width="45%" style="padding-left:10px;padding-bottom:10px;" nowrap>
                             <textarea name="definition_description" cols="50" rows="5">{edit_description}</textarea>
                         </td>
@@ -73,7 +73,7 @@
                         <td width="100%" nowrap>
                             <div id="addfieldlabel{rowid}" style="padding:7px 5px 0px 5px;">[&nbsp;<a href="#" onClick="addField({rowid});return false;">Add&nbsp;Field</a>&nbsp;]</div>
                             <div id="divshowfields{rowid}" style="padding-left:10px;display:{show_fields};">
-                                <fieldset style="margin:10px 10px 10px 0px;padding:10px;"><legend>Definition Fields</legend>
+                                <fieldset style="margin:10px 10px 10px 0px;padding:10px;"><legend>フィールド定義</legend>
                                     <form name="dvars{rowid}" style="margin:0px;">
                                         {definition_fields}
                                     </form>
