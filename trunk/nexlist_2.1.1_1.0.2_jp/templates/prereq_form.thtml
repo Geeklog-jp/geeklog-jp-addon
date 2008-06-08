@@ -1,6 +1,6 @@
 <p>
     <div style="float:left; padding: 10px;"><img src="{pi_image}"></div>
-    <div style="float:left;"><h1>{pi_display_name} Installation</h1></div>
+    <div style="float:left;"><h1>{pi_display_name} インストール</h1></div>
 </p>
 
 <div style="clear:both;">

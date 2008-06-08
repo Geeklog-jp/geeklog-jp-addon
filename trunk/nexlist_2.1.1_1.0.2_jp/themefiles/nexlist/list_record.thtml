@@ -5,7 +5,7 @@
                 <td style="display:{show_edit_actions};">
                     <div style="width:180px;" id="fieldaction_{rowid}">
                         <span id="editlabel_{rowid}">
-                            [&nbsp;<a id="editlist_{rowid}" href="#">Edit</a>&nbsp;]&nbsp;[&nbsp;<a id="orderlist_{rowid}" href="#" onClick="showOrderField({rowid}); return false;">Order</a>&nbsp;]&nbsp;[&nbsp;<a id="deletelist_{rowid}" href="#">Delete</a>&nbsp;]
+                            [&nbsp;<a id="editlist_{rowid}" href="#">編集</a>&nbsp;]&nbsp;[&nbsp;<a id="orderlist_{rowid}" href="#" onClick="showOrderField({rowid}); return false;">Order</a>&nbsp;]&nbsp;[&nbsp;<a id="deletelist_{rowid}" href="#">Delete</a>&nbsp;]
                          </span>
                         <span id="updatelabel_{rowid}" style="display:none;">
                             <input type="button" value="Save" onClick='ajaxUpdateField("updateItemField",{rowid});'>&nbsp;

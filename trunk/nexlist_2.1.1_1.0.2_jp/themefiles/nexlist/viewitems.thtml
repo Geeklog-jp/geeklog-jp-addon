@@ -3,14 +3,14 @@
     {javascript_code}
 </script>
 
-    <div id="add_listitem" style="padding:10px;visibility:{showhide_additem};"><a href="#" onClick="showhide_addListitem();">New Item</a></div>       
+    <div id="add_listitem" style="padding:10px;visibility:{showhide_additem};"><a href="#" onClick="showhide_addListitem();">新規アイテム</a></div>       
     <table class="plugin" cellspacing="0" cellpadding="0" border="0" width="100%">
         <tr>
-            <td class="pluginCellTitle" width="25%">List Name</td>
+            <td class="pluginCellTitle" width="25%">リスト名</td>
             <td class="pluginCellText" width="75%">{listname}</td>
         </tr>
         <tr>
-            <td class="pluginCellTitle">Description</td>
+            <td class="pluginCellTitle">説明</td>
             <td class="pluginCellText">{listdesc}</td>
         </tr>
         <tr>

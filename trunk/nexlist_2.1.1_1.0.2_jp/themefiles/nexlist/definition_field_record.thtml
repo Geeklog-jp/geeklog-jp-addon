@@ -2,8 +2,8 @@
     <td width="25%" style="padding-left:5px" nowrap><input type="text" name="field{field_id}_name" size="20" value="{field_name}" READONLY></td>
     <td width="25%" style="padding-left:5px" nowrap>
         <div id="field{rowid}_{field_id}_ftext" style="display:{display_ftext};"><input type="text" name="field{field_id}_value" size="30" value="{field_value}" READONLY>&nbsp;</div>
-        <div id="field{rowid}_{field_id}_fddown" style="display:{display_fddown};"><select name="field{field_id}_fvalue" DISABLED><option value="">Select Function</option>{function_dropdown_options}</select></div>
-        <div id="field{rowid}_{field_id}_function" style="display:none;"><input type="checkbox" name="field{field_id}_usefunction" value="1" onClick="populateFunctionDropDown({rowid}, {field_id});" {checked}>Use a predefined function for the value</div>
+        <div id="field{rowid}_{field_id}_fddown" style="display:{display_fddown};"><select name="field{field_id}_fvalue" DISABLED><option value="">関数選択</option>{function_dropdown_options}</select></div>
+        <div id="field{rowid}_{field_id}_function" style="display:none;"><input type="checkbox" name="field{field_id}_usefunction" value="1" onClick="populateFunctionDropDown({rowid}, {field_id});" {checked}>定義済みの関数の値を使用する</div>
     </td>
     <td width="25%" style="padding-left:5px" nowrap><input type="text" name="field{field_id}_width" size="3" value="{field_width}" READONLY>&nbsp;</td>
     <td style="padding-left:10px;" nowrap>
