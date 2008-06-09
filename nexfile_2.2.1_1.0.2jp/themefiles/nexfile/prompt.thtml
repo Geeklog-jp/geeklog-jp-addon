@@ -1,0 +1,26 @@
+{siteheader}
+{startblock}
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td width="100%">
+		    <table width="100%" cellpadding="1" cellspacing="1" border="0">
+			    <tr>
+				    <td width="10%"><img src="{layout_url}/nexfile/images/warning.gif" border="0">
+					</td>
+					<td width="80%">{title}
+					</td>
+				</tr>
+				<tr>
+				    <td colspan="2" nowrap>{msg1}
+					</td>
+				</tr>
+			<tr>
+				    <td colspan="2">{msg2}{formHTML}
+					</td>
+				</tr>					
+			</table>
+		</td>
+	</tr>
+</table>
+{endblock}
+{sitefooter}

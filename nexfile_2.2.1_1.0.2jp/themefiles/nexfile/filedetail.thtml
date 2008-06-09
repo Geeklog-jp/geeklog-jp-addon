@@ -1,0 +1,49 @@
+{startblock}
+{toolbar}
+{errmsg}
+<script language="JavaScript" src="{site_url}/nexfile/include/popcalendar.js"></script>
+<form name="form1" action="{PHP_SELF}" method="post" style="margin:0px;">
+<div class="clearboth"></div>
+<table width="100%" height="44" border="0" cellpadding="3" cellspacing="1"  style="margin-top:10px;">
+    <tr>
+        <td>
+            <select name="op" style="width: 125px" onchange="this.form.submit()">
+            {action_options}
+            </select>
+        </td>
+        <td align="right">
+            <input type="image" name="action" src="{layout_url}/images/go-button.png"><input type="hidden" name="fid" value="{fid}">
+        </td>
+        <td align="left">{status_image}</td>
+        <td align="right" width="75%">
+            <img src="{layout_url}/nexpro/images/cal.gif"  value="" TITLE="{LANG_LASTUPDATED}" onclick='popUpCalendar(this, this, "d mmm yyyy")'>&nbsp;{longdate}
+        </td>
+    </td>
+    </tr>
+    <tr>
+        <td colspan = "5" align="right">{statusmessage}</td>
+    </tr>
+</table>
+</form>
+<br>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+    <tr> 
+        <td width="25%" rowspan="3"><div align="left"><p style="margin-left: 10;"><img src="{fileimage}" width="110" height="110" hspace="2" vspace="2"></p></div></td>
+        <td width="10%" rowspan="4">&nbsp;<strong>&nbsp;</strong></td>
+        <td  width="65%" colspan="2" valign="top"><img src="{fileicon}">&nbsp;<a href="{PHP_SELF}?op=download&fid={fid}" TITLE="{LANG_DOWNLOAD_MESSAGE}"><strong>{fname}</strong></a>&nbsp;<font size="-1">{current_version}</font></td>
+      </tr>
+      <tr valign="top"> 
+        <td height="22"><font size="-1">{title}&nbsp;</font></td>
+        <td align="right" height="22" nowrap><font size="-2">{shortdate}<br>{LANG_SIZE}:&nbsp;{size}</font></td>
+      </tr>
+      <tr> 
+        <td colspan="2"><hr> <font size="-1"><strong>{LANG_DESCRIPTION}</strong><br>{description}</font></td>
+      </tr>
+      <tr> 
+        <td><p style="margin-left: 10;">{LANG_CAT}:&nbsp;{catname}<br>{LANG_AUTHOR}:&nbsp;<font size="2">{author}</font></p></td>
+        <td colspan="2"><hr><font size="-1"><strong>{LANG_VERSION_NOTE}</strong><br>{current_ver_note}</font></td>
+    </tr>
+ </table>
+{version_records}
+{endblock}

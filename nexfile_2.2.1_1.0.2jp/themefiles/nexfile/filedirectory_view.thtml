@@ -1,0 +1,53 @@
+{siteheader}
+{beginblock}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td style="padding:0 0 5 0px;">{toolbar}</td>
+    </tr>
+</table>
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+  <tr align="center">
+    <td align="left">{message}</td>
+  </tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" class="pluginSolidFill" style="border:1px solid black;">
+    <tr align="center" valign="middle">
+        <td style="background: center url({imgset}/button.gif);padding:2px;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td align="left" width="248">&nbsp;<font size=2><b>{LANG_heading1}</b></font></td>
+                    <td align="left" nowrap style="padding-right:10px;"><font size=2><b>{LANG_heading2}</b></font></td>
+                    <td width="25" align="right" style="vertical-align:middle;padding-top:2px;" nowrap>{managelink}</td>
+                    <td width="25" align="right" style="vertical-align:middle;padding-top:2px;" nowrap>{permslink}</td>
+                    <td width="25" align="right" style="vertical-align:middle;padding-top:2px;" nowrap>{subscribelink}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-right:5px;">
+    <tr>
+        <td valign="top"><img height="1" width="180">
+          <div style="width:250px; height:600px; border:0px; overflow-x:auto;">
+              {folderview}
+          </div>
+      </td>
+      <td width="100%" valign="top" style="border-left: 1px solid grey; padding-left:10px;">
+        <div style="border:0px;"><br>
+          <table border="0" cellspacing="0" width="100%">
+                <tr valign="top">
+                    <td>{catimage}</td>
+                    <td align="left" width="100%">{catdesc}</td>
+                </tr>
+          </table>
+          <table border="0" cellspacing="0" width="100%">
+            <tr>
+               {file_records}
+          </table>
+      </div>
+    </td>
+  </tr>
+</table>
+{endblock}
+{sitefooter}

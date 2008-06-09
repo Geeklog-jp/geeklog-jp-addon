@@ -1,0 +1,5 @@
+    <tr align="center">
+      <td width="30"><img src="{fileicon}"></td>
+      <td valign="top" align="left"><font size="-2">{catdescription}</font></td>
+      <td valign="top" width="100">{editlink}<br>{permslink}</td>
+    </tr>

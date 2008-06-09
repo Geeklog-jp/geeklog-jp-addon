@@ -1,0 +1,11 @@
+    <tr align="center">
+      <td width="30"><img src="{fileicon}"></td>
+      <td align="left"><font size="-2"><a href="{siteurl}/nexfile/download.php?op=download&fid={fileid}" TITLE="{LANG_DOWNLOAD_MESSAGE}">{filetitle}</font></a>
+      <td valign="bottom" width="65">
+          <a class="info" href="{siteurl}/nexfile/details.php?fid={fileid}"><span style="left:-20em;">{fileinfo}</span>{LANG_DETAILS}</a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3" style="padding-top:10px;"><hr class="nexfile"></td>
+    </tr>
+
