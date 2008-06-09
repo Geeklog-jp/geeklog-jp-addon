@@ -1,0 +1,25 @@
+
+<img id="tasksByListingImg" src="images/collapse.gif" onclick="expandDiv('tasksByListingDiv','tasksByListingImg','');">Unordered Task List:<BR>
+<div id="tasksByListingDiv" style="visibility:visible">
+<table class="plugin" cellpading="1" cellspacing="1" border="0" width="100%">
+	<tr>
+		<th nowrap>TID</th>
+		<th nowrap>PID</th>
+		<th>Date</th>
+		<th>Task Name</th>
+		<th>Actions</th>
+	</tr>
+		{task_records}
+</table>
+</div>
+
+<BR><HR><BR>
+
+<img id="tasksByProcessImg" src="images/expand.gif" onclick="expandDiv('tasksByProcessDiv','tasksByProcessImg','');">Task Listed By Process:<BR>
+<div id="tasksByProcessDiv" style="visibility:hidden;display:none;position:absolute">
+<table border=0  style="border-collapse:collapse" class="plg_table" style="border-bottom:solid black 1px">
+
+{getProcessTasks}
+
+</table>
+</div>

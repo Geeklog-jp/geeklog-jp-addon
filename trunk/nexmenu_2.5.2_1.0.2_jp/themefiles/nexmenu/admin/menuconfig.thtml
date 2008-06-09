@@ -1,0 +1,142 @@
+
+<script src="{site_url}/nexmenu/javascript/301a.js"></script>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="1" class="plugin" style="border: 0px;">
+    <tr>
+        <td class="pluginAlert" style="display:{showalert};">{statusmsg}</td>
+    </tr>
+    <tr>
+        <td class="pluginTitle" style="padding:5px;">{LANG_title}</td>
+    </tr>
+    <tr>
+        <td>{navbar}</td>
+    </tr>
+    <tr>
+        <td>
+            <form name="frm_config" action="{phpself}" method="post" style="padding:0;margin:0;">
+            <input type="hidden" name="op" value="saveconfig">
+            <input type="hidden" name="showdisabled" value="{showdisabled}">
+            <input type="hidden" name="menulocation" value="{location}">
+            <table width="100%" border="0" cellspacing="1" cellpadding="1" class="plugin pluginSmallText">
+                <tr>
+                    <td width="120" style="padding-top:10px;">{LANG_menumode}</td>
+                    <td style="padding-top:10px;"><select name="mode">{mode_options}</select></td>
+                </tr>
+                <tr style="display:{show_cssmenucolors};">
+                    <td>&nbsp;</td>
+                    <td style="padding-right:20px;">
+                        <fieldset><legend>{LANG_csslabel1}</legend>
+                        <table cellpadding="0" cellspacing="0" class="plugin" style="margin:10px;">
+                            <tr>
+                                <th>{LANG_csslabel2}</th>
+                                <th>{LANG_csslabel3}</th>
+                                <th>{LANG_csslabel4}</th>
+                            </tr>
+                            <tr>
+                                <td width="150">{LANG_csslabel5}:</td>
+                                <td><input type="text" name="headerbg" value="{headerbg}" size="9">&nbsp;<input type="text" ID="sample_1" size="1" maxlength="1" value="" style="background-color:{headerbg};">
+                                    <input type="button" onclick="showColorGrid3('headerbg','sample_1');" value="...">
+                                </td>
+                                <td><input type="text" name="onhover_headerbg" value="{onhover_headerbg}" size="9">&nbsp;<input type="text" ID="sample_1h" size="1" maxlength="1" value="" style="background-color:{onhover_headerbg};">
+                                    <input type="button" onclick="showColorGrid3('onhover_headerbg','sample_1h');" value="...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="150">{LANG_csslabel6}:</td>
+                                <td><input type="text" name="headerfg" value="{headerfg}" size="9">&nbsp;<input type="text" ID="sample_2" size="1" maxlength="1" value="" style="background-color:{headerfg};">
+                                    <input type="button" onclick="showColorGrid3('headerfg','sample_2');" value="...">
+                                </td>
+                                <td><input type="text" name="onhover_headerfg" value="{onhover_headerfg}" size="9">&nbsp;<input type="text" ID="sample_2h" size="1" maxlength="1" value="" style="background-color:{onhover_headerfg};">
+                                    <input type="button" onclick="showColorGrid3('onhover_headerfg','sample_2h');" value="...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="150">{LANG_csslabel7}:</td>
+                                <td><input type="text" name="blockbg" value="{blockbg}" size="9">&nbsp;<input type="text" ID="sample_3" size="1" maxlength="1" value="" style="background-color:{blockbg};">
+                                    <input type="button" onclick="showColorGrid3('blockbg','sample_3');" value="...">
+                                </td>
+                                <td><input type="text" name="onhover_blockbg" value="{onhover_blockbg}" size="9">&nbsp;<input type="text" ID="sample_3h" size="1" maxlength="1" value="" style="background-color:{onhover_blockbg};">
+                                    <input type="button" onclick="showColorGrid3('onhover_blockbg','sample_3h');" value="...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="150">{LANG_csslabel8}:</td>
+                                <td><input type="text" name="blockfg" value="{blockfg}" size="9">&nbsp;<input type="text" ID="sample_4" size="1" maxlength="1" value="" style="background-color:{blockfg};">
+                                    <input type="button" onclick="showColorGrid3('blockfg','sample_4');" value="...">
+                                </td>
+                                <td><input type="text" name="onhover_blockfg" value="{onhover_blockfg}" size="9">&nbsp;<input type="text" ID="sample_4h" size="1" maxlength="1" value="" style="background-color:{onhover_blockfg};">
+                                    <input type="button" onclick="showColorGrid3('onhover_blockfg','sample_4h');" value="...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><span style="font-weight:bold;color:red;">{LANG_csslabel9}:</span>
+                                    <span style="padding-left:5px;">
+                                        <input type="radio" name="writecss" value="1" {chk_writecss_yes}>{LANG_yes}
+                                    </span>
+                                    <span style="padding-left:5px;">
+                                        <input type="radio" name="writecss" value="0" {chk_writecss_no}>{LANG_no}
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                        </fieldset>
+                    </td>
+                </tr>
+                <tr style="display:{show_milonicstyles};">
+                    <td>&nbsp;</td>
+                    <td style="padding-right:20px;">
+                        <fieldset><legend>{LANG_miloniclabel1}</legend>
+                        <table>
+                            <tr>
+                                <td>{LANG_miloniclabel2}</td>
+                                <td><select name="style1">{style1_options}</select></td>
+                            </tr>
+                            <tr>
+                                <td>{LANG_miloniclabel3}</td>
+                                <td><select name="style2">{style2_options}</select></td>
+                            </tr>
+                            <tr>
+                                <td>{LANG_miloniclabel4}
+                                    <div class="pluginTinyText">{LANG_milonichelp1}</div>
+                                </td>
+                                <td><textarea name="block_properties" cols="40" rows="3">{block_properties}</textarea></td>
+                            </tr>
+                            <tr>
+                                <td>{LANG_miloniclabel5}</td>
+                                <td><select name="style3">{style3_options}</select></td>
+                            </tr>
+                            <tr>
+                                <td>{LANG_miloniclabel6}</td>
+                                <td><select name="style4">{style4_options}</select></td>
+                            </tr>
+                            <tr>
+                                <td>{LANG_miloniclabel7}<div><a href="http://www.milonic.com/menuproperties.php" target="_new">{LANG_reference}</a></div></td>
+                                <td><textarea name="header_properties" cols="40" rows="3">{header_properties}</textarea></td>
+                            </tr>
+                        </table>
+                        </fieldset>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{LANG_langlabels}</td>
+                    <td><input name="multilang" type="radio" value="1" {chk_langon}>{LANG_enabled}<span style="padding-left:10px;"><input name="multilang" type="radio" value="0" {chk_langoff}>{LANG_disabled}</span></td>
+                </tr>
+                <tr>
+                    <td>{LANG_newwindow}<div class="pluginSmallText"><a href="http://www.w3schools.com/htmldom/met_win_open.asp" target="_new">{LANG_reference}</a></div></td>
+                    <td><textarea name="targetfeatures" cols="55" rows="4">{targetfeatures}</textarea></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" style="padding:10px; text-align:center;">
+                        <input type=button value="{LANG_CANCEL}" onclick="document.location='{cancel_url}'"><span style="padding-left:20px;">
+                        <input type="submit" value="{LANG_SUBMIT}"></span>
+                    </td>
+                </tr>
+             </table>
+             </form>
+        </td>
+    </tr>
+</table>
+<div id="colorpicker301" class="colorpicker301"></div>
+
+<p />

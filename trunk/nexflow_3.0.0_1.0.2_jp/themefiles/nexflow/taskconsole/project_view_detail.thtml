@@ -1,0 +1,5 @@
+<table width="90%" border="0" style="margin-left:75px;margin-top:0px;">
+            <tr id="taskdetail_rec{recid}" class="pd_projects_row{cssid}" style="display:none;">
+                <td><div id="projectdetail_rec{recid}">Level:{level}, Recid:{recid}</div></td>
+            </tr>
+        </table>

@@ -1,0 +1,19 @@
+<div id="task{task_id}" class="nf_task_div" id="div_task{task_id}" onClick="header_clicked(this);">
+    <table class="nf_task">
+        <tr id="task{task_id}_handle" class="{css_class}">
+            <td id="task{task_id}_title" class="nf_task_header" width="100%">{task_title}</td>
+        </tr>
+        <tr>
+            <td class="nf_task_body">
+                <input type="hidden" id="task{task_id}_id" name="task_id[]" value="{task_id}">
+                <input type="hidden" id="task{task_id}_left" name="task_left[]" value="{offsetLeft}">
+                <input type="hidden" id="task{task_id}_top" name="task_top[]" value="{offsetTop}">
+                <input type="hidden" id="task{task_id}_type" name="task_type[]" value="{task_type_underscored}">
+                {LANG_task_type}: {task_type}
+                <div id="task{task_id}_assignment">
+                    {task_assignment}
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

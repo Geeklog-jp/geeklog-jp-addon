@@ -1,0 +1,1 @@
+<span style="padding-left:20px;"><a href="#" onClick="ajaxProjectComment('delcomment',{rowid},{project_id},{taskuser},'',{cid});"><img src="{layout_url}/nexflow/images/delete.gif" Title="Delete Comment" border="0"></a></span>

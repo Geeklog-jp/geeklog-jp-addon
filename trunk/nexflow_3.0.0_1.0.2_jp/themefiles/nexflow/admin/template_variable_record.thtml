@@ -1,0 +1,16 @@
+<tr>
+    <td width="30" style="padding-left:5px">{variable_id}</td>
+    <td width="170" nowrap>
+        <input type="text" name="var{var_id}_name" size="25" value="{variable_name}" READONLY>
+    </td>
+    <td width="170" style="padding-left:5px" nowrap>
+        <input type="text" name="var{var_id}_value" size="25" value="{variable_value}" READONLY>&nbsp;
+    </td>
+    <td width="120" style="padding-left:10px;">
+        <span id="editlabel_t{cntr}_f{var_id}">{edit_link}&nbsp;{delete_link}</span>
+        <span id="updatelabel_t{cntr}_f{var_id}" style="display:none;">
+            <input type="button" value="Save" onClick='ajaxUpdateTemplateVar("update",{template_id},{cntr},{var_id});'>&nbsp;
+            <input type="button" value="Cancel" onClick='ajaxUpdateTemplateVar("cancel",{template_id},{cntr},{var_id});'>
+        </span>
+    </td>
+</tr>

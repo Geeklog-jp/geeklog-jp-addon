@@ -1,0 +1,46 @@
+<tr id="actionrec{rowid}" class="taskconsoleActionRec" style="display:none;">
+    <td style="border-left:1px solid white">&nbsp;</td>
+    <td colspan="6" style=";padding:10px;border-right:1px solid white;">
+        <form style="margin:0px;" action="{actionurl}" method="post">
+        <input type="hidden" name="op" value="function">
+        <input type="hidden" name="taskid" value="{id}">
+        <input type="hidden" name="processid" value="{process_id}">
+        <input type="hidden" name="formid" value="{form_id}">
+        <input type="hidden" name="taskuser" value="{taskuser}">
+        <input type="hidden" name="function_handler" value="{function_handler}">
+        <table class="pluginSubTable taskconsoleInlineActionRec" cellspacing="0" cellpadding="1" border="0" width="100%">
+            <tr>
+                <td width="70%">You have a Request Form to review.
+                    <div style="padding:5px 0px 0px 2px;">Request Name:&nbsp;<b>{project_title}</b></div>
+                    <ol style="margin-bottom:0px;margin-top:5px;">
+                        <li>Click on the review link to view the form detail</li>
+                        <li>Approve or Reject the form to complete this task</li>
+                    </ol>
+                </td>
+                <td width="30%" style="padding:5px;text-align:right;">
+                    <input type="submit" name="taskaction" value="Update">
+                    <input type="button" onClick="togglerec('action',{rowid});" value="Close">
+                    <div style="padding:10px 0px 5px 0px;"><input type="submit" name="taskaction" value="Complete Task"></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <fieldset style="width:450px;"><legend>Task Actions</legend>
+                        <div style="padding:10px;">Review Form Submission<span style="padding-left:30px;"><a {review_link}>click here</a></span>
+                        <span style="padding-left:20px;">Reject&nbsp;<input type="radio" name="actionopt" value="reject" {chk_reject}></span>
+                        <span style="padding-left:10px;">Accept&nbsp;<input type="radio" name="actionopt" value="accept" {chk_accept}></span>
+                        </div>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-bottom:20px;">
+                    <fieldset style="border:1px solid #FEF1B4;"><legend style="padding-bottom:3px;">Comments</legend>
+                        <div><textarea cols="80" rows="5" name="notes">{notes}</textarea></div>
+                    </fieldset>
+                </td>
+            </tr>
+        </table>
+        </form>
+    </td>
+</tr>

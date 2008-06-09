@@ -1,0 +1,236 @@
+<script type="text/javascript">
+
+    function toggleFlowsStatus(status){
+
+        if (status == 'active') {
+            imgobj = document.getElementById('imgActiveIcon');
+        } else {
+            imgobj = document.getElementById('imgCompleteIcon');
+        }
+        // The table rows in the 'Status View' page all have the class set to the status of 'active' or 'completed'
+        // Retrieve all TR elements from the DOM and scan looking for those with the class name set
+
+        // View closed - request to show all the current status records
+        if(imgobj.src == "{layout_url}/nexflow/images/{closed_icon}") {
+            imgobj.src = "{layout_url}/nexflow/images/{open_icon}";
+            var el = document.getElementsByTagName('tr');
+            for(i=0;i<el.length;i++){
+                if(el[i].className == status){
+                    el[i].style.display = '';
+                } else if(el[i].className == 'wfdetailrec'){
+                    el[i].style.display = 'none';
+                }
+            }
+
+        } else {
+            // View open - close all the current status rows
+            imgobj.src = "{layout_url}/nexflow/images/{closed_icon}";
+            var el = document.getElementsByTagName('tr');
+            for(i=0;i<el.length;i++){
+                //alert(el[i].className);
+                if(el[i].className == status){
+                    el[i].style.display = 'none';
+                }
+                if(el[i].className == 'wfdetailrec'){
+                    el[i].style.display = 'none';
+                }
+            }
+        }
+    }
+
+    function showFlowsDetails(id){
+        var c1;
+        c1=document.getElementById('details'+id);
+        if(c1.style.display=='none'){
+            c1.style.display='';
+        }else{
+            c1.style.display='none';
+        }
+        
+    }
+
+    function showData(id){
+        var c1;
+        c1=document.getElementById('col1'+id);
+        c1.style.display='';
+    }
+
+    function hideData(id){
+        var c1;
+        c1=document.getElementById('col1'+id);
+        c1.style.display='none';
+    }
+    
+    function doComment(action,rowid) {
+        if (action == 'add') {
+            document.getElementById( 'newcomment_' + rowid).style.display='';
+        }
+    }
+    
+    function sel_nf1option(option,rowid) {
+        if (option == 1) {
+            document.getElementById('gate1date' + rowid).style.display='';
+            document.getElementById('prjroute' + rowid).style.display='';
+            document.getElementById('scorecard' + rowid).style.display='';
+        } else {
+            document.getElementById('gate1date' + rowid).style.display='none';
+            document.getElementById('prjroute' + rowid).style.display='none';
+            document.getElementById('scorecard' + rowid).style.display='none';
+        }
+    }
+   
+    
+    function expandall(rowid) {
+        if (document.getElementById('expand'+rowid).firstChild.nodeValue == 'Expand All') {
+            // Show the open version of the 5 detail areas
+            document.getElementById( 'summaryOpen_rec' + rowid).style.display='';
+            document.getElementById( 'summaryClosed_rec' + rowid).style.display='none';  
+            document.getElementById( 'outstandingTasksOpen_rec' + rowid).style.display='';
+            document.getElementById( 'outstandingTasksClosed_rec' + rowid).style.display='none';
+            document.getElementById( 'tasklogOpen_rec' + rowid).style.display='';
+            document.getElementById( 'tasklogClosed_rec' + rowid).style.display='none';
+            document.getElementById( 'projectformsOpen_rec' + rowid).style.display='';
+            document.getElementById( 'projectformsClosed_rec' + rowid).style.display='none';
+            document.getElementById( 'projectCommentsOpen_rec' + rowid).style.display='';
+            document.getElementById( 'projectCommentsClosed_rec' + rowid).style.display='none';
+            document.getElementById('expand'+rowid).firstChild.nodeValue = 'Collapse All';
+            var sobj=document.getElementById('project_level4_orec' + rowid);
+            if(sobj) sobj.scrollIntoView();                        
+        } else {
+            // Show the closed version of the 5 detail areas
+            document.getElementById( 'summaryOpen_rec' + rowid).style.display='none';
+            document.getElementById( 'summaryClosed_rec' + rowid).style.display='';  
+            document.getElementById( 'outstandingTasksOpen_rec' + rowid).style.display='none';
+            document.getElementById( 'outstandingTasksClosed_rec' + rowid).style.display='';
+            document.getElementById( 'tasklogOpen_rec' + rowid).style.display='none';
+            document.getElementById( 'tasklogClosed_rec' + rowid).style.display='';
+            document.getElementById( 'projectformsOpen_rec' + rowid).style.display='none';
+            document.getElementById( 'projectformsClosed_rec' + rowid).style.display='';
+            document.getElementById( 'projectCommentsOpen_rec' + rowid).style.display='none';
+            document.getElementById( 'projectCommentsClosed_rec' + rowid).style.display='';
+            document.getElementById('expand'+rowid).firstChild.nodeValue = 'Expand All';
+            var sobj=document.getElementById('project_level4_orec' + rowid);
+            if(sobj) sobj.scrollIntoView();           
+        }                    
+    }
+
+    function togglerec(mode,rowid) {
+        var obj = document.getElementById( mode + 'rec' + rowid);
+        if (obj) {
+            if(obj.style.display == '') {
+                obj.style.display='none';
+
+                if(mode == 'summaryOpen_') {
+                    var obj2 = document.getElementById( 'summaryClosed_rec' + rowid);
+                    obj2.style.display='';
+                } else if (mode == 'summaryClosed_') {
+                    var obj2 = document.getElementById( 'summaryOpen_rec' + rowid);
+                    obj2.style.display='';
+                }
+                if(mode == 'outstandingTasksOpen_') {
+                    var obj2 = document.getElementById( 'outstandingTasksClosed_rec' + rowid);
+                    obj2.style.display='';
+                } else if (mode == 'outstandingTasksClosed_') {
+                    var obj2 = document.getElementById( 'outstandingTasksOpen_rec' + rowid);
+                    obj2.style.display='';
+                }
+                if(mode == 'tasklogOpen_') {
+                    var obj2 = document.getElementById( 'tasklogClosed_rec' + rowid);
+                    obj2.style.display='';
+                } else if (mode == 'tasklogClosed_') {
+                    var obj2 = document.getElementById( 'tasklogOpen_rec' + rowid);
+                    obj2.style.display='';
+                }                 
+                if(mode == 'projectformsOpen_') {
+                    var obj2 = document.getElementById( 'projectformsClosed_rec' + rowid);
+                    obj2.style.display='';
+                } else if (mode == 'projectformsClosed_') {
+                    var obj2 = document.getElementById( 'projectformsOpen_rec' + rowid);
+                    obj2.style.display='';
+                }
+                if(mode == 'projectCommentsOpen_') {
+                    var obj2 = document.getElementById( 'projectCommentsClosed_rec' + rowid);
+                    obj2.style.display='';
+                } else if (mode == 'projectCommentsClosed_') {
+                    var obj2 = document.getElementById( 'projectCommentsOpen_rec' + rowid);
+                    obj2.style.display='';
+                }                        
+               
+            } else {
+                obj.style.display='';
+                if(mode == 'summaryOpen_') {
+                    var obj2 = document.getElementById( 'summaryClosed_rec' + rowid);
+                    obj2.style.display='none';
+                } else if (mode == 'summaryClosed_') {
+                    var obj2 = document.getElementById( 'summaryOpen_rec' + rowid);
+                    obj2.style.display='none';
+                }
+                if(mode == 'outstandingTasksOpen_') {
+                    var obj2 = document.getElementById( 'outstandingTasksClosed_rec' + rowid);
+                    obj2.style.display='none';
+                } else if (mode == 'outstandingTasksClosed_') {
+                    var obj2 = document.getElementById( 'outstandingTasksOpen_rec' + rowid);
+                    obj2.style.display='none';
+                }
+                if(mode == 'tasklogOpen_') {
+                    var obj2 = document.getElementById( 'tasklogClosed_rec' + rowid);
+                    obj2.style.display='none';
+                } else if (mode == 'tasklogClosed_') {
+                    var obj2 = document.getElementById( 'tasklogOpen_rec' + rowid);
+                    obj2.style.display='none';
+                }             
+                if(mode == 'projectformsOpen_') {
+                    var obj2 = document.getElementById( 'projectformsClosed_rec' + rowid);
+                    obj2.style.display='none';
+                } else if (mode == 'projectformsClosed_') {
+                    var obj2 = document.getElementById( 'projectformsOpen_rec' + rowid);
+                    obj2.style.display='none';
+                }
+                if(mode == 'projectCommentsOpen_') {
+                    var obj2 = document.getElementById( 'projectCommentsClosed_rec' + rowid);
+                    obj2.style.display='none';
+                } else if (mode == 'projectCommentsClosed_') {
+                    var obj2 = document.getElementById( 'projectCommentsOpen_rec' + rowid);
+                    obj2.style.display='none';
+                }                                     
+            }
+            {beginCommentOut}
+            for (var i = 1; i <= {num_records}; i++ )  {
+                if (i != rowid) {
+                    var obj = document.getElementById('taskdetail_rec'+ i);
+                    if (obj) {
+                        obj.style.display='none';
+                    }
+                }
+            }
+           {endCommentOut} 
+        }
+    }
+    
+
+    function showhide_filter() {
+        obj1 = document.getElementById('taskconsole_filter');
+        obj2 = document.getElementById('taskconsole_options_link');
+        if (obj1.style.display == 'none') {
+            obj1.style.display = '';
+            obj2. innerHTML='hide filter';
+        } else {
+            obj1.style.display='none';
+            obj2. innerHTML='show filter';
+        }
+    }
+
+    function toggleApplicationGroup(val) {
+
+        if(val=='appgroup'){
+            document.getElementById('selectappfield').style.display='';
+            document.getElementById('searchtextfield').style.display='none';
+        } else {
+            document.getElementById('selectappfield').style.display='none';
+            document.getElementById('searchtextfield').style.display='';
+        }
+    }
+ 
+
+
+</script>

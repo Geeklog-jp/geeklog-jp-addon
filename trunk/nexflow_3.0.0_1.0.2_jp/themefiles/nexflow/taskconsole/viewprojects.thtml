@@ -1,0 +1,33 @@
+<script type="text/javascript" src="{site_url}/nexflow/include/ajaxsupport.js"></script>
+{javascript_code}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="display:{show_seltaskuser};">
+    <tr>
+        <td style="padding:5px;">
+           <form name="fseltaskuser" action="{actionurl}" method="post" style="margin:0px;">
+                <input type="hidden" name="op" value="{op}">
+                <select name="taskuser" onChange='submit();'>
+                    <option value="0">View tasks for user</option>
+                    {sel_user_options}
+                </select>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>
+            <table class="plugin" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr class="pluginHeader" align="left">
+                <th style="border-left:1px solid white border-right:1px solid white;">{heading1}</th>
+                <th style="border-right:1px solid white;">{heading2}</th>
+                <th style="border-right:1px solid white;">{heading3}</th>
+                <th style="border-right:1px solid white;">{heading5}</th>
+                <th style="border-right:1px solid white;">{heading6}</th>
+            </tr>
+                {view_records}
+            </table>
+        </td>
+    </tr>
+</table>

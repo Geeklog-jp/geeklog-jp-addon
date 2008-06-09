@@ -1,0 +1,28 @@
+<tr id="actionrec{rowid}" class="taskconsoleActionRec" style="display:none;">
+    <td style="border-left:1px solid white">&nbsp;</td>
+    <td colspan="6" style=";padding:10px;border-right:1px solid white;">
+        <form style="margin:0px;" action="{actionurl}" method="post">
+        <input type="hidden" name="op" value="function">
+        <input type="hidden" name="function_handler" value="{function_handler}">
+        <input type="hidden" name="taskid" value="{id}">
+        <input type="hidden" name="projectid" value="{project_id}">
+        <input type="hidden" name="processid" value="{process_id}">
+        <input type="hidden" name="taskuser" value="{taskuser}">
+        <table class="taskconsoleActionRec" cellspacing="0" cellpadding="1" border="0" width="100%">
+            <tr>
+                <td width="80%">
+                    <table width="100%" class="taskconsoleSubTable">
+                        <tr>
+                            <td>Basic Interactive Task to test <b>Accept</b> or <b>Reject</b> Status.<p>Workflow Process: {process_id}, Workflow Engine Queue ID: {id}</p></td>
+                        </tr>
+                    </table>
+                </td>
+                <td width="20%" style="padding:5px;text-align:right;white-space:nowrap;">
+                    <input type="submit" name="action" value="Accept">
+                    <input type="submit" name="action" value="Reject">
+                </td>
+            </tr>
+        </table>
+        </form>
+    </td>
+</tr>

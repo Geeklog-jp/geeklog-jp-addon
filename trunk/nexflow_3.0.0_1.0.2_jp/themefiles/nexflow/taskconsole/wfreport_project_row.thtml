@@ -1,0 +1,24 @@
+<tr class="{state}"  onMouseOver="className='{state} pluginRollOver';" onMouseOut="className='{state}';" style="display:{flowrecord_initialstate};">
+    <td width="40%" class="myflowsRow">
+        <img src="{imgset}/{hold_icon}"  id="procIconImg{rowid}" style="display:{isOnHold}"> {isRegenerated} {prjDescription} <BR>
+    </td>
+    <td class="myflowsRow">
+        {initiatedDate}
+    </td>
+    <td class="myflowsRow">
+        {completedDate}
+    </td>
+    <td class="myflowsRow">
+        {flowStatus}
+    </td>
+    <td class="myflowsRow" >
+        <span style="cursor: hand" >
+        <span  onClick="ajaxViewProjectDetails({rowid},{project_id},{userid});return false;">{prjDetailsIMG}</span>&nbsp;{onHoldIMG}
+        </span>
+    </td>
+</tr>
+<tr class="wfdetailrec" id="wfdetail_rec{rowid}" style="display:none">
+    <td colspan="5" style="width:100%;">
+        <div id="projectdetail_rec{rowid}" style="display:none;"></div>
+    </td>
+</tr>

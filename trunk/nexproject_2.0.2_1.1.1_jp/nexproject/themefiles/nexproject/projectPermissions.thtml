@@ -1,0 +1,146 @@
+{breadcrumb_trail}
+<form name="projPerms" method=post action="{site_url}/nexproject/prjperms.php">
+    <input type="hidden" name="pid" value="{pid}" readonly >
+    <input type="hidden" name="showUsersVal" value="{showUsersVal}">
+    <input type="hidden" name="showGroupsVal" value="{showGroupsVal}">
+    <input type="hidden" name="op" value="add">
+    <input type="hidden" name="rid" value="">
+    <input type="hidden" name="ugListing" value="{ugListing}">
+<table border="0" cellspacing="0" cellpadding="0" class="plugin" width="100%">
+    <tr class="pluginHeader">
+        <th colspan="2">Project Permissions</th>
+    </tr>
+    <tr>
+        <td width="380" style="padding:20px 10px 10px 10px;">
+            <fieldset><legend>User and Group Access Rights</legend>
+                <table border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                       <td colspan="2">Show Users<input type="radio" name="toggleUG" value="U" onclick="fillEditSelection('U');" checked><span style="padding-left:5px;">Show Groups<input type="radio" name="toggleUG" value="G"  onclick="fillEditSelection('G');"></span></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">
+                            <select name="usersandgroups[]" size=20 style="width:180" multiple onClick="document.projPerms.updateperm.value='Add Permission'">
+                            {usersandgroups}
+                            </select>
+                        </td>
+                        <td width="180" style="padding:20px 25px 0px 15px;" nowrap>
+                            <input type="checkbox" name="checkView" {checkViewChecked} value="1"> {monitor}<BR>
+                            <input type="checkbox" name="checkWrite" {checkWriteChecked} value="1"> {teammember}<BR>
+                            <input type="checkbox" name="checkFull" {checkFullChecked} value="1" onclick="checkOthers(this.checked)"> {projectmanager}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center;">
+                            <input id="updateperm" name="updateperm" type="button" value="Add Permission" onclick="if(document.forms['projPerms'].elements['usersandgroups[]'].selectedIndex!=-1){ document.projPerms.submit(); }else{ alert('Please Choose a user or group from the list...'); }">
+                            <div style="padding-top:5px;"><input type="reset" value="Reset" onClick="document.projPerms.updateperm.value='Add Permission'"></div>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        <td style="padding:20px 10px 10px 10px;" height="100%">
+            <fieldset style="height:100%"><legend>Overview</legend>
+            <div style="padding-top:10px;">Project Permissions allows you to setup access for selected site users and groups.
+            <ul style="margin-top:5px;">
+                <li>Setup any combination of users or groups</li>
+                <li>Hold down the Control Key to select multiple records</li>
+            </ul>
+            </div>
+            <div>
+            <b>Monitor:</b><span class="pluginMediumText">&nbsp;View Access Only</span><br>
+            <b>Team Member:</b><span class="pluginMediumText">&nbsp;Access to edit tasks, add files and discussions</span><br>
+            <b>Project Manager:</b><span class="pluginMediumText">&nbsp;Full Access to edit project, assign and edit tasks</span><br>
+            </div>
+           </fieldset>
+        </td>
+    </tr>
+</table>
+</form>
+{project_permission_rights}
+
+
+<script language="javascript">
+
+    function fillEditSelection(ug){
+        var tempvar,ugListing;
+        var oSelect, selLength;
+        tempvar=document.projPerms.ugListing.value;
+        ugListing=tempvar.split(";");
+        oForm=document.forms['projPerms'];
+        oSelect=oForm.elements['usersandgroups[]'];
+
+        selLength=oSelect.options.length;
+        while(selLength>0){
+            try {
+                oSelect.options.remove(0);
+                }
+            catch (e) {
+                oSelect.options[0] = null;
+                }
+                selLength=oSelect.options.length;
+            }
+        for(cntr=0;cntr<ugListing.length;cntr++){
+            tempvar=ugListing[cntr].split("|");
+            //0 holds id, 1 holds name, 2 holds type
+            //delete the items first
+            if(tempvar[2]==ug){
+                //add the item back in
+                //alert(tempvar[1]);
+                var oOption = document.createElement("OPTION");
+                oOption.text=tempvar[1];
+                oOption.value=tempvar[2]+tempvar[0];
+                try {
+                    document.projPerms.elements['usersandgroups[]'].add(oOption, null);
+                }
+                catch (e) {
+                    document.projPerms.elements['usersandgroups[]'].add(oOption);
+                }
+            }
+        }
+    }
+
+
+    function checkOthers(isChecked){
+        document.projPerms.checkView.checked=isChecked;
+        document.projPerms.checkWrite.checked=isChecked;
+        }
+
+
+    function editSelection(val,read,write,full, obj){
+        var prefix;
+        prefix=val.substr(0,1);
+        document.getElementById('updateperm').value="Update";
+        fillEditSelection(prefix);
+        for(x=0;x<document.projPerms.elements['usersandgroups[]'].options.length;x++){
+            if(document.projPerms.elements['usersandgroups[]'].options[x].value==val){
+                //a match
+                document.projPerms.elements['usersandgroups[]'].options[x].selected=true;
+                obj.checked=false;
+                if(read==1){
+                    document.projPerms.checkView.checked=true;
+                    }
+                else{
+                    document.projPerms.checkView.checked=false;
+                    }
+                if(write==1){
+                    document.projPerms.checkWrite.checked=true;
+                    }
+                else{
+                    document.projPerms.checkWrite.checked=false;
+                    }
+                if(full==1){
+                    document.projPerms.checkFull.checked=true;
+                    }
+                else{
+                    document.projPerms.checkFull.checked=false;
+                    }
+
+                break;
+                }
+
+            }//end for
+
+        }
+
+    fillEditSelection('U');
+</script>
+<!--this area will show a tabular existing perms area-->

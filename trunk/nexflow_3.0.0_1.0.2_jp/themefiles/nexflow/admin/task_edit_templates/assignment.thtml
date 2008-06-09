@@ -1,0 +1,61 @@
+<div id="{prefix}assign_by_user" style="display: none;">
+    <fieldset class="nf_edit_fieldset"><legend class="nf_edit_legend">{LANG_assign_by_user}</legend>
+        <form id="{prefix}frm_assignByUser">
+            <input type="hidden" name="op" value="assign_by_user"></input>
+            <input type="hidden" name="taskid" value="{taskid}"></input>
+            <table width="100%">
+                <tr style="text-align: center;">
+                    <td class="nf_task_edit_other" width="200">
+                        {LANG_available_users}:<br />
+                        <select id="{prefix}availableUsers" name="availableUsers" size="5" style="width:160px;" multiple="multiple">{availableUserOptions}</select>
+                    </td>
+                    <td style="vertical-align: middle; text-align: center; white-space: nowrap;" width="100">
+                        <a href="#" onClick="moveSelectedOption('{prefix}assignedUsers', '{prefix}availableUsers'); return false;"><img src="{layout_url}/nexflow/images/admin/left_arrow.png" /></a>
+                        <a href="#" onClick="moveSelectedOption('{prefix}availableUsers', '{prefix}assignedUsers'); return false;"><img src="{layout_url}/nexflow/images/admin/right_arrow.png" /></a>
+                    </td>
+                    <td class="nf_task_edit_other" width="200">
+                        {LANG_users_assigned}:<br />
+                        <select id="{prefix}assignedUsers" name="assignedUsers" size="5" style="width:160px;" multiple="multiple">{assignedUserOptions}</select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="vertical-align: middle; text-align: center;">
+                        <input type="button" value="{LANG_save}" onClick="SaveEditChanges.request(document.getElementById('{prefix}frm_assignByUser'));"></input>
+                        <input type="button" value="{LANG_cancel}" onClick="finish_task_edit('task{taskid}');"></input>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+</div>
+
+<div id="{prefix}assign_by_var" style="display: none;">
+    <fieldset class="nf_edit_fieldset"><legend class="nf_edit_legend">{LANG_assign_by_variable}</legend>
+        <form id="{prefix}frm_assignByVariable">
+            <input type="hidden" name="op" value="assign_by_variable"></input>
+            <input type="hidden" name="taskid" value="{taskid}"></input>
+            <table width="100%">
+                <tr style="text-align: center;">
+                    <td class="nf_task_edit_other" width="200">
+                        {LANG_available_variables}:<br />
+                        <select id="{prefix}availableVariables" name="availableVariables" size="5" style="width:160px;" multiple="multiple">{availableVariableOptions}</select>
+                    </td>
+                    <td style="vertical-align: middle; text-align: center; white-space: nowrap;" width="100">
+                        <a href="#" onClick="moveSelectedOption('{prefix}assignedVariables', '{prefix}availableVariables'); return false;"><img src="{layout_url}/nexflow/images/admin/left_arrow.png" /></a>
+                        <a href="#" onClick="moveSelectedOption('{prefix}availableVariables', '{prefix}assignedVariables'); return false;"><img src="{layout_url}/nexflow/images/admin/right_arrow.png" /></a>
+                    </td>
+                    <td class="nf_task_edit_other" width="200">
+                        {LANG_variables_assigned}:<br />
+                        <select id="{prefix}assignedVariables" name="assignedVariables" size="5" style="width:160px;" multiple="multiple">{assignedVariableOptions}</select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="vertical-align: middle; text-align: center;">
+                        <input type="button" value="{LANG_save}" onClick="SaveEditChanges.request(document.getElementById('{prefix}frm_assignByVariable'));"></input>
+                        <input type="button" value="{LANG_cancel}" onClick="finish_task_edit('task{taskid}');"></input>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+</div>

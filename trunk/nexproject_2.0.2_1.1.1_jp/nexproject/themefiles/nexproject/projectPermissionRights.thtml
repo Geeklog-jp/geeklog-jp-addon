@@ -1,0 +1,28 @@
+<form name="frmUsersAndGroups" method=post action="{site_url}/nexproject/prjperms.php"> 
+    <input type="hidden" name="pid" value="{pid}">
+    <input type="hidden" name="op" value="">
+    <input type="hidden" name="rid" value="">      
+<table width="100%" border=0 style="margin:0px 20px 0px 0px;">
+    <tr style="vertical-align:top;">
+        <th width="40%" style="text-align:left;cursor:hand" onclick="prj_ascdesc();setCookie('permsOrderBy','6');document.location=document.location;">{LANG_users}</th>
+        <th width="15%" style="cursor:hand" onclick="prj_ascdesc();setCookie('permsOrderBy','3');document.location=document.location;">{LANG_perm_monitor}</th>
+        <th width="15%" style="cursor:hand" onclick="prj_ascdesc();setCookie('permsOrderBy','4');document.location=document.location;">{LANG_perm_Team_Member}</th>
+        <th width="15%" style="cursor:hand" onclick="prj_ascdesc();setCookie('permsOrderBy','5');document.location=document.location;">{LANG_perm_Project_Manager}</th>
+        <th width="15%" style="display:{showhide_actions};">Actions</th>
+    </tr>
+    {user_perm_records}
+    <tr style="display:{show_usernote};">
+        <td colspan="5" class="pluginInfo" style="margin-left:2px;padding:5px;">{LANG_no_userperm}</td>
+    </tr>
+</table>     
+
+<table width="100%" border=0 style="margin:10px 20px 20px 0px;"> 
+    <tr>
+        <th colspan="5" style="text-align:left;cursor:hand" onclick="prj_ascdesc();setCookie('permsOrderBy','6');document.location=document.location;">{LANG_groups}</th>
+    </tr>
+    {group_perm_records}
+    <tr style="display:{show_groupnote};">
+        <td colspan="5" class="pluginInfo" style="margin-left:2px;padding:5px;">{LANG_no_groupperm}</td>
+    </tr>    
+</table>
+</form>

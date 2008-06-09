@@ -1,0 +1,139 @@
+<script language="javascript">
+function prj_getNewMap(op, pid){
+        var fs = document.getElementById('ajaxstatus_gantt');
+        fs.style.display='';
+        fs.firstChild.nodeValue='Refreshing Gantt Chart ...';
+        
+        var url ='ajaxrefreshmap.php?mode=' + op + '&pid=' + pid ;
+        YAHOO.util.Connect.asyncRequest('GET', url, { success:receiveRequestMapRefresh,argument:{ },timeout:50000 });
+}
+
+function prj_getMyTasks(op, id){
+        var fs = document.getElementById('ajaxstatus_tasks');
+        fs.style.display='';
+        fs.firstChild.nodeValue='Refreshing Task Display ...';
+        
+        var url ='ajaxrefreshtasks.php?op=' + op + '&id=' + id  ;
+        YAHOO.util.Connect.asyncRequest('GET', url, { success:receiveRequestTasksRefresh,argument:{ },timeout:50000 });
+}
+
+function prj_getMyProjects(op, id, screen){
+        var fs = document.getElementById('ajaxstatus_myprojects');
+        fs.style.display='';
+        fs.firstChild.nodeValue='Refreshing Projects and Tasks Display ...';
+
+        if(op=='filter'){
+            //set the filter cookie in here for the server piece to rely on
+            setFilter(id);
+            var url ='ajaxrefreshmytasks.php' ;
+            YAHOO.util.Connect.asyncRequest('GET', url, { success:receiveRequestRefreshMyTasks,argument:{ },timeout:50000 });
+        }
+        var url ='ajaxrefreshprojects.php?op=' + op + '&id=' + id + '&screen=' + screen ;
+        YAHOO.util.Connect.asyncRequest('GET', url, { success:receiveRequestProjectRefresh,argument:{ },timeout:50000 });
+}
+
+//only refreshes the gantt        
+function receiveRequestMapRefresh(o){
+    var theDiv,  gantt, map, y;
+    
+    theDiv=document.getElementById('ganttChartDIV');
+    if(o.responseXML != undefined) {
+        var root = o.responseXML.documentElement;
+        var opts=root.getElementsByTagName('gantt');
+        gantt =opts[0].firstChild.nodeValue;
+    }
+    theDiv.innerHTML='<div id="ganttChartDIV" style="margin-top:10px;margin-bottom:10px;">' + gantt + "</div>";
+    var fs = document.getElementById('ajaxstatus_gantt');
+    fs.style.display='none';
+}
+
+
+//only refreshes the project piece
+function receiveRequestProjectRefresh(o){
+    var theDiv, inner;
+    theDiv=document.getElementById('divMyProjects');
+    if(o.responseText != undefined) {
+        obj=o.responseText;
+        inner=obj.substr(obj.indexOf('<!--startMyProjects-->'));
+        inner=inner.substr(0,inner.indexOf('<!--endMyProjects-->'));
+        theDiv.innerHTML=inner;
+    }
+    var fs = document.getElementById('ajaxstatus_myprojects');
+    fs.style.display='none';
+}
+
+
+//only refreshes the tasks piece
+function receiveRequestTasksRefresh(o){
+    var theDiv, inner;
+    theDiv=document.getElementById('divMyTasks');
+    
+    if(o.responseText != undefined) {
+        obj=o.responseText;
+        inner=obj.substr(obj.indexOf('<!--startMyTasks-->'));
+        inner=inner.substr(0,inner.indexOf('<!--endMyTasks-->'));
+        theDiv.innerHTML=inner;
+    }
+    var fs = document.getElementById('ajaxstatus_tasks');
+    fs.style.display='none';
+
+}
+
+
+function setFilter(pid){
+    
+    var currentCookie = (getCookie('filterTasks'));
+    try{
+        currentCookie=currentCookie.replace(";","");
+    }catch(e){
+        currentCookie="";
+    }
+    var split=currentCookie.split(",");
+    var cntr, flag, retCSV;
+    flag=0;
+    for(cntr=0;cntr<split.length;cntr++){
+        if(split[cntr]==pid){//pid exists
+            flag=1;
+            break;
+        }
+    }
+
+    retCSV='';
+    for(cntr=0;cntr<split.length;cntr++){
+        if(flag==1 && split[cntr]==pid){//pid exists, remove it (just dont add it to the output)
+        }else{//pid dosent match, add it
+            if(retCSV==''){
+                retCSV = split[cntr];
+            }else{
+                retCSV = retCSV + "," + split[cntr];
+            }    
+        }
+        
+    }
+    if(flag==0){
+        if(retCSV==''){
+                retCSV = pid;
+            }else{
+                retCSV = retCSV + "," + pid;
+            }    
+        }
+    try{
+        retCSV=retCSV.replace(";","");
+    }catch(e){}
+    setCookie('filterTasks',retCSV,1000,'/');
+}
+
+
+//only refreshes the project piece
+function receiveRequestRefreshMyTasks(o){
+    var theDiv, inner;
+    theDiv=document.getElementById('divMyTasks');
+    if(o.responseText != undefined) {
+        obj=o.responseText;
+        inner=obj.substr(obj.indexOf('<!--startMyTasks-->'));
+        inner=inner.substr(0,inner.indexOf('<!--endMyTasks-->'));
+        theDiv.innerHTML=inner;
+    }
+}
+
+</script>

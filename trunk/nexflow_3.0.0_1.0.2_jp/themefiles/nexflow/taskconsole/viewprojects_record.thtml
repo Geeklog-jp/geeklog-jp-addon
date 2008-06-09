@@ -1,0 +1,13 @@
+<tr class="pluginRow{csscode}" onMouseOver="className='pluginRollOver';" onMouseOut="className='pluginRow{csscode}';">
+    <td width="3%" {class_newtask} style="border-left:1px solid white">{project_id}</td> 
+    <td width="17%" nowrap>{date}</td>
+    <td width="10%" nowrap>{state}</td>
+    <td width="40%">
+        <a class="info" style="text-decoration:none;" href="#" {task_onclick}>{description}<span><b>Project:</b>&nbsp;{project_number}<br><b>Last Status</b>:&nbsp;{full_statusmsg}<br><b>Comments:</b>&nbsp;{comments_note}</span>     
+    </td>
+    <td width="5%" style="border-right:1px solid white;" nowrap>{view}{profile}</td>
+</tr>
+<tr id="taskdetail_rec{rowid}" class="taskconsoleActionRec" style="display:{showdetail};">
+    <td colspan="6" style=";padding:10px;"><div id="projectdetail_rec{rowid}">&nbsp;</div></td>
+</tr>
+{action_record}

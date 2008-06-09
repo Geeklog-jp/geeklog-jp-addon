@@ -1,0 +1,169 @@
+<noscript><div class="pluginAlert" style="padding:10px;">{no_javascript_warning}</div></noscript>
+<script type="text/JavaScript" src="{site_url}/javascript/profile_editor.js"></script>
+
+<div id="pe_navbar" class="jsenabled_show" style="display:none">{navbar}</div>
+<form action="{site_url}/usersettings.php" method="POST" {enctype}>
+<div id="pe_preview" style="display:none;">
+    <fieldset style="margin-top:10px;">
+        <legend>{lang_preview_title}</legend>
+        {preview}
+    </fieldset>
+</div>
+<div id="pe_namepass">
+    <fieldset style="margin-top:10px;"><legend>{lang_name_legend}</legend>
+       <table class="inputTable">
+               {username_option}
+           <tr>
+                <td width="150px"><label for="fullname">{lang_fullname}:</label></td>
+                <td><input type="text" id="fullname" name="fullname" size="60" maxlength="80" value="{fullname_value}"></td>
+           </tr>
+        </table>
+    </fieldset>
+    <fieldset style="margin-top:10px;"><legend>{lang_password_email_legend}</legend>
+      <div class="notes">
+        <h4>{lang_password_help_title}</h4>
+        <p class="last">{lang_password_help}</p>
+        <span class="warningsmall">{lang_enter_current_password}</span>
+       </div>
+       <table class="inputTable">
+           <tr>
+                <td width="150px"><label for="passwd">{lang_password}:</label></td>
+                <td><input type="password" id="passwd" name="passwd" size="32" maxlength="32" value="{password_value}"></td>
+           </tr>
+           <tr>
+               <td><label for="passwd_conf">{lang_password_conf}:</label></td>
+               <td><input type="password" id="passwd_conf" name="passwd_conf" size="32" maxlength="32" value="{password_value}"></td>
+            </tr>
+           <tr>
+               <td><label>{lang_cooktime}:</label></td>
+               <td>{cooktime_selector}</td>
+           </tr>
+           <tr>
+               <td><label for="email">{lang_email}:</label></td>
+               <td><input type="text" id="email" name="email" size="50" maxlength="96" value="{email_value}"></td>
+            </tr>
+            <tr>
+               <td><label for="email_conf">{lang_email_conf}:</label></td>
+               <td><input type="text" id="email_conf" name="email_conf" size="50" maxlength="96" value="{email_value}"></td>
+            </tr>
+            <tr>
+               <td><label for="old_passwd" class="warningsmall">{lang_old_password}:</label></td>
+               <td><input type="password" id="old_passwd" name="old_passwd" size="32" maxlength="32" value=""></td>
+            </tr>
+        </table>
+        {delete_account_option}
+</fieldset>
+</div>
+<div id="pe_userinfo" class="jsenabled_hide">
+    <fieldset id="pe_userinfo" style="margin-top:10px;"><legend>{lang_personal_info_legend}</legend>
+      <div class="notes">
+        <h4>{lang_userinfo_help_title}</h4>
+        <p class="last">{lang_userinfo_help}</p>
+       </div>
+       <table class="inputTable">
+           <tr>
+                <td width="100px"><label for="homepage">{lang_homepage}:</label></td>
+                <td><input type="text" id="homepage" name="homepage" size="55" maxlength="32" value="{homepage_value}"></td>
+           </tr>
+           <tr>
+                <td width="100px"><label for="location">{lang_location}:</label></td>
+                <td><input type="text" id="location" name="location" size="55" maxlength="32" value="{location_value}"></td>
+           </tr>
+           {userphoto_option}
+           <tr>
+                <td width="100px"><label for="sig">{lang_signature}:</label></td>
+                <td><textarea id="sig" name="sig" style="width:100%" rows="4">{signature_value}</textarea></td>
+           </tr>
+           <tr>
+                <td width="100px"><label for="about">{lang_about}:</label></td>
+                <td><textarea id="about" name="about" style="width:100%" rows="4">{about_value}</textarea></td>
+           </tr>
+           <tr>
+                <td width="100px"><label for="pgpkey">{lang_pgpkey}:</label></td>
+                <td><textarea id="pgpkey" name="pgpkey" style="width:100%" rows="4">{pgpkey_value}</textarea></td>
+           </tr>
+        </table>
+</fieldset>
+</div>
+
+<div id="pe_nexflowinfo" class="jsenabled_hide">
+<fieldset id="pe_nexflowinfo" style="margin-top:10px;"><legend>{lang_awaylabel}</legend>
+<!-- Nexflow plugin options to auto re-assign tasks while member is away  -->
+<!-- Add these 3 new rows to the theme/preferences/profile.thtml file  -->
+ <table class="inputTable">
+    <tr valign="top">
+        <td align="right"><b>{lang_awaytitle}</b></td>
+        <td>
+            <fieldset>
+                <table border="0" width="100%" style="padding:5px;">
+                    <tr>
+                        <td>{lang_awayfrom}:</td>
+                        <td><input type="text" id="sdate" name="away_sdate" value="{away_sdate}" size="10" readonly=true>&nbsp;<img id="trigger_sdate" src="images/cal.gif">
+                        <script type="text/javascript">
+                            Calendar.setup(
+                              {
+                                inputField : "sdate", // ID of the input field
+                                ifFormat : "%Y-%M-%d", // the date format
+                                button : "trigger_sdate" // ID of the button
+                              }
+                            )
+                        </script>
+                        </td>                        
+                        <td>{lang_awayto}:</td>
+                        <td><input type="text" id="rdate" name="away_rdate" value="{away_rdate}" size="10" readonly=true>&nbsp;<img id="trigger_rdate" src="images/cal.gif">
+                        <script type="text/javascript">
+                            Calendar.setup(
+                              {
+                                inputField : "rdate", // ID of the input field
+                                ifFormat : "%Y-%m-%d", // the date format
+                                button : "trigger_rdate" // ID of the button
+                              }
+                            )
+                        </script>
+                        </td>                         
+                    </tr>
+                    <tr>
+                        <td colspan="4">{lang_awayreason}:<br><textarea name="away_reason" rows="5" style="width:100%">{away_reason}</textarea></td>
+                    </tr>
+                    <tr>
+                        <td>{lang_awayowner}:</td><td>
+                            <select name="away_ressignuid">
+                                <option value="0">{lang_selectowner}</option>
+                                {away_reassignoptions}
+                            </select>
+                        </td>
+                        <td>{lang_awayactive}:</td><td><input type="checkbox" name="away_chkstatus" value="1" {chk_awayactive}></td>
+                    </tr>
+                </table>
+            </fieldset>
+        </td>
+    </tr>
+    </table>
+</fieldset>
+</div>
+    
+    
+
+{prefs}
+<p class="aligncenter" id="save_button">
+  <input type="hidden" name="uid" value="{uid_value}">
+  <input type="hidden" name="mode" value="saveuser">
+  <input type="hidden" name="username" value="{username_value}">
+  <span style="padding-right:50px;"><input type="submit" name="btnsubmit" value="{lang_submit}"></span>
+  <input type="submit" name="btncancel" value="{lang_cancel}">
+</p>
+</form>
+
+<!-- JS Functions which will execute only if JS enabled will un-hide the special features that enhance the profile editor -->
+<script type="text/JavaScript">
+var el;
+el=document.getElementsByTagName('div');
+for(i=0;i<el.length;i++){
+    if(el[i].className == 'jsenabled_show'){
+        el[i].style.display = '';
+    } else if(el[i].className == 'jsenabled_hide'){
+        el[i].style.display = 'none';
+    }
+}
+
+</script>

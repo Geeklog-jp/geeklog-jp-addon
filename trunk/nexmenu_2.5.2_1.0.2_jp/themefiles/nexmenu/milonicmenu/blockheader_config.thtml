@@ -1,0 +1,11 @@
+
+<!-- Milonic blockheader-blockmenu.thtml -->
+            <script>
+            with(milonic=new menuname("Block Menu")) {
+                style={blockheader_menustyle};
+                position="relative"
+                top=0;
+                left=0;
+                alwaysvisible=1;
+                orientation="vertical";
+                {menu_properties}

@@ -1,0 +1,51 @@
+<div id="{prefix}main">
+    <fieldset class="nf_edit_fieldset"><legend class="nf_edit_legend">{LANG_manual_web}</legend>
+        <form id="{prefix}frm_mainEdit">
+            <input type="hidden" name="op" value="save_task"></input>
+            <input type="hidden" name="taskid" value="{taskid}"></input>
+            <table width="100%">
+                <tr>
+                    <td class="nf_task_edit_left" nowrap="nowrap">{LANG_task_name}:</td>
+                    <td class="nf_task_edit_right"><input type="text" name="taskName" maxlength="50" size="25" value="{edit_task_name}"></input></td>
+                </tr>
+
+                <tr id="dynamicNameElements"  style="display:{show_dynamicnamecb};">
+                    <td class="nf_task_edit_left" nowrap="nowrap">{LANG_use_dynamic_name}:</td>
+                    <td class="nf_task_edit_right">
+                        <input type="checkbox" name="isDynamicName" value="1"{chk_isDynamicName} onClick="toggleDynamicNameSelector('{prefix}', this.checked)"></input>
+                        <span id="{prefix}dynamicNameSelectVariable" style="display: {show_dynamicnamevars}"><select name="dynamicNameVariableSelector" style="width:160px;">{available_taskvariablesOptions}</select></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="nf_task_edit_left" nowrap="nowrap">{LANG_task_handler}:</td>
+                    <td class="nf_task_edit_right">{task_handler_selection}</td>
+                </tr>
+
+                <tr>
+                    <td class="nf_task_edit_left" nowrap="nowrap">{LANG_task_optional_parm}:</td>
+                    <td class="nf_task_edit_right"><input type="text" name="optionalParm" maxlength="64" size="25" value="{optional_parm}"></input></td>
+                </tr>
+
+                <tr>
+                    <td class="nf_task_edit_left" nowrap="nowrap">{LANG_regenerate_this_task}:<a class="info" style="padding-left:10px;" href="#">?<span>{LANG_help1}</span></a></td>
+                    <td class="nf_task_edit_right"><input type="checkbox" id="chkregenerate" name="regenerate"{chk_regenerate} value="1"></input></td>
+                </tr>
+
+                <tr>
+                    <td class="nf_task_edit_left" nowrap="nowrap">{LANG_regenerate_all_tasks}:<a class="info" style="padding-left:10px;" href="#">?<span>{LANG_help3}</span></a></td>
+                    <td class="nf_task_edit_right"><input type="checkbox" id="chkregenerateAllLive" name="regenerateAllLive"{chk_regenerateAllLive} value="1"></input></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <input type="button" value="{LANG_save}" onClick="SaveEditChanges.request(document.getElementById('{prefix}frm_mainEdit'));"></input>
+                        <input type="button" value="{LANG_cancel}" onClick="finish_task_edit('task{taskid}');"></input>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+</div>
+{assignment_template}
+{notification_template}

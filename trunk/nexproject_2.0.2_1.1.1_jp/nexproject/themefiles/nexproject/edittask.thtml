@@ -1,0 +1,120 @@
+{breadcrumb_trail}
+{edit_icons}
+<FORM name="taskForm" action="{site_url}/nexproject/viewproject.php" method="post" style="margin:0px;">
+  <TABLE width="100%" cellSpacing="0" cellPadding="0" class="plugin">
+    <TBODY> 
+    <TR class="pluginHeader"> 
+      <TH colspan=2>{LANG_task_details}</TH>
+    </TR>
+    <TR> 
+      <TD width="150px" class="pluginCellTitle">{LANG_name}:</TD>
+      <TD> 
+        <INPUT style="WIDTH:400px" maxLength="100" size="44" name="name" value="{VALUE_name}">
+      </TD>
+    </TR>
+    <TR> 
+      <TD class="pluginCellTitle">{LANG_description}:</TD>
+      <TD> 
+        <TEXTAREA style="WIDTH:400px;" name="description" rows="5" cols="47">{VALUE_description}</TEXTAREA>
+      </TD>
+    </TR>
+    <TR> 
+      <TD class="pluginCellTitle">{LANG_parent_task}:</TD>
+      <TD><SELECT name="parent_task" style="width:150px;">{parent_task_options}</select></TD>
+    </TR>     
+    <tr> 
+      <td class="pluginCellTitle">{LANG_priority}:</td>
+      <td><SELECT name="priority_id" style="width:150px;">{priority_options}</select></td>
+    </tr>
+    <tr> 
+      <td class="pluginCellTitle">{LANG_status}:</td>
+      <td><SELECT name="status_id" style="width:150px;">{status_options}</select></td>
+    </tr>
+    <tr > 
+      <td class="pluginCellTitle">{LANG_progress}:</td>
+      <td><SELECT name="progress_id" style="width:150px;">{progress_options}</select></td> 
+    </tr>
+    <tr> 
+      <td class="pluginCellTitle">{LANG_duration}:</td>
+      <td><INPUT size="8" maxlength="5" name="duration" value="{VALUE_duration}">
+        <span style="padding-left:10px;"><SELECT name="duration_type_id" style="width:84px;">{duration_options}</select></span>
+      </td> 
+    </tr>
+    <TR> 
+      <TD class="pluginCellTitle">{LANG_percentcomplete}:</TD>
+      <TD> 
+        <INPUT size="8" maxLength="3" name="progress" value="{VALUE_progress}"></TD>
+    </TR>
+    <tr style="display:{show_assignment}"> 
+      <td class="pluginCellTitle">{LANG_assigned_to}:</td>
+      <td><SELECT name="resource" style="width:150px;">{resource_options}</select></td>  
+    </tr>
+    <tr> 
+      <td class="pluginCellTitle">{LANG_start_date}:</td>
+      <td valign="top"> 
+        <input id="startdate" value="{VALUE_start_date}" size="20" name="start_date" readonly>
+        <div  class="popupcal" id="cal1Container1" style="position:absolute"></div>   
+        
+        </td>
+    </tr>
+    <tr> 
+      <td class="pluginCellTitle">{LANG_estimated_end_date}:</td>
+      <td valign="top">
+        <input id="estenddate" value="{VALUE_estimated_end_date}" size="20" name="estimated_end_date" readonly>
+            <div  class="popupcal" id="cal2Container1" style="position:absolute"></div>
+</td></tr>
+    <tr> 
+      <td class="pluginCellTitle">{LANG_actual_end_date}:</td>
+      <td valign="top">
+        <input id="actenddate" value="{VALUE_actual_end_date}" size="20" name="actual_end_date" readonly>
+            <div  class="popupcal" id="cal3Container1" style="position:absolute"></div>
+</td></tr>
+    <tr> 
+      <td class="pluginCellTitle">{LANG_notification}:</td>
+      <td> 
+        <input type="checkbox" name="notification_enabled_flag" value="on" {VALUE_notification_enabled_flag}>
+      </td>
+    </tr>
+    
+    <tr> 
+      <td class="pluginCellTitle">{LANG_private_task}:</td>
+      <td> 
+        <input type="checkbox" name="make_private_enabled_flag" value="on" {VALUE_make_private_enabled_flag}>
+      </td>
+    </tr>
+    
+    
+    <tr> 
+      <td class="pluginCellTitle">{LANG_keywords}:</td>
+      <td> 
+        <textarea style="WIDTH:400px;" name="keywords" rows="2" cols="47">{VALUE_keywords}</textarea>
+      </td>
+    </tr>
+    <TR class="pluginHeader" style="display:{show_changelog};"> 
+    <TH colspan="2">{LANG_status_log}</TH>
+    </TR>
+    <TR style="display:{show_changelog};"> 
+      <TD class=pluginCellTitle valign=top>{LANG_change_log_desc}:</TD>
+      <TD> 
+        <TEXTAREA style="WIDTH:400px" name="changelog_entry" rows="5" cols="20"></TEXTAREA>
+      </TD>
+    </TR>    
+    <TR style="display:{show_submit};"> 
+      <TD colspan="2" style="text-align:center; vertical-align: middle; height:75px;"> 
+        <INPUT type=hidden name="mode" value="{mode}">
+        <INPUT type=hidden name="pid" value="{pid}">
+        <INPUT type=hidden name=id value="{id}">         
+        <INPUT type=submit style="font-size:12; line-height: 16pt; width:60px;" value="{LANG_save}">
+      </TD>
+    </TR>
+    </TBODY> 
+  </TABLE>
+</FORM>
+<script language="javascript">
+    v1=new nexYUICal;
+    v1.init('cal1Container1','startdate');
+    v2=new nexYUICal;
+    v2.init('cal2Container1','estenddate');
+    v3=new nexYUICal;
+    v3.init('cal3Container1','actenddate');
+</script>

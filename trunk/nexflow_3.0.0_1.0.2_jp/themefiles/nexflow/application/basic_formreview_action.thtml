@@ -1,0 +1,26 @@
+<tr id="actionrec{rowid}" class="taskconsoleActionRec" style="display:none;">
+    <td style="border-left:1px solid white">&nbsp;</td>
+    <td colspan="6" style=";padding:10px;border-right:1px solid white;">
+        <form style="margin:0px;" action="{actionurl}" method="post">
+        <input type="hidden" name="op" value="function">
+        <input type="hidden" name="taskid" value="{id}">
+        <input type="hidden" name="projectid" value="{project_id}">
+        <input type="hidden" name="processid" value="{process_id}">
+        <input type="hidden" name="formid" value="{form_id}">
+        <input type="hidden" name="taskuser" value="{taskuser}">
+        <input type="hidden" name="function_handler" value="{function_handler}">
+        <table class="pluginSubTable taskconsoleInlineActionRec" cellspacing="0" cellpadding="1" border="0" width="100%">
+            <tr>
+                <td width="80%">You have a Request Form to review.
+                    <div style="padding:5px 0px 0px 2px;">Request Name:&nbsp;<b>{project_title}</b></div>
+                    <ul style="padding-top:0px;">
+                        <li style="padding-bottom:5px;">Click on the link <a {review_link}>here</a> to view the form</li>
+                        <li>Click on the taskname to close this action and you can review and complete task later</li>
+                    </ul>
+                </td>
+                <td width="20%" style="padding:15px;text-align:right;"><input type="submit" name="taskaction" value="Complete Task"></td>
+            </tr>
+        </table>
+        </form>
+    </td>
+</tr>

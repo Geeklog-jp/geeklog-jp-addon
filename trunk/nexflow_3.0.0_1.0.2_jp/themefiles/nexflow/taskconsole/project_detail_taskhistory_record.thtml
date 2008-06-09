@@ -1,0 +1,3 @@
+<tr>
+    <td style="padding:4px;"><a style="text-decoration:none;" href="#" TITLE="Workflow QID:{qid}">{taskhistory_name}</a></td><td style="padding:4px;">{task_user}</td><td style="padding:4px;">{task_date1}</td><td style="padding:4px;">{task_date2}</td><td style="padding:4px;">{task_date3}</td><td style="padding:4px;">{status}</td>
+</tr>

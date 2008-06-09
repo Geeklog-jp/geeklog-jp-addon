@@ -1,0 +1,47 @@
+{javascript_close_onload}
+<script type="text/javascript" src="{site_url}/nexflow/include/ajaxsupport.js"></script>
+{javascript_code}
+<script type="text/javascript">
+    writeCookie('div_open_flag', 'Close');
+
+    function writeCookie(name,value,days) {
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime()+(days*24*60*60*1000));
+            var expires = "; expires="+date.toGMTString();
+        }
+        else var expires = "";
+        document.cookie = name+"="+value+expires+"; path=/";
+    }
+
+    function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+</script>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:25px;">
+    <tr>
+        <td class="pluginAlert" style="font-weight:normal;padding-left:35px;">Your Re-Assigned Tasks. Click <a href="{site_url}/nexflow/index.php">here</a> to view your active tasks</td>
+    </tr>
+    <tr>
+        <td>
+            <table class="plugin" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr class="pluginHeader" align="left">
+                <th colspan="2" width="40%" style="padding-left:35px;border-right:1px solid #CCC;">{heading1}</th>
+                <th width="30%" style="border-right:1px solid #CCC;">{heading2}</th>
+                <th width="15%" style="border-right:1px solid #CCC;">{heading3}</th>
+                <th width="5%" style="border-right:1px solid #CCC;">{heading4}</th>
+                <th width="10%" style="border-right:1px solid #CCC;">{heading5}</th>
+            </tr>
+                {view_records}
+            </table>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,6 @@
+        <div id="headermenu">
+            <ul id="pmenu">
+                {menuitems}
+            </ul>
+            <div style="background-color:{background-color};">&nbsp;</div>
+        </div>

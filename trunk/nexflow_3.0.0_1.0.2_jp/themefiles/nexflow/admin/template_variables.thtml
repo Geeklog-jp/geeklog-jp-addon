@@ -1,0 +1,15 @@
+                <table id="tvar_container{template_id}" cellspacing="1" cellpadding="1" border="0" style="margin-top:5px;">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th colspan="2">Value</th>
+                    </tr>
+                    {template_variable_records}
+                </table>
+                <table id="newtvar_container{cntr}" cellspacing="1" cellpadding="1" border="0" width="50%" style="margin-top:5px;display:none;">
+                    <tr>
+                        <td width="215" colspan="2" style="text-align:right;padding:5px 30px;" nowrap><input type="text" size="25" name="addvarname{cntr}"></td>
+                        <td width="170" style="padding:5px 0px;"><input type="text" size="25" name="addvarvalue{cntr}"></td>
+                        <td width="120" style="padding-left:30px;"><input type="button" name="operation" value="Add" onClick='ajaxUpdateTemplateVar("add",{template_id},{cntr});'></td>
+                    </tr>
+                </table>

@@ -1,0 +1,41 @@
+
+<tr id="actionrec{rowid}" class="taskconsoleActionRec" style="display:none;">
+    <td style="border-left:1px solid white">&nbsp;</td>
+    <td colspan="6" style=";padding:10px;border-right:1px solid white;">
+        <form style="margin:0px;" action="{actionurl}" method="post">
+        <input type="hidden" name="op" value="form_review">
+        <input type="hidden" name="taskid" value="{id}">
+        <input type="hidden" name="projectid" value="{project_id}">
+        <input type="hidden" name="processid" value="{process_id}">
+        <input type="hidden" name="formid" value="{form_id}">
+        <input type="hidden" name="taskuser" value="{taskuser}">
+        <table class="pluginSubTable taskconsoleActionRec" cellspacing="0" cellpadding="1" border="0" width="100%">
+            <tr>
+                <td width="70%">{prompt_description}</td>
+                <td width="30%" style="padding:5px 10px 5px 5px;text-align:right;">
+                    <input type="submit" name="taskaction" value="Update">
+                    <input type="button" onClick="togglerec('action',{rowid});" value="Close">
+                    <div style="padding:10px 0px 5px 0px;"><input type="submit" name="taskaction" value="Complete Task"></div>
+                </td>
+            </tr>
+            <tr>
+                <td width="400" colspan="2">
+                    <fieldset><legend>Task Action</legend>
+                        <div>{prompt_action_question}
+                        <span style="padding-left:20px;">No&nbsp;<input type="radio" name="actionopt" value="reject" {chk_reject}></span>
+                        <span style="padding-left:10px;">Yes&nbsp;<input type="radio" name="actionopt" value="accept" {chk_accept}></span>
+                        </div>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-bottom:20px;">
+                    <fieldset style="border:1px solid #FEF1B4;"><legend style="padding-bottom:3px;">Comments</legend>
+                        <div><textarea cols="80" rows="5" name="notes">{notes}</textarea></div>
+                    </fieldset>
+                </td>
+            </tr>
+        </table>
+        </form>
+    </td>
+</tr>

@@ -1,0 +1,16 @@
+        <tr valign="top">
+            <td align="right"><b>{lang_awaytitle}:</b></td>
+            <td>
+                <table>
+                    <tr>
+                        <td width="40">{lang_awayfrom}:</td><td>{away_sdate}</td>
+                    </tr>
+                    <tr>
+                        <td>{lang_awayto}:</td><td>{away_rdate}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{away_reason}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>        

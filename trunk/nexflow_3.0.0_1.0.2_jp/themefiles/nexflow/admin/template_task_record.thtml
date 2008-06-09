@@ -1,0 +1,31 @@
+                <table class="plugin {editmodestyle}" style="margin-bottom:15px;border-collapse:collapse;border-color:#000;" width="370">
+                    <tr valign="top">
+                        <td width="105" class="nexflowTBD{css_option}">Step ID:<div>{notify1}{notify2}{reminder}</div></td>
+                        <td width="40" class="nexflowTBD" align="center" nowrap>{task_step_id}&nbsp;({task_id})</td>
+                        <td width="225" class="nexflowTBD">{task_name}{show_has_dynamic_name}</td>
+                    </tr>
+                    <tr>
+                        <td class="nexflowTBD{css_option}">Task Type:</td>
+                        <td colspan="2" align="left" class="nexflowTBD">{task_steptype}&nbsp;{regen_flag}&nbsp;{first_step}</td>
+                    </tr>
+                    <tr style="display:{show_taskhandler};">
+                        <td class="nexflowTBD{css_option}">{LANG_Handler}:</td>
+                        <td colspan="2" align="left" class="nexflowTBD">{task_handler}</td>
+                    </tr>
+                    <tr style="display:{show_assigned};">
+                        <td class="nexflowTBD{css_option}">Assigned To:</td>
+                        <td colspan="2" align="left" class="nexflowTBD">{task_assigned}</td>
+                    </tr>
+                    <tr>
+                        <td class="nexflowTBD{css_option} aligntop">Next Task(s):</td>
+                        <td colspan=2 class="nexflowTBD">{next_task}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" align="right" class="nexflowTBD" style="padding:3px 15px 3px 3px;">
+                            <input class="nexflowButton" type="submit" value="Move Down" name="moveoperation" onclick="document.template.taskID.value={task_id};"> &nbsp;&nbsp;
+                            <input class="nexflowButton" type="submit" value="Move Up" name="moveoperation" onclick="document.template.taskID.value={task_id};"> &nbsp;&nbsp;
+                            <input class="nexflowButton" type="submit" value="Edit" name="operation" onclick="document.template.taskID.value={task_id};document.template.operation.value='';">
+                            <input class="nexflowButton" type="submit" value="Delete" name="operation" onclick="document.template.taskID.value='{task_id}';return confirm('{LANG_DELCONFIRM}');">
+                        </td>
+                    </tr>
+                </table>

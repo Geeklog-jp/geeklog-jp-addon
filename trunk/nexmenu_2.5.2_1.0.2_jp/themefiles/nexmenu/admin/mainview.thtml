@@ -1,0 +1,101 @@
+
+{include_javascript}
+
+<table width="100%" border="0" cellspacing="1" cellpadding="1" class="plugin" style="border: 0px;">
+    <tr>
+        <td class="pluginAlert" style="display:{showalert};">{statusmsg}</td>
+    </tr>
+    <tr>
+        <td class="pluginTitle" style="padding:5px;">Menu Administration</td>
+    </tr>
+    <tr>
+        <td>{navbar}</td>
+    </tr>
+    <tr>
+      <td>
+         <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td class="pluginHeader">{LANG_HEADING1}</td>
+                <td class="pluginHeader" valign="top" width="40%">{LANG_HEADING2}</td>
+                <td class="pluginHeader" valign="top" width="40%" nowrap>
+                    <form name="frm_nexmenu" action="{phpself}" method="post" style="padding:0;margin:0;">
+                        <input type="hidden" name="id" value="{id}">
+                        <input type="hidden" name="menulocation" value="{location}">
+                        Show Disabled:&nbsp;<label for="id1">Yes&nbsp;<input id="id1" type="radio" name="showdisabled" value="1" {chk_enabled} onclick="frm_nexmenu.submit();"></label>&nbsp;<label for="id2">No&nbsp;<input id="id2" type="radio" name="showdisabled" value="0" {chk_disabled} onclick="frm_nexmenu.submit();"></label>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td class="pluginCellText">
+                    <div style="width:220px; height:400px; padding-top:5px; border:0px; overflow-x:auto; overflow: auto;">
+                        {treemenu}
+                    </div>
+                </td>
+                <td colspan="2" valign="top" class="pluginCellText" style="padding-top:5px; padding-left:5px; border-left:1px solid grey;">
+                   <div style="display:{showdiv};">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="plugin">
+                        <tr>
+                            <td colspan="2" style="padding:0px;">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="padding:0px;">
+                                   <tr>
+                                    <th class="pluginCellTitle" style="padding:2 2 2 5px;">{LANG_MenuItemAdmin}</th>
+                                    <th class="pluginCellTitle" style="text-align:right;padding:2 10 2 0px; display:{showdiv}">
+                                        <table border="0" cellspacing="1" cellpadding="1" width="100%">
+                                            <tr>
+                                                <td width="90%" align="right"><a href="{phpself}?id={id}&op=moveup&menulocation={location}&showdisabled={showdisabled}"><img src="{imgset}/up.png" border="0" TITLE="{LANG_MoveUp}"></a></td>
+                                                <td><a href="{phpself}?id={id}&op=movedn&menulocation={location}&showdisabled={showdisabled}"><img src="{imgset}/down.png" border="0" TITLE="{LANG_MoveDn}"></a></td>
+                                                <td><a href="{phpself}?op=editaction&id={id}&menulocation={location}&showdisabled={showdisabled}"><img src="{imgset}/edit.png" border="0" TITLE="{LANG_EditRecord}"></a></td>
+                                                <td><a href="{phpself}?op=delaction&id={id}&menulocation={location}&showdisabled={showdisabled}" onclick="return confirm('{LANG_DELCONFIRM}');"><img src="{imgset}/delete.png" border="0" TITLE="{LANG_DeleteRecord}"></a></td>
+                                           </tr>
+                                       </table>
+                                    </th>
+                                  </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="pluginCellSubTitle" width="30%">Label</td>
+                            <td class="pluginCellText" style="padding-left:25px;">{label}&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="pluginCellSubTitle">{LANG_ParentMenu}:</td>
+                            <td class="pluginCellText" style="padding-left:25px;">{parent}</td>
+                        </tr>
+                        <tr>
+                            <td class="pluginCellSubTitle">{LANG_ORDER}:</td>
+                            <td class="pluginCellText" style="padding-left:25px;">{order}</td>
+                        </tr>
+                        <tr>
+                            <td class="pluginCellSubTitle">Menu Type:</td>
+                            <td class="pluginCellText" style="padding-left:25px;">{menutype}&nbsp;</td>
+                        </tr>
+                        <tr style="display:{showurl};">
+                            <td class="pluginCellSubTitle">{LANG_URLITEM}:</td>
+                            <td class="pluginCellText" style="padding-left:25px;"><a style="text-decoration:none;" href="#">{full_url}</a></td>
+                        </tr>
+                        <tr>
+                            <td class="pluginCellSubTitle">{LANG_ACCESS}:</td>
+                            <td class="pluginCellText" style="padding-left:25px;">{grp_access}&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="pluginCellSubTitle">{LANG_Enabled}:</td>
+                            <td class="pluginCellText" style="padding-left:25px;">
+                                <form name="frm_nexmenu2" action="{phpself}" method="post" style="padding:0;margin:0;">
+                                    <input type="hidden" name="id" value="{id}">
+                                    <input type="hidden" name="op" value="setEnabled">
+                                    <input type="hidden" name="showdisabled" value="{showdisabled}">
+                                    <input type="hidden" name="menulocation" value="{location}">
+                                    <input name="menu_status" type="checkbox" {chk1} onClick="submit();">
+                                </form>
+                           </td>
+                        </tr>
+                    </table>
+                   </div>
+                   <div style="display:{show_itemhelp};">{LANG_edithelp}</div>
+                 </td>
+               </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<p />

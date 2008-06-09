@@ -1,0 +1,64 @@
+
+ <script type="text/javascript" src="{site_url}/nexflow/include/ajaxsupport.js"></script>
+
+ {javascript_code}
+
+<div class="pluginCellTitle" style="padding:5px;">
+[&nbsp;<a href="index.php?op={whichop}&layout=status&taskuser={taskuser}" onclick="nfSetCookie('nflayout','status');">Status View</a>&nbsp;]&nbsp;&nbsp;[&nbsp;<a href="index.php?op={whichop}&layout=tabular&taskuser={taskuser}" onclick="nfSetCookie('nflayout','tabular')">Tabular View</a>&nbsp;]
+                <span id="pstatus" style="padding-left:50px;display:none;">
+                    <span id="pstatuscontent" class="pluginInfo" style="border:1px solid #CCCCCC; padding:2px 5px 2px 5px;"></span>
+                </span>
+</div>
+
+<form method="post" name="frmSrchFlows" style="margin:0px;">
+<input type="hidden" name="srchOrderBy">
+<input type="hidden" name="srchOrderDir" value="{srchOrderDir}">
+<table border="0" class="plugin" style="border-collapse:collapse;border:solid #CCC 1px" width="100%">
+<!--search header-->
+<tr class="pluginInfo pluginMediumText">
+    <td style="white-space:nowrap;vertical-align:top;padding:5px 0px 5px 10px;">
+        <span id="searchtextfield" style="display:{show_searchtextfield};">
+            Text:&nbsp;<input type="text" name="srchText" value="{srchText}">
+        </span>
+        <span id="selectappfield" style="display:{show_selectappfield};">
+            <select name="idAppGroup">
+                {srchApplicationGroups}
+            </select>
+        </span>
+    </td>
+    <td {col2width} style="white-space:nowrap;vertical-align:top;padding:5px 0px 5px 15px;">
+        <select name="srchFilter" size="1" onchange="toggleApplicationGroup(this.value);">
+            <option value="" ></option>
+            <option value="title" {srchseltitle}>{srchFilterTitle}</option>
+            <option value="desc" {srchselreqdesc}>{srchFilterReqDesc}</option>
+            <option value="appgroup" {srchselappgroup}>{srchFilterPrjName}</option>
+        </select>
+    </td>
+    <td style="display:{statusvisible};white-space:nowrap;vertical-align:top;padding:5px 0px 5px 0px;">
+       Status:&nbsp;<select name="srchStatus" size="1">
+            <option value="-1" {srchselany}>Any</option>
+            <option value="1" {srchselactive}>Active</option>
+            <option value="2" {srchselonhold}>On Hold</option>
+            <option value="3" {srchselcompleted}>Completed</option>
+            <option value="4" {srchselregenerated}>Regenerated</option>
+        </select>
+    </td>
+    <td class="aligncenter alignmiddle" style="padding:5px 10px 5px 0px;">
+        <input type="submit" value="{srchDoSearch}">
+    </td>
+</tr>
+</table>
+</form>
+<table border="0" class="plugin" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+        <th width="40%" onclick="document.frmSrchFlows.srchOrderBy.value='flow';document.frmSrchFlows.submit();" style="cursor:hand">Flow</th>
+        <th onclick="document.frmSrchFlows.srchOrderBy.value='initiatedDate';document.frmSrchFlows.submit();" style="cursor:hand">Initiated Date</th>
+        <th onclick="document.frmSrchFlows.srchOrderBy.value='completedDate';document.frmSrchFlows.submit();" style="cursor:hand">Completed Date</th>
+        <th width="10%" onclick="document.frmSrchFlows.srchOrderBy.value='complete';document.frmSrchFlows.submit();" style="cursor:hand">Status</th>
+        <th>Details</th>
+    </tr>
+
+    {results}
+
+</table>
+

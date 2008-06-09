@@ -1,0 +1,11 @@
+<tr class="pluginRow{cssid}">
+    <td width="40%" style="text-align:left;">{user}</td>
+    <td width="15%" style="text-align:center;">{read}</td>
+    <td width="15%" style="text-align:center;">{write}</td>
+    <td width="15%" style="text-align:center;">{change}</td>
+    <td width="15%" style="padding-left:10px;display:{showhide_actions}">
+        <img src="{layout_url}/images/editperm.png" onclick="editSelection('{uid}','{numread}','{numwrite}','{numchange}', this);document.projPerms.op.value='edit';document.projPerms.rid.value='{rid}';">&nbsp;&nbsp;
+
+        <img src="{layout_url}/images/deleteperm.png" onclick="if(confirm('Delete This entry?')){ document.frmUsersAndGroups.op.value='delete';document.frmUsersAndGroups.rid.value={rid};document.frmUsersAndGroups.submit(); }">
+    </td>
+</tr>

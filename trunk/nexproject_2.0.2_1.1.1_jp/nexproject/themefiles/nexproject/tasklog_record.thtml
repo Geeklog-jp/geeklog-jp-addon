@@ -1,0 +1,8 @@
+    <tr class="pluginCellText"> 
+      <td colspan="2">
+        <div>
+            <b>{member_name}</b>{log_date}{log_entry}
+        </div>
+      </td>
+    </tr>
+
