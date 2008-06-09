@@ -1,0 +1,4 @@
+This is the nexcontent images directory.  Images uploaded, (not including ones
+uploaded by the FCKEditor) will be uploaded to this directory.  So make sure
+that this directory is writeable.  When you install the nexcontent plugin, it 
+will check to make sure it can write to this directory as well.

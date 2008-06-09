@@ -1,0 +1,8 @@
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="border: 0px solid #CCC;">
+    <tr>
+        <td class="blocktitle" style="border:0px;" width="1%" background="{layout_url}/images/welcome_bg2.jpg" nowrap>{showhide}</td>
+        <td colspan="2" width="99%" class="blocktitle"  background="{layout_url}/images/welcome_bg2.jpg" nowrap style="border:0px;text-align:left;padding:5px;">{block_title}</td>
+    </tr>
+    <tr>
+        <td width="100%" class="blockinfo" colspan="3">

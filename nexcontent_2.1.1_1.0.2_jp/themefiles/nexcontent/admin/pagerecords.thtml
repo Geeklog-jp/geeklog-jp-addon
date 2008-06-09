@@ -1,0 +1,37 @@
+<tr>
+    <td class="pluginRow{cssid}" width="5%" style="padding-left:2px;">{pageid}</td>
+    <td class="pluginRow{cssid}" width="5%" style="padding-left:2px; text-align: center;">{order}</td>
+    <td class="pluginRow{cssid}" width="5%" style="padding-left:2px;">
+        <a href="{site_admin_url}/plugins/nexcontent/index.php?pageid={pageid}&op=moveup&catid={catid}"><img src="{layout_url}/nexpro/images/admin/arrow-up.gif" border="0" ALT="{LANG_MOVEUP}" TITLE="{LANG_MOVEUP}""></a><br>
+        <a href="{site_admin_url}/plugins/nexcontent/index.php?pageid={pageid}&op=movedn&catid={catid}"><img src="{layout_url}/nexpro/images/admin/arrow-dn.gif" border="0" ALT="{LANG_MOVEDN}" TITLE="{LANG_MOVEDN}"></a>
+    </td>
+    <td class="pluginRow{cssid}" width="65%" style="padding-left:10px;"><a href="{pagelink}" TITLE="Page ID:&nbsp;{sid}">{pageimage}</a>&nbsp;{pagename}</td>
+    <td class="pluginRow{cssid}" width="5%" style="padding-left:10px;">{hits}</td>
+    <td class="pluginRow{cssid}" width="5%" style="padding-left:10px; text-align:center;">
+        <form name="frm_setmenu" action="{phpself}" method="post" style="padding:0;margin:0;">
+        <input type="hidden" name="pageid" value="{pageid}">
+        <input type="hidden" name="catid" value="{catid}">
+        <input type="hidden" name="op" value="setMenu">
+        <select name="menutype" onChange="submit();" style="width:95px;">{menuoptions}</select>
+        </form>
+    </td>
+    <td class="pluginRow{cssid}" width="5%" style="text-align:center;padding-left:10px;">
+        <form action="{phpself}" method="post" style="padding:0;margin:0;">
+        <input type="hidden" name="pageid" value="{pageid}">
+        <input type="hidden" name="catid" value="{catid}">
+        <input type="hidden" name="op" value="setSubMenu">
+        <input type="checkbox" name="submenu" value = "1" {check1} onClick="submit();">
+        </form>
+        </td>
+    <td class="pluginRow{cssid}" width="5%" style="padding-left:10px;">
+        <form action="{phpself}" method="post" style="padding:0;margin:0;">
+        <input type="hidden" name="pageid" value="{pageid}">
+        <input type="hidden" name="catid" value="{catid}">
+        <input type="hidden" name="op" value="setDraft">
+        <input type="checkbox" name="draftoption" value = "1" {check2} onClick="submit();">
+        </form>
+        </td>
+    <td class="pluginRow{cssid}" width="10%" style="padding-right:5px;padding-left:5px;" nowrap>
+        <a href="{nexcontent_url}/index.php?page={pageid}&preview=1" onclick="window.open(this.href,'mypopup','width=900,height=700,scrollbars=yes,resizable=yes');return false;"><img src="{layout_url}/nexcontent/images/admin/preview.gif" border="0" TITLE="Preview Page"></a>{editlink}{copylink}{deletelink}
+    </td>
+</tr>
