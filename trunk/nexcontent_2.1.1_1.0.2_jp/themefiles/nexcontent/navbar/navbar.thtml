@@ -1,0 +1,5 @@
+<div id="nexcontent_navcontainer">
+    <ul id="navlist" style="padding-left:15px;white-space:nowrap;">
+{menuitems}
+    </ul>
+</div>

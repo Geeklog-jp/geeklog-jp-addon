@@ -1,0 +1,225 @@
+<script type="text/javascript">
+    // Setup editor path for FCKeditor JS Functions
+    geeklogEditorBasePath = "{site_url}/fckeditor/" ;
+
+    window.onload = function()  {
+        var oFCKeditor = new FCKeditor( 'sitecontent' ) ;
+        oFCKeditor.BasePath = "{site_url}/fckeditor/" ;
+        oFCKeditor.Config['CustomConfigurationsPath'] = geeklogEditorBasePath + 'myconfig.js';
+        oFCKeditor.ToolbarSet = 'editor-toolbar3' ;
+        oFCKeditor.Height = 400 ;
+        oFCKeditor.ReplaceTextarea() ;
+  }
+</script>
+<script type="text/JavaScript" src="{public_url}/include/nexcontent.js"></script>
+
+<form name="frm_edit" action="{phpself}" method="post" enctype="multipart/form-data" style="padding:0;margin:0;">
+    <input type="hidden" name="mode" value="{mode}">
+    <input type="hidden" name="type" value="{type}">
+    <input type="hidden" name="catid" value="{catid}">
+    <input type="hidden" name="pageid" value="{pageid}">
+    <input type="hidden" name="op" value="savePage">
+    <input type="hidden" name="page" value="">
+    <input type="hidden" name="old_sid" value="{sid}">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="plugin">
+    <tr>
+        <td colspan="2">{navbar}</td>
+    </tr>
+    <tr class="pluginHeader">
+        <td width="350" style="padding:5px 25px 10px 10px;" nowrap>|&nbsp;
+            <a id="se_link101" href="#" onclick="setcurrent(this);" class="navsubcurrent">Main Details</a>&nbsp;|&nbsp;
+            <span style="display: {show_image_tab};">
+                <a id="se_link102" href="#" onclick="setcurrent(this);" class="navsubmenu">Images</a>&nbsp;|&nbsp;
+            </span>
+            <a id="se_link103" href="#" onclick="setcurrent(this);" class="navsubmenu">Permissions</a>&nbsp;|
+            <a id="se_link104" href="#" onclick="setcurrent(this);" class="navsubmenu">Page Options</a>&nbsp;|
+        </td>
+        <td width="50%" style="text-align:right;padding-right:20px;" nowrap>&nbsp;
+            <span id="se_span1">
+                {convert_page}
+                <input type=button value="Cancel" onclick="location.replace('index.php?catid={catid}');">
+                <input type="submit" name="update_changes" value="{LANG_submit}">
+                <input type="submit" name="save_and_close" value="{LANG_saveandclose}">
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div id="se_div1" style="display:show;">
+                <table width="100%" border="0" cellspacing="1" cellpadding="5">
+                    <tr>
+                        <td class="pluginRow1" width="20%">Name:</td>
+                        <td class="pluginRow1" style="padding-left:5px;"><input type="text" name="name" size="32" value="{name}"></td>
+                        <td class="pluginRow1" style="padding-left:15px;" nowrap>Page ID:</td>
+                        <td class="pluginRow1" width="40%" style="padding-left:5px;"><input type="text" name="sid" size="28" value="{sid}"></td>
+                    </tr>
+                    {select_category}
+                    <tr>
+                        <td class="pluginRow1" nowrap>Menu Type:</td>
+                        <td class="pluginRow1" style="padding-left:5px;">
+                            <select name="menu_type" style="width:180px;">{sel_menutypes}</select>
+                        </td>
+                        <td class="pluginRow1" style="padding-left:15px;" nowrap>Heading:</td>
+                        <td class="pluginRow1" width="40%" style="padding-left:5px;"><input type="text" name="heading" size="28" value="{heading}"></td>
+                    </tr>
+                    <tr>
+                        <td class="pluginRow1" nowrap>Block Usage:</td>
+                        <td colspan="3" class="pluginRow1" style="padding-left:5px;">
+                            <select name="blk_format" style="width:180px;">{sel_blocktype}</select>
+                            <span style="padding-left:40px;">Alter the content area size</span>
+                            <span style="padding-left:5px;"><img src="{layout_url}/images/expand.png" border="0" TITLE="Expand the Content Edit Area size" onclick="changeTextAreaSize('larger');"></span>
+                            <span style="padding-left:5px;"><img src="{layout_url}/images/collapse.png" border="0" TITLE="Reduce the Content Edit Area size" onclick="changeTextAreaSize('smaller');"></span>
+                        </td>
+                    </tr>
+                    <tr valign="top">
+                        <td colspan="4" class="pluginRow1" style="padding-left:5px;padding-right:5px;"><textarea class="content" id="sitecontent" name="sitecontent" cols="80" rows="20">{content}</textarea></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="pluginRow1" width="100%">
+                            <fieldset><legend>Page Navigation Options</legend>
+                            <table width="100%" border="0" cellspacing="1" cellpadding="5">
+                                <tr>
+                                    <td class="pluginRow1">Submenu Type:</td>
+                                    <td colspan="3" class="pluginRow1" style="padding-left:25px;">
+                                            None<input type="radio" name="rad_submenu" value="0" {chk_rad1}>&nbsp;&nbsp;
+                                            Default<input type="radio" name="rad_submenu" value="1" {chk_rad2}>&nbsp;&nbsp;
+                                            Parent<input type="radio" name="rad_submenu" value="2" {chk_rad3}>
+                                        <span style="padding-left:10px;font-style:italic;">{LANG_SubmenuDescription}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="pluginRow1">Blockmenu Type:</td>
+                                    <td colspan="3" class="pluginRow1" style="padding-left:25px;">
+                                            None<input type="radio" name="rad_blockmenu" value="0" {chk_rad4}>&nbsp;&nbsp;
+                                            Default<input type="radio" name="rad_blockmenu" value="1" {chk_rad5}>&nbsp;&nbsp;
+                                            Parent<input type="radio" name="rad_blockmenu" value="2" {chk_rad6}>
+                                        <span style="padding-left:10px;font-style:italic;">{LANG_BlockmenuDescription}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="pluginRow1">Breadcrumbs</td>
+                                    <td colspan="3" class="pluginRow1" style="padding-left:25px;"><input type="checkbox" name="chkbreadcrumbs" value="1" {check2}>
+                                        <span style="padding-left:10px;font-style:italic;">{LANG_Breadcrumbs}</span>
+                                    </td>
+                                </tr>
+                            </table>
+                            </fieldset>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pluginRow1">New Window</td>
+                        <td colspan="3" class="pluginRow1" style="padding-left:25px;"><input type="checkbox" name="chknewwindow" value="1" {check1}>
+                            <span style="padding-left:10px;font-style:italic;">{LANG_WindowDescription}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pluginRow1">Draft:</td>
+                        <td colspan="3" class="pluginRow1" style="padding-left:25px;"><input type="checkbox" name="chkdraft" value="1" {check3}>
+                            <span style="padding-left:10px;font-style:italic;">{LANG_DraftDescription}</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="se_div2" style="display:none;">
+                <table width="80%" border="0" cellspacing="1" cellpadding="5">
+                    <tr class="pluginRow2" valign="top">
+                        <td width="15%" class="pluginRow2"><b>Images:</b></td>
+                        <td colspan="4">
+                            <table width="100%" border="0" cellspacing="1" cellpadding="5" class="pluginAltBG">
+                                {thumbnail_image}
+                            </table>
+                        </td>
+                    </tr>
+                    <tr class="pluginRow1">
+                        <td colspan="5" width="100%" style="padding:10 50 10 50px;" nowrap><fieldset><legend>Image upload settings</legend>
+                        <ul style="margin:10 0 10 30px;">
+                        <li>Max upload file size: {max_uploadsize} bytes
+                        <li>Auto Scale option will scale image to: <b>h</b> {max_uploadheight} px by <b>w</b> {max_uploadwidth} px
+                        <li>Thumbnail size: {thumbnail_size} px
+                        </ul>
+                        </fieldset>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="se_div3" style="display:none;">
+                <table width="100%" border="0" cellspacing="1" cellpadding="5" class="plg_table">
+                    <tr>
+                        <td width="100%" colspan="2" class="pluginRow1"><b>{lang_accessrights}</b></td>
+                    </tr>
+                    <tr>
+                        <td width="15%" class="pluginRow1" style="padding-left:10px;">{lang_owner}:</td>
+                        <td class="pluginRow1">{owner_username}<input type="hidden" name="owner_id" value="{owner_id}"></td>
+                    </tr>
+                    <tr>
+                        <td class="pluginRow1" style="padding-left:10px;">{lang_group}:</td>
+                        <td class="pluginRow1"><select name="group_id">{group_dropdown}</select></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="pluginRow2"><b>{lang_permissions}</b>:</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="pluginRow2">{lang_perm_key}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="pluginRow2">
+                            {permissions_editor}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="pluginRow2">{permissions_msg}</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="se_div4" style="display:none;">
+                <table width="100%" border="0" cellspacing="1" cellpadding="5" class="plg_table">
+                    <tr>
+                        <td width="15%" class="pluginRow1" style="padding-left:10px;" nowrap>{lang_title}:</td>
+                        <td class="pluginRow1"><input type="text" name="pagetitle" value="{page_title}" size="65"></td>
+                    </tr>
+                    <tr>
+                        <td width="15%" class="pluginRow1" style="padding-left:10px;" nowrap>{lang_order}:</td>
+                        <td class="pluginRow1"><input type="text" name="pageorder" value="{page_order}" size="8"></td>
+                    </tr>
+                    <tr valign="top">
+                        <td width="15%" class="pluginRow1" style="padding-left:10px;" nowrap>{lang_metadescription}:</td>
+                        <td class="pluginRow1"><textarea name="metadesc" cols="65" rows="5">{meta_description}</textarea></td>
+                    </tr>
+                    <tr valign="top">
+                        <td width="15%" class="pluginRow1" style="padding-left:10px;" nowrap>{lang_metakeywords}:</td>
+                        <td class="pluginRow1"><textarea name="metakeywords" cols="65" rows="5">{meta_keywords}</textarea></td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" class="pluginRow1" style="padding:10px;">
+                <input id="se_help1" type="button" value="Tag Help" onClick="showhidehelp('general');">
+                       <div id="se_helpcontent1" style="display:none;padding:5 0 20 5px;">
+                        <table border="0" cellpadding="5" cellspacing="1" class="pluginBG">
+                            {taghelp_lines}
+                        </table>
+                       </div>
+                       <div id="se_helpcontent2" style="display:none;padding:5 0 20 5px;">
+                        <table border="0" cellpadding="5" cellspacing="1" class="pluginBG">
+                            <tr class="pluginRow2" valign="top">
+                                <td style="padding-left:10px;" nowrap>Block Title</td>
+                                <td style="padding-left:10px;">Block Name</td>
+                            </tr>
+                            {blockhelp_lines}
+                        </table>
+                       </div>
+                       <div id="se_helpcontent3" style="display:none;padding:5 0 20 5px;">
+                            <textarea name="help" cols="90" rows="15">{customhelp}</textarea>
+                       </div>
+            <span id="se_help2" style="padding-left:10px;">
+                <input type="button" value="Show Blocks" onClick="showhidehelp('blocks');">
+            </span>
+            <span id="se_help3" style="padding-left:10px;">
+                <input type="button" value="Custom Help" onClick="showhidehelp('custom');">
+            </span>
+        </td>
+    </tr>
+</table>
+</form>

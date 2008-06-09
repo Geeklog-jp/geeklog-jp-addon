@@ -1,0 +1,97 @@
+
+<form name="frm_edit" action="{phpself}" method="post" enctype="multipart/form-data" style="padding:0;margin:0;">
+    <input type="hidden" name="mode" value="{mode}">
+    <input type="hidden" name="type" value="{type}">
+    <input type="hidden" name="catid" value="{catid}">
+    <input type="hidden" name="pageid" value="{pageid}">
+    <input type="hidden" name="op" value="savePage">
+    <input type="hidden" name="page" value="">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td colspan="2">{navbar}</td>
+    </tr>
+    <tr class="pluginHeader">
+        <td style="padding:5px 25px 10px 10px;" nowrap>|&nbsp;
+            <a id="se_link101" href="#" onclick="setcurrent(this);" class="navsubcurrent">Main Details</a>&nbsp;|&nbsp;
+            <a id="se_link102" href="#" onclick="setcurrent(this);" class="navsubmenu">Permissions</a>&nbsp;|
+            <a id="se_link103" href="#" onclick="setcurrent(this);" class="navsubmenu">Page Options</a>&nbsp;|
+            <div style="display:none;">
+                <a id="se_link104" href="#" onclick="setcurrent(this);" class="navsubmenu">Permissions</a>&nbsp;|
+            </div>
+        <td style="text-align:right;padding-right:20px;">&nbsp;
+            <span id="se_span1">
+                <input type=button value="Cancel" onclick="location.replace('index.php?catid={catid}');">
+                    <span style="padding-left:20px;"><input type="submit" value="{LANG_submit}"></span>
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td class="pluginCellTitle" colspan="2">
+            <div id="se_div1" style="display:show;">
+                <table width="100%" border="0" cellspacing="1" cellpadding="5" class="plg_table">
+                    <tr class="pluginRow1">
+                        <td width="20%" class="plg_text1">Name:</td>
+                        <td colspan="3" class="plg_text2" style="padding-left:5px;"><input type="text" name="name" size="32" value="{name}"></td>
+                    </tr>
+                    {select_category}
+                    <tr class="pluginRow1" valign="top">
+                        <td width="20%" class="plg_text1">URL:</td>
+                        <td colspan="3" class="plg_text2" style="padding-left:5px;padding-right:5px;"><input type="text" name="sitecontent" value="{content}" size="60" maxlength="128"></td>
+                    </tr>
+                    <tr class="pluginRow2">
+                        <td class="plg_text1">New Window</td>
+                        <td colspan="3" class="plg_text2" style="padding-left:25px;"><input type="checkbox" name="chknewwindow" value="1" {check2}>
+                            <span style="padding-left:10px;font-style:italic;">{LANG_WindowDescription}</span>
+                        </td>
+                    </tr>
+                    <tr class="pluginRow1">
+                        <td class="plg_text1">Draft:</td>
+                        <td colspan="3" class="plg_text2" style="padding-left:25px;"><input type="checkbox" name="chkdraft" value="1" {check3}>
+                            <span style="padding-left:10px;font-style:italic;">{LANG_DraftDescription}</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="se_div2" style="display:none;">
+                <table width="100%" border="0" cellspacing="1" cellpadding="5" class="plg_table">
+                    <tr>
+                        <td width="100%" colspan="2" class="pluginRow1"><b>{lang_accessrights}</b></td>
+                    </tr>
+                    <tr>
+                        <td width="15%" class="pluginRow1" style="padding-left:10px;">{lang_owner}:</td>
+                        <td class="pluginRow1">{owner_username}<input type="hidden" name="owner_id" value="{owner_id}"></td>
+                    </tr>
+                    <tr>
+                        <td class="pluginRow1" style="padding-left:10px;">{lang_group}:</td>
+                        <td class="pluginRow1"><select name="group_id">{group_dropdown}</select></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="pluginRow2"><b>{lang_permissions}</b>:</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="pluginRow2">{lang_perm_key}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="pluginRow2">
+                            {permissions_editor}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="pluginRow2">{permissions_msg}</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="se_div3" style="display:none;">
+                <table width="100%" border="0" cellspacing="1" cellpadding="5" class="plg_table">
+                    <tr>
+                        <td width="15%" class="pluginRow1" style="padding-left:10px;" nowrap>{lang_order}:</td>
+                        <td class="pluginRow1"><input type="text" name="pageorder" value="{page_order}" size="8"></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="se_div4" style="display:none;">
+            </div>
+        </td>
+    </tr>
+</table>
+</form>

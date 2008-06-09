@@ -1,0 +1,16 @@
+{siteheader}
+<table width="100%" border="0" cellpadding="10" cellspacing="0" class="{css_style}">
+    <tr align="left" valign="top">
+        <td colspan="2" width="100%">
+                <table width="100%" border="0" cellpadding="1" cellspacing="3" style="table-layout:fixed;">
+                        <tr style="padding:5px;">
+                                <td class="content">{content}</td>
+                        </tr>
+                 </table>
+            </td>
+    </tr>
+    <tr align="left" valign="top">
+        <td class="articleStoryLinks">{editlink}</td>
+    </tr>
+</table>
+{sitefooter}

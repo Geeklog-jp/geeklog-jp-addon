@@ -1,0 +1,6 @@
+<tr>
+    <td class="pluginRow2" width="5%" style="text-align:center;padding-left:10px;padding-right:10px;">{imagenum}</td>
+    <td class="pluginRow2" width="15%"><img src="{thumbnail_url}" border="0" ></a></td>
+    <td class="pluginRow2" style="text-align:left;padding-left:25px;" nowrap>Delete<span style="padding-left:5px;"><input type="checkbox" name="imgdelete[]" value="{imagenum}"></span></td>
+    <td class="pluginRow2" width="45%" nowrap><input type="checkbox"  name="chkscale[{imagenum}]" value="1" {chkscaleopt} >&nbsp;Use Scaled image</td>
+</tr>

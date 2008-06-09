@@ -1,0 +1,41 @@
+<table width="100%" border="0" cellspacing="2" cellpadding="0" class="plugin" style="border:0px;">
+    <tr>
+        <td>{navbar}
+            <table width="100%" border="0" cellspacing="0" cellpadding="1" style="border:0px;">
+                <tr>
+                    <td style="padding:10px;">
+                        <form name="frm_filter" action="{phpself}" method="post" style="padding:0;margin:0;">
+                            <input type="hidden" name="catid" value="">
+                            <select name="folderfilter" style="width:150px;" onChange="frm_filter.catid.value=this.options[this.selectedIndex].value; frm_filter.submit();">
+                            {filteroptions}
+                            </select>
+                        </form>
+                    </td>
+                    <td width="100%"><span class="pluginAlert" style="display:{msgmode};">{alertmsg}</span></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><hr></td>
+                </tr>
+                <tr style="vertical-align:top;">
+                    <td style="padding-bottom:60px;">{folderview}</td>
+                    <td width="80%" style="padding-right:5px;">
+                        <table width="100%" border="0" cellspacing="1" cellpadding="1" style="margin-bottom:100px;">
+                            <tr>
+                                <td class="pluginHeader">{HEADING1}</td>
+                                <td class="pluginHeader" colspan="2">Order</td>
+                                <td class="pluginHeader">{HEADING2}</td>
+                                <td class="pluginHeader">{HEADING3}</td>
+                                <td class="pluginHeader">{HEADING4}</td>
+                                <td class="pluginHeader">Submenu</td>
+                                <td class="pluginHeader">{HEADING5}</td>
+                                <td class="pluginHeader">{HEADING6}
+                            </td>
+                            </tr>
+                               {page_records}
+                        </table>
+                   </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,5 @@
+<tr>
+    <td class="pluginRow2" width="5%" style="text-align:center;padding-left:10px;padding-right:10px;">{imagenum}</td>
+    <td width="45%" colspan="2" class="pluginRow2" nowrap><input type="file" size="25" name="pageimage{imagenum}"></td>
+    <td class="pluginRow2" width="30%" nowrap><input type="checkbox" name="chkscale[{imagenum}]" value="1">&nbsp;Use Scaled image</td>
+</tr>

@@ -1,0 +1,18 @@
+<table border="1" width="100%" cellspacing="0" cellpadding="0" style="margin-top:10px;padding:0px;">
+  <tr>
+    <td colspan="2" class="blockcontent">
+        <script>
+        with(milonic=new menuname("Site Menu")) {
+            style=menuStyle2;
+            position="relative"
+            top=0;
+            left=0;
+            alwaysvisible=1;
+            orientation="vertical"; 
+            {menuitems}
+            }
+        drawMenus();
+      </script>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,19 @@
+{siteheader}
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="{css_style}" style="margin-top:0px;padding-left:5px;">
+    {breadcrumbs}
+    <tr><td><div class="nexcontentPageHeading">{heading}</div></td></tr>
+    {submenu}
+    {centerblock}
+    <tr align="left" valign="top">
+        <td colspan="2" width="100%">
+                <table width="100%" border="0" cellpadding="1" cellspacing="3" style="table-layout:fixed;">
+                        <tr style="padding:5px;" valign="top">
+                                <td class="content">{content}</td><!--{top_editlink}-->
+                        </tr>
+                 </table>
+            </td>
+    </tr>
+    {footerblock}
+</table>
+<div style="padding-bottom:10px;border:0px;">{edit_link}</div>
+{sitefooter}

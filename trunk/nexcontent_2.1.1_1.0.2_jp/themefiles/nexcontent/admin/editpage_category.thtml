@@ -1,0 +1,4 @@
+                    <tr>
+                        <td class="pluginRow1">{LANG_category}:</td>
+                        <td colspan="3" class="pluginRow1" style="padding-left:5px;"><select name="category" style="width:180px;">{sel_categories}</select></td>
+                    </tr>

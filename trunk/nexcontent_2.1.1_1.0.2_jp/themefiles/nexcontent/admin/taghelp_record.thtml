@@ -1,0 +1,4 @@
+<tr class="pluginRow1" valign="top">
+    <td style="padding-left:10px;" nowrap>{tagname}</td>
+    <td style="padding-left:10px;">{help_msg}</td>
+</tr>
