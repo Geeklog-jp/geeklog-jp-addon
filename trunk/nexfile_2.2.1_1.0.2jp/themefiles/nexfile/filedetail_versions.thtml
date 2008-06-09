@@ -1,0 +1,12 @@
+<hr><br><table width="100%" border="0" cellspacing="2" cellpadding="0">
+    <tr> 
+        <td  colspan="2" valign="top"><img src="{fileicon}">&nbsp;<a href="{site_url}/nexfile/download.php?op=download&fid={fid}&version={file_version}" TITLE="{LANG_DOWNLOAD_MESSAGE}"><strong>{vname}</strong></a>&nbsp;<font size="-1">{file_versionnum}</font></td>
+        <td width="15%" align="right" nowrap><font size="-2">{ver_shortdate}<br>{LANG_SIZE}:{ver_size}</font></td>
+    </tr>
+    <tr> 
+        <td colspan="3">{version_note}</td>
+    </tr>
+    <tr> 
+        <td colspan="3" align="left"><br>{LANG_AUTHOR}:&nbsp;{ver_author}</font>&nbsp;&nbsp;<a href="{site_url}/nexfile/download.php?op=download&fid={fid}&version={file_version}">{LANG_DOWNLOAD}</a>&nbsp;&nbsp;{link_edit}&nbsp;&nbsp;{link_delete}</td>
+    </tr>
+</table>
