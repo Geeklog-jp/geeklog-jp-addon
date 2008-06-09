@@ -1,0 +1,8 @@
+              {javascript_functions}
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" id="tblcust-id{dynamic_field_id}">
+                <tr>
+                  <td>
+                        {form_contents}
+                  </td>
+                </tr>
+              </table>

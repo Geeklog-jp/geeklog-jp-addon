@@ -1,0 +1,5 @@
+
+<!-- Field Style 1R - standard layout with reversed label/field order -->
+{field_comment}
+<span class="floatleft" style="{field_width}">{field}</span>
+<span class="floatleft {labelclass}" style="padding:3px {cell_padding}px 3px 5px;">{label}{field_help}</span>

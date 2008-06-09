@@ -1,0 +1,54 @@
+<script>
+function recSeldoit(formObj, selVal,id,formMsg)
+{
+  var isOk2Delete = false;
+  if (selVal == 'delform')  {
+    isOk2Delete = confirm("Are you sure you want to Delete form: " + formMsg + " ?")
+  } else {
+    isOk2Delete = true;
+  }
+ 
+  if (isOk2Delete)  {  
+    formObj.op.value = selVal;
+    formObj.id.value = id;
+    formObj.submit();
+  }
+}
+</script>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="pluginBG">
+    <tr>
+        <td style="padding-top:5px;">{navbar}</td>
+    </tr>
+    <tr>
+        <td>
+            <table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-top:0px;" class="pluginBG">
+                <tr>
+                    <td width="100%" class="pluginAlert" style="display:{show_alert};">{alertmsg}</td>
+                </tr>
+                <tr>
+                    <td class="pluginInfo" style="display:{show_msg};padding:10px;">{helpmsg}</td>
+                </tr>
+                <tr style="vertical-align:top;">
+                    <td width="100%">
+                      <form name="frm_display" action="{site_admin_url}/plugins/nexform/index.php" method="post" style="padding:0;margin:0;">
+                        <input type="hidden" name="id" value="">
+                        <input type="hidden" name="op" value="">
+                            <table width="100%" border="0" cellspacing="1" cellpadding="1">
+                                    <tr>
+                                      <th class="pluginHeader" colspan="2" align="left" style="padding-left:5px;"><a href="{phpself}?order=1&prevorder={prevorder}&direction={direction}&page={pagenum}">{HEADING1}</a></th>
+                                      <th class="pluginHeader" style="padding-left:10px;"><a href="{phpself}?order=2&prevorder={prevorder}&direction={direction}&page={pagenum}">{HEADING2}</a></th>
+                                      <th class="pluginHeader" style="padding-left:10px;"><a href="{phpself}?order=3&prevorder={prevorder}&direction={direction}&page={pagenum}">{HEADING3}</a></th>
+                                      <th class="pluginHeader">{HEADING4}</th>
+                                      <th class="pluginHeader">{HEADING5}</th>
+                                      <th class="pluginHeader aligncenter">{HEADING6}</th>
+                                </tr>
+                                   {form_records}
+                            </table>
+                        </form>
+                   </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

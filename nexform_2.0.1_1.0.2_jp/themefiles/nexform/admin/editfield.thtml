@@ -1,0 +1,192 @@
+<!-- If field type is submit or button - hide the field label and options -->
+<!-- Field can not be in the Results summary if it is a textarea -->
+<!-- Field can not be mandatory it is a checkbox -->
+<script type="text/javascript">
+
+    function hideFieldSet1(obj) {
+         var option = obj[obj.selectedIndex].value;
+         if ((option == 'submit') || (option == 'cancel') || (option == 'hidden'))  {
+             document.getElementById("optdiv2field1").style.display="none";
+             document.getElementById("optdiv3field1").style.display="none";
+             if ((option == 'submit') || (option == 'cancel'))  {
+                 document.getElementById("optdiv4field1").style.display="none";
+             } else {
+                 document.getElementById("optdiv4field1").style.display="";
+             }
+             document.getElementById("optdiv4field3").style.display="none";
+        } else {
+             document.getElementById("optdiv3field1").style.display="";
+             if (option == 'checkbox')  {
+                 document.getElementById("optdiv2field1").style.display="none";
+             } else {
+                 document.getElementById("optdiv2field1").style.display="";
+             }
+             if (option == 'select')  {
+                 document.getElementById("opthelpfield").style.display="none";
+             } else {
+                 document.getElementById("opthelpfield").style.display="";
+             }
+             if ((option == 'textarea1') || (option == 'textarea2'))  {
+                 document.getElementById("optdiv4field3").style.display="";
+             } else {
+                 document.getElementById("optdiv4field3").style.display="none";
+             }
+       }
+}
+
+</script>
+
+<form name="frm_edit" action="{site_admin_url}/plugins/nexform/index.php" method="post" style="padding:0;margin:0;">
+    <input type="hidden" name="op" value="savefield">
+    <input type="hidden" name="mode" value="{mode}">
+    <input type="hidden" name="formid" value="{formid}">
+    <input type="hidden" name="fieldid" value="{fieldid}">
+    <input type="hidden" name="selectedtab" value="{selectedtab}">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td colspan="2">{navbar}</td>
+    </tr>
+    <tr class="pluginHeader">
+        <td width="400" style="padding:5px 5px 10px 10px;" nowrap>|&nbsp;
+            <a id="fe_link101" href="#" onclick="feSetCurrent(this);" class="{classnavtab1}">Field Defintion</a>&nbsp;|&nbsp;
+            <a id="fe_link102" href="#" onclick="feSetCurrent(this);" class="{classnavtab2}">Validation</a>&nbsp;|&nbsp;
+            <a id="fe_link103" href="#" onclick="feSetCurrent(this);" class="{classnavtab3}">Layout</a>&nbsp;|
+            <a id="fe_link104" href="#" onclick="feSetCurrent(this);" class="{classnavtab4}">Options</a>&nbsp;|
+        </td>
+        <td width="50%" style="float:right;position:relative;top:5px;bottom:5px;">{prev}&nbsp;&nbsp;{next}</td>
+    </tr>
+    <tr>
+        <td class="pluginInfo" colspan="2">{helpmsg}</td>
+    </tr>
+    <tr>
+        <td class="pluginCellTitle" colspan="2">
+            <div id="fe_div1" style="display:{showtab1};">
+                <table width="100%" border="0" cellspacing="1" cellpadding="5">
+                    <tr>
+                        <td width="30%" class="pluginCellTitle" nowrap>Field Type:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help1}</span></a></td>
+                        <td width="70%" colspan="3"  class="pluginCellText" style="padding-left:5px;">
+                            <select name="type" style="width:200px;" onChange="hideFieldSet1(this);">
+                                {fieldtype_options}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pluginCellTitle" nowrap>Field label:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help2}</span></a></td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:5px;"><input id="fieldlabel" type="text" name="label" size="64" value="{label}"></td>
+                    </tr>
+                    <tr>
+                        <td class="pluginCellTitle" nowrap>Field Attributes:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help3}</span></a></td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:5px;"><input type="text" name="field_attributes" size="64" value="{field_attributes}"></td>
+                    </tr>
+                    <tr>
+                        <td class="pluginCellTitle" nowrap>Field Values:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help4}</span></a></td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:5px;"><input type="text" name="field_values" size="64" value="{field_values}"></td>
+                    </tr>
+                    <tr id="opthelpfield" style="display={show_helpfield};">
+                        <td class="pluginCellTitle" nowrap>Help Message:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help18}</span></a></td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:5px;"><input type="text" name="field_help" size="64" value="{field_help}"></td>
+                    </tr>
+                    <tr>
+                        <td class="pluginCellTitle" nowrap>Use a function for values:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help5}</span></a></td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:5px;"><input type="checkbox" name="use_function" value="1" {chkfunctionused}></td>
+                    </tr>
+                    <tr>
+                        <td class="pluginCellTitle" nowrap>Internal Use Only:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help6}</span></a></td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:5px;"><input type="checkbox" name="is_internaluse" value="1" {chkinternal}></td>
+                    </tr>
+                    <tr>
+                        <td class="pluginCellTitle" nowrap>Hide Label:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help21}</span></a></td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:5px;"><input type="checkbox" name="hidelabel" value="1" {chkhidelabel}></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="fe_div2" style="display:{showtab2};">
+                <table width="100%" border="0" cellspacing="1" cellpadding="5">
+                    <tr>
+                        <td width="30%" class="pluginCellTitle" nowrap>Field Validation:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help7}</span></a></td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:5px;" nowrap><input type="text" name="validation" size="64" value="{validation}">
+                            <span style="padding-left:5px;"><a href="{layout_url}/nexform/admin/fieldvalidation_help.html" onclick="NewWindow(this.href,'name','600','500','yes');return false">help</a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pluginCellTitle" nowrap>Field Javascript:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help8}</span></a></td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:5px;"><input type="text" name="javascript" size="64" value="{javascript}"></td>
+                    </tr>
+                    <tr id="optdiv2field1" style="display:{show_manditory};">
+                        <td class="pluginCellTitle"  nowrap>Mandatory:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help9}</span></a></td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:5px;"><input type="checkbox" name="is_mandatory" value="1" {chkmandatory}></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="fe_div3" style="display:{showtab3};">
+                <table width="100%" border="0" cellspacing="1" cellpadding="5">
+                    <tr>
+                        <td width="30%" class="pluginCellTitle" nowrap>Column Width<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help19}</span></a></td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:5px;"><input type="text" name="col_width" size="4" maxlength="3" value="{col_width}">&nbsp;%</td>
+                    </tr>
+                    <tr>
+                        <td class="pluginCellTitle" nowrap>Column Right Padding<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help20}</span></a></td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:5px;"><input type="text" name="col_padding" size="4" maxlength="3" value="{col_padding}">&nbsp;px</td>
+                    </tr>
+                    <tr>
+                        <td width="30%" class="pluginCellTitle" nowrap>Field Orientation<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help10}</span></a></td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:5px;">Horizontal&nbsp;<input type="radio" name="is_vertical" value="0" {chkradio1a}><span style="padding-left:10px;">Vertical&nbsp;<input type="radio" name="is_vertical" value="1" {chkradio1b}></span></td>
+                    </tr>
+                    <tr>
+                        <td class="pluginCellTitle" nowrap>Field / Label Order<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help11}</span></a></td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:8px;">Field First&nbsp;<input type="radio" name="is_reverseorder" value="0" {chkradio2a}><span style="padding-left:10px;">Label First&nbsp;<input type="radio" name="is_reverseorder" value="1" {chkradio2b}></span></td>
+                    </tr>
+                    <tr id="optdiv3field1" style="display:{show_labelstyle};">
+                        <td class="pluginCellTitle" nowrap>Label Style:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help12}</span></a></td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:5px;">
+                            <select name="style" style="width:150px;">
+                                {fieldstyle_options}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pluginCellTitle" nowrap>Show on new line <a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help13}</span></a></td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:5px;"><input type="checkbox" name="is_newline" value="1" {chknewline}></td>
+                    </tr>
+                    <tr style="display:{show_fieldid};">
+                        <td class="pluginCellTitle" nowrap>Template ID:</td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:5px;">{tfid}</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="fe_div4" style="display:{showtab4};">
+                <table width="100%" border="0" cellspacing="1" cellpadding="5">
+                    <tr style="display:{show_fieldid};">
+                        <td width="30%" class="pluginCellTitle" nowrap>Field Name:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help14}</span></a></td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:5px;"><input type="text" name="fieldname" size="32" value="{form_fieldname}" {enablefname}></td>
+                    </tr>
+                    <tr>
+                        <td width="30%" class="pluginCellTitle" nowrap>Field order:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help15}</span></a></td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:5px;"><input type="text" name="fieldorder" size="4" value="{fieldorder}"></td>
+                    </tr>
+                    <tr id="optdiv4field1" style="display:{show_searchopt};">
+                        <td class="pluginCellTitle" nowrap>Result List Field:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help16}</span></a></td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:5px;"><input type="checkbox" name="is_resultsfield" value="1" {chkresults}></td>
+                    </tr>
+                    <tr id="optdiv4field2" style="display:{show_reportopt};">
+                        <td class="pluginCellTitle" nowrap>Search Field:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help17}</span></a></td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:5px;"><input type="checkbox" name="is_searchfield" value="1" {chksearch}></td>
+                    </tr>
+                    <tr id="optdiv4field3" style="display:{show_filteropt};">
+                        <td class="pluginCellTitle" nowrap>HTML Filtering On:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help18}</span></a></td>
+                        <td colspan="3" class="pluginCellText" style="padding-left:5px;"><input type="checkbox" name="is_htmlfiltered" value="1" {chkfilter}></td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" class="pluginCellText" style="padding:20px; text-align:center;">
+            <input type=button value="Cancel" onclick="javascript:history.go(-1)">
+                <span style="padding-left:20px;"><input type="submit" value="{LANG_submit1}"></span>
+                <span style="padding-left:20px;"><input type="submit" value="{LANG_submit2}" onClick="frm_edit.op.value='savefieldnext';"></span>
+        </td>
+    </tr>
+</table>
+</form>
+<p />

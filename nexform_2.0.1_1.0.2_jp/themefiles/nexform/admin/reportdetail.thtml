@@ -1,0 +1,59 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="plugin">
+    <tr>
+        <td style="padding-top:5px;">{navbar}</td>
+    </tr>
+    <tr>
+      <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-top:0px;">
+                <tr class="pluginLinks">
+                  <form action="{form_action}" method="post" style="padding:0;margin:0;">
+                  <input type="hidden" name="formid" value="{formid}">
+                    <td nowrap style="padding:5 5 5 10px;">Start Date:</td>
+                    <td style="padding:5 5 5 10px;"><input type="text" id="sdate" name="sdate" value="{sdate}" size="12">&nbsp;<img id="trigger_sdate" src="{layout_url}/nexpro/images/cal.gif">
+                        <script type="text/javascript">
+                            Calendar.setup(
+                              {
+                                inputField : "sdate", // ID of the input field
+                                ifFormat : "%m-%d-%Y", // the date format
+                                button : "trigger_sdate" // ID of the button
+                              }
+                            )
+                        </script>
+                    </td>
+                    <td nowrap style="padding:5 5 5 10px;">End Date:</td>
+                    <td style="padding:5 5 5 10px;"><input type="text" id="edate" name="edate" value="{edate}" size="12">&nbsp;<img id="trigger_edate" src="{layout_url}/nexpro/images/cal.gif">
+                        <script type="text/javascript">
+                            Calendar.setup(
+                              {
+                                inputField : "edate", // ID of the input field
+                                ifFormat : "%m-%d-%Y", // the date format
+                                button : "trigger_edate" // ID of the button
+                              }
+                            )
+                        </script>
+                    </td>
+                    <td><input type="submit" value="Go">
+                    <td class="pluginLinks" width="40%" style="text-align:right;padding:5 10 5 0px;">{page_navigation}</td>
+                    </form>
+                </tr>    
+                <tr style="vertical-align:top;">
+                    <td colspan="6" width="100%">
+                        <table width="100%" border="0" cellspacing="1" cellpadding="1" style="margin-bottom:10px;">
+                            <tr>
+                                <td class="pluginTitle">{LANG_DATE1}</td>
+                                <td class="pluginTitle">{LANG_DATE2}</td>
+                                <td class="pluginTitle">{LANG_USER}</td>
+                                {heading_fields}
+                                <td class="pluginTitle" align="center">{LANG_ACTION}</td>
+                            </tr>
+                               {report_records}
+                        </table>
+                   </td>
+                </tr>
+                <tr class="pluginLinks">
+                    <td colspan="6" sclass="pluginLinks" style="text-align:right;padding:10px;">{page_navigation}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

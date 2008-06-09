@@ -1,0 +1,148 @@
+<script type="text/javascript">
+
+//var timeoutseconds = 1;          // Timeout setting in milliseconds
+var site_url = '{public_url}';
+
+var FormFileUpload = {
+    /* Standard AJAX Response Handler functions */
+    handleSuccess:function(o) {
+        var form_submit_url = document.{form_name}.submit_url.value;
+        var index = 0;
+
+        if(o.responseXML !== undefined) {
+            var root    = o.responseXML.documentElement;
+            var op      = root.getElementsByTagName('action')[0].firstChild.nodeValue;
+            var html   = root.getElementsByTagName('html')[0].firstChild.nodeValue;
+            var fieldid   = root.getElementsByTagName('fieldid')[0].firstChild.nodeValue;
+            var formid   = root.getElementsByTagName('formid')[0].firstChild.nodeValue;
+            var resultid   = root.getElementsByTagName('resultid')[0].firstChild.nodeValue;
+            var inputname   = root.getElementsByTagName('inputname')[0].firstChild.nodeValue;
+            var iserror   = root.getElementsByTagName('iserror')[0].firstChild.nodeValue;
+            var field_html = '';
+
+            if (inputname != ' ') {
+                document.getElementById('upload'+inputname+'_td1').innerHTML=html;
+                document.getElementById('upload'+inputname+'_td2').innerHTML='';
+
+                AddRowsToTable(fieldid, inputname);
+            }
+        }
+        else {
+            iserror = 'true';
+        }
+
+        if (iserror != 'true') {
+            var countfield = str_replace('_', '-', inputname) + 'count';
+            document.getElementById(countfield).value = parseInt(document.getElementById(countfield).value) + 1;
+        }
+
+        if (form_submit_url.indexOf('op=') == -1) {
+            index = form_submit_url.split('?');
+            form_submit_url = index[0] + '?op=update&formid='+formid+'&id='+resultid+'&newform=1';
+            document.{form_name}.submit_url.value = form_submit_url;
+            document.{form_name}.res_id.value = resultid;
+        }
+    },
+
+    handleFailure:function(o) {
+        document.getElementById('upload'+inputname+'_td1').innerHTML = 'AJAX Request Error. Status code message: ' + o.statusText;
+        document.getElementById('upload'+inputname+'_td2').innerHTML='';
+
+        AddRowsToTable(fieldid, inputname);
+    },
+
+    /* Ajax Form Handler functions - with file upload enabled */
+    request:function(formObject, field_id, field_input_name) {
+        document.getElementById('upload'+field_input_name+'_td2').innerHTML='<img src="{layout_url}/nexform/images/progress_bar.gif">';
+        YAHOO.util.Connect.setForm(formObject, true);
+        YAHOO.util.Connect.asyncRequest('POST', '{public_url}/include/mfile_upload_ajax.php?action=upload_file&field_id='+field_id, updateFormFileRequestCallback);
+    }
+};
+
+var updateFormFileRequestCallback =
+{
+    upload:FormFileUpload.handleSuccess,
+    failure:FormFileUpload.handleFailure,
+    timeout:480000,
+    scope: FormFileUpload
+};
+
+function AddRowsToTable(field_id, file_input_name) {
+     var tbl = document.getElementById('tblmfile-id'+file_input_name);
+     var lastRow = tbl.rows.length;
+
+     //reset the id of the previous row
+     document.getElementById('upload'+file_input_name+'_td1').id = '';
+     document.getElementById('upload'+file_input_name+'_td2').id = '';
+
+     var row = tbl.insertRow(lastRow);
+     var cell = row.insertCell(0);
+     cell.innerHTML = document.getElementById('master'+file_input_name+'_td1').innerHTML;
+     cell.innerHTML = cell.innerHTML.replace('file'+field_id, file_input_name+'[]');
+     cell.id = 'upload'+file_input_name+'_td1';
+
+     var cell = row.insertCell(1);
+     cell.innerHTML = document.getElementById('master'+file_input_name+'_td2').innerHTML;
+     cell.id = 'upload'+file_input_name+'_td2';
+
+     setUploadLock(0);
+};
+
+function validate_mfile_field(id, name, value) {
+    //this is just the master mfile field, no need to validate
+    if (name.indexOf('mfile') == -1) {
+        return true;
+    }
+
+    //first check if the field has any value to begin with
+    if (value != '') {
+        return true;
+    }
+
+    //the real field to check is the count field
+    var fieldname = str_replace('_', '-', id);
+    fieldname += 'count';
+
+    if (document.getElementById(fieldname).value > 0) {
+        return true;
+    }
+
+    return false;
+}
+
+function str_replace(match, replace, source) {
+    while (source.indexOf(match) != -1) {
+        source = source.replace(match, replace);
+    }
+    return source;
+}
+
+function beginUploadProcess(formobj, field_id, upload_field_name) {
+    var accessGranted = setUploadLock(1);
+
+    if (accessGranted == true) {
+        document.getElementById('current_upload_file').value = upload_field_name;
+        FormFileUpload.request(formobj, field_id, upload_field_name);
+    }
+}
+
+function setUploadLock(lock_value) {
+    if (lock_value == 1) {
+        if (document.getElementById('mfile_upload_lock').value == 1) {
+            alert('File Upload Already in Progress!  Please wait until the first file you uploaded has finished before uploading another.');
+            return false;
+        }
+        else {
+            document.getElementById('mfile_upload_lock').value = 1;
+            return true;
+        }
+    }
+    else {
+        document.getElementById('mfile_upload_lock').value = 0;
+        return true;
+    }
+}
+
+</script>
+<script language=JavaScript src="{public_url}/include/ajax_deletemfile_support.js" type="text/javascript"></script>
+

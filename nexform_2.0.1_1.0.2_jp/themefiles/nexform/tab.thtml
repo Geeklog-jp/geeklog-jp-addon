@@ -1,0 +1,1 @@
+<span style="line-height:25px;white-space: nowrap;">&nbsp;|&nbsp;<a id="fe_tab{tabid}" href="#" onclick="feSetTab(this,{tabid});" class="{tab_class}">{tab_label}</a></span>

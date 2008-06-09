@@ -1,0 +1,52 @@
+{javascript}
+<body>
+{editstatus_message}
+<table width="100%" border="0" cellspacing="2" cellpadding="1" style="margin-bottom:20px;">
+  <tr>
+    <td>
+      <table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;border:1px solid #666">
+        <tr>
+          <td width="100%">
+            <table class="frm_topheader" width="100%">
+              <tr>
+                <td width="100%">{introtext}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+            <td class="frm" colspan="2" style="border-bottom:0px;text-align:right;padding:5px 10px 5px 0px;">{print_option}<span style="padding-left:10px;">{print_preview_option}</span></td>
+        </tr>
+        <tr style="vertical-align:top;">
+          <td class="frm" colspan="2" width="100%" style="border-top:0px;">
+            <form name="{form_name}" action="{form_action}" method={method} style="padding:0;margin:0;" onsubmit="{onsubmit} return  validateCompleteForm(this, 'error');">
+              <input type="hidden" name="form_id" value="{form_id}">
+              <input type="hidden" name="autoclose" value="{autoclose}">                
+              <input type="hidden" name="formhandler" value="{form_handler}">
+              <input type="hidden" id="res_id" name="res_id" value="{res_id}">
+              <input type="hidden" id="current_upload_file" name="current_upload_file" value="">
+              <input type="hidden" id="mfile_upload_lock" name="mfile_uplaod_lock" value="0">
+              <input type="hidden" id="submit_url" name="submit_url" value="{form_action}">
+              {hidden_fields}
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    {tab_navbar}
+                <tr>
+                  <td>
+                    {form_contents}
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="text-align:center;padding:10px;"><span style="padding:10px;">{cancel}</span>{submit}</td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="text-align:left;padding:5px;color:red;">{msg_mandatory}</td>
+                </tr>
+            </table>
+           </form>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+{print_instructions}

@@ -1,0 +1,36 @@
+<table width="100%" border="0" cellspacing="2" cellpadding="1">
+    <tr>
+        <td>
+            <table width="100%" border="0" cellspacing="2" cellpadding="1" bgcolor="#EFEFEF" style="border:1px dashed #000">
+                <tr bgcolor="#FEFEFE">
+                    <td style="padding:10px;">{introtext}</td>
+                </tr>
+                <tr style="vertical-align:top;">
+                    <td width="100%">
+                        <form name="{form_name}" action="{form_action}" method="post" style="padding:0;margin:0;" onsubmit="{onsubmit} return validateCompleteForm(this);">
+                        <input type="hidden" name="form_id" value="{form_id}">
+                        <input type="hidden" name="formhandler" value="{form_handler}">
+                            <table width="100%" border="0" cellspacing="1" cellpadding="1" style="margin-bottom:100px;">
+                                <tr style="vertical-align:top;">
+                                    <td>{label1}</td>
+                                    <td>{field1}</td>
+                                </tr>
+                                <tr style="vertical-align:top;">
+                                    <td>{label2}</td>
+                                    <td>{field2}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="text-align:center;padding-top:20px;"><span style="padding:10px;">{cancel}</span><span style="padding:10px;">{submit}</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="text-align:left;padding:5px;color:red;">{msg_mandatory}</td>
+                                </tr>
+                            </table>
+                            {advancededitor}
+                        </form>
+                   </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

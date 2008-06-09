@@ -1,0 +1,2 @@
+This folder, by default, is where all files uploaded by nexform will be stored.
+If you want to store your files in a different folder, first create that folder, then update the config.php setting $CONF_FE['uploadpath'].

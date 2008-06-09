@@ -1,0 +1,53 @@
+<script type="text/javascript">
+    function AddTextFieldToTable(form,id,sfield,fieldname,instance) {
+         var tbl = document.getElementById('tblmfield-id'+fieldname);
+         var lastRow = tbl.rows.length;
+         var counter = parseInt(document.getElementById(fieldname + '_count').value);
+
+         nrows = tbl.rows.length;
+         var ncells = tbl.rows[nrows-1].cells.length;
+         if (ncells > 3) {
+            var row = tbl.insertRow(lastRow);
+            ncell = row.insertCell(0);
+         } else {
+            ncell = tbl.rows[nrows-1].insertCell(ncells);
+            ncell.style.paddingLeft = '5px';             
+         }
+
+         var el = document.createElement('input');
+         el.setAttribute('type', 'TEXT');
+         if (sfield > 0) {
+            el.setAttribute('id', 'mtxt_frm' + form + '_' + sfield + '_' + id + '_' + instance + '_' + counter);
+            el.setAttribute('name', 'mtxt_frm' + form + '_' + sfield + '_' + id + '_' + instance + '[]');
+         } else {
+            el.setAttribute('id', 'mtxt_frm' + form + '_' + id + '_' + counter);
+            el.setAttribute('name', 'mtxt_frm' + form + '_' + id + '[]');
+         }
+         el.setAttribute('size', '20');
+         ncell.appendChild(el);
+
+         counter += 1;
+         document.getElementById(fieldname + '_count').value = counter;         
+    }
+
+    function RemoveTextFieldFromTable(fieldname) {
+         var tbl = document.getElementById('tblmfield-id'+fieldname);
+         var lastRow = tbl.rows.length;
+         var lastCell = tbl.rows[lastRow-1].cells.length;
+         var counter = parseInt(document.getElementById(fieldname + '_count').value);
+
+         if ( lastCell != 1 ) {
+             tbl.rows[lastRow - 1].deleteCell(lastCell - 1);
+         } else if (lastRow != 1) {
+             tbl.rows[lastRow - 1].deleteCell(lastCell - 1);
+             if (lastCell == 1) {
+                tbl.deleteRow(lastRow - 1);
+             }
+         }
+
+         counter -= 1;
+         document.getElementById(fieldname+'_count').value = counter;
+    }
+
+
+</script>

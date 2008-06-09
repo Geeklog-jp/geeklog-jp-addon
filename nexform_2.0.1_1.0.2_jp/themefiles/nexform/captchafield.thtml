@@ -1,0 +1,6 @@
+<div style="border:1px dashed #CCC;width:167px;padding:3px;">
+    {captcha_image}
+    <div style="padding-top:3px;text-align:center;">
+        {verification_field}
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<tr class="pluginRow{csscode}" style=";" onMouseOver="className='pluginRollOver';" onMouseOut="className='pluginRow{csscode}';">
+    <td style="padding:2 2 2 10px;">{id}</td>
+    <td nowrap style="padding:2px;">{date}</td>
+    <td width="20%" style="padding:2px;">{field3}</td>
+    <td width="20%" style="padding:2px;">{field4}</td>
+    <td width="20%" style="padding:2px;">{field5}</td>
+    <td style="padding:2 5 2 5px;">{view}&nbsp;{edit}&nbsp;{delete}</td>
+</tr>

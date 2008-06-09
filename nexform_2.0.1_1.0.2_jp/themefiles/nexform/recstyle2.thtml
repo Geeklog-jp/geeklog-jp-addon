@@ -1,0 +1,11 @@
+
+<!-- Record Style2 - more then one field on row -->
+{page_break}
+{fset_begin}
+<div class="clearfix frmRow{cssid}">
+  <div class="fl100">
+    {fields}
+<!-- /Recstyle2 -->
+  </div>
+</div>
+{fset_end}

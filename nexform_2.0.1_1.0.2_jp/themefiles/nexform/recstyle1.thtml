@@ -1,0 +1,8 @@
+
+<!-- Record Style1 - Single field in row -->
+{page_break}
+{fset_begin}
+<div class="clearfix frmRow{cssid}">
+  <div class="fl100">{fields}</div>
+</div>
+{fset_end}

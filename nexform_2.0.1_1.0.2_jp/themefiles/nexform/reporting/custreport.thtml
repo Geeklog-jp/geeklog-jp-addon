@@ -1,0 +1,56 @@
+{header}
+{navbar}
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td width="100%">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:15px;">
+                <tr>
+                  <form action="{form_action}" method="post" style="padding:0;margin:0;">
+                    <td class="pluginTitle" nowrap style="padding:5 5 5 10px;">Start Date:</td>
+                    <td class="pluginTitle" nowrap style="padding:5 5 5 10px;"><input type="text" id="sdate" name="sdate" value="{sdate}" size="12">&nbsp;<img id="trigger_sdate" src="{layout_url}/nexpro/images/cal.gif">
+                        <script type="text/javascript">
+                            Calendar.setup(
+                              {
+                                inputField : "sdate", // ID of the input field
+                                ifFormat : "%Y-%m-%d", // the date format
+                                button : "trigger_sdate" // ID of the button
+                              }
+                            )
+                        </script>
+                    </td>
+                    <td class="pluginTitle" nowrap style="padding:5 5 5 10px;">End Date:</td>
+                    <td class="pluginTitle" nowrap style="padding:5 5 5 10px;"><input type="text" id="edate" name="edate" value="{edate}" size="12">&nbsp;<img id="trigger_edate" src="{layout_url}/nexpro/images/cal.gif">
+                        <script type="text/javascript">
+                            Calendar.setup(
+                              {
+                                inputField : "edate", // ID of the input field
+                                ifFormat : "%Y-%m-%d", // the date format
+                                button : "trigger_edate" // ID of the button
+                              }
+                            )
+                        </script>
+                    </td>
+                    <td class="pluginTitle"><input type="submit" value="Go"></td>
+                    <td width="40%" class="pluginTitle pluginLinks">{reset}</td>
+                    </form>
+                </tr>
+            </table>
+    </tr>
+    <tr>
+        <td>
+            <table width="100%" border="0" cellspacing="1" cellpadding="0" style="border:1px dashed grey;" bgcolor="green">
+            <tr class="pluginLinks" align="left">
+                <td class="pluginTitle" nowrap style="padding:2 5 2 5px;"><a href="{phpself}?order=1&prevorder={prevorder}&direction={direction}&page={page}&sdate={sdate}&edate={edate}">{heading1}</a></td>
+                <td class="pluginTitle" style="padding:2 5 2 5px;"><a href="{phpself}?order=2&prevorder={prevorder}&direction={direction}&page={page}&sdate={sdate}&edate={edate}">{heading2}</a></td>
+                <td class="pluginTitle" style="padding:2 5 2 5px;"><a href="{phpself}?order=3&prevorder={prevorder}&direction={direction}&page={page}&sdate={sdate}&edate={edate}">{heading3}</a></td>
+                <td class="pluginTitle" style="padding:2 5 2 5px;"><a href="{phpself}?order=4&prevorder={prevorder}&direction={direction}&page={page}&sdate={sdate}&edate={edate}">{heading4}</a></td>
+                <td class="pluginTitle" style="padding:2 5 2 5px;"><a href="{phpself}?order=5&prevorder={prevorder}&direction={direction}&page={page}&sdate={sdate}&edate={edate}">{heading5}</a></td>
+                <td class="pluginTitle" style="padding:2 5 2 5px;">{heading7}</td>
+            </tr>
+                {report_records}
+            </table>
+        </td>
+    </tr>
+</table>
+<p>{pagenavigation}</p>
+{footer}

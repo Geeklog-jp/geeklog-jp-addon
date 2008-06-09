@@ -1,0 +1,7 @@
+<tr>
+    <td class="pluginRow{cssid}" width="20%" style="text-align:center;padding:5px;">{created_date}</td>
+    <td class="pluginRow{cssid}" width="20%" style="text-align:center;padding:5px;">{updated_date}</td>
+    <td class="pluginRow{cssid}" width="20%" style="padding-left:10px;">{user_link}</td>
+    {record_fields}
+    <td class="pluginRow{cssid}" width="20%" style="padding-left:5px;padding-right:5px;" nowrap>{detail_link}{print_link}{delete_link}{edit_link}</td>
+</tr>

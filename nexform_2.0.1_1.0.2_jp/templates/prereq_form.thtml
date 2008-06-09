@@ -1,0 +1,24 @@
+<p>
+    <div style="float:left; padding: 10px;"><img src="{pi_image}"></div>
+    <div style="float:left;"><h1>{pi_display_name} Installation</h1></div>
+</p>
+
+<div style="clear:both;">
+    {content}
+</div>
+
+<div>
+    <h2>Prerequisites</h2>
+    <form method="GET" action="{site_admin_url}/plugins/{pi_name}/install.php">
+        <input type="hidden" name="action" value="install_now">
+
+        <ul>
+    {prereqs}
+        </ul>
+
+        <div style="padding-left: 80px;">
+            <input type="submit" value="Install"{disabled}>
+            <input type="button" value="Cancel" onclick="history.go(-1);">
+        </div>
+    </form>
+</div>
