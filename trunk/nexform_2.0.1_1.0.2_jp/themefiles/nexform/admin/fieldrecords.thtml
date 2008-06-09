@@ -1,0 +1,15 @@
+<tr class="pluginRow{cssid}" id="fieldrec_{id}">
+    <td width="4%" style="padding-left:5px;">
+        <a href="{site_admin_url}/plugins/nexform/index.php?fieldid={id}&op=moveup&formid={formid}"><img src="{layout_url}/nexpro/images/admin/arrow-up.gif" border="0" ALT="{LANG_MOVEUP}" TITLE="{LANG_MOVEUP}""></a><br>
+        <a href="{site_admin_url}/plugins/nexform/index.php?fieldid={id}&op=movedn&formid={formid}"><img src="{layout_url}/nexpro/images/admin/arrow-dn.gif" border="0" ALT="{LANG_MOVEDN}" TITLE="{LANG_MOVEDN}"></a>
+    </td>
+    <td width="5%" style="padding-left:10px;">{order}</td>
+    <td width="5%" style="text-align:center;"><input name="chkmandatory[{id}]" type="checkbox" {chk_mandatory} value="1" onClick='ajaxUpdateFieldOption(this,"manditory");'></td>
+    <td width="45%" style="padding-left:10px;" TITLE="{field_summary}">{label}</td>
+    <td width="5%" style="padding-left:10px;">{type}</td>
+    <td width="5%" style="text-align:center;"><input name="chkreport[{id}]" type="checkbox" {chk_resultfield} value="1" onClick='ajaxUpdateFieldOption(this,"report");'></td>
+    <td width="5%" style="text-align:center;"><input name="chknewline[{id}]" type="checkbox" {chk_newline} value="1" onClick='ajaxUpdateFieldOption(this,"newline");'></td>
+    <td width="5%" style="text-align:center;"><input name="chkvertical[{id}]" type="checkbox" {chk_vertical} value="1" onClick='ajaxUpdateFieldOption(this,"vertical");'></td>
+    <td width="5%" style="text-align:center;"><input name="chkreverse[{id}]" type="checkbox" {chk_reverselabel} value="1" onClick='ajaxUpdateFieldOption(this,"reverse");'></td>
+    <td width="25%" style="padding-left:10px;text-align:center;" nowrap><span id="fieldaction_{id}">[&nbsp;{editlink}&nbsp;][&nbsp;{deletelink}&nbsp;]&nbsp;</span><span class="pluginInfo" id="fieldstatus_{id}" style="display:none;">&nbsp;</span></td>
+</tr>

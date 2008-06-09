@@ -1,0 +1,32 @@
+
+<!-- Multi-File input field -->
+    <table border="0" cellspacing="0" cellpadding="0" id="tblmfile-parent-id{upload_field_name}">
+        <tr>
+            <td >{mfield_html}
+            <input type="hidden" id="{mfile_count_name}count" name="{mfile_count_name}count" value="{mfile_count}"></td>
+        </tr>
+        <tr style="display: {show_addremove};">
+            <td>
+                <table border="0">
+                    <tr style="vertical-align:top;">
+                        <td align="left">
+                            <table border="0" id="tblmfile-id{upload_field_name}">
+                                <tr>
+                                    <td height="20" align="left" id="upload{upload_field_name}_td1">{file_input1}{file_input2}{file_input3}</td><td id="upload{upload_field_name}_td2">&nbsp;<input type="button" value="Upload" onClick="beginUploadProcess(this.form, {field_id}, '{upload_field_name}');"></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr style="vertical-align:top; display: none;">
+                        <td align="left">
+                            <table border="0">
+                                <tr>
+                                    <td align="left" id="master{upload_field_name}_td1">{file_input1}file{field_id}{file_input3}</td><td id="master{upload_field_name}_td2">&nbsp;<input type="button" value="Upload" onClick="beginUploadProcess(this.form, {field_id}, '{upload_field_name}');"></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>

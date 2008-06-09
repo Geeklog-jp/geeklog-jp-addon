@@ -1,0 +1,3 @@
+                <tr class="pluginHeader">
+                  <td id="fe_tabnavbar" colspan="2" width="100%;" style="padding:5px 5px 10px 10px;" nowrap>{tabs}&nbsp;|</td>
+                </tr>

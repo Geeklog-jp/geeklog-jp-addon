@@ -1,0 +1,101 @@
+<script type="text/javascript" language="JavaScript1.2">
+ function toggle_templatehelp() {
+     var obj1 = document.getElementById("template_helpmsg");
+     var obj2 = document.getElementById("template_helplink");
+     var obj3 = document.getElementById("template_helpicon");
+
+     if (templateGetCookie('showFormTemplateHelp') == 'none') {
+        obj1.style.display = '';
+        obj2.title = 'Click to hide help info';
+        obj3.src = '{imgset}/btn_info_norm.gif';
+        document.cookie = 'showFormTemplateHelp=show';
+    } else {
+        obj1.style.display = 'none';
+        obj2.title = 'Click to show help info';
+        obj3.src = '{imgset}/btn_info_dim.gif';
+        document.cookie = 'showFormTemplateHelp=none';
+    }
+ }
+  function templateGetCookie (name)
+  {
+    var dc = document.cookie;
+    var cname = name + "=";
+    var clen = dc.length;
+    var cbegin = 0;
+
+    while (cbegin < clen) {
+        var vbegin = cbegin + cname.length;
+        if (dc.substring(cbegin, vbegin) == cname) {
+            var vend = dc.indexOf (";", vbegin);
+            if (vend == -1) vend = clen;
+                return unescape(dc.substring(vbegin, vend));
+        }
+        cbegin = dc.indexOf(" ", cbegin) + 1;
+        if (cbegin== 0) break;
+    }
+    return null;
+  }
+
+  function templateShowHide(id) {
+     var obj = document.getElementById(id);
+     if (obj.style.display == '') {
+        obj.style.display = 'none';
+     } else {
+        obj.style.display = '';
+     }
+  }
+
+</script>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td colspan="2">{navbar}</td>
+    </tr>
+    <form action="{site_admin_url}/plugins/nexform/index.php" method="post" name="templates">
+        <input type="hidden" name="op" value="updatetemplate">
+        <input type="hidden" name="formid" value="{formid}">
+        <input type="hidden" name="id" value="{formid}">
+    <tr>
+        <td width="20%" style="padding-top:10px;padding-left:10px;padding-bottom:5px;"><a id="template_helplink" href="#" TITLE="Click to hide help info" onClick="toggle_templatehelp()"><img id="template_helpicon" src="{imgset}/btn_info_norm.gif" border="0"></a></td>
+        <td style="display:{showsubmit};"><input type="submit" value="Update Template!" name="submit"><span style="padding-left:20px;"><input type="button" name="Cancel" value="Cancel" onclick="javascript:history.go(-1)"></span></td>
+    </tr>
+    <tr>
+        <td colspan="2" id="template_helpmsg" style="display:{showtemplatehelp};padding:0 10 0 10px;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td colspan="2" class="pluginRow1" style="padding:5 10 5 10px;">{helpmsg}</td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="padding:5px 20px 5px 20px;"><hr style="border-top: 1px solid #f00;"></td>
+                </tr>
+                 {template_variables}
+                <tr>
+                    <td colspan="2" style="padding:5px 20px 5px 20px;"><hr style="border-top: 1px solid #f00;"></td>
+                </tr>
+             </table>
+           </td>
+        </tr>
+        <tr>
+        <td colspan="2" style="padding-top:10px;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="4">
+               <tr>
+                    <td align="left" width="10%"><input type="button" value="Show/Hide" onclick="templateShowHide('main')"><td>Main Form Template Area</td>
+               </tr>
+               <tr>
+                    <td colspan="2">
+                        <div id="main" style="display:none;"><textarea name="fdata1" style="height:500px; width:100%;"  wrap="soft">{fdata1}</textarea></div>
+                    </td>
+               </tr>
+               <tr>
+                    <td align="left" width="10%"> <input type="button" value="Show/Hide" onclick="templateShowHide('records')"><td>Form Records Template Area</td>
+               <tr>
+                    <td colspan="2">
+                        <div id="records" style="display:none;"><textarea name="fdata2" style="height:500px; width:100%;"  wrap="soft">{fdata2}</textarea></div>
+                    </td>
+               </tr>
+            </table>
+        </td>
+    </tr>
+</form>
+</table>
+<p />

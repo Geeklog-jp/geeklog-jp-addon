@@ -1,0 +1,20 @@
+
+<!-- Multi-Text Field input  - vertically stacked -->{field_comment}
+<div class="floatleft" style="{field_width}">
+    <div class="{labelclass}" style="padding:3px;">{label}{field_help}</div>
+    <div class="floatleft" style="padding:3px {cell_padding}px 3px 5px;">
+        <div style="padding-top:5px;">
+            <table border="0" cellspacing="0" cellpadding="0" id="tblmfield-id{mtxt_fieldname}">
+                <tr id="row">
+                    <td width="120"><input type="hidden" id="{mtxt_fieldname}_count" name="{mtxt_counter_id}count" value="{mtxt_counter}">{field}</td>
+                </tr>
+            </table>
+            <table border="0" width="100%" cellspacing="0" cellpadding="0" style="display:{showfieldctl};">
+            <tr>
+                <td width="5%" style="padding-top:5px;padding-left:{cell_padding}px;text-align:left;" nowrap><a href="#" onClick="AddTextFieldToTable({form_id},{field_id},'','{mtxt_fieldname}','{mtxt_instance}');return false;">Add Field</a></td>
+                <td style="padding:5px 0px 0px 15px;text-align:left;"><a href="#" onClick="RemoveTextFieldFromTable('{mtxt_fieldname}');return false;">Remove Last</a></td>
+             </tr>
+            </table>
+        </div>
+    </div>
+</div>

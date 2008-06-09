@@ -1,0 +1,18 @@
+<tr class="pluginRow{cssid}">
+    <td width="5%" style="padding-left:3px;">{id}</td>
+    <td width="1%" style="padding-left:3px;">{editlink_begin}{editicon}{editlink_end}</td>
+    <td width="49%" style="padding-left:10px;">{formaction_link}</td>
+    <td width="20%" style="padding-left:10px;" nowrap>{date}</td>
+    <td width="5%" style="padding-left:10px;" nowrap>{responses}</td>
+    <td width="5%" style="padding-left:10px;"><input type="checkbox" {chk_status} disabled></td>
+    <td width="20%" style="padding-left:10px;" nowrap>
+        <select name="action" style="width:120px;" onChange="recSeldoit(this.form,this.options[this.selectedIndex].value,{id},'{name}');">
+            <option value="">Select Action</option></option>
+            <option value="preview">Preview Form</option></option>
+            <option value="displayfields">Display Fields</option></option>
+            <option value="report">Show Results</option></option>
+            <option value="copy">Copy Form</option></option>    
+            <option value="delform">Delete Form</option></option>
+            <option value="exportform">Export Form</option></option>
+        </select></td>
+</tr>

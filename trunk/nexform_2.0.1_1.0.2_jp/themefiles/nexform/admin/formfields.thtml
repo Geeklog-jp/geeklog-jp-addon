@@ -1,0 +1,42 @@
+<script type="text/javascript">
+    var public_url = '{public_url}';
+</script>
+<script type="text/javascript" src="{public_url}/include/ajaxsupport.js"></script>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+    <tr>
+        <td style="padding-top:5px;">{navbar}</td>
+    </tr>
+    <tr>
+        <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="1">
+                <tr>
+                    <td width="100%" class="pluginAlert" style="display:{show_alert};">{alertmsg}</td>
+                </tr>
+                <tr style="vertical-align:top;">
+                    <td class="pluginRow1" style="padding:1px;" width="100%">
+                        <form name="frm_display" action="{site_admin_url}/plugins/nexform/index.php" method="post" style="padding:0;margin:0;">
+                            <input type="hidden" name="op" value="displayfields">
+                            <input type="hidden" name="id" value="{formid}">
+                            <input type="hidden" name="fieldid" value="">
+                            <table width="100%" border="0" cellspacing="1" cellpadding="1" style="margin-bottom:100px;">
+                                <tr class="pluginTitle">
+                                    <th colspan="2" style="text-align:center;">{HEADING1}</th>
+                                    <th style="text-align:center;padding:3 0 0 0px;"><img src="{layout_url}/nexform/images/admin/checkmark.gif" TITLE="{heading2_title}"></th>
+                                    <th style="padding-left:10px;">{HEADING3}</th>
+                                    <th style="text-align:center;">{HEADING4}</th>
+                                    <th><img src="{layout_url}/nexform/images/admin/report.gif" TITLE="{heading5_title}"></th>
+                                    <th><img src="{layout_url}/nexform/images/admin/newline.gif" TITLE="{heading6_title}"></th>
+                                    <th><img src="{layout_url}/nexform/images/admin/vertical_layout.gif" TITLE="{heading7_title}"></th>
+                                    <th><img src="{layout_url}/nexform/images/admin/reorder.gif" TITLE="{heading8_title}"></th>
+                                    <th style="text-align:center;">{HEADING9}</th>
+                                </tr>
+                                   {field_records}
+                            </table>
+                        </form>
+                   </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

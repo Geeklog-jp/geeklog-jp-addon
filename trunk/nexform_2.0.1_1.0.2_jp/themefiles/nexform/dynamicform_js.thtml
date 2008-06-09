@@ -1,0 +1,73 @@
+
+<!-- dynamicform_js.thtml -->
+<script type="text/javascript">
+    function AddDynamicForm(form,id,newform_id,lastid) {
+         var tbl = document.getElementById('tblcust-id'+id);
+         tbl.setAttribute("border",0);
+         var lastRow = tbl.rows.length;
+         var instance = lastRow - 1;
+
+         var newRow = tbl.insertRow(lastRow);
+         ncell = newRow.insertCell(0);
+         ncell.setAttribute("colSpan","3");
+
+         ncell.setAttribute("id",'fe_dfield'+id+'_'+instance);
+         ajaxAddDynamicForm(id,instance,newform_id);
+    }
+
+    function RemoveDynamicForm(form,id) {
+         var tbl = document.getElementById('tblcust-id'+id);
+
+         if (tbl) {
+             var lastRow = tbl.rows.length;
+             if (lastRow > 0) {
+                 // Remove the last row containing the custom fields
+                 tbl.deleteRow(lastRow - 1);
+             }
+         }
+    }
+
+    var xmlhttp = null;
+
+    // Workflow Task Console Ajax Support Functions
+    function ajaxAddDynamicForm(id,rowid,newform_id) {
+        xmlhttp = new XMLHttpRequest();
+        var qs = '?form='+newform_id+'&id='+id+'&rid='+rowid;
+
+        xmlhttp.open('GET', '{fe_actionURL}/ajaxAddForm.php' + qs, true);
+        xmlhttp.onreadystatechange = function() {
+           if (xmlhttp.readyState == 4) {
+                receiveRequestDynamicForm(xmlhttp.responseXML);
+           }
+       };
+       xmlhttp.send(null);
+    }
+
+    function receiveRequestDynamicForm(dom) {
+        var oId = dom.getElementsByTagName('id');
+        var id = oId[0].firstChild.nodeValue;
+        var oRid = dom.getElementsByTagName('rid');
+        var rid = oRid[0].firstChild.nodeValue;
+        var ohtml = dom.getElementsByTagName('html');
+
+        // Link the new content and unhide it
+        html = '';
+        if (ohtml[0].childNodes[0]) {
+            html = ohtml[0].childNodes[0].nodeValue;
+        }
+        if (ohtml[0].childNodes[1]) {
+            html = html + ohtml[0].childNodes[1].nodeValue;
+        }
+        if (ohtml[0].childNodes[2]) {
+            html = html + ohtml[0].childNodes[2].nodeValue;
+        }
+
+        var obj = document.getElementById('fe_dfield'+id+'_'+rid);
+        if (obj && html != '') {
+            obj.innerHTML = html;
+        }
+
+        scan_for_ta2();        
+    }
+
+</script>

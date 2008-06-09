@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE> New Document </TITLE>
+<META NAME="Generator" CONTENT="EditPlus">
+<META NAME="Author" CONTENT="">
+<META NAME="Keywords" CONTENT="">
+<META NAME="Description" CONTENT="">
+</HEAD>
+
+<BODY>
+ <h2>Properties</h2>
+ Following is a complete list of field validation options available.
+ <table>
+    <tr>
+        <td width=200px" class="headline" style="background-color:#C9C8C8">Property</td>
+         <td class="headline" style="background-color:#C9C8C8">Possible values</td>
+        <td class="headline" style="background-color:#C9C8C8">Description</td>
+    </tr>
+    <tr valign="top">
+        <td width=200px" style="background-color:#E1E1E1;font-weight:bold;">required</td>
+        <td style="background-color:#F4f3f3;">1<br>0</td>
+         <td style="background-color:#F4f3f3;">Field is required<br>Field is optional</td>
+    </tr>
+     <tr valign="top">
+        <td width=200px" style="background-color:#E1E1E1;font-weight:bold;">regexp</td>
+        <td style="background-color:#F4f3f3;">"regex"<br>"JSVAL_RX_EMAIL"<br>"JSVAL_RX_TEL"<br>"JSVAL_RX_ZIP"<br>"JSVAL_RX_MONEY"<br>"JSVAL_RX_CREDITCARD"<br>"JSVAL_RX_POSTALZIP"<br>"JSVAL_RX_PC"</td>
+         <td style="background-color:#F4f3f3;">Free regular expresion (i.e. /^\w*$/)<br>
+             Check for correct email adress<br>
+             check for correct phone number<br>
+             check for correct zip code<br>
+             check for correct money amount<br>
+             check for correct credit card number<br>
+             check for correct postal zip code<br>
+             check for correct postal code
+         </td>
+    </tr>
+     <tr valign="top">
+        <td width=200px" style="background-color:#E1E1E1;font-weight:bold;">minlength</td>
+        <td style="background-color:#F4f3f3;">numeric</td>
+         <td style="background-color:#F4f3f3;">defines the miniumum length of an input value</td>
+    </tr>
+     <tr valign="top">
+        <td width=200px" style="background-color:#E1E1E1;font-weight:bold;">maxlength</td>
+        <td style="background-color:#F4f3f3;">numeric</td>
+         <td style="background-color:#F4f3f3;">defines the maximum length of an input value</td>
+    </tr>
+     <tr valign="top">
+        <td width=200px" style="background-color:#E1E1E1;font-weight:bold;">minvalue</td>
+        <td style="background-color:#F4f3f3;">numeric, float</td>
+         <td style="background-color:#F4f3f3;">defines the miniumum value of an input field (must be numeric or float)</td>
+    </tr>
+     <tr valign="top">
+        <td width=200px" style="background-color:#E1E1E1;font-weight:bold;">maxvalue</td>
+        <td style="background-color:#F4f3f3;">numeric, float</td>
+         <td style="background-color:#F4f3f3;">defines the maximum value of an input field (must be numeric or float)</td>
+    </tr>
+     <tr valign="top">
+        <td width=200px" style="background-color:#E1E1E1;font-weight:bold;">err</td>
+        <td style="background-color:#F4f3f3;">string</td>
+         <td style="background-color:#F4f3f3;">user defined error message thats printed when field value is invalid</td>
+    </tr>
+     <tr valign="top">
+        <td width=200px" style="background-color:#E1E1E1;font-weight:bold;">realname</td>
+        <td style="background-color:#F4f3f3;">string</td>
+         <td style="background-color:#F4f3f3;">user defined field name, that is used for error messages. If not defined the field label will be used.</td>
+    </tr>
+    <tr>
+        <td width=200px" style="background-color:#E1E1E1;font-weight:bold;">equals</td>
+        <td style="background-color:#F4f3f3;">string</td>
+         <td style="background-color:#F4f3f3;">The name or id of a form field to which the value of this field must be equal. Usefull for password retype fields (see example 5)</td>
+    </tr>
+    <tr>
+        <td width=200px" style="background-color:#E1E1E1;font-weight:bold;">callback</td>
+        <td style="background-color:#F4f3f3;">string</td>
+         <td style="background-color:#F4f3f3;">The name of the callback function that is called for validating this form field (see Callback section below for details)</td>
+    </tr>
+ </table>
+ </table>
+</BODY>
+</HTML>

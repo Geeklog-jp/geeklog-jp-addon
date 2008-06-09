@@ -1,0 +1,6 @@
+
+<!-- Field Style 2 - Record Style 1 and vertically Stacked-->
+<div class="floatleft" style="{field_width}"> {field_comment}
+<div class="{labelclass}" style="padding:3px;">{label}{field_help}</div>
+<div style="padding:3px {cell_padding}px 3px 3px;">{field}</div>
+</div>

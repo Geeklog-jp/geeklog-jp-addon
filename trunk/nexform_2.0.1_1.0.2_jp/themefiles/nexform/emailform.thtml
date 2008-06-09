@@ -1,0 +1,9 @@
+======================================================
+{LANG_date}: {date}
+{heading}
+{LANG_postedby}: {postedby_name}
+
+{begin_data}
+
+{email_records}
+{end_data}

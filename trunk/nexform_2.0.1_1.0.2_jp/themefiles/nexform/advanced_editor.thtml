@@ -1,0 +1,31 @@
+
+<!-- advanced_editor.thtml -->
+<script type="text/javascript">
+var tmp_onload = window.onload;
+window.onload = function() {
+    if (tmp_onload != null) {
+        tmp_onload();
+    }
+    scan_for_ta2();
+}
+
+function scan_for_ta2() {
+    //find all textarea2 fields that have not already be initialized and initialize them
+    elm=document.getElementsByTagName('textarea');
+    for (i=0, j=elm.length; i<j; i++) {
+        if ((elm[i].name.indexOf('ta2') != -1) && (elm[i].className != 'adv_editor_initialized')) {
+            nf_init_fckeditor(elm[i].name);
+            elm[i].className = 'adv_editor_initialized';
+        }
+    }
+}
+
+
+function nf_init_fckeditor(fieldname) {
+    var nf_oFCKeditor = new FCKeditor( fieldname ) ;
+    nf_oFCKeditor.BasePath = "{site_url}/fckeditor/" ;
+    nf_oFCKeditor.ToolbarSet = '{toolbar}' ;
+    nf_oFCKeditor.Height = 200 ;
+    nf_oFCKeditor.ReplaceTextarea();
+}
+</script>

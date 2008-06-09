@@ -1,0 +1,11 @@
+<script type="text/javascript" src="{site_url}/javascript/dynamic_option_list.js"></script>
+<script type="text/javascript">
+    function initfilteredlist() {
+        dynamicSelect('list740', 'list741');
+    }
+    if (window.addEventListener) //DOM method for binding an event
+        window.addEventListener("load", initfilteredlist, false)
+    else if (window.attachEvent) //IE exclusive method for binding an event
+        window.attachEvent("onload",initfilteredlist);
+
+</script>

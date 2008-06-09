@@ -1,0 +1,7 @@
+            </table>
+            <table border="0" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom:5px;">
+            <tr>
+                <td width="5%" style="padding-top:5px;padding-left:{cell_padding}px;text-align:left;" nowrap><a href="#" onClick="AddDynamicForm({form_id},{dynamic_field_id},{dynamicform_id},{last_id});return false;">Add Field</a></td>
+                <td style="padding:5px 0px 0px 15px;text-align:left;"><a href="#" onClick="RemoveDynamicForm({form_id},{dynamic_field_id});return false;">Remove Last</a></td>
+             </tr>
+            </table>

@@ -1,0 +1,7 @@
+
+<!-- Field Style 3R - Record style 2 (2 or more fields in row) and vertically stacked with reversed label/field order -->
+{field_comment}
+<div class="floatleft" style="{field_width}">
+<div class="{labelclass}" style="padding:3px 3px 3px 0px;">{field}</div>
+<div style="padding:3px {cell_padding}px 3px 0px;">{label}{field_help}</div>
+</div>

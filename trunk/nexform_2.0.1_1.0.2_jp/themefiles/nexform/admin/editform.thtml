@@ -1,0 +1,185 @@
+<script type="text/javascript" language="JavaScript1.2">
+  function enablePostOption(obj) {
+     var option = obj.selectedIndex;
+     if (option == 0)  {
+         document.getElementById("postmethod").style.display="none";
+    } else {
+         document.getElementById("postmethod").style.display="";
+    }
+  }
+
+  function toggle_dboption(obj) {
+     var obj1 = document.getElementById("xform_id");
+     var obj2 = document.getElementById("db_editlink");
+     if (obj1.value > 0 && obj.value == "custom" )  {
+        obj2.style.visibility = '';
+     } else {
+        obj2.style.visibility = 'hidden';
+     }
+  }
+
+</script>
+
+<form name="frm_edit" action="{site_admin_url}/plugins/nexform/index.php" method="post" style="padding:0;margin:0;">
+    <input type="hidden" name="op" value="saveform">
+    <input type="hidden" name="mode" value="{mode}">
+    <input type="hidden" name="fsetid" value="{fsetid}">
+    <input id="xform_id" type="hidden" name="id" value="{id}">
+    <input type="hidden" name="selectedtab" value="{selectedtab}">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="plugin" style="border:0px;">
+    <tr>
+        <td colspan="2">{navbar}</td>
+    </tr>
+    <tr class="pluginSubHeader">
+        <td width="350" style="padding:5px 5px 10px 10px;" nowrap>
+            |&nbsp;<a id="fe_link101" href="#" onclick="feSetCurrent(this);" class="{classnavtab1}">Form Definition</a>&nbsp;|
+            <a id="fe_link102" href="#" onclick="feSetCurrent(this);" class="{classnavtab2}">Options</a>&nbsp;|
+            <a id="fe_link103" href="#" onclick="feSetCurrent(this);" class="{classnavtab3}">Field Sets</a>&nbsp;|
+		</td>
+		<td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td class="pluginInfo" colspan="2">{helpmsg}</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div id="fe_div1" style="display:{showtab1};">
+                <table width="100%" border="0" cellspacing="1" cellpadding="5">
+                    <tr valign="top">
+                        <td class="pluginCellTitle" width="25%">Name:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help1}</span></a></td>
+                        <td class="pluginCellText" style="padding-left:5px;"><input type="text" name="name" size="54" value="{name}"></td>
+                    </tr>
+                    <tr valign="top">
+                        <td class="pluginCellTitle" width="25%">Short Name:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help20}</span></a></td>
+                        <td class="pluginCellText" style="padding-left:5px;"><input type="text" name="shortname" size="32" value="{shortname}"></td>
+                    </tr>
+                    <tr valign="top">
+                        <td class="pluginCellTitle">Admin Comments:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help2}</span></a></td>
+                        <td class="pluginCellText" style="padding-left:5px;"><textarea name="comments" cols="80" rows="5">{comments}</textarea></td>
+                    </tr>
+                    <tr valign="top">
+                        <td class="pluginCellTitle">Introduction Message:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help3}</span></a></td>
+                        <td class="pluginCellText" style="padding-left:5px;"><textarea name="intro_text" cols="80" rows="5">{intro_text}</textarea></td>
+                    </tr>
+                    <tr valign="top">
+                        <td class="pluginCellTitle">Completion Message:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help24}</span></a></td>
+                        <td class="pluginCellText" style="padding-left:5px;"><textarea name="post_text" cols="80" rows="5">{post_text}</textarea></td>
+                    </tr>
+                    <tr>
+                        <td class="pluginCellTitle">Permissions:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help5}</span></a></td>
+                        <td class="pluginCellText" style="padding:0px 0px 5px 5px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td class="pluginCellText" style="padding-left:5px;">Access</td>
+                                    <td class="pluginCellText" style="padding-left:5px;">View Results</td>
+                                    <td class="pluginCellText" style="padding-left:5px;">Edit</td>
+                                </tr>
+                                <tr>
+                                    <td><select name="perms_access">{accessperms}</select></td>
+                                    <td><select name="perms_view">{viewperms}</select></td>
+                                    <td><select name="perms_edit">{editperms}</select></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pluginCellTitle">Active:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help6}</span></a></td>
+                        <td class="pluginCellText" style="padding-left:5px;"><input type="checkbox" name="status" value="1" {chkstatus}></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="fe_div2" style="display:none;">
+                <table width="100%" border="0" cellspacing="1" cellpadding="5">
+                <tr style="display:{show_formid};">
+                    <td class="pluginCellTitle" width="25%">Form ID:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help7}</span></a></td>
+                    <td class="pluginCellText" style="padding-left:5px;">{formid}</td>
+                </tr>
+                    <tr>
+                        <td class="pluginCellTitle">Post Method:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help8}</span></a></td>
+                        <td class="pluginCellText" style="padding-left:5px;"><select name="post_method" style="width:150px;" onChange="enablePostOption(this);">{post_method_options}</select></td>
+                    </tr>
+                    <tr id="postmethod" style="display:{show_postoption};">
+                        <td class="pluginCellTitle">{LANG_postoption}:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help9}</span></a></td>
+                        <td class="pluginCellText" style="padding-left:5px;"><input type="text" name="post_option" size="64" value="{post_option}"></td>
+                    </tr>
+                    <tr>
+                        <td class="pluginCellTitle">Before Form:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help12}</span></a></td>
+                        <td class="pluginCellText" style="padding-left:5px;">
+                            <select name="before_formid" style="width:250px;">
+                                <option value="0">None</option>{formlisting1_options}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pluginCellTitle">After Form:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help13}</span></a></td>
+                        <td class="pluginCellText" style="padding-left:5px;">
+                            <select name="after_formid" style="width:250px;">
+                                <option value="0">None</option>{formlisting2_options}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pluginCellTitle">Display Template:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help11}</span></a></td>
+                        <td class="pluginCellText" style="padding-left:5px;"><select name="template">{template_options}</select></td>
+                    </tr>
+                    <tr>
+                        <td class="pluginCellTitle">Show Mandatory Note:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help19}</span></a></td>
+                        <td class="pluginCellText" style="padding-left:5px;"><input type="checkbox" name="show_mandatory_note" value="1" {chk_showmandatory}></td>
+                    </tr>
+                    <tr>
+                        <td class="pluginCellTitle">Show form as tab:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help17}</span></a></td>
+                        <td class="pluginCellText" style="padding-left:5px;"><input type="checkbox" name="show_as_tab" value="1" {chk_showastab} onClick="if(this.checked==true) document.getElementById('tablabel').style.display=''; else document.getElementById('tablabel').style.display='none';"></td>
+                    </tr>
+                    <tr id="tablabel" style="display:{show_tablabel};">
+                        <td class="pluginCellTitle">Tab Label:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help18}</span></a></td>
+                        <td class="pluginCellText" style="padding-left:5px;"><input type="text" name="tab_label" value="{tab_label}"></td>
+                    </tr>
+                    <tr>
+                        <td class="pluginCellTitle">OnSubmit JS:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help14}</span></a></td>
+                        <td class="pluginCellText" style="padding-left:5px;"><input type="text" name="on_submit" size="55" value="{on_submit}"></td>
+                    </tr>
+                    <tr>
+                        <td class="pluginCellTitle">Return URL:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help16}</span></a></td>
+                        <td class="pluginCellText" style="padding-left:5px;"><input type="text" name="return_url" size="55" value="{return_url}"></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="fe_div3" style="display:{showtab3};">
+                <div id="addfsetbtn" style="padding:5px;display:{show_addfsetbtn};">
+                    <input type="button" onclick="document.getElementById('editfset').style.display = '';document.getElementById('addfsetbtn').style.display = 'none'" value="Add Fieldset Defintion"></input>
+                 </div>
+                {fieldset_definitions}
+                <table id="editfset" width="100%" border="0" cellspacing="1" cellpadding="5" style="display:{show_editfset};">
+                    <tr>
+                        <td class="pluginCellTitle">First Field:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help21}</span></a></td>
+                        <td class="pluginCellText" style="padding-left:5px;">
+                            <select name="field1" style="width:150px;">
+                                <option value="0">Select Field</option>{field1_options}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pluginCellTitle">Last Field:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help22}</span></a></td>
+                        <td class="pluginCellText" style="padding-left:5px;">
+                            <select name="field2" style="width:150px;">
+                                <option value="0">Select Field</option>{field2_options}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pluginCellTitle">Label:<a class="tooltip" style="padding-left:10px;" href="#">?<span>{LANG_help23}</span></a></td>
+                        <td class="pluginCellText" style="padding-left:5px;"><input type="text" name="fieldset_label" size="55" value="{fieldset_label}"></td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" class="pluginCellText" style="padding:20px; text-align:center;">
+            <input type=button value="Cancel" onclick="javascript:history.go(-1)">
+                <span style="padding-left:20px;"><input type="submit" value="{LANG_submit}"></span>
+        </td>
+    </tr>
+</table>
+</form>
+<p />

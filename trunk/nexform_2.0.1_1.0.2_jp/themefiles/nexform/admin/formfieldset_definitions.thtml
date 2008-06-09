@@ -1,0 +1,10 @@
+                <table width="100%" border="0" cellspacing="1" cellpadding="5" style="border:1px solid black;">
+                    <tr>
+                        <th class="pluginTitle" style="text-align:left;">ID</th>
+                        <th class="pluginTitle" style="text-align:left;">Label</th>
+                        <th class="pluginTitle" style="text-align:left;">Field1</th>
+                        <th class="pluginTitle" style="text-align:left;">field2</th>
+                        <th width="10%" class="pluginTitle" style="text-align:left;">Actions</th>
+                     <tr>
+                     {fieldset_records}
+                </table>

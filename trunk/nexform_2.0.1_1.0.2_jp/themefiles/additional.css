@@ -1,0 +1,102 @@
+/* Nexform CSS Begins */
+.frm {
+  border:1px solid #CCC;
+  background-color:#EFEFEF;
+}
+
+.frm_topheader {
+  height:120px;
+  background: #091215 url(nexform/images/formheader.jpg) no-repeat;
+}
+
+.frm_topheader td {
+  font-size:24pt;
+  Color: #793138;
+  font-weight: bold;
+  margin-top:20px;
+  text-align:center;
+}
+
+.frm_label1 {
+  white-space: normal;
+  font-weight: normal;
+  font-style: normal;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  border-bottom: 0px solid #ccc;
+}
+
+/* Bold */
+.frm_label2 {
+  white-space: normal;
+  font-weight: bolder;
+}
+
+/* Regualar */
+.frm_label3 {
+  white-space: normal;
+  font-weight: normal;
+}
+
+/* Highlighted */
+.frm_label4 {
+  color: #336699;
+  font-weight: bold;
+  white-space: normal;
+}
+
+/* Large Heading */
+.frm_h1 {
+  font: bold 150% verdana,helvetica,Arial;
+  color: #660000;
+  margin: 5px 5px 5px 0px;
+}
+
+/* Medium Heading1 */
+.frm_h2 {
+  font: bold 125% verdana,helvetica,Arial;
+  color: #000000;
+  margin: 8px 5px 7px 0px;
+}
+
+/* Small Heading */
+.frm_h3 {
+  font: bold 100% verdana,helvetica,Arial;
+  margin: 8px 5px 7px 0px;
+}
+
+.frmRow1 {
+  background-color: #EFEFEF;
+  padding:5px 5px 5px 5px;
+}
+.frmRow2 {
+  background-color: #EFEFEF;
+  padding:5px 5px 5px 5px;
+}
+
+/* Styles reserved for Scott - Printing of Form Project Information */
+.frm_labelP1 {
+  white-space:normal;
+  font-size: 12pt;
+  font-weight:bolder;
+}
+.frm_labelP2 {
+  white-space:normal;
+  font-size: 12pt;
+  padding-top:2px;
+  font-weight:bolder;
+  display:block;
+}
+
+.frm_legend {
+  padding: 0.2em 0.5em;
+  border:1px solid #003366;
+  color: #003366;
+  font-size:9pt;
+  font-weight:bold;
+  margin-top:5px;
+  margin-bottom:10px;
+}
+
+/* End of Nexform CSS */

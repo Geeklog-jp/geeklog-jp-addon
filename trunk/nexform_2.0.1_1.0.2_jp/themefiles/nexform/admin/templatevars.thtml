@@ -1,0 +1,4 @@
+                        <tr>
+                            <td style="padding-left:20px;" width="15%" nowrap><font face="Verdana, Geneva, Arial, Helvetica, Sans-Serif" size="1" color="#000000">&#123;{template_key}&#125;</font></td>
+                            <td style="padding-left:15px;"><font face="Verdana, Geneva, Arial, Helvetica, Sans-Serif" size="1" color="#000000">{template_var}</font></td>
+                        </tr>

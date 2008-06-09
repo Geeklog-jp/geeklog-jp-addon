@@ -1,0 +1,7 @@
+                    <tr>
+                        <td class="pluginRow{cssid}">{fset_id}</td>
+                        <td class="pluginRow{cssid}">{fset_label}</td>
+                        <td class="pluginRow{cssid}">{fset_field1}</td>
+                        <td class="pluginRow{cssid}">{fset_field2}</td>
+                        <td class="pluginRow{cssid}">{fset_editlink}&nbsp;{fset_deletelink}</td>
+                     <tr>

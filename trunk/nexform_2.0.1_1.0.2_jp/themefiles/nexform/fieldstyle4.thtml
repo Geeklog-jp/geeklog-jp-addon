@@ -1,0 +1,10 @@
+
+<!-- Multi-File input field -->{field_comment}
+<span class="floatleft {labelclass}">{label}{field_help}</span>
+<span class="floatleft" style="{field_width}padding:3px {cell_padding}px 3px 5px;">
+    <div id="tblmfile-id{field_id}">{field}</div>
+    <div style="display:{showfilectl};">
+        <span><a href="#" onClick="AddRowsToTable({form_id},{field_id});return false;">Add File</a></span>
+        <span><a href="#" onClick="RemoveRowFromTable({form_id},{field_id});return false;">Remove Last</a></span>
+    </div>
+</span>
