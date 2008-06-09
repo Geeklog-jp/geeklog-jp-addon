@@ -1,0 +1,54 @@
+# nexProject Plugin Langugage - Don't edit any lines vbegining with # (comment lines)
+# Format is label and Language Equivelent to Display
+# Don't edit the label as thats used as a program reference - Edit to the right of the equals sign
+
+yes                 = Yes
+no                  = No
+home                = Home
+save                = Save
+project             = Project
+projects            = Projects
+add_project         = Add Project
+edit_project        = Edit Project
+details             = Details
+name                = Name
+description         = Description
+priority            = Priority
+status              = Status
+progress            = Progress
+objective           = Objective
+percentcomplete     = Percentage Complete
+location            = Location<span class="pluginLargeText">(s)</span>
+department          = Department<span class="pluginLargeText">(s)</span>
+category            = Category<span class="pluginLargeText">(s)</span>
+resources           = Resources
+start_date          = Start Date
+estimated_end_date  = Estimated End Date
+actual_end_date     = Actual End Date
+notification        = Enable Notification
+document            = Linked Content
+forum               = Discussion Board
+private             = Private Project
+private_task        = Private Task
+template            = Project Template
+keywords            = Keywords
+project_owner       = Project Owner
+add_task            = Add Task
+edit_task           = Edit Task
+task_details        = Task Details
+task_order          = Task Order
+duration            = Duration
+assigned_to         = Assigned To
+status_log          = Status Log
+change_log_desc     = Change Log Description
+parent_task         = Parent Task
+project_details     = Project Details
+perm_Team_Member    = Team Member
+perm_Project_Manager= Project Manager
+perm_monitor        = Monitor
+groups              = Groups
+users               = Users	
+no_userperm         = No User permissions set
+no_groupperm        = No Group permissions set
+owner               = Owner
+make_private	   = Private Task

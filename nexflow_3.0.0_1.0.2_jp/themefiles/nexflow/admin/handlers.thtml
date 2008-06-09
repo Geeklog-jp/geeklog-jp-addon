@@ -1,0 +1,45 @@
+<script type="text/javascript">
+    function showhide_addHandler() {
+        if (document.getElementById('newhandler').style.display == 'none') {
+            document.getElementById('newhandler').style.display = '';
+            document.getElementById('addhandler').style.visibility='hidden'
+        } else {
+            document.getElementById('newhandler').style.display='none';
+            document.getElementById('addhandler').style.visibility=''
+        }
+    }
+</script>
+<script type="text/javascript" src="{public_url}/include/ajaxsupport.js"></script>
+
+<div id="addhandler" style="padding:10px 0px 10px 10px;">
+    <a href="#" onClick="showhide_addHandler()">New Handler</a>
+</div>
+<form name="fhandlers" method="get" action="{public_url}/handlers.php" style="margin:0px;">
+<table cellpadding="5" cellspacing="1" border="0" width="90%" style="border:1px solid #CCC;">
+    <tr>
+        <td colspan="3" class="pluginInfo">Click on [Edit] for handler record to edit or [New Handler] to add.</td>
+    </tr>
+    <tr>
+        <td class="pluginTitle">ID</td><td class="pluginTitle">Handler Action</td><td class="pluginTitle" >Actions</td>
+    </tr>
+    <tr id="newhandler" class="pluginRow1" style="display:none;">
+        <td colspan="3">
+            <table cellspacing="1" cellpadding="1" border="0" width="100%">
+                <tr style="vertical-align:top;">
+                    <td class="pluginTitle">Action:</td>
+                    <td><input type="text" name="handler" value="" size="75" ></td>
+                    <td width="30%" rowspan="2" style="text-align:center;">
+                        <input type="hidden" name="operation" value="add">
+                        <input type="submit" value="&nbsp;Add&nbsp;">&nbsp;<input type="button" value="Cancel" onClick='showhide_addHandler();'>
+                    </td>
+                </tr>
+                <tr style="vertical-align:top;">
+                    <td class="pluginTitle">Description:</td>
+                    <td><textarea name="desc" cols="60" rows="4"></textarea></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    {handler_records}
+</table>
+</form>

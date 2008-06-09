@@ -1,0 +1,119 @@
+<script type="text/javascript"> 
+       function toggle_tasklog() {
+       if (document.getElementById('prj_tasklog').style.display == 'none') {
+           document.getElementById('prj_tasklog').style.display = '';
+           document.getElementById('prj_tasklog_link').firstChild.nodeValue = '[Hide Log]';           
+       } else {
+           document.getElementById('prj_tasklog').style.display = 'none';
+           document.getElementById('prj_tasklog_link').firstChild.nodeValue = '[Show Log]';             
+       }
+    } 
+    
+    
+    
+function toggle_resourcelist() {
+       if (document.getElementById('prj_resourcelist').style.display == 'none') {
+           document.getElementById('prj_resourcelist').style.display = '';
+           document.getElementById('prj_resourcelist_link').firstChild.nodeValue = '[Hide Resources]';           
+       } else {
+           document.getElementById('prj_resourcelist').style.display = 'none';
+           document.getElementById('prj_resourcelist_link').firstChild.nodeValue = '[Show Resources]';             
+       }
+    }     
+</script>
+{breadcrumb_trail}
+{edit_icons}
+  <TABLE border="0" cellspacing="1" cellpadding="5" class="plugin">
+    <TR class="pluginHeader"> 
+      <TH colspan="4">{LANG_project_details}</TH>
+    </TR>
+    <tr> 
+      <td class="pluginCellTitle" style="background-color:{VALUE_progress_color};">{LANG_progress}:</td>
+      <TD class="pluginCellText" colspan="3" style="background-color:{VALUE_progress_color};">{VALUE_progress}</td> 
+    </tr>      
+    <TR> 
+      <TD class="pluginCellTitle" width="150">{LANG_name}:</TD>
+      <TD class="pluginCellText" colspan="3" width="90%">{VALUE_name}</TD
+    </TR>
+    <TR> 
+      <TD class="pluginCellTitle">{LANG_description}:</TD>
+      <TD colspan="3">{VALUE_description}</TD>
+    </TR>
+    <TR> 
+      <TD class="pluginCellTitle">{LANG_project_owner}:</TD>
+      <TD colspan="3">{VALUE_project_owner}</TD>
+    </TR>    
+    <TR> 
+        <td width="20%"class="pluginCellTitle">{LANG_priority}:</td>
+        <td width="80%" colspan="3">{VALUE_priority}</td>
+    </tr>
+    <TR> 
+        <td width="20%" class="pluginCellTitle">{LANG_status}:</td>
+        <td width="80%" colspan="3">{VALUE_status}</td>
+    </tr>
+    <TR> 
+      <td class="pluginCellTitle">{LANG_objective}:</td>
+      <td colspan="3">{VALUE_objective}</td>
+    </tr>
+    <TR>
+      <TD class="pluginCellTitle">{LANG_percentcomplete}:</TD>
+      <TD colspan="3">{VALUE_percent_completion}%</TD>
+    </TR>
+    <TR>
+      <td class="pluginCellTitle">{LANG_location}:</td>
+      <td>{VALUE_location}</td>
+      <td class="pluginCellTitle" align=left>{LANG_department}:</td>
+      <td width="40%">{VALUE_department}</td>
+    </tr>
+    <TR> 
+      <TD class="pluginCellTitle">{LANG_category}:</TD>
+      <TD>{VALUE_category}</TD>
+      <TD class="pluginCellTitle">{LANG_owner}:</TD>
+      <TD>{VALUE_resources}</TD>
+    </TR>
+    <TR> 
+      <td class="pluginCellTitle">{LANG_start_date}:</td>
+      <td valign="top">{VALUE_start_date}</td>
+      <td class="pluginCellTitle">{LANG_estimated_end_date}:</td>
+      <td>{VALUE_estimated_end_date}</td>
+    </TR>
+    <TR> 
+      <td class="pluginCellTitle">{LANG_actual_end_date}:</td>
+      <td valign="top">{VALUE_actual_end_date}</td>
+      <td class="pluginCellTitle" style="vertical-align : middle;">{LANG_notification}:</td>
+      <td><input type="checkbox" name="notification" value="Y" {VALUE_notification_enabled_flag} DISABLED></td>
+    </tr>
+    <TR> 
+      <td class="pluginCellTitle">{LANG_document}:</td>
+      <td>{LANG_yes}<input type="radio" name="document" value="Y" {VALUE_is_using_docmgmt_flag_on} DISABLED>{LANG_no}<input type="radio" name="document" value="N" {VALUE_is_using_docmgmt_flag_off} DISABLED></td> 
+      <td class="pluginCellTitle">{LANG_forum}:</td>
+      <td>{LANG_yes}<input type="radio" name="forum" value="Y"{VALUE_is_using_forum_flag_on} DISABLED>{LANG_no}<input type="radio" name="forum" value="N" {VALUE_is_using_forum_flag_off} DISABLED></td>
+    </tr>
+
+        <TR> 
+      <td class="pluginCellTitle">{LANG_keywords}:</td>
+      <td colspan="3">{VALUE_keywords}</td>
+    </tr>
+    <TR class="pluginHeader" style="display:{show_changelog};"> 
+        <TH colspan="4">{LANG_status_log}<span class="pluginSmallText" style="padding-left:20px;"><a id="prj_tasklog_link" href="#" onClick="toggle_tasklog();">[Show Log]</a></span></TH>
+    </TR>
+    <TR id="prj_tasklog" style="display:none;">
+        <TD colspan="4">
+            <table class="plugin" border="0" width="100%" style="border:0px;">
+                {task_log_entries}
+            </table>
+        </td>
+    </tr>
+    
+    <TR class="pluginHeader" style="display:{show_changelog};"> 
+        <TH colspan="4">{LANG_resources}<span class="pluginSmallText" style="padding-left:20px;"><a id="prj_resourcelist_link" href="#" onClick="toggle_resourcelist();">[Show Resources]</a></span></TH>
+    </TR>
+    <TR id="prj_resourcelist" style="display:none;">
+        <TD colspan="4">
+            <table class="plugin" border="0" width="100%" style="border:0px;">
+                {project_resources}
+            </table>
+        </td>
+    </tr>
+  </TABLE>
+  <p />

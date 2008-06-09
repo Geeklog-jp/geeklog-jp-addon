@@ -1,0 +1,79 @@
+<script type="text/javascript" src="{public_url}/include/ajaxsupport.js"></script>
+<script type="text/javascript">
+    function toggle_taskrec(mode,rowid) {
+        if (mode == 'reassign') {
+            var obj = document.getElementById('task_reassign_rec_' + rowid);
+        }
+        else if(mode=='assignBack'){
+            var obj = document.getElementById('task_assignback_rec_' + rowid);
+        } else {
+            var obj = document.getElementById('task_notify_rec_' + rowid);
+        }
+        
+        if(obj.style.display == '') {
+            obj.style.display='none';
+        } else {
+            obj.style.display='';
+        }
+
+        for (var i = 1; i <= {num_records}; i++ )  {
+            var obj1 = document.getElementById('task_reassign_rec_' + i);
+            var obj2 = document.getElementById('task_notify_rec_' + i);
+            var obj3 = document.getElementById('task_assignback_rec_' + i);
+            if (obj1 != obj) {
+                obj1.style.display='none';
+            }
+            if (obj2 != obj) {
+                obj2.style.display='none';
+            }
+            if (obj3 != obj) {
+                obj3.style.display='none';
+            }
+        }
+        var obj = document.getElementById('taskrec_' + rowid);
+        obj.scrollIntoView();
+    }
+
+</script>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td class="pluginInfo" width="10%" nowrap>Task Count:&nbsp;<b>{taskcount}</b></td>
+        <td class="pluginInfo" width="20%" nowrap>
+            <form name="fselapp" action="{actionurl}" method="post" style="margin:5px;">
+                <select name="taskappmode" onChange="this.form.submit();">
+                    <option value="0">All Application Tasks</option>                   
+                    {sel_filter_applications}
+                </select>
+                <span style="padding-left:10px;">Page Size</span>
+                <select name="pagesize" onChange="this.form.submit();">
+                    {pagesize_options}                                                                                  
+                </select>
+            </form>
+        </td>
+        <td class="pluginInfo taskconsole_otasks" nowrap>{page_navigation}&nbsp;</td>
+    </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>
+            <table class="plugin" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr class="pluginHeader" align="left">
+                <th style="text-align:center;padding-right:5px;border-right:1px solid white;">
+                    <a href="{action_url}?page={page}&order=1&prevorder={prevorder}&prevdirection={prevdirection}&taskappmode={appmode}" TITLE="{title1}">{heading1}</a>
+                </th>
+                <th style="border-right:1px solid white;">
+                    <a href="{action_url}?page={page}&order=2&prevorder={prevorder}&prevdirection={prevdirection}&taskappmode={appmode}" TITLE="{title2}">{heading2}</a>
+                </th>
+                <th style="border-right:1px solid white;">
+                    <a href="{action_url}?page={page}&order=3&prevorder={prevorder}&prevdirection={prevdirection}&taskappmode={appmode}" TITLE="{title3}">{heading3}</a>
+                </th>
+                <th style="border-right:1px solid white;">
+                    <a href="{action_url}?page={page}&order=4&prevorder={prevorder}&prevdirection={prevdirection}&taskappmode={appmode}" TITLE="{title4}">{heading4}</a>
+                </th>
+                <th style="border-right:1px solid white;">{heading5}</th>                 
+            </tr>
+                {outstanding_tasks}
+            </table>
+        </td>
+    </tr>
+</table>

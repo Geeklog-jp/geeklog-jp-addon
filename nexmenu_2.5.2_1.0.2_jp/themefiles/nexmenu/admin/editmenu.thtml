@@ -1,0 +1,150 @@
+    <script>
+        function enableItemOption(obj) {
+            var option = obj.selectedIndex;
+            if ((option == 1 ) || (option == 2))  {
+                document.getElementById("showurl").style.display="";
+                document.getElementById("div1").style.display="";
+                document.getElementById("div11").style.display="";
+                document.getElementById("div2").style.display="none";
+                document.getElementById("div12").style.display="none";
+                document.getElementById("div3").style.display="none";
+                document.getElementById("div13").style.display="none";
+           } else if ( option == 4) {
+                document.getElementById("showurl").style.display="";
+                document.getElementById("div1").style.display="none";
+                document.getElementById("div11").style.display="none";
+                document.getElementById("div2").style.display="";
+                document.getElementById("div12").style.display="";
+                document.getElementById("div3").style.display="none";
+                document.getElementById("div13").style.display="none";
+           } else if ( option == 5) {
+                document.getElementById("showurl").style.display="";
+                document.getElementById("div1").style.display="none";
+                document.getElementById("div11").style.display="none";
+                document.getElementById("div2").style.display="none";
+                document.getElementById("div12").style.display="none";
+                document.getElementById("div3").style.display="";
+                document.getElementById("div13").style.display="";
+            } else {
+                document.getElementById("showurl").style.display="none";
+                document.getElementById("div1").style.display="none";
+                document.getElementById("div11").style.display="none";
+                document.getElementById("div2").style.display="none";
+                document.getElementById("div12").style.display="none";
+                document.getElementById("div3").style.display="none";
+                document.getElementById("div13").style.display="none";
+            }
+        }
+
+        function showhidenexmenulanguages() {
+            var obj = document.getElementById('alternatelabels');
+            if(obj.style.display == 'none') {
+                obj.style.display = '';
+            } else {
+                obj.style.display = 'none';
+            }
+        }
+    </script>
+<table width="100%" border="0" cellspacing="1" cellpadding="1" class="plugin" style="border: 0px;">
+    <tr>
+        <td class="pluginTitle" style="padding:5px;">Menu Administration</td>
+    </tr>
+    <tr>
+        <td>{navbar}</td>
+    </tr>
+
+    <tr>
+        <td>
+            <form name="frm_edit" action="{phpself}" method="post" style="padding:0;margin:0;">
+            <input type="hidden" name="op" value="saveaction">
+            <input type="hidden" name="mode" value="{mode}">
+            <input type="hidden" name="id" value="{id}">
+            <input type="hidden" name="showdisabled" value="{showdisabled}">
+            <input type="hidden" name="menulocation" value="{location}">
+            <table width="100%" border="0" cellspacing="1" cellpadding="1" class="plugin">
+                <tr>
+                    <td colspan="2" class="pluginSmallText pluginInfo" style="padding:5px;">{helpmsg}</td>
+                </tr>
+                <tr>
+                    <td width="30%" class="pluginCellSubTitle">Menu Item Location:</td>
+                    <td class="pluginCellText" style="padding-left:5px;">
+                       <label for="id1">Block Menu<input id="id1" type="radio" name="menu_location" value="block" {chk_block}></label>&nbsp;
+                       <label for="id2">Site Header<input id="id2" type="radio" name="menu_location" value="header" {chk_header}></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="pluginCellSubTitle">{LANG_ParentMenu}:</td>
+                    <td class="pluginCellText" style="padding-left:5px;">{sel_parent}</td>
+                </tr>
+                <tr>
+                    <td class="pluginCellSubTitle">{LANG_Label}:</td>
+                    <td class="pluginCellText" style="padding-left:5px;">
+                        <input type="text" name="menu_label" size="48" value="{label}"><span style="padding-left:10px;"><a href="#" onClick="showhidenexmenulanguages();return false;">{LANG_LANGUAGES}</a></span>
+                    </td>
+                 </tr>
+                <tr id="alternatelabels" style="display:none;">
+                    <td class="pluginCellSubTitle">{LANG_AlternateLabel}:</td>
+                    <td class="pluginCellText" style="padding-left:5px;">
+                        <table border="0" cellpadding="1" cellspacing="1">
+                            {language_options}
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="pluginCellSubTitle">{LANG_IMAGE}:</td>
+                    <td class="pluginCellText" style="padding-left:5px;">
+                        <input type="text" name="menu_image" size="48" maxlength="255" value="{menu_image}">&nbsp;&nbsp;<a class="tooltip" href="#">?<span style="width:270px;left:-160px;top:25px;">{LANG_ImageHelp}</span></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="pluginCellSubTitle">{LANG_ORDER}:</td>
+                    <td class="pluginCellText" style="padding-left:5px;">
+                        <input type="text" name="menu_order" size="4" maxlength="3" value="{order}">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="pluginCellSubTitle">Type:</td>
+                    <td class="pluginCellText" style="padding-left:5px;">
+                        <select name="menutype" onchange="(enableItemOption(this))">{optiontypes}</select>
+                     </td>
+                </tr>
+                <tr id="showurl" style="display:{showurl};">
+                    <td class="pluginCellSubTitle">
+                        <div id="div1" style="display:{show1}">{LANG_URLITEM}:</div>
+                        <div id="div2" style="display:{show2}">Core Function:</div>
+                        <div id="div3" style="display:{show3}">PHP Function:</div>
+                     </td>
+                    <td class="pluginCellText" style="padding-left:5px;">
+                        <div id="div11" style="display:{show1}">
+                            <input type="text" name="menu_url" size="64" maxlength="255" value="{url}">
+                        </div>
+                        <div id="div12" style="display:{show2}">
+                            <select name="coremenutype">{coremenutypes}</select>
+                        </div>
+                        <div id="div13" style="display:{show3}">
+                            <input type="text" name="phpfunction" size="64" maxlength="255" value="{phpfunction}">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="pluginCellSubTitle">Access Rights:</td>
+                    <td class="pluginCellText" style="padding-left:5px;"><select name="grp_access">{group_select}</select></td>
+                </tr>
+                <tr>
+                    <td class="pluginCellSubTitle">{LANG_Enabled}:</td>
+                    <td class="pluginCellText" style="padding-left:5px;">
+                        <input type="checkbox" name="menu_status" value="0" {chk1}>
+                     </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="pluginCellFill" style="padding:10px; text-align:center;">
+                        <input type=button value="{LANG_CANCEL}" onclick="document.location='{cancel_url}'"><span style="padding-left:20px;">
+                        <input type="submit" value="{LANG_SUBMIT}"></span>
+                    </td>
+                </tr>
+             </table>
+             </form>
+        </td>
+    </tr>
+</table>
+<p />

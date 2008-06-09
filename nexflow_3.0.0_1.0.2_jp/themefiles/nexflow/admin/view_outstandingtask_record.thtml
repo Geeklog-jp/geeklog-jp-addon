@@ -1,0 +1,49 @@
+<tr id="taskrec_{id}" class="pluginRow{csscode}" onMouseOver="className='pluginRollOver';" onMouseOut="className='pluginRow{csscode}';">
+    <td width="5%" nowrap>{date}</td>
+    <td width="15%" nowrap>{assigned}</td>
+    <td width="35%">{project}</td>
+    <td width="35%">{taskname}</td>     
+    <td width="10%" nowrap>{info}&nbsp;{trace}&nbsp;{re_assign}&nbsp;{assign_back}&nbsp;{hold}&nbsp;{notify}&nbsp;{delete}</td>
+</tr>
+<tr id="task_reassign_rec_{id}" class="pluginRow{csscode}" style="display:none;">
+    <td colspan="5" style="text-align:right;padding:10px 180px 20px 0px;">
+        <form ACTION="{actionurl}" METHOD="post" style="margin:0px;">
+            <input type="hidden" name="taskid" value="{taskid}">
+            <input type="hidden" name="op" value="reassign">
+            <input type="hidden" name="taskassign_mode" value="{taskassign_mode}">
+            <input type="hidden" name="variable_id" value="{variable_id}">
+            <input type="hidden" name="assignedUID" value="{assigned_UID}">            
+            <select name="task_reassign_uid" style="width:150px;">
+                <option value="0">Assign to user</option>
+                {user_options}
+            </select>
+            <input type="submit" name="submit" value="Re-Assign Task">
+        </form>
+   </td>
+</tr>
+<tr id="task_assignback_rec_{id}" class="pluginRow{csscode}" style="display:none;">
+    <td colspan="5" style="text-align:right;padding:10px 180px 20px 0px;">
+        <form ACTION="{actionurl}" METHOD="post" style="margin:0px;">
+            <input type="hidden" name="taskid" value="{taskid}">
+            <input type="hidden" name="op" value="assignback">
+            <input type="hidden" name="taskassign_mode" value="{taskassign_mode}">
+            <input type="hidden" name="variable_id" value="{variable_id}">
+            <input type="hidden" name="assignedUID" value="{assigned_UID}">
+            <input type="hidden" name="assignmentRecord" value="{assignment_rec}">
+            <input type="submit" name="submit" value="Assign This Task Back to the Original Owner?">
+        </form>
+   </td>
+</tr>
+<tr id="task_notify_rec_{id}" class="pluginRow{csscode}" style="display:none;">
+    <td colspan="5" style="text-align:right;padding:10px 180px 20px 0px;">
+        <form ACTION="{actionurl}" METHOD="post" style="margin:0px;">
+            <input type="hidden" name="taskid" value="{taskid}">
+            <input type="hidden" name="op" value="notify">
+            <input type="hidden" name="taskassign_mode" value="{taskassign_mode}">
+            <input type="hidden" name="variable_id" value="{variable_id}">
+            <input type="hidden" name="assignedUID" value="{assigned_UID}">
+            <textarea name="message" cols="80" rows="5"></textarea><br><br>
+            <input type="submit" name="submit" value="Send Task Reminder">
+        </form>
+   </td>
+</tr>

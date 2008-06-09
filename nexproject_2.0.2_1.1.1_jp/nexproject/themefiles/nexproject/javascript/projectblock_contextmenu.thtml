@@ -1,0 +1,244 @@
+<div id="movetaskmenu" ></div>
+
+<style>
+       div.yuimenu#prjContext {
+                background-repeat: no-repeat;
+                overflow: hidden;
+                background-color:#ffffff;
+                margin-left:1px;
+                margin-right:0px;
+                padding:0px 0px 0px 0px;
+        }
+           
+        div.yuimenu li  a {
+            width:161px;
+            text-align:left;
+            margin-left:0px;
+            margin-right:0px;
+            padding:0px 0px 0px 0px;
+        }
+        
+         div.yuimenu ul {
+            width:161px;
+            text-align:left;
+            margin-left:0px;
+            margin-right:0px;
+            padding:0px 0px 0px 0px;
+        }
+  </style>
+
+<script>
+
+function projectGanttClick(pid,s,expanded, gdate1, gdate2, url){
+
+    var toURL="";
+    expanded=readCookie("expanded");
+    if(s=='[+]'){
+        //alert("Should expand this one - " + pid);
+        if(expanded==""){
+            toURL=pid;
+            }
+        else{
+            toURL=expanded + "," + pid;
+            }
+        }
+    else{
+        if(s=='[-]'){
+            arr=expanded.split(",");
+            if(expanded==""){
+                toURL="";
+                }
+             else{//we have the case that the pid has to be stripped off.. just cycle thru the array, 
+                    //negating the one that we want left off
+                    toURL="";
+                    for(cntr=0;cntr<arr.length;cntr++){
+                        if(arr[cntr]!=pid){
+                            if(toURL==""){
+                                toURL += arr[cntr];
+                                }
+                            else{
+                                toURL +="," + arr[cntr];
+                                }
+                            }
+                        }//end for
+                
+                }
+                
+             }//end if expanded==""
+        }//end else
+    if(gdate1!='' && gdate2!=''){
+        //document.location=url + "?" + "gdate1=" + gdate1 + "&gdate2=" + gdate2 + "&expanded=" + toURL;
+        }
+    else{
+        //document.location=url + "?" + "expanded=" + toURL;
+        }   
+        setCookie("expanded", toURL,'' , '');
+        prj_getNewMap('projects',0);
+        
+        //document.location=document.location;
+    }//end function
+
+    
+ 
+    
+    
+    
+
+function showTskExp(show){
+    var thisLoc=document.location;
+    setCookie("STFEP", show,'' , '');
+    //document.location=thisLoc;
+    prj_getNewMap('projects',0);
+    }
+
+    
+function setGdate2(val){
+    setCookie("gdate2",val,"","");
+    }
+    
+    
+function setGdate1(val){
+    setCookie("gdate1",val,"","");
+    }
+    
+    
+function GetCookieValueProject(CookieName) {
+    var AllCookies = document.cookie;
+    var IsTableHidden;
+    var Pos = AllCookies.indexOf(CookieName);
+    var Start = Pos + CookieName.length;
+    
+    if(Pos>=0){
+        if(AllCookies.indexOf("%", Start)>0){
+            var End=AllCookies.indexOf(";", Start);
+            }
+        else{
+            Start=AllCookies.indexOf("%5C",Start) +2;
+            if(AllCookies.indexOf("%5C",Start)<AllCookies.indexOf(";",Start)){
+                var End = AllCookies.indexOf("%", Start);
+                }
+            else{
+                var End = AllCookies.indexOf(";", Start);
+                }
+            }
+        GetCookieValue = AllCookies.substring((Start+1), End);
+        }
+    else{
+        GetCookieValue="";
+        }
+    return (GetCookieValue);
+    }
+
+
+    
+      
+function onMenuItemClick(p_sType, p_aArguments) {
+    switch(this.activeItem.value[0]){
+        case 'moveprojectup':
+            op="moveprojectup";
+            break;
+        case 'moveprojectdn':
+            op="moveprojectdn";
+            break;
+        case 'moveprojectlft':
+            op="moveprojectlft";
+            break;
+        case 'moveprojectrht':
+            op="moveprojectrht";
+            break;
+        case 'filter':
+            op="filter";
+            break;
+        }
+
+        setCookie('expanded','','','');
+        prj_getMyProjects(op, this.activeItem.value[1], this.activeItem.value[3]);
+        prj_getNewMap('projects',0);
+        try{
+            this.parent.hide();
+            }
+        catch(e){}
+      
+    }
+
+
+function onContextMenuRender(p_sType, p_aArgs) {
+    this.clickEvent.subscribe(onMenuItemClick);
+}  
+
+function loadContextMenu (obj, tid, pid) {
+    var actionURL, tst, newitem;
+    try{
+        oContextMenu.destroy();
+        }
+    catch(e){}
+    
+    oContextMenu = new YAHOO.widget.ContextMenu("prjContext", { trigger: obj } );
+    oContextMenu.element.id="prjContext";
+    var whereWeAre='';
+    var disableFilter='{disableFilter}';
+    var thisLoc=new String(document.location);
+    if(thisLoc.indexOf('projects.php')>0){
+            whereWeAre= 'allprojects';
+        }else{
+           whereWeAre= 'myprojects';
+        }
+ 
+        try{
+        
+        if(obj.substr(0,3)!='ccc' ){
+                    tst = new YAHOO.widget.ContextMenuItem("<img width=161 src='images/moveup.gif' onmouseout='this.src=\"images/moveup.gif\"' onmouseover='this.src=\"images/moveup-highlight.gif\"' style='height:21px;width:161px'>");
+                    tst.value = ['moveprojectup',pid, tid, whereWeAre];
+                    oItem = oContextMenu.addItem(tst);
+                    
+                    tst = new YAHOO.widget.ContextMenuItem("<img width=161 src='images/movedn.gif' onmouseout='this.src=\"images/movedn.gif\"' onmouseover='this.src=\"images/movedn-highlight.gif\"' style='height:21px;width:161px'>");
+                    tst.value = ['moveprojectdn',pid, tid, whereWeAre];
+                    oItem = oContextMenu.addItem(tst);
+
+                    tst = new YAHOO.widget.ContextMenuItem("<img width=161 src='images/promote.gif' onmouseout='this.src=\"images/promote.gif\"' onmouseover='this.src=\"images/promote-highlight.gif\"' style='height:21px;width:161px'>");
+                    tst.value = ['moveprojectlft',pid, tid, whereWeAre];
+                    oItem = oContextMenu.addItem(tst);
+                    
+                    tst = new YAHOO.widget.ContextMenuItem("<img width=161 src='images/demote.gif' onmouseout='this.src=\"images/demote.gif\"' onmouseover='this.src=\"images/demote-highlight.gif\"' style='height:21px;width:161px'>");
+                    tst.value = ['moveprojectrht',pid, tid, whereWeAre];
+                    oItem = oContextMenu.addItem(tst);
+
+                    
+                    
+                    actionURL='{action_url}?mode=edit&tid=' + tid + '&id=' + pid;
+                    tst = new YAHOO.widget.ContextMenuItem("<img width=161 src='images/edit.gif' onmouseout='this.src=\"images/edit.gif\"' onmouseover='this.src=\"images/edit-highlight.gif\"' style='height:21px;width:161px'>",{ url: actionURL });
+                    oItem = oContextMenu.addItem(tst,1);
+                    
+                    
+                    actionURL='{action_url}?mode=delete&tid=' + tid + '&id=' + pid;
+                    tst = new YAHOO.widget.ContextMenuItem("<img width=161 src='images/delete.gif' onmouseout='this.src=\"images/delete.gif\"' onmouseover='this.src=\"images/delete-highlight.gif\"' style='height:21px;width:161px'>",{ url: actionURL });
+                    oItem = oContextMenu.addItem(tst,1);
+                    
+                    actionURL='{action_url}?mode=copy&tid=' + tid + '&id=' + pid;
+                    tst = new YAHOO.widget.ContextMenuItem("<img width=161 src='images/copy.gif' onmouseout='this.src=\"images/copy.gif\"' onmouseover='this.src=\"images/copy-highlight.gif\"' style='height:21px;width:161px'>",{ url: actionURL });
+                    oItem = oContextMenu.addItem(tst,1);
+                    
+                    
+                
+                if(disableFilter==''){
+                    
+                    tst = new YAHOO.widget.ContextMenuItem("<img width=161 src='images/filter.gif' onmouseout='this.src=\"images/filter.gif\"' onmouseover='this.src=\"images/filter-highlight.gif\"' style='height:21px;width:161px'>");
+                    tst.value = ['filter',pid, tid, whereWeAre];
+                    oItem = oContextMenu.addItem(tst,1);
+                    
+                    
+                    
+                    }
+                oContextMenu.renderEvent.subscribe(onContextMenuRender);
+                oContextMenu.render("movetaskmenu");
+                
+            }
+    }
+    catch(e){}
+    
+    
+          
+}
+
+    
+</script>

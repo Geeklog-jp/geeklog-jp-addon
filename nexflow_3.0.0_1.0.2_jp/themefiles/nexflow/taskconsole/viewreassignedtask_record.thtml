@@ -1,0 +1,12 @@
+<tr id="taskrecord{rowid}" class="pluginRow{csscode}" onMouseOver="className='pluginRollOver';" onMouseOut="className='pluginRow{csscode}';">
+    <td width="3%" style="border-left:1px solid white"><img src="{imgset}/{task_icon}" TITLE="Task ID:{task_id}{task_started_date}"></td>
+    <td width="35%">{project_title}</td>
+    <td width="35%">{task_name}</td>
+    <td width="10%" nowrap>{reassigned_owner}</td>     
+    <td width="10%" nowrap>{reassigned_date}</td>
+    <td width="5%" style="border-right:1px solid white;" nowrap>{project_details}{reclaim}{delete}</td>
+</tr>
+<tr id="taskdetail_rec{rowid}" class="taskconsoleActionRec" style="display:{showdetail};">
+    <td colspan="5" style=";padding:10px;"><div id="projectdetail_rec{rowid}">&nbsp;</div></td>
+</tr>
+<!-- {project_detail} -->

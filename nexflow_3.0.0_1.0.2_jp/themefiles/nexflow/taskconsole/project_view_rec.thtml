@@ -1,0 +1,10 @@
+
+{end_prevdiv}
+<div class="pd_projects pd_projectlinks pd_projects_row{cssid}" id="project_level{level}_crec{recid}" style="display:{show_rec};">
+    <span style="padding-left:{left_padding}px;"><img src="{layout_url}/nexflow/images/{closed_icon}" onClick="toggle_projectrec({level},{recid});{rec_onclick}">&nbsp;<a href="#" onClick="toggle_projectrec({level},{recid});{rec_onclick}return false;"><span class="{pd_projectslevel}">{record_label}</span></a></span>
+</div>
+<div class="pd_projects pd_projectlinks pd_projects_row{cssid}" id="project_level{level}_orec{recid}" style="display:none">
+    <span style="padding-left:{left_padding}px;"><img src="{layout_url}/nexflow/images/{open_icon}" onClick="toggle_projectrec({level},{recid});{rec_onclick}">&nbsp;<a href="#" onClick="toggle_projectrec({level},{recid});{rec_onclick}return false;"><span class="{pd_projectslevel}">{record_label}</span></a>
+        {project_detail}
+    </span>
+{end_div}

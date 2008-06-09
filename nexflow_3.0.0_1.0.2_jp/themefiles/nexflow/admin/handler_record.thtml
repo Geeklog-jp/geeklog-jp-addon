@@ -1,0 +1,20 @@
+    <tr class="pluginRow{cssid}" style="vertical-align:top;">
+        <td rowspan="2">{handler_id}</td>
+        <td width="65%"><input type="text" name="handler{handler_id}" size="80" value="{handler_name}" READONLY></td>
+        <td rowspan="2" width="30%" style="text-align:center;padding-right:10px;">
+            <span id="fieldaction{handler_id}">
+                <span id="edithandler{handler_id}">{edit_link}&nbsp{delete_link}</span>
+                <span id="updatehandler{handler_id}" style="display:none;">
+                    <input type="button" value="Save" onClick='ajaxUpdateHandler("update",{handler_id});'>&nbsp;
+                    <input type="button" value="Cancel" onClick='ajaxUpdateHandler("cancel",{handler_id});'>
+                </span>
+            </span>
+            <span id="fieldstatus{handler_id}" class="pluginInfo" style="display:none;">&nbsp;</span>
+        </td>
+    </tr>
+    <tr class="pluginRow{cssid}" >
+        <td>
+            <div id="vhdesc{handler_id}" style="display:;">{vhandler_desc}</div>
+            <div id="ehdesc{handler_id}" style="display:none;"><textarea name="desc{handler_id}" cols="65" rows="4">{ehandler_desc}</textarea></div>
+        </td>
+    </tr>

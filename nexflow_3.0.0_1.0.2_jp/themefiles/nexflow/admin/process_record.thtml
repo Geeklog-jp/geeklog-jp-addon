@@ -1,0 +1,4 @@
+        <tr class="pluginRow{csscode}" onMouseOver="className='pluginRollOver';" onMouseOut="className='pluginRow{csscode}';">
+            <td width="20%" style="padding:5px 10px;">{template_id}</td>
+            <td><a href="{site_url}/nexflow/newprocess.php?start={template_id}{optional_parms}">{template_name}</a></td>
+        </tr>

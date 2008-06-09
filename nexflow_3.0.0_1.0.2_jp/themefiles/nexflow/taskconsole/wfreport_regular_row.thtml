@@ -1,0 +1,35 @@
+<tr class="{state}" onMouseOver="className='pluginRollOver';" onMouseOut="className='{state}';" style="display:{flowrecord_initialstate};">
+    <td width="40%" class="myflowsRow">
+        <img src="{imgset}/{hold_icon}"  id="procIconImg{rowid}" style="display:{isOnHold}"> {isRegenerated} {prjDescription} <BR>
+    </td>
+    <td class="myflowsRow">
+        {initiatedDate}
+    </td>
+    <td class="myflowsRow">
+        {completedDate}
+    </td>
+    <td class="myflowsRow">
+        {flowStatus}
+    </td>
+    <td class="myflowsRow" >
+        <span style="cursor: hand" >   
+        <span  onclick="showFlowsDetails({whichID});">{prjDetailsIMG}</span>&nbsp;{onHoldIMG}
+        </span>
+    </td>
+</tr>
+<tr class="wfdetailrec" id="details{whichID}" style="display:none;">
+    <td colspan="5" width="100%">
+        <fieldset>
+            <legend><b>Outstanding Tasks</b></legend>
+                <table class="pluginSubTable" cellpadding="0" cellspacing="1" width="99%" border="0" style="margin:10px 5px 5px 5px;">
+                    <tr>
+                        <th>Task Name</th>
+                        <th>Owner</th>
+                        <th>Assigned</th>
+                        <th style="display:{show_otaskaction};">Action</th>
+                    </tr>
+                        {record_outstandingtasks}
+                </table>
+        </fieldset>
+    </td>
+</tr>

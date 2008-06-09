@@ -1,0 +1,109 @@
+
+        <table class="plugin" width="100%" cellspacing="0" style="margin-top:10px;margin-bottom:5px;border:1px solid #CCC;">
+            <tr>
+                <td width="420" style="padding-left:12px;">
+                    <form action="{action_url}" method="post" style="margin:0px;">
+                    <input type="hidden" name="singleuse" value="{singleuse}">
+                    <fieldset><legend>Trace Selected Task or Process</legend>
+                    <table>
+                        <tr>
+                            <td>Task ID:</td>
+                            <td><input type="text" name="staskid" size="8"></td>
+                            <td>Process ID:</td>
+                            <td><input type="text" name="sprocessid" size="8"></td>
+                            <td><input type="submit" value="Trace"></td>
+                        </tr>
+                    </table>
+                    </fieldset>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <fieldset><legend>Same Process</legend>
+                                    <div style="padding:10px 10px 5px 10px;">{sameprocess_prevtask_link}
+                                        <span style="padding-left:10px;">{sameprocess_nexttask_link}</span>
+                                    </div>
+                                </fieldset>
+                            </td>
+                            <td style="padding-left:40px;">
+                                <fieldset><legend>Any Process</legend>
+                                    <div style="padding:10px 10px 5px 10px;">{prevtask_link}<span style="padding-left:10px;">{nexttask_link}</span></div>
+                                </fieldset>
+                            </td>
+                            <td style="padding-left:40px;" nowrap>
+                                <fieldset><legend>Queue Size:&nbsp;<b>{queue_totalsize}</b></legend>
+                                    <div style="padding:10px 10px 5px 10px;">
+                                        <a href="{start_link}">Start of Queue</a><span style="padding-left:10px;"><a href="{end_link}">End of Queue</a></span>
+                                    </div>
+                                </fieldset>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+
+
+        <table width="100%" cellpadding="1" cellspacing="5" class="plugin" style="margin-bottom:5px;">
+            <tr>
+                <td width="50%" style="vertical-align:top;"> 
+                    <table border="0" width="100%" class="plugin" style="height:220px;">
+                        <tr class="pluginRow2">
+                            <td width="40%"><label>Queue ID:</label></td>
+                            <td>{qid}</td>
+                        </tr>
+                        <tr class="pluginRow1">
+                            <td><label>Template:</label></td>
+                            <td>{template_name}</td>
+                        </tr>
+                        <tr class="pluginRow2">
+                            <td><label>Task:</label></td>
+                            <td>{task_name}</td>
+                        </tr>
+                        <tr class="pluginRow1">
+                            <td><label>Status Flag:</label></td>
+                            <td>{status}</td>
+                        </tr>
+                        <tr class="pluginRow2">
+                            <td><label>Archived Flag:</label></td>
+                            <td>{archived}</td>
+                        </tr>
+                        <tr class="pluginRow1">
+                            <td><label>Process ID:</label></td>
+                            <td>{process_id}</td>
+                        </tr>
+                        <tr class="pluginRow2">
+                            <td><label>Parent Process ID:</label></td>
+                            <td>{parent_process_id}&nbsp;{trace_parent_link}</td>
+                        </tr>            
+                    </table>
+                </td>
+                <td width="50%" style="vertical-align:top;">
+                    <table border="0" width="100%" class="plugin" style="height:220px;">
+                        <tr class="pluginRow2">
+                            <td width="40%"><label>Logical Task ID:</label></td>
+                            <td>{logical_task_id}</td>
+                        </tr>
+                        <tr class="pluginRow1">
+                            <td width="40%"><label>Template Task ID:</label></td>
+                            <td>{task_id}</td>
+                        </tr>
+                        <tr class="pluginRow2">
+                            <td width="40%"><label>Assignment Date:</label></td>
+                            <td>{task_date}</td>
+                        </tr>                                                  
+                        <tr class="pluginRow1">
+                            <td width="40%"><label>Task Type:</label></td>
+                            <td>{task_type}</td>
+                        </tr>
+                        {task_related_information}
+                        {task_assignment_info}                      
+                    </table>
+                </td>
+            </tr>
+        </table>                                        

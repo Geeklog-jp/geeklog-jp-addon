@@ -1,0 +1,1 @@
+<div style="padding:2px 5px;">{form_date} > [&nbsp;<a class="info" href="{form_url}">{form_name}<span style="left:-2em;padding:5px;">{form_details}</span></a>&nbsp;] - '{form_status}'<span style="padding-left:10px;">{edit_link}</span></div>

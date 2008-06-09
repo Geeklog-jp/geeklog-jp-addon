@@ -1,0 +1,23 @@
+<head>
+    <script language=JavaScript 1.2 src="{layout_url}/forum/javascript/mainheader.js"></script>
+</head>
+{siteheader}
+{beginblock}
+<table width="100%" border="0" cellspacing="1" cellpadding="0">
+  <tr align="center">
+    <td align="left">{message}</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="1" cellpadding="0" class="globalSolidFill">
+
+  <tr>
+    <td  style="background: center url({layout_url}/images/button.gif);" nowrap>{begin_link1}{LANG_link1}</a></td>
+    <td  style="background: center url({layout_url}/images/button.gif);" nowrap>{begin_link2}{LANG_link2}</a></td>
+    <td  style="background: center url({layout_url}/images/button.gif);" nowrap>{begin_link3}{LANG_link3}</a></td>
+    <td  style="background: center url({layout_url}/images/button.gif);" nowrap>{begin_link4}{LANG_link4}</a></td>
+    <td  style="background: center url({layout_url}/images/button.gif);" nowrap>{begin_link5}{LANG_link5}</a></td>
+    <td  style="background: center url({layout_url}/images/button.gif);" nowrap>{begin_link6}{LANG_link6}</a></td>
+    </td></form>
+  </tr>
+</table>
+<HR>

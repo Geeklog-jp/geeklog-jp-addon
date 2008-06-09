@@ -1,0 +1,7 @@
+	<tr>
+		<td width="5%">{task_id}</td>
+		<td width="5%">{process_id}</td>
+		<td nowrap>{date}</td>
+		<td width="50%">{task_name}</td>
+		<td nowrap>&nbsp;[&nbsp;<a href="{action_link}">Take Action</a>&nbsp;]&nbsp;&nbsp;[&nbsp;<a href="{site_url}/nexflow/taskconsole.php?operation=cancel&taskid={task_id}">Cancel</a>]&nbsp;</td>
+	</tr>

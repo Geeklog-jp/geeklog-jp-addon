@@ -1,0 +1,26 @@
+<tr class="pluginRow{csscode}" onMouseOver="className='pluginRollOver';" onMouseOut="className='pluginRow{csscode}';">
+    <td width="3%" {class_newtask} style="border-left:1px solid white">
+        <img src="{imgset}/{task_icon}" TITLE="Task ID:{task_id}{task_started_date}" id="taskIconImg{rowid}">
+    </td>
+    <td width="35%">{project_title}</td>
+    <td width="35%">
+        <a class="info" style="text-decoration:none;" href="{task_action_url}" {task_onclick}>{task_name}
+            <span style="width:300px;display:{hidetaskinfo};">
+                {on_hold_notice}
+                <b>Date Assigned:</b>&nbsp;{assigned_date}<br>
+                <b>Description:</b>&nbsp;{description}<br>
+                <b>Comments:</b>&nbsp;{comments_note}
+            </span>
+        </a>
+    </td>
+    <td width="10%" nowrap>{date}</td>
+    <td width="5%" style="border-right:1px solid white;" nowrap>{project_details}{hold}{view}{edit}{delete}</td>
+</tr>
+
+<tr id="wfdetail_rec{rowid}" style="display:none;">
+    <td colspan="5" style="padding:10px;">
+        <div id="projectdetail_rec{rowid}">&nbsp;</div>
+    </td>
+</tr>
+<!-- {inline action record} -->
+{action_record}

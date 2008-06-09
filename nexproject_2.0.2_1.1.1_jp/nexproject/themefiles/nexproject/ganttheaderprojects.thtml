@@ -1,0 +1,22 @@
+<form action="{siteurl}/nexproject/index.php" method="post" style="margin:0px;" name="frmPeriod">
+    <table border="0"><tr><td>
+        <input id="gdate1" value="{gdate1}" name="gdate1" onchange="setGdate1(this.value);" readonly>&nbsp;
+        <div  class="popupcal" id="cal1Container1" style="position:absolute"></div>
+        </td><td>
+        <input id="gdate2" value="{gdate2}" name="gdate2" onchange="setGdate2(this.value);" readonly>&nbsp;
+            <div  class="popupcal" id="cal2Container1" style="position:absolute"></div>
+            </td>
+        <td>
+        <input type="button" value="Show Period" onclick="setGdate1(document.getElementById('gdate1').value);setGdate2(document.getElementById('gdate2').value);prj_getNewMap('projects',0);"></td><td style="padding-left:20px;">
+        &nbsp;Show Tasks for Expanded Projects <input type="checkbox" onclick="showTskExp(this.checked);" {checked} id="showTasksForExpandedProjects" name="showTasksForExpandedProjects" >
+        </td>
+        <td>Gantt Width: <input size=4 type="text" id="setganttwidth" name="setganttwidth" value="{windowwidth}" onchange="if(isNaN(this.value) || this.value<{mingraphwidth} ){ alert('Graph cannot be less than {mingraphwidth}px.  Numerical values only Please'); }else{ setMyCookie('windowwidth',this.value);setMyCookie('windowhw',this.value + ',' + this.value ); prj_getNewMap('projects',0); }">px&nbsp;
+        </td>    
+
+        </tr></table>
+        <script language="javascript">
+            v1=new nexYUICal;
+            v1.init("cal1Container1","gdate1");
+            v2=new nexYUICal;
+            v2.init("cal2Container1","gdate2");
+        </script>

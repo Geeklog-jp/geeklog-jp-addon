@@ -1,0 +1,125 @@
+<script language="javascript" src="{site_url}/javascript/nexYUICal.js"></script>
+{breadcrumb_trail}
+{edit_icons}
+<FORM name="projectForm" action="{site_url}/nexproject/index.php" method="post" style="margin:0px;">
+  <TABLE border="0" cellspacing="1" cellpadding="5" class="plugin">
+    <TR class="pluginHeader">
+      <TH colspan="6">{LANG_details}</TH>
+    </TR>
+    <TR>
+      <TD class="pluginCellTitle" width="150">{LANG_name}:</TD>
+      <TD class="pluginCellTitle" colspan="5" width="90%">
+        <INPUT style="WIDTH:100%" maxLength="100" name="name" value="{VALUE_name}">
+      </TD>
+    </TR>
+    <TR>
+      <TD class="pluginCellTitle">{LANG_description}:</TD>
+      <TD class="pluginCellTitle" colspan="5">
+        <TEXTAREA name="description" rows="5" STYLE="Width:100%">{VALUE_description}</TEXTAREA>
+      </TD>
+    </TR>
+    <TR>
+          <td width="20%" class="pluginCellTitle">{LANG_priority}:</td>
+          <td width="20%" class="pluginCellTitle"><SELECT name=priority style="text-indent:0px;">{priority_options}</select></td>
+          <td width="10%" class="pluginCellTitle">{LANG_status}:</td>
+          <td width="20%" class="pluginCellTitle"><SELECT name="status" style="text-indent:0px;">{status_options}</select></td>
+          <td width="10%" class="pluginCellTitle">{LANG_progress}:</td>
+          <td width="20%" class="pluginCellTitle"><SELECT name="progress" style="text-indent:0px;">{progress_options}</select></td>
+    </tr>
+    <TR>
+      <td class="pluginCellTitle">{LANG_objective}:</td>
+      <td colspan="2" class="pluginCellTitle"><SELECT name="objective" style="text-indent: 0px;">{objective_options}</SELECT>
+      <TD colspan="2" class="pluginCellTitle">{LANG_percentcomplete}:</TD>
+      <TD class="pluginCellTitle"><INPUT style="WIDTH:50px" maxLength="3" name="percent" value="{VALUE_percent_completion}"></TD>
+      </td>
+    </tr>
+    <TR>
+      <td class="pluginCellTitle">{LANG_location}:</td>
+      <td class="pluginCellTitle" colspan="2"><select name=location[] size="5" multiple style="WIDTH: 100%; text-indent: 0px;">{location_options}</select></td>
+      <td class="pluginCellTitle" align=left>{LANG_department}:</td>
+      <td class="pluginCellTitle" colspan="2"><select name=department[] size="5" multiple style="WIDTH: 100%; text-indent: 0px;">{department_options}</select>
+      </td>
+    </tr>
+    <TR>
+      <TD class="pluginCellTitle">{LANG_category}:</TD>
+      <TD class="pluginCellTitle" colspan="2">
+        <SELECT name=category[] size="5" multiple style="WIDTH: 100%; text-indent: 0px;">{category_options}</SELECT>
+      </TD>
+      <TD class="pluginCellTitle" style="display:{show_resources};">{LANG_resources}:</TD>
+      <TD class="pluginCellTitle" colspan="2" style="display:{show_resources};"><SELECT name=resources[] size="5" multiple style="WIDTH:100%; text-indent:0px;">{resource_options}</SELECT></TD>
+      <td class="pluginCellTitle" style="display:{show_owner};">{LANG_project_owner}:</td>
+      <td class="pluginCellTitle" colspan="2" style="display:{show_owner};"><SELECT name="owner" style="WIDTH:150px; text-indent:0px;">{owner_options}</select></td>
+    </TR>
+    <TR>
+      <td class="pluginCellTitle">{LANG_start_date}:</td>
+      <td colspan="2" valign="top" class="pluginCellTitle popupcal">
+        <input style="WIDTH: 125px;" id="startdate" name="start_date" value="{VALUE_start_date}" readonly title="Click here to change the Start Date...">&nbsp;
+        <div  class="popupcal" id="cal1Container1" style="position:absolute"></div>
+
+      </td>
+      <td class="pluginCellTitle">{LANG_estimated_end_date}:</td>
+      <td colspan="2" class="pluginCellTitle">
+      <div  class="popupcal" id="cal1Container1" style=""> </div>
+        <input id="estenddate" value="{VALUE_estimated_end_date}" name="estimated_end_date"  readonly title="Click here to change the Estimated End Date...">&nbsp;
+         <div  class="popupcal" id="cal2Container1" style="position:absolute"></div>
+
+    </td>
+    </TR>
+    <TR>
+      <td class="pluginCellTitle">{LANG_actual_end_date}:</td>
+      <td colspan="2" class="pluginCellTitle" valign="top">
+        <input style="WIDTH: 125px;" id="actenddate" value="{VALUE_actual_end_date}" name="actual_end_date"  readonly title="Click here to change the Actual End Date...">&nbsp;
+           <div  class="popupcal" id="cal3Container1" style="position:absolute"></div>
+      </td>
+      <td class="pluginCellTitle" style="vertical-align : middle;">{LANG_notification}:</td>
+      <td colspan="2" class="pluginCellTitle"><input type="checkbox" name="notification" value="Y" {VALUE_notification_enabled_flag}></td>
+    </tr>
+    <TR>
+      <td class="pluginCellTitle">{LANG_document}:</td>
+      <td class="pluginCellTitle" colspan="2">{LANG_yes}<input type="radio" name="document" value="Y" {VALUE_is_using_docmgmt_flag_on} {linked_content_disabled}>{LANG_no}<input type="radio" name="document" value="N" {VALUE_is_using_docmgmt_flag_off} {linked_content_disabled}></td>
+      <td class="pluginCellTitle">{LANG_forum}:</td>
+      <td class="pluginCellTitle" colspan="2">{LANG_yes}<input type="radio" name="forum" value="Y"{VALUE_is_using_forum_flag_on} {discussion_board_disabled}>{LANG_no}<input type="radio" name="forum" value="N" {VALUE_is_using_forum_flag_off} {discussion_board_disabled}></td>
+    </tr>
+    <TR style="display:none">
+      <td class="pluginCellTitle">{LANG_private}:</td>
+      <td class="pluginCellTitle" colspan="2">{LANG_yes}<input type="radio" name="private" value="Y" {VALUE_is_private_project_flag_on}>{LANG_no}<input type="radio" name="private" value="N" {VALUE_is_private_project_flag_off}></td>
+      <td class="pluginCellTitle">{LANG_template}:</td>
+      <td class="pluginCellTitle" colspan="2">{LANG_yes}<input type="radio" name="template" value="Y" {VALUE_is_template_project_flag_on}>{LANG_no}<input type="radio" name="template" value="N"  {VALUE_is_template_project_flag_off}></td>
+    </tr>
+    <TR>
+      <td class="pluginCellTitle">{LANG_keywords}:</td>
+      <td class="pluginCellTitle" colspan="5">
+        <textarea name=keywords rows=2 style="width:100%">{VALUE_keywords}</textarea>
+      </td>
+    </tr>
+    <TR class="pluginHeader" style="display:{show_changelog};">
+        <TH colspan="6">{LANG_status_log}</TH>
+    </TR>
+    <TR style="display:{show_changelog};">
+      <TD class=pluginCellTitle valign=top>{LANG_change_log_desc}:</TD>
+      <TD class="pluginCellTitle" colspan="5">
+        <TEXTAREA style="WIDTH:100%" name="changelog_entry" rows="4"></TEXTAREA>
+      </TD>
+    </TR>
+    <TR>
+      <TD colspan="6" style="text-align:center; vertical-align: middle; height:75px;">
+        <INPUT type=hidden name="mode" value="{mode}">
+        <INPUT type=hidden name="id" value="{id}">
+        <INPUT type=submit style="font-size:12; line-height: 16pt; width:60px;" value="Save">
+      </TD>
+    </TR>
+  </TABLE>
+</FORM>
+<p />
+<script language="javascript">
+    v1=new nexYUICal;
+    v1.init('cal1Container1','startdate');
+    v2=new nexYUICal;
+    v2.init('cal2Container1','estenddate');
+    v3=new nexYUICal;
+    v3.init('cal3Container1','actenddate');
+
+
+
+
+</script>

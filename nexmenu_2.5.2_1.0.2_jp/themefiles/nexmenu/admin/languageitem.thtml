@@ -1,0 +1,4 @@
+                            <tr>
+                                <td>{language_option}</td>
+                                <td><input type="text" name="alternatelabel[{language_id}]" size="48" value="{language_label}"></td>
+                            </tr>

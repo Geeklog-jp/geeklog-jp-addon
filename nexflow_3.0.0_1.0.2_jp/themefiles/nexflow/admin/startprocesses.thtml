@@ -1,0 +1,11 @@
+<table class="plugin" width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td colspan="2" class="pluginTitle">Pick a process to start</td>
+    </tr>
+    <tr>
+        <th nowrap>Template ID</th><th>Template Name</th>
+    </tr>
+    {template_records}
+</table>
+
+<div class="pluginAlert" style="display:{showmsg};padding:20px;">{message}</div>

@@ -1,0 +1,12 @@
+<!-- headersubmenu.thtml -->
+    <li class="{imgclass}">{menuitem_image}
+        <a href="{menuitem_url}" {lastitemclass}>{menuitem_label}
+        <!--[if IE 7]><!--></a><!--<![endif]-->
+        <!--[if lte IE 6]><table width="100%"><tr><td><![endif]-->
+            <ul>
+                {submenu_items}
+            </ul>
+       <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+    </li>
+
+

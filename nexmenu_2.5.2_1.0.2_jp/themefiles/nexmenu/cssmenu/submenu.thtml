@@ -1,0 +1,14 @@
+    <li>
+        <a class="drop" href="{menuitem_url}">{menuitem_label}
+        <!--[if IE 7]><!--></a><!--<![endif]-->
+        <table width="100%"class="subtable">
+            <tr>
+                <td>
+                    <ul>
+                        {submenu_items}
+                    </ul>
+                <td>
+            </tr>
+        </table>
+        <!--[if lte IE 6]></a><![endif]-->
+    </li>

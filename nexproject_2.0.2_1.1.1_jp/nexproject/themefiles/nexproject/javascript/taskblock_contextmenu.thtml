@@ -1,0 +1,125 @@
+       
+<div id="movetaskmenu" class="contextMenu" ></div>
+<style>
+      div.yuimenu#prjContext {
+                background-repeat: no-repeat;
+                overflow: hidden;
+                background-color:#ffffff;
+                margin-left:1px;
+                margin-right:0px;
+                padding:0px 0px 0px 0px;
+        }
+           
+        div.yuimenu li  a {
+            width:161px;
+            text-align:left;
+            margin-left:0px;
+            margin-right:0px;
+            padding:0px 0px 0px 0px;
+        }
+        
+         div.yuimenu ul {
+            width:161px;
+            text-align:left;
+            margin-left:0px;
+            margin-right:0px;
+            padding:0px 0px 0px 0px;
+        }
+        </style>
+
+<script language="JavaScript">
+
+function setGdate2(val){
+    setCookie("gdate2",val,"","");
+    }
+    
+    
+function setGdate1(val){
+    setCookie("gdate1",val,"","");
+    }
+    
+      
+function onMenuItemClick(p_sType, p_aArguments) {
+    
+    switch(this.activeItem.value[0]){
+        case 'movetaskup':
+            op="movetaskup";
+            break;
+        case 'movetaskdn':
+            op="movetaskdn";
+            break;
+        case 'movetasklft':
+            op="movetasklft";
+            break;
+        case 'movetaskrht':
+            op="movetaskrht";
+            break;
+    
+        }
+        
+        prj_getMyTasks(op, this.activeItem.value[2]);
+        prj_getNewMap('tasks', this.activeItem.value[1]);
+        this.parent.hide();
+
+        
+    }
+
+function onContextMenuRender(p_sType, p_aArgs) {
+    this.clickEvent.subscribe(onMenuItemClick);
+}  
+    
+function loadContextMenu (obj, tid, pid) {
+    
+    
+    try{
+        oContextMenu.destroy();
+        }
+    catch(e){}
+    
+     oContextMenu = new YAHOO.widget.ContextMenu("prjContext", { trigger: obj } );
+
+   
+    try{
+        tst = new YAHOO.widget.ContextMenuItem("<img width=161 src='images/moveup.gif' onmouseout='this.src=\"images/moveup.gif\"' onmouseover='this.src=\"images/moveup-highlight.gif\"' style='height:21px;width:161px'>");
+        tst.value = ['movetaskup',pid, tid];
+        oItem = oContextMenu.addItem(tst);
+
+        tst = new YAHOO.widget.ContextMenuItem("<img width=161 src='images/movedn.gif' onmouseout='this.src=\"images/movedn.gif\"' onmouseover='this.src=\"images/movedn-highlight.gif\"' style='height:21px;width:161px'>");
+        tst.value = ['movetaskdn',pid, tid];
+        oItem = oContextMenu.addItem(tst);
+
+        tst = new YAHOO.widget.ContextMenuItem("<img width=161 src='images/promote.gif' onmouseout='this.src=\"images/promote.gif\"' onmouseover='this.src=\"images/promote-highlight.gif\"' style='height:21px;width:161px'>");
+        tst.value = ['movetasklft',pid, tid];
+        oItem = oContextMenu.addItem(tst);
+
+        tst = new YAHOO.widget.ContextMenuItem("<img width=161 src='images/demote.gif' onmouseout='this.src=\"images/demote.gif\"' onmouseover='this.src=\"images/demote-highlight.gif\"' style='height:21px;width:161px'>");
+        tst.value = ['movetaskrht',pid, tid];
+        oItem = oContextMenu.addItem(tst);
+
+
+        actionURL='{action_url}?mode=add&id=' + tid + '&pid=' + pid;
+        tst = new YAHOO.widget.ContextMenuItem("<img width=161 src='images/add.gif' onmouseout='this.src=\"images/add.gif\"' onmouseover='this.src=\"images/add-highlight.gif\"' style='height:21px;width:161px'>",{ url: actionURL });
+        oItem = oContextMenu.addItem(tst,1);
+        
+        actionURL='{action_url}?mode=delete&id=' + tid + '&pid=' + pid;
+        tst = new YAHOO.widget.ContextMenuItem("<img width=161 src='images/delete.gif' onmouseout='this.src=\"images/delete.gif\"' onmouseover='this.src=\"images/delete-highlight.gif\"' style='height:21px;width:161px'>",{ url: actionURL });
+        oItem = oContextMenu.addItem(tst,1);
+        
+        actionURL='{action_url}?mode=copy&id=' + tid + '&pid=' + pid;
+        tst = new YAHOO.widget.ContextMenuItem("<img width=161 src='images/copy.gif' onmouseout='this.src=\"images/copy.gif\"' onmouseover='this.src=\"images/copy-highlight.gif\"' style='height:21px;width:161px'>",{ url: actionURL });
+        oItem = oContextMenu.addItem(tst,1);
+        
+        
+        
+
+        
+        oContextMenu.renderEvent.subscribe(onContextMenuRender);      
+        oContextMenu.render("movetaskmenu");
+    }
+    catch(e){}
+}
+    
+    
+ 
+    
+</script>

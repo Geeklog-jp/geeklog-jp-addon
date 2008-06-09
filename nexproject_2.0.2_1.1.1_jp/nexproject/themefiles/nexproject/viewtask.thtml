@@ -1,0 +1,88 @@
+<script type="text/javascript"> 
+       function toggle_tasklog() {
+       if (document.getElementById('prj_tasklog').style.display == 'none') {
+           document.getElementById('prj_tasklog').style.display = '';
+           document.getElementById('prj_tasklog_link').firstChild.nodeValue = '[Hide Log]';           
+       } else {
+           document.getElementById('prj_tasklog').style.display = 'none';
+           document.getElementById('prj_tasklog_link').firstChild.nodeValue = '[Show Log]';             
+       }
+    } 
+</script>
+   {breadcrumb_trail}
+   {edit_icons}    
+  <TABLE width="100%" cellSpacing="1" cellPadding="0" class="plugin" style="background-color:#CCC;">
+    <TR class="pluginHeader"> 
+      <TH colspan=2>{LANG_task_details}</TH>
+    </TR>
+    <tr> 
+      <td class="pluginCellTitle" style="background-color:{VALUE_progress_color};">{LANG_progress}:</td>
+      <TD class="pluginCellText" style="background-color:{VALUE_progress_color};">&nbsp;</td> 
+    </tr>    
+    <TR> 
+      <TD width="150px" class="pluginCellTitle">{LANG_name}:</TD>
+      <TD width="70%" class="pluginCellText">{VALUE_name}</TD>
+    </TR>
+    <TR> 
+      <TD class="pluginCellTitle">{LANG_description}:</TD>
+      <TD class="pluginCellText">{VALUE_description}</TD>
+    </TR>
+    <tr> 
+      <td class="pluginCellTitle">{LANG_priority}:</td>
+      <TD class="pluginCellText">{VALUE_priority}</td>
+    </tr>
+    <tr> 
+      <td class="pluginCellTitle">{LANG_status}:</td>
+      <TD class="pluginCellText">{VALUE_status}</td>
+    </tr>
+    <tr> 
+      <td class="pluginCellTitle">{LANG_duration}:</td>
+      <TD class="pluginCellText">{VALUE_duration}&nbsp;{VALUE_duration_type}</td> 
+    </tr>
+    <TR> 
+      <TD class="pluginCellTitle">{LANG_percentcomplete}:</TD>
+      <TD class="pluginCellText">{VALUE_progress}%</TD>
+    </TR>
+    <tr style="display:{show_assignment}"> 
+      <td class="pluginCellTitle">{LANG_assigned_to}:</td>
+      <TD class="pluginCellText">{VALUE_owner}</td>  
+    </tr>
+    <tr> 
+      <td class="pluginCellTitle">{LANG_start_date}:</td>
+      <td class="pluginCellText">{VALUE_start_date}</td>
+    </tr>
+    <tr> 
+      <td class="pluginCellTitle">{LANG_estimated_end_date}:</td>
+      <td class="pluginCellText">{VALUE_estimated_end_date}</td>
+    </tr>
+    <tr> 
+      <td class="pluginCellTitle">{LANG_actual_end_date}:</td>
+      <td class="pluginCellText">{VALUE_actual_end_date}</td>
+    </tr>
+    <tr> 
+      <td class="pluginCellTitle">{LANG_notification}:</td>
+      <TD class="pluginCellText"> 
+        <input type="checkbox" name="notification_enabled_flag" {VALUE_notification_enabled_flag} DISABLED>
+      </td>
+    </tr>
+    <tr> 
+      <td class="pluginCellTitle"><div >{LANG_make_private}:</div></td>
+      <TD class="pluginCellText"> 
+        <input type="checkbox" name="make_private_enabled_flag" {VALUE_make_private_enabled_flag} DISABLED>
+      </td>
+    </tr>
+    <tr> 
+      <td class="pluginCellTitle">{LANG_keywords}:</td>
+      <TD class="pluginCellText">{VALUE_keywords}</td>
+    </tr>       
+    <TR class="pluginHeader" style="display:{show_changelog};"> 
+        <TH colspan="4">{LANG_status_log}<span class="pluginSmallText" style="padding-left:20px;"><a id="prj_tasklog_link" href="#" onClick="toggle_tasklog();">[Show Log]</a></span></TH>
+    </TR>
+    <TR id="prj_tasklog" style="display:none;">
+        <TD colspan="2" class="pluginCellText">
+            <table class="plugin" border="0" width="100%" style="border:0px;">
+                {task_log_entries}
+            </table>
+        </td>
+    </tr>         
+  </TABLE>

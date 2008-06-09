@@ -1,0 +1,5 @@
+                <div class="comment">
+                    <img src="{layout_url}/nexflow/images/comment.gif" alt="" align="middle" border="0" height="16" width="16">&nbsp;Comment by: {comment_username} on {comment_date}&nbsp;{comment_del_link}&nbsp;{comment_add_link}<br>
+                    <div style="padding-bottom:5px;">{comment_taskname}</div>
+                    <div class="boxed elementUpdated"><p>{comment}</p></div>
+                </div>

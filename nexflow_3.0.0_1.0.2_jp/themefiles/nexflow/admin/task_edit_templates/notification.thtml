@@ -1,0 +1,130 @@
+<div id="{prefix}notify_on_assign" style="display: none;">
+    <fieldset class="nf_edit_fieldset"><legend class="nf_edit_legend">{LANG_notify_on_assign}</legend>
+        <form id="{prefix}frm_notifyOnAssign">
+            <input type="hidden" name="op" value="notify_on_assign"></input>
+            <input type="hidden" name="taskid" value="{taskid}"></input>
+            <table width="100%">
+                <tr style="text-align: center;">
+                    <td class="nf_task_edit_other" width="200">
+                        {LANG_available_variables}:<br />
+                        <select id="{prefix}availablePrenotifyVariables" name="availableVariables" size="4" style="width:160px;" multiple="multiple">{availablePrenotifyOptions}</select>
+                    </td>
+                    <td style="vertical-align: middle; text-align: center; white-space: nowrap;" width="100">
+                        <a href="#" onClick="moveSelectedOption('{prefix}assignedPrenotifyVariables', '{prefix}availablePrenotifyVariables'); return false;"><img src="{layout_url}/nexflow/images/admin/left_arrow.png" /></a>
+                        <a href="#" onClick="moveSelectedOption('{prefix}availablePrenotifyVariables', '{prefix}assignedPrenotifyVariables'); return false;"><img src="{layout_url}/nexflow/images/admin/right_arrow.png" /></a>
+                    </td>
+                    <td class="nf_task_edit_other" width="200">
+                        {LANG_variables_assigned}:<br />
+                        <select id="{prefix}assignedPrenotifyVariables" name="assignedVariables" size="4" style="width:160px;" multiple="multiple">{assignedPrenotifyOptions}</select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="nf_task_edit_left" colspan="3" style="vertical-align: middle; text-align: center;">
+                        {LANG_message}: <a class="info" style="text-decoration:none;" href="#">?<span style="width:250px;">{message_help}</span></a><br />
+                        <textarea name="prenotify_message" rows="3" cols="56">{prenotify_message}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="vertical-align: middle; text-align: center;">
+                        <input type="button" value="{LANG_save}" onClick="SaveEditChanges.request(document.getElementById('{prefix}frm_notifyOnAssign'));"></input>
+                        <input type="button" value="{LANG_cancel}" onClick="finish_task_edit('task{taskid}');"></input>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+</div>
+
+<div id="{prefix}notify_on_complete" style="display: none;">
+    <fieldset class="nf_edit_fieldset"><legend class="nf_edit_legend">{LANG_notify_on_complete}</legend>
+        <form id="{prefix}frm_notifyOnComplete">
+            <input type="hidden" name="op" value="notify_on_complete"></input>
+            <input type="hidden" name="taskid" value="{taskid}"></input>
+            <table width="100%">
+                <tr style="text-align: center;">
+                    <td class="nf_task_edit_other" width="200">
+                        {LANG_available_variables}:<br />
+                        <select id="{prefix}availablePostnotifyVariables" name="availableVariables" size="4" style="width:160px;" multiple="multiple">{availablePostnotifyOptions}</select>
+                    </td>
+                    <td style="vertical-align: middle; text-align: center; white-space: nowrap;" width="100">
+                        <a href="#" onClick="moveSelectedOption('{prefix}assignedPostnotifyVariables', '{prefix}availablePostnotifyVariables'); return false;"><img src="{layout_url}/nexflow/images/admin/left_arrow.png" /></a>
+                        <a href="#" onClick="moveSelectedOption('{prefix}availablePostnotifyVariables', '{prefix}assignedPostnotifyVariables'); return false;"><img src="{layout_url}/nexflow/images/admin/right_arrow.png" /></a>
+                    </td>
+                    <td class="nf_task_edit_other" width="200">
+                        {LANG_variables_assigned}:<br />
+                        <select id="{prefix}assignedPostnotifyVariables" name="assignedVariables" size="4" style="width:160px;" multiple="multiple">{assignedPostnotifyOptions}</select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="nf_task_edit_left" colspan="3" style="vertical-align: middle; text-align: center;">
+                        {LANG_message}: <a class="info" style="text-decoration:none;" href="#">?<span style="width:250px;">{message_help}</span></a><br />
+                        <textarea name="postnotify_message" rows="3" cols="56">{postnotify_message}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="vertical-align: middle; text-align: center;">
+                        <input type="button" value="{LANG_save}" onClick="SaveEditChanges.request(document.getElementById('{prefix}frm_notifyOnComplete'));"></input>
+                        <input type="button" value="{LANG_cancel}" onClick="finish_task_edit('task{taskid}');"></input>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+</div>
+
+<div id="{prefix}notify_reminders" style="display: none;">
+    <fieldset class="nf_edit_fieldset"><legend class="nf_edit_legend">{LANG_task_reminders}</legend>
+        <form id="{prefix}frm_notifyReminders">
+            <input type="hidden" name="op" value="notify_reminders"></input>
+            <input type="hidden" name="taskid" value="{taskid}"></input>
+            <table width="100%">
+                <tr style="text-align: center;">
+                    <td class="nf_task_edit_other" width="200">
+                        {LANG_available_variables}:<br />
+                        <select id="{prefix}availableReminderVariables" name="availableVariables" size="4" style="width:160px;" multiple="multiple">{availableReminderOptions}</select>
+                    </td>
+                    <td style="vertical-align: middle; text-align: center; white-space: nowrap;" width="100">
+                        <a href="#" onClick="moveSelectedOption('{prefix}assignedReminderVariables', '{prefix}availableReminderVariables'); return false;"><img src="{layout_url}/nexflow/images/admin/left_arrow.png" /></a>
+                        <a href="#" onClick="moveSelectedOption('{prefix}availableReminderVariables', '{prefix}assignedReminderVariables'); return false;"><img src="{layout_url}/nexflow/images/admin/right_arrow.png" /></a>
+                    </td>
+                    <td class="nf_task_edit_other" width="200">
+                        {LANG_variables_assigned}:<br />
+                        <select id="{prefix}assignedReminderVariables" name="assignedVariables" size="4" style="width:160px;" multiple="multiple">{assignedReminderOptions}</select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="nf_task_edit_left" colspan="3" style="padding-top: 5px;">
+                        {LANG_initial_reminder}: <select id="selnotifyinterval" name="notifyinterval" style="width:60px;">{notifyIntervalOptions}</select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="nf_task_edit_left" colspan="3" style="padding-top: 5px;">
+                        {LANG_subsequent_reminder}: <select id="selsubsequentinterval" name="subsequentinterval" style="width:60px;">{subsequentIntervalOptions}</select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="nf_task_edit_left" colspan="3" style="padding-top: 5px;">
+                        {LANG_escalate_after} <input type="text" name="numReminders" value="{numReminders}" size="4"></input> {LANG_notifications_sent}.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="nf_task_edit_left" colspan="3" style="padding-top: 5px;">
+                        {LANG_escalation_user}: <select name="esc_user">{esc_user_options}</select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="nf_task_edit_left" colspan="3" style="vertical-align: middle; text-align: center;">
+                        {LANG_message}: <a class="info" style="text-decoration:none;" href="#">?<span style="width:250px;">{message_help}</span></a><br />
+                        <textarea name="reminder_message" rows="3" cols="56">{reminder_message}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="vertical-align: middle; text-align: center;">
+                        <input type="button" value="{LANG_save}" onClick="SaveEditChanges.request(document.getElementById('{prefix}frm_notifyReminders'));"></input>
+                        <input type="button" value="{LANG_cancel}" onClick="finish_task_edit('task{taskid}');"></input>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+</div>

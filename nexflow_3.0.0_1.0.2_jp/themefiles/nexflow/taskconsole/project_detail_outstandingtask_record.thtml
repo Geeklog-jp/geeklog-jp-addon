@@ -1,0 +1,18 @@
+<tr>
+    <td width="50%" style="padding:4px;"><a style="text-decoration:none;" href="#" TITLE="Workflow QID:{otaskid}">{otask_name}</a></td>
+    <td style="padding:4px;" mowrap>{otask_user}</td>
+    <td style="padding:4px;" nowrap>{otask_date}</td>
+    <td style="padding:4px;display:{show_otaskaction};" nowrap>
+        <form style="margin:0px;">
+            <input type="hidden" name="variable_id" value="{variable_id}">
+            <input type="hidden" name="taskuser" value="{taskuser}">
+            <input type="hidden" name="taskassign_mode" value="{taskassign_mode}">
+                        <input type="hidden" name="id" value="{otask_id}">
+            <select name="task_reassign_uid">
+                <option value="0">Assign to user</option>
+                {user_options}
+            </select>
+            <input type="button" name="op" value="Re-Assign" onClick="ajaxUpdateTaskAssignment({rowid},{project_id},this.form.task_reassign_uid.value,{otaskid},{variable_id});">
+        </form>
+   </td>
+</tr>

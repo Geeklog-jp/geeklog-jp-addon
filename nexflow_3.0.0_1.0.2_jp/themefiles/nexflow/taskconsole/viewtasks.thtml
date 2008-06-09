@@ -1,0 +1,99 @@
+{javascript_close_onload}
+<script type="text/javascript" src="{site_url}/nexflow/include/ajaxsupport.js"></script>
+
+{javascript_code}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td colspan="2" style="padding:5px 0px 5px 20px;">[<a id="taskconsole_options_link" href="#" onclick="showhide_filter();return false;">{lang_hidefilter}</a>]
+                <span id="pstatus" style="padding-left:50px;display:none;">
+                    <span id="pstatuscontent" class="pluginInfo" style="border:1px solid #CCCCCC;padding:2px 5px 2px 5px;"></span>
+                </span>
+        </td>
+    </tr>
+    <tr id="taskconsole_filter" class="pluginInfo pluginMediumText" style="display:{hidefilter};">
+        <td width="20%" style="vertical-align:top;border-top:1px solid #CCCCCC;border-left:1px solid #CCCCCC;padding:0px 0px 0px 5px;display:{show_seltaskuser}">
+           <fieldset><legend>Switch User</legend>
+           <form name="fseltaskuser" action="{actionurl}" method="post" style="margin-bottom:8px;margin-top:4px;display:{show_seltaskuser}">
+                <input type="hidden" name="op" value="mytasks">
+                <input type="hidden" name="taskfilter" value="{selected_taskfilter_option}">
+                <input type="hidden" name="tasksort" value="{selected_tasksort_option}">
+                <input type="hidden" name="appmode" value="{appmode}">
+                <input type="hidden" name="projectnum" value="{projectnum}">
+                <input type="hidden" name="filterdate" value="{filterdate}">
+                <input type="hidden" name="chkreverse" value="{chkreverse_setting}">
+                <select name="taskuser" onChange='submit();'>
+                    <option value="0">View tasks for user</option>
+                    {sel_user_options}
+                </select>
+            </form>
+            </fieldset>
+        </td>
+        <td width="80%" style="border-top:1px solid #CCCCCC;border-right:1px solid #CCCCCC;padding:0px 5px 0px 5px;vertical-align:top">
+                <fieldset><legend>Task Filter Options</legend>
+                <form name="fseltaskfilter" action="{actionurl}" method="post" style="margin:0px;">
+                    <input type="hidden" name="op" value="mytasks">
+                    <input type="hidden" name="taskconsolefilter" value="1">
+                    <input type="hidden" name="taskuser" value="{taskuser}">
+                    <table cellpadding="0" cellspacing="0" border="0" style="padding:0px 0px 0px 0px;">
+                        <tr>
+                            <td class="pluginInfo" style="white-space:nowrap;vertical-align:top;padding-left:3px;padding-top:4px;">
+                                <span id="searchtextfield" style="display:{show_searchtextfield};">
+                                    Text:&nbsp;<input type="text" name="srchText" value="{srchTextValue}">
+                                </span>
+                                <span id="selectappfield" style="display:{show_selectappfield};">
+                                    <select name="idAppGroup">
+                                        {srchApplicationGroups}
+                                    </select>
+                                </span>
+                            </td>
+                            <td class="pluginInfo" style="white-space:nowrap;vertical-align:top;padding-left:0px;padding-top:4px;">
+                                <select name="srchFilter" size="1" onchange="toggleApplicationGroup(this.value);">
+                                    <option value="" ></option>
+                                    <option value="title" {srchseltitle}>{srchFilterTitle}</option>
+                                    <option value="desc" {srchselreqdesc}>{srchFilterReqDesc}</option>
+                                    <option value="appgroup" {srchselappgroup}>{srchFilterPrjName}</option>
+                                </select>
+                            </td>
+                            <td class="pluginInfo" style="white-space:nowrap;vertical-align:top;padding-left:0px;padding-top:4px;">
+                               Status:&nbsp;<select name="srchStatus" size="1">
+                                    <option value="-1" {srchselany}>Any</option>
+                                    <option value="1" {srchselactive}>Active</option>
+                                    <option value="2" {srchselonhold}>On Hold</option>
+                                    <option value="3" {srchselstarted}>Started Tasks</option>
+                                    <option value="4" {srchselunstarted}>Unstarted Tasks</option>
+                                </select>
+                            </td>
+                            <td class="pluginInfo" style="padding-top:5px;white-space:nowrap;vertical-align:top;padding-left:0px;">
+                                <input type="submit" value="{srchDoSearch}" name="dosearch">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </fieldset>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" class="pluginInfo pluginMediumText" style="padding:5px 0px 5px 20px;color:red;display:{show_awaystatus};">x{away_status}x</td>
+    </tr>
+    <tr style="display:{show_reassignmentmessage}">
+         <td colspan="2" class="pluginAlert pluginMediumText">{reassignment_message}</td>
+    </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>
+            <table class="plugin" width="100%" border="0" cellspacing="0" cellpadding="0">             
+            <tr class="pluginHeader" align="left">
+                <th colspan="2" style="padding-left:35px;border-right:1px solid #CCC;">{heading1}</th>
+                <th style="border-right:1px solid #CCC;">{heading2}</th>
+                <th colspan="2" style="border-right:1px solid #CCC;">{heading3}</th>
+            </tr>          
+            <tr style="display:{show_message}">
+                 <td class="pluginAlert" colspan="5">{error_message}</td>
+            </tr>
+                {view_records}
+            </table>
+        </td>
+    </tr>
+</table>

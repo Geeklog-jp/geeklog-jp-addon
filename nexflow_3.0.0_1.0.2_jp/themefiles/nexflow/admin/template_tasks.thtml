@@ -1,0 +1,419 @@
+
+<script type="text/javascript" src="{public_url}/include/ajaxsupport.js"></script> 
+<script type="text/javascript">
+
+
+
+    function handleTaskType(selected) {
+  
+        // Check if editing a valid task and if task is an interactive one - then show extra options
+        var v1 = eval('document.template.templateTaskID');
+        if (v1.value > 0 ) {
+            if (selected == 1 || selected == 7 || selected == 8) {
+                document.getElementById('taskassignment').style.display = '';
+                document.getElementById('emailoptions').style.display = '';
+                document.getElementById('dynamicFormElements').style.display = '';
+
+            } else {
+                document.getElementById('taskassignment').style.display = 'none';
+                document.getElementById('emailoptions').style.display = 'none';
+                document.getElementById('dynamicFormElements').style.display = 'none';
+
+            }
+        }
+        if (selected == 5) {       
+            document.getElementById('showif').style.display = '';
+            document.getElementById('taskhandler').style.display = 'none';  
+            document.getElementById('taskfunction').style.display = 'none';
+            document.getElementById('taskform').style.display = 'none';
+            document.getElementById('dynamicFormElements').style.display = 'none';
+
+        } else if (selected == 6 || selected == 7) {
+            document.getElementById('showif').style.display = 'none';
+            document.getElementById('taskhandler').style.display = 'none';  
+            document.getElementById('taskfunction').style.display = ''; 
+            document.getElementById('taskform').style.display = 'none';
+            document.getElementById('dynamicFormElements').style.display = 'none';
+
+        } else if (selected == 8) {//nexForm task
+            document.getElementById('showif').style.display = 'none';
+            document.getElementById('taskhandler').style.display = 'none';  
+            document.getElementById('taskfunction').style.display = 'none'; 
+            document.getElementById('taskform').style.display = '';
+            //show the checkbox to signify a dynamically assigned form
+            //document.getElementById('dynamicFormElements').style.display = '';
+            
+        } else if (selected == 1 || selected == 4) {
+            document.getElementById('showif').style.display = 'none';
+            document.getElementById('taskhandler').style.display = '';
+            document.getElementById('taskfunction').style.display = 'none';
+            document.getElementById('taskform').style.display = 'none';
+            document.getElementById('dynamicFormElements').style.display = 'none';
+
+
+        } else {
+            document.getElementById('showif').style.display = 'none';
+            document.getElementById('taskhandler').style.display = 'none';
+            document.getElementById('taskfunction').style.display = 'none';
+            document.getElementById('taskform').style.display = 'none';
+            document.getElementById('dynamicFormElements').style.display = 'none';
+
+
+        }
+    }
+
+    function toggleassignment(radioGroupName) {
+        var i = 0;
+        var len = 0;
+        var radios = document.getElementsByName(radioGroupName);
+
+        if (radios[0].checked) {
+            document.getElementById('assignusers').style.display = '';
+            document.getElementById('variableusers').style.display = 'none';
+
+            userlist = document.getElementById('seluserassignment');
+            len = userlist.options.length;
+            for (i = 0; i < len; i++) {
+                userlist.options[0] = null;
+            }
+
+            ajaxUpdateTask("setAssignmentType");
+        } else if (radios[1].checked) {
+            document.getElementById('assignusers').style.display = 'none';
+            document.getElementById('variableusers').style.display = '';
+
+            variablelist = document.getElementById('selvariableassignment');
+            len = variablelist.options.length;
+            for (i = 0; i < len; i++) {
+                variablelist.options[0] = null;
+            }
+
+            ajaxUpdateTask("setAssignmentType");
+        }
+    }
+    
+    function emailtab(tabid) {
+    
+        // Clear tabs and then set the selected one 
+        document.getElementById('etab1').className = '';
+        document.getElementById('etab2').className = '';
+        document.getElementById('etab3').className = '';    
+        document.getElementById(tabid).className = 'selected';
+        
+        document.getElementById('notify_etab1').style.display = 'none';
+        document.getElementById('notify_etab2').style.display = 'none';  
+        document.getElementById('notify_etab3').style.display = 'none';  
+        document.getElementById('notify_' + tabid).style.display = '';
+        document.getElementById('taskassignment').scrollIntoView();
+    }
+    
+    
+    function toggleDynamicFormSelector(isChecked){
+        if(isChecked){
+            document.getElementById('taskform').style.display = 'none';
+            document.getElementById('dynamicFormSelectVariable').style.display = '';
+        }else{
+            document.getElementById('taskform').style.display = '';
+            document.getElementById('dynamicFormSelectVariable').style.display = 'none';
+        }
+    }
+    
+    function toggleDynamicNameSelector(isChecked){
+        if(isChecked){
+            document.getElementById('dynamicNameSelectVariable').style.display = '';  
+        }else{
+            document.getElementById('dynamicNameSelectVariable').style.display = 'none';  
+        }
+    }
+</script>
+
+<form name="template" method=post action="{action_url}" style="margin:0px;">
+    <input type="hidden" name="templateID" value="{template_id}">
+    <input type="hidden" name="taskID" value="">
+
+    <table width="100%" class="plugin" style="border-collapse:collapse;margin-top:0px;margin-bottom:50px;" cellspacing="1" cellpadding="1" border="0">
+        <tr>
+            <td class="pluginHeader" colspan="2" style="text-align:left;padding:5px 10px 5px 10px;">{template_name}</td>
+        </tr>
+        <tr>
+            <td width="380" style="vertical-align:top;">
+                <table style="border-collapse:collapse;" border="0" width="100%">
+                    <tr>
+                        <td>
+                            {template_task_records}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+
+            <!-- Right Side -->
+            <td style="vertical-align:top;text-align:left;">
+                <input type="hidden" name="templateTaskID" value="{edit_task_id}">
+                <input type="hidden" name="templateLogicalTaskID" value="{logical_task_id}">
+                <table width="100%" class="plugin" style="background-color:#E7FFCC;border-collapse:collapse;" border="0" cellpadding="1" cellspacing="1">
+                    <tr>
+                        <td>Logical Task ID:</td>
+                        <td><input type="text" name="logicalID" maxlength=25 style="width:200" value="{logical_task_id}" readonly="true"></td>
+                    </tr>
+                    <tr>
+                        <td>Task Name:</td>
+                        <td>
+                        <input type="text" name="taskName" maxlength="50" size="25" value="{edit_task_name}">
+                        </td>
+                    </tr>
+                    
+                    <tr id="dynamicNameElements"  style="display:{show_dynamicnamecb};">
+                        <td>Use a Dynamic Task Name?:</td>
+                        <td>
+                            <input type="checkbox" name="isDynamicName" id="isDynamicName" {chk_isDynamicName} onClick='ajaxUpdateTask("setDynamicName");toggleDynamicNameSelector(this.checked)'>
+                            <BR>
+                            <div id="dynamicNameSelectVariable" style="{show_dynamicnamevars}">
+                            Select a Variable for Dynamic <BR>Task Name:<br>
+                            <select name="dynamicNameVariableSelector" size="4" style="width:160px;" onclick='ajaxUpdateTask("setDynamicNameVariable");'>
+                            {available_taskvariablesOptions}
+                            </select>
+                            <BR>
+                            </div>
+                        </td>
+                    </tr>
+
+                    
+                    <tr>
+                        <td>Task Type:</td>
+                        <td>
+                            <select name="idstepType" style="width:200" onChange="handleTaskType(this.value);">
+                                <option value="" selected></option>{steptype_options}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr id="dynamicFormElements"  style="display:{show_dynamicformcb};">
+                        <td>Is this a Dynamically Assigned Form?:</td>
+                        <td>
+                            <input type="checkbox" name="isDynamicForm" id="isDynamicForm" {chk_isDynamicForm} onClick='ajaxUpdateTask("setDynamicForm");toggleDynamicFormSelector(this.checked)'>
+                            <span id="dynamicFormSelectVariable" style="{show_dynamicformvars}">Select a Variable for Dynamic <br>Form Assignment:<br>
+                            <select name="dynamicFormVariableSelector" size="4" style="width:160px;" onclick='ajaxUpdateTask("setDynamicFormVariable");'>
+                            {available_formvariablesOptions}
+                            </select>
+                            </span>
+                        </td>
+                    </tr>
+                    
+                    <tr id="taskhandler" style="display:{show_handler};">
+                        <td>Task Handler:</td>
+                        <td>{task_handler_selection}</td>
+                    </tr>
+                    <tr id="taskfunction" style="display:{show_function};">
+                        <td style="border-top:0px;">Task Function:</td>
+                        <td style="border-top:0px;"><input type="text" name="task_function" value="{task_function}" style="width:200"></td>
+                    </tr>
+                    <tr id="taskform" style="display:{show_form};">
+                        <td style="border-top:0px;">Task Form:</td>
+                        <td style="border-top:0px;"><select name="task_form" style="width:200px">{form_options}</select></td>
+                    </tr>
+                     <tr>
+                        <td>Task Optional Parm:</td>
+                        <td><input type="text" name="optionalParm" maxlength="64" style="width:140" value="{optional_parm}"></td>
+                     </tr>
+                     <tr>
+                        <td>Next Tasks:</td>
+                        <td><input type="text" name="nextTasks" maxlength="150" style="width:140" value="{next_tasks}"></td>
+                     </tr>
+                    <tr id="taskoptions" style="vertical-align:top;">
+                        <td>Regenerate This Task:<a class="info" style="padding-left:10px;" href="#">?<span>{LANG_help1}</span></a></td>
+                        <td><input type="checkbox" id="chkregenerate" name="regenerate" {chk_regenerate} value="1" onClick='ajaxUpdateTask("setRegenerateOption");'>
+                        </td>
+                    </tr>
+                    <tr id="taskoptions" style="vertical-align:top;">                        
+                        <td>Regenerate all in-production tasks:<a class="info" style="padding-left:10px;" href="#">?<span>{LANG_help3}</span></a></td>
+                        <td class="pluginSmallText" style="width:180px;line-height:2;white-space:nowrap;"><input type="checkbox" id="chkregenerateAllLive" name="regenerateAllLive" {chk_regenerateAllLive} value="1" onClick='ajaxUpdateTask("setRegenerateAllOption");'>
+                        <span>
+                            <span id="tskaction"> 
+                                <input type="submit" value="Reset/New" name="Reset" onclick="document.template.taskID.value='';">
+                                <input type="submit" value="Save" name="operation">
+                            </span>
+                            <span id="tskstatus" class="pluginInfo" style="padding:2px 5px 2px 5px;border:1px solid red;white-space:nowrap;display:none;">&nbsp;</span>
+                        </span></td>
+                    </tr>
+                    <tr id="taskassignment" style="display:{show_taskoptions};">
+                        <td colspan="2" width="100%" style="padding:5px;font-size:10pt;font-weight:bold">
+                            <div style="border:1px solid #CCC;padding:2px 5px 2px 5px;width:180px;margin: 5px;white-space:nowrap;">Task Assignment Options</div>
+                                <table cellspacing="0" cellpadding="0" border="0" width="100%" class="pluginSubTable" style="margin-top:5px;">
+                                    <tr>
+                                        <td width="160" style="padding-left:10px;">Assign Task by:</td>
+                                        <td width="70%" style="padding-left:5px;">User&nbsp;
+                                            <input type="radio" id="taskassigntype" name="taskassigntype" value="user" {chk_byuser} onClick="toggleassignment('taskassigntype');">
+                                            <span style="padding-left:10px;">Variable&nbsp;<input type="radio" name="taskassigntype" value="variable" {chk_byvariable} onClick="toggleassignment('taskassigntype');"></span>
+                                            <a class="info" style="padding-top:70px;" href="#">?<span>{LANG_help2}</span></a>
+                                        </td>
+                                    </tr>
+                                    <tr id="assignusers" style="vertical-align:top;display:{show_taskoption1};">
+                                        <td colspan="2" width="100%" style="padding-top:5px;">
+                                            <table border="0" width="100%" style="border-collapse:collapse;background-color:#ffffff">
+                                                <tr style="vertical-align:top;">
+                                                     <td width="160" style="padding:5px;">Available Users:</td>
+                                                     <td style="padding:5px;"><select name="task_availableUsers" size="4" style="width:160px;">{available_userOptions}</select></td>
+                                                     <td class="pluginSmallText" rowspan="2" width="75" style="text-align:center;padding:15px 15px 0px 0px;">
+                                                        <input type="button" name="operation" value="Add" onClick='ajaxUpdateTask("addAssignUser");'>
+                                                        <div style="padding-top:5px;">
+                                                            <input type="button" name="operation" value="Remove" onClick='ajaxUpdateTask("delAssignUser");'>
+                                                        </div>
+                                                     </td>
+                                                </tr>
+                                                <tr style="vertical-align:top;">
+                                                    <td style="padding:5px;">Users Assigned:</td>
+                                                    <td style="padding:5px;"><select id="seluserassignment" name="task_assignedUsers" size="4" style="width:160px;">{assigned_usersOptions}</select></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr id="variableusers" style="vertical-align:top;display:{show_taskoption2};">
+                                        <td colspan="2" width="100%">
+                                            <table border="0" width="100%" style="border-collapse:collapse;background-color:#ffffff">
+                                                <tr style="vertical-align:top;">
+                                                    <td width="160" style="padding:5px;" valign="top">Available Variables</td>
+                                                    <td style="padding:5px;" valign="top"><select name="task_availableVariables" size="4" style="width:160px;">{available_variablesOptions}</select></td>
+                                                    <td class="pluginSmallText" rowspan="2" width="75" style="text-align:center;padding:15px 15px 0px 0px;">
+                                                        <input type="button" name="operation" value="Add" onClick='ajaxUpdateTask("addAssignVar");'>
+                                                        <div style="padding-top:5px;">
+                                                            <input type="button" name="operation" value="Remove" onClick='ajaxUpdateTask("delAssignVar");'>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr style="vertical-align:top;">
+                                                    <td style="padding:5px;">Variables Assigned:</td>
+                                                    <td style="padding:5px;"><select id="selvariableassignment" name="task_assignedVariables" size="4" style="width:160px;">{assigned_variableOptions}</select></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                 </table>
+                        </td>
+                    </tr>
+                    <tr id="emailoptions" style="line-height:12pt;display:{show_emailoptions};">
+                        <td colspan="2" width="100%" style="padding:5px;font-size:10pt;font-weight:bold">
+                            <div style="border:1px solid #CCC;padding:2px 5px 2px 5px;width:100px;margin:5px;">Email Options</div>
+                            <div class="tabs" style="padding-bottom:0px;margin-bottom:0px;">
+                                <a class="selected" id="etab1" href="#" onClick="emailtab('etab1');return false;">Upon Assignment</a>
+                                <a id="etab2" href="#"onClick="emailtab('etab2');return false;">Upon Completion</a>
+                                <a id="etab3" href="#" onClick="emailtab('etab3');return false;">Reminders</a>
+                            </div>
+                            <div id="notify_etab1" style="vertical-align:top;display:{show_emailoption1};">
+                                    <table border="0" class="pluginSubTable" width="100%" style="border-top:0px;border-collapse:collapse;background-color:#ffffff">
+                                        <tr style="vertical-align:top;">
+                                             <td width="120" style="padding:5px;">Available Variables:</td>
+                                             <td style="padding:5px;"><select name="task_prenotifyVariables" size="4" style="width:160px;"><option value="999">TASK_OWNER</option>{available_variablesOptions}</select></td>
+                                             <td class="pluginSmallText" rowspan="2" width="75" style="text-align:center;padding:15px 15px 0px 0px;">
+                                                <input type="button" name="operation" value="Add" onClick='ajaxUpdateTask("addPreNotifyVariable");'>
+                                                <div style="padding-top:5px;">
+                                                    <input type="button" name="operation" value="Remove" onClick='ajaxUpdateTask("delPreNotifyVariable");'>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr style="vertical-align:top;">
+                                            <td style="padding:5px;">Variables Assigned:<br><em>(Task Assignment)</em></td>
+                                            <td style="padding:5px;"><select id="selprenotify" name="task_prenotify" size="4" style="width:160px;">{assigned_preNotifyVariables}</select></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:5px;">Message: <a class="info" style="text-decoration:none;" href="#">?<span style="width:250px;">{message_help}</span></a></td>
+                                            <td colspan="2"><textarea name="prenotify_message" rows="3" style="width:100%" onBlur='ajaxUpdateTask("updatePreNotifyMessage");'>{pre_notify_message}</textarea></td>
+                                        </tr>
+                                    </table>
+                            </div>
+                            <div id="notify_etab2" style="vertical-align:top;display:none{show_emailoption2};">
+                                    <table border="0" class="pluginSubTable" width="100%" style="border-top:0px;border-collapse:collapse;background-color:#ffffff">
+                                        <tr style="vertical-align:top;">
+                                             <td width="120" style="padding:5px;">Available Variables:</td>
+                                             <td style="padding:5px;"><select name="task_postnotifyVariables" size="4" style="width:160px;"><option value="999">TASK_OWNER</option>{available_variablesOptions}</select></td></td>
+                                             <td rowspan="2" width="75px" style="text-align:center;padding:15px 15px 0px 0px;">
+                                                <input type="button" name="operation" value="Add" onClick='ajaxUpdateTask("addPostNotifyVariable");'>
+                                                <div style="padding-top:5px;">
+                                                    <input type="button" name="operation" value="Remove" onClick='ajaxUpdateTask("delPostNotifyVariable");'>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr style="vertical-align:top;">
+                                            <td style="padding:5px;">Variables Assigned:<br><em>(Task Completion)</em></td>
+                                            <td style="padding:5px;"><select id="selpostnotify" name="task_postnotify" size="4" style="width:160px;">{assigned_postNotifyVariables}</select></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:5px;">Message: <a class="info" style="text-decoration:none;" href="#">?<span style="width:250px;">{message_help}</span></a></td>
+                                            <td colspan="2"><textarea name="postnotify_message" rows="3" style="width:100%" onBlur='ajaxUpdateTask("updatePostNotifyMessage");'>{post_notify_message}</textarea></td>
+                                        </tr>                                        
+                                    </table>
+                            </div>
+                            <div id="notify_etab3" style="vertical-align:top;display:none{show_emailoption2};">
+                                    <table border="0" class="pluginSubTable" width="100%" style="border-top:0px;border-collapse:collapse;background-color:#ffffff">
+                                        <tr style="vertical-align:top;">
+                                             <td width="120" style="padding:5px;">Available Variables:</td>
+                                             <td style="padding:5px;"><select name="task_remindernotifyVariables" size="4" style="width:160px;"><option value="999">TASK_OWNER</option>{available_variablesOptions}</select></td></td>
+                                             <td rowspan="2" width="75px" style="text-align:center;padding:15px 15px 0px 0px;">
+                                                <input type="button" name="operation" value="Add" onClick='ajaxUpdateTask("addReminderNotifyVariable");'>
+                                                <div style="padding-top:5px;">
+                                                    <input type="button" name="operation" value="Remove" onClick='ajaxUpdateTask("delReminderNotifyVariable");'>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr style="vertical-align:top;">
+                                            <td style="padding:5px;">Variables Assigned:<br><em>(Escalation)</em></td>
+                                            <td style="padding:5px;"><select id="selremindernotify" name="task_remindernotify" size="4" style="width:160px;">{assigned_reminderNotifyVariables}</select></td>
+                                        </tr>
+                                        <tr style="vertical-align:top;">
+                                            <td width="120" style="padding:5px;">Initial Reminder<br>Interval (days) :</td>
+                                            <td colspan="2" style="padding:5px;">
+                                                <select id="selnotifyinterval" name="notifyinterval" size="4" style="width:60px;" onchange='ajaxUpdateTask("setReminderNotifyVariable");'>
+                                                    {notifyIntervalOptions}
+                                                </select>
+                                                <div style="display:inline;vertical-align:top;padding-left:5px;">Subsequently:</div>
+                                                <span style="padding-left:5px;">
+                                                    <select id="selsubsequentinterval" name="subsequentinterval" size="4" style="width:60px;" onchange='ajaxUpdateTask("setSubsequentReminderVariable");'>
+                                                    {subsequentIntervalOptions}
+                                                    </select>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr style="vertical-align:top;">
+                                            <td width="120" style="padding:5px;">Escalate after</td>
+                                            <td colspan="2" style="padding:5px;"><input type="text" name="numReminders" value="{numReminders}" size="4"></input>&nbsp;&nbsp;notifications have been sent.</td>
+                                        </tr>
+                                        <tr style="vertical-align:top;">
+                                            <td width="120" style="padding:5px;">Escalation User:</td>
+                                            <td colspan="2" style="padding:5px;"><select name="esc_user">{esc_user_options}</select></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:5px;">Message: <a class="info" style="text-decoration:none;" href="#">?<span style="width:250px;">{message_help}</span></a></td>
+                                            <td colspan="2"><textarea name="reminder_message" rows="3" style="width:100%" onBlur='ajaxUpdateTask("updateReminderMessage");'>{reminder_message}</textarea></td>
+                                        </tr>                                        
+                                    </table>
+                            </div>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td colspan="2" id="showif" style="display:{show_if};">
+                            <table border="0" cellpadding="1" cellspacing="1" width="100%">
+                                <tr>
+                                    <td colspan="2" style="padding:10px;"><span style="font-size:11pt;font-weight:bold;">If Task Parameters:</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan=1 valign="bottom">{if_task_variables}&nbsp;or <div style="padding-top:5px;">{if_task_option}</div></td>
+                                    <td valign="bottom">{if_task_operator}&nbsp;<input type="text" name="nfIfTaskArgumentValue" value="{if_option_value}"></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">When True, go to ID:</td>
+                                    <td><input type="text" size="10" name="ifTaskTrue" value="{if_tasktrue_value}"></td>
+                                </tr>
+                                <tr>
+                                    <td  align="right">When False, go to ID:</td>
+                                    <td><input type="text" size="10" name="ifTaskFalse" value="{if_taskfalse_value}"></td>
+                                </tr>
+                           </table>
+                         </td>
+                    </tr>
+                 </table>
+
+            </td>
+        </tr>
+    </table>
+</form>
+    
+     </tr>
+    </table>

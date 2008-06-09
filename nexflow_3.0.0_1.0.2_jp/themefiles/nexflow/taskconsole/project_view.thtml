@@ -1,0 +1,63 @@
+<script type="text/javascript" src="{site_url}/nexflow/include/ajaxsupport.js"></script>
+{javascript_code}
+<script type="text/javascript">
+
+    function toggle_allprojects() {
+        for (level=1; level < 4; level++) {
+            for (rec=1; rec <= {num_project_records}; rec++) {
+                var  obj1 = document.getElementById('project_level' + level + '_crec' + rec);
+                var  obj2 = document.getElementById('project_level' + level + '_orec' + rec);
+                if (obj1) {
+                    if (obj1.style.display == 'none') {
+                        obj1.style.display = '';
+                        obj2.style.display = 'none';
+                        document.getElementById('toggle_allprojects').firstChild.nodeValue = 'Expand All';
+                    } else {
+                        obj1.style.display = 'none';
+                        obj2.style.display = '';
+                        document.getElementById('toggle_allprojects').firstChild.nodeValue = 'Collapse All';
+                    }
+                }
+            }
+        }
+    }
+
+
+    function toggle_projectrec(level,rec) {
+        var  obj1 = document.getElementById('project_level' + level + '_crec' + rec);
+        var  obj2 = document.getElementById('project_level' + level + '_orec' + rec);
+        if (obj1.style.display == 'none') {
+            obj1.style.display = '';
+            obj2.style.display = 'none';
+        } else {
+            obj1.style.display = 'none';
+            obj2.style.display = '';
+        }
+    }
+
+
+</script>
+
+<table border="1" cellpadding="0" cellspacing="0" width="100%" style="border:1px solid #CCC;margin-bottom:20px;">
+    <tr>
+        <td class="pd_projectlinks pluginInfo" style="padding:10px 0px 10px 10px">Search: &nbsp;
+            <form style="display:inline; margin:0px;" action="{actionurl}" method="post">
+            <input type="text" name="searchkey" size="25" value="{searchkey}">
+            <select name="searchopt">
+                {sel_searchoptions}
+            </select>
+            <input type="submit" value="Go">
+            </form>
+            <span style="padding-left:20px;">{search_results}</span>
+            <span style="padding-left:10px;display:{show_expandall}">[&nbsp;<a id="toggle_allprojects" href="#" Onclick='toggle_allprojects();'>Expand All</a>&nbsp;]</span>
+        </td>
+   </tr>
+   <tr>
+        <td class="pd_projects_row{cssid}" style="padding:10px;color:red;display:{show_noresult_message}">{search__noresult_message}</td>
+   </tr>
+   <tr>
+        <td style="padding-bottom:10px;">
+           {project_records}
+        </td>
+  </tr>
+</table>

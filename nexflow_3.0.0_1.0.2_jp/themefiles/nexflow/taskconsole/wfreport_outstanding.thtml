@@ -1,0 +1,19 @@
+    <tr>
+    <td style="padding-left:35px; border-bottom: solid black 1px;width:25%;">{otask_name}</td>
+    <td style="padding:4px; border-bottom: solid black 1px;width:25%">{otask_user}</td>
+    <td style="padding:4px; border-bottom: solid black 1px;width:25%">{otask_date}</td>
+    <td style="padding:4px;display:{show_otaskaction}; border-bottom: solid black 1px" nowrap>
+        <form ACTION="{actionurl}" METHOD="GET" style="margin:0px;width:25%">
+            <input type="hidden" name="variable_id" value="{variable_id}">
+            <input type="hidden" name="taskuser" value="{taskuser}">
+            <input type="hidden" name="taskassign_mode" value="{taskassign_mode}">
+            <input type="hidden" name="id" value="{otask_id}">
+            <select name="task_reassign_uid">
+                <option value="0">Assign to user</option>
+                {user_options}
+            </select>
+            <input type="submit" name="op" value="Re-Assign" >
+        </form>
+   </td>
+   </tr>
+
