@@ -1,0 +1,12 @@
+
+<div class="clearboth" style="min-width:600px;">
+<form action="{this_script}" method="post" >
+
+    Anonymous:
+    <input type="text" id="Anonymous" name="Anonymous" size="60" maxlength="80" value="{Anonymous_value}"{xhtml}>
+    <input type="hidden" name="savesettings" value="yes">
+    <input type="submit" name="btnsubmit" value="変更を保存する"{xhtml}>
+
+</div>
+</form>
+
