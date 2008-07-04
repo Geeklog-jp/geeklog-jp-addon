@@ -1,0 +1,47 @@
+File changes between 2.6RC2 and 2.6RC3
+
+The following changes and bug fixes have been addressed in RC3
+
+x Performance Improvements to the main forum index page
+x Added option in plugins config.php to show/hide Moderators on the main forum index.php
+x Code cleanup to remove un-used variables and older code that was not being used
+x Better support for Fullname or username - GL main site config.php $_CONF['show_fullname'] setting
+x User online status will not be shown as online if user setting for privacy set
+x Use htmlspecialchars() instead of htmlentities() in createtopic.php - better support for non-english language
+x SQL changes in a number of other user and admin scripts to reduce SQL overhead - better use of the last_post_rec field
+X Fixed an issue with deleting of a post - and not updating the last reply by and date info
+x Fixed issues with certain characters like [] being converted to their HTML entities equivelent
+x BBCode tags should not be interpretted if in a [code] block
+x Preview now better handles the formatting to show all final formatting and filtering so it should be as saved
+x Corrected the bug in RC2 where two items in the forum user menu were reversed
+a Added a new link in the user menu to 'Mark all Read' - marks all topics in all categories as read
+x Added TITLE help for the Forum User menu when user hovers over the menu links
+x Fixed missing site footer in the memberlist report
+x Added missing language define on the forum members report page
+x Fixed bug where if SPAMX detected spam - it would cause a header already posted error
+x Fixed an issue with a [forum:123] autotag if you did not enter a title for the link
+x Couple of template tweaks
+
+20 files don't match
+--------------------
+	admin\boards.php
+	language\english.php
+	public_html\include\gf_format.php
+	public_html\include\gf_showtopic.php
+	public_html\createtopic.php
+	public_html\index.php
+	public_html\memberlist.php
+	public_html\moderation.php
+	public_html\viewtopic.php
+	themefiles\forum\layout\admin\mod_add.thtml
+	themefiles\forum\layout\blocks\latestpostsblock.thtml
+	themefiles\forum\layout\reports\memberlist.thtml
+	themefiles\forum\layout\post_topic_navbar.thtml
+	themefiles\forum\layout\submissionform_main.thtml
+	themefiles\forum\layout\topiclisting.thtml
+	themefiles\pre1.4.1_forum.css
+	config.php
+	debug.php
+	functions.inc
+	readme.html
+
