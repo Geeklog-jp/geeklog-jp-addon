@@ -32,6 +32,9 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 //
+//@@@@@20070327(20070201)update date format
+//@@@@@20070327 substr -> mb_substr
+//@@@@@20070620 <p /> →</p>
 
 require_once("../lib-common.php"); // Path to your lib-common.php
 require_once ($_CONF['path_html'] . 'forum/include/gf_format.php');
@@ -58,7 +61,17 @@ if ($CONF_FORUM['registration_required'] && $_USER['uid'] < 2) {
     exit;
 }
 
-$todaysdate=date("l, F d, Y");
+//@@@@@20080116(20070327)update ---->
+//$todaysdate=date("l, F d, Y");
+//$todaysdate=date("Y 年 n 月 j 日");
+$todaysdate=date($_CONF['shortdate']);
+//l フルスペルの英字で曜日を定義する 
+//F フルスペルの英字で月を定義する 
+//d ２桁の日付を定義する 
+//Y 西暦を４桁で示す年を定義する 
+//n 先頭に 0 をつけない (0 ～ 12) の月を定義する 
+//j 先頭に 0 をつけない (0 ～ 31)の日を定義する 
+//@@@@@20080116(20070327)update <----
 
 // Check to see if request to mark all topics read was requested
 if ($_USER['uid'] > 1 && $op == 'markallread') {
@@ -585,7 +598,10 @@ if ($forum == 0) {
             $numForumsDisplayed ++;
             if ($postCount > 0) {
                 if ( strlen($B['subject']) > 25 ) {
-                    $B['subject'] = substr($B['subject'],0,25);
+                    //@@@@@20080116,20070321update---->
+                    //$B['subject'] = substr($B['subject'],0,25);
+                    $B['subject'] = mb_substr($B['subject'],0,25);
+                    //@@@@@20080116,20070321update<----
                     $B['subject'] .= "..";
                 }
                 if ($_USER['uid'] > 1) {
@@ -602,13 +618,21 @@ if ($forum == 0) {
 
                 $lastdate1 = strftime('%d', $B['date']);
                 if ($lastdate1 == date('d')) {
-                    $lasttime = strftime('%I:%M&nbsp;%p', $B['date']);
+                    //@@@@@20080116update---->
+                    //$lasttime = strftime('%I:%M&nbsp;%p', $B['date']);
+                    $lasttime = strftime('%p&nbsp;%I:%M', $B['date']);
+                    //@@@@@20080116update<----
                     $lastdate = $LANG_GF01['TODAY'] .$lasttime;
                 } elseif ($CONF_FORUM['use_userdate_format']) {
                     $lastdate = COM_getUserDateTimeFormat($B['date']);
                     $lastdate = $lastdate[0];
                 } else {
-                    $lastdate =strftime('%b/%d/%y %I:%M&nbsp;%p',$B['date']);
+                    //@@@@@20080116(20070327)----->
+                    //$lastdate =strftime('%b/%d/%y %I:%M&nbsp;%p',$B['date']);
+                    //$lastdate =strftime('%y/%m/%d/ %I:%M&nbsp;%p',$B['date']);
+                    $lastdate =strftime($CONF_FORUM['default_Datetime_format'],$B['date']);
+                    //@@@@@20080116(20070327)<-----
+
                 }
 
                 $lastpostmsgDate  = '<font class="forumtxt">' . $LANG_GF01['ON']. '</font>' .$lastdate;
@@ -879,33 +903,59 @@ if ($forum > 0) {
             $lastreplysql = DB_query("SELECT * FROM {$_TABLES['gf_topic']} WHERE id={$record['last_reply_rec']}");
             $lastreply = DB_fetchArray($lastreplysql);
             if(strlen ($lastreply['subject']) > $CONF_FORUM['show_subject_length']){
-                $lastreply['subject'] = substr($record['subject'], 0, $CONF_FORUM['show_subject_length']);
+                //@@@@@20080116,20070327update---->
+                //$lastreply['subject'] = substr($record['subject'], 0, $CONF_FORUM['show_subject_length']);
+                $lastreply['subject'] = mb_substr($record['subject'], 0, $CONF_FORUM['show_subject_length']);
+                //@@@@@20080116,20070327update<----
+
                 $lastreply['subject'] .= "...";
             }
-            $lastdate1 = strftime('%m/%d/%Y', $lastreply['date']);
-            if ($lastdate1 == date('m/d/Y')) {
-                $lasttime = strftime('%H:%M&nbsp;%p', $lastreply['date']);
+            //@@@@@20080116,20070327update---->
+            //$lastdate1 = strftime('%m/%d/%Y', $lastreply['date']);
+            //if ($lastdate1 == date('m/d/Y')) {
+            //    $lasttime = strftime('%H:%M&nbsp;%p', $lastreply['date']);
+            $lastdate1 = strftime('%Y/%m/%d', $lastreply['date']);
+            if ($lastdate1 == date('Y/m/d')) {
+                $lasttime = strftime('%p&nbsp;%H:%M', $lastreply['date']);
+            //@@@@@20080116,20070327update<----
                 $lastdate = $LANG_GF01['TODAY'] . $lasttime;
             } elseif ($CONF_FORUM['use_userdate_format']) {
                 $lastdate = COM_getUserDateTimeFormat($lastreply['date']);
                 $lastdate = $lastdate[0];
             } else {
-                $lastdate = strftime('%b/%d/%y %I:%M&nbsp;%p',$lastreply['date']);
+                //@@@@@20080116,20070327update---->
+                //$lastdate = strftime('%b/%d/%y %I:%M&nbsp;%p',$lastreply['date']);
+                //$lastdate = strftime('%Y/%m/%d %I:%M&nbsp;%p',$lastreply['date']);
+                $lastdate = strftime($CONF_FORUM['default_Datetime_format'],$lastreply['date']);
+                //@@@@@20080116,20070327update<----
+
             }
         } else {
-            $lastdate = strftime('%b/%d/%y %I:%M&nbsp;%p',$record['lastupdated']);
+            //@@@@@20080116,20070327update---->
+            //$lastdate = strftime('%b/%d/%y %I:%M&nbsp;%p',$record['lastupdated']);
+            //$lastdate = strftime('%Y/%m/%d %I:%M&nbsp;%p',$record['lastupdated']);
+            $lastdate = strftime($CONF_FORUM['default_Datetime_format'],$record['lastupdated']);
+            //@@@@@20080116,20070327update<----
             $lastreply = $record;
         }
 
         $firstdate1 = strftime('%m/%d/%Y', $record['date']);
         if ($firstdate1 == date('m/d/Y')) {
-            $firsttime = strftime('%H:%M&nbsp;%p', $record['date']);
+            //@@@@@20080116update---->
+            //$firsttime = strftime('%H:%M&nbsp;%p', $record['date']);
+            $firsttime = strftime('%p&nbsp;%H:%M', $record['date']);
+            //@@@@@20080116update<----
             $firstdate = $LANG_GF01['TODAY'] . $firsttime;
         } elseif ($CONF_FORUM['use_userdate_format']) {
             $firstdate = COM_getUserDateTimeFormat($record['date']);
             $firstdate = $firstdate[0];
         } else {
-            $firstdate = strftime('%b/%d/%y %I:%M&nbsp;%p',$record['date']);
+            //@@@@@20080116,20070327update---->
+            //$firstdate = strftime('%b/%d/%y %I:%M&nbsp;%p',$record['date']);
+            //$firstdate = strftime('%y/%m/%d %I:%M&nbsp;%p',$record['date']);
+            $firstdate = strftime($CONF_FORUM['default_Datetime_format'],$record['date']);
+            //@@@@@20080116,20070327update<----
+
         }
 
         if ($_USER['uid'] > 1) {
@@ -951,7 +1001,11 @@ if ($forum > 0) {
         }
 
         if(strlen ($record['subject']) > $CONF_FORUM['show_subject_length']) {
-            $subject = substr($record['subject'], 0, $CONF_FORUM['show_subject_length']) . '....';
+            //@@@@@20080116,20070602update---->
+            //$subject = substr($record['subject'], 0, $CONF_FORUM['show_subject_length']) . '....';
+            $subject = mb_substr($record['subject'], 0, $CONF_FORUM['show_subject_length']) . '....';
+            //@@@@@20080116,20070602update<----
+
         } else {
             $subject = $record['subject'];
         }
@@ -961,7 +1015,10 @@ if ($forum > 0) {
             $firstposterName = $record['name'];
         }
         $topicinfo =  "<b>{$LANG_GF01['STARTEDBY']}{$firstposterName}, {$firstdate}</b><br />";
-        $topicinfo .= wordwrap(strip_tags(substr($record['comment'],0,$CONF_FORUM['contentinfo_numchars'])),$CONF_FORUM['linkinfo_width'],"<br />\n");
+        //@@@@@20080116,20070327update---->
+        //$topicinfo .= wordwrap(strip_tags(substr($record['comment'],0,$CONF_FORUM['contentinfo_numchars'])),$CONF_FORUM['linkinfo_width'],"<br />\n");
+        $topicinfo .= wordwrap(strip_tags(mb_substr($record['comment'],0,$CONF_FORUM['contentinfo_numchars'])),$CONF_FORUM['linkinfo_width'],"<br />\n");
+        //@@@@@20080116,20070327update<----
 
         $topiclisting->set_var ('folderimg', $folderimg);
         $topiclisting->set_var ('topicinfo', $topicinfo);

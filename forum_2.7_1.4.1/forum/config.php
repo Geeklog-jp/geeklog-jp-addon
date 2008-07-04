@@ -70,10 +70,18 @@ $CONF_FORUM['autoimagetype'] = true;
 $CONF_FORUM['image_type_override'] = 'gif'; 
 
 // Default date/time format to use if Forum setting for allow user-dateformat is disabled
-$CONF_FORUM['default_Datetime_format'] = '%m/%d/%y %H:%M %p';
+//@@@@@20080116,20070327update---->
+//$CONF_FORUM['default_Datetime_format'] = '%m/%d/%y %H:%M %p';
+//$CONF_FORUM['default_Datetime_format'] = '%y/%m/%d %H:%M';
+$CONF_FORUM['default_Datetime_format']   = $_CONF['shortdate']." ".$_CONF['timeonly'] ;
+//@@@@@20080116,20070327update<----
 
 // Date format that is shown at the top of of the topic post used if Forum setting for allow user-dateformat is disabled
-$CONF_FORUM['default_Topic_Datetime_format'] = '%B %d %Y %H:%M %p'; 
+//@@@@@20080116,20070323update---->
+//$CONF_FORUM['default_Topic_Datetime_format'] = '%B %d %Y %H:%M %p'; 
+//$CONF_FORUM['default_Topic_Datetime_format'] = '%Y/%m/%d %H:%M %p'; 
+$CONF_FORUM['default_Topic_Datetime_format'] = $_CONF['shortdate']." ".$_CONF['timeonly'] ;
+//@@@@@20080116,20070323update<----
 
 /* Number of characters of the topic contents when hovering over the topic post subject link */ 
 $CONF_FORUM['contentinfo_numchars'] = 256;
@@ -106,7 +114,7 @@ $CONF_FORUM['grouptags'] = array(
 *************************************************************************/
 
 // Adding the Forum Plugin tables to $_TABLES array
-$_TABLES['gf_userprefs']    = $_DB_table_prefix . 'forum_userprefs';	
+$_TABLES['gf_userprefs']    = $_DB_table_prefix . 'forum_userprefs';    
 $_TABLES['gf_topic']        = $_DB_table_prefix . 'forum_topic';
 $_TABLES['gf_categories']   = $_DB_table_prefix . 'forum_categories';
 $_TABLES['gf_forums']       = $_DB_table_prefix . 'forum_forums';
