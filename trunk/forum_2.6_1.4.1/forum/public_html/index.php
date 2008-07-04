@@ -32,6 +32,9 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 //
+//@@@@@20070327(20070201)update date format
+//@@@@@20070327 substr -> mb_substr
+//@@@@@20070620 <p /> →</p>
 
 require_once("../lib-common.php"); // Path to your lib-common.php
 require_once ($_CONF['path_html'] . 'forum/include/gf_format.php');
@@ -58,7 +61,17 @@ if ($CONF_FORUM['registration_required'] && $_USER['uid'] < 2) {
     exit;
 }
 
-$todaysdate=date("l, F d, Y");
+//@@@@@20070327(20070201)update ---->
+//$todaysdate=date("l, F d, Y");
+//$todaysdate=date("Y 年 n 月 j 日");
+$todaysdate=date($_CONF['shortdate']);
+//l フルスペルの英字で曜日を定義する 
+//F フルスペルの英字で月を定義する 
+//d ２桁の日付を定義する 
+//Y 西暦を４桁で示す年を定義する 
+//n 先頭に 0 をつけない (0 ～ 12) の月を定義する 
+//j 先頭に 0 をつけない (0 ～ 31)の日を定義する 
+//@@@@@20070327(20070201)update <----
 
 // Check to see if request to mark all topics read was requested
 if ($_USER['uid'] > 1 && $op == 'markallread') {
@@ -200,10 +213,10 @@ if ($op == 'newposts' AND $_USER['uid'] > 1) {
     }
 
     if ($forum > 0) {
-        $link = "<p><a href=\"{$_CONF['site_url']}/forum/index.php?forum=$forum\">{$LANG_GF02['msg144']}</a><p />";
+        $link = "<p><a href=\"{$_CONF['site_url']}/forum/index.php?forum=$forum\">{$LANG_GF02['msg144']}</a></p>";
         $report->set_var ('bottomlink',$link);
     } else {
-        $link = "<p><a href=\"{$_CONF['site_url']}/forum/index.php\">{$LANG_GF02['msg175']}</a><p />";
+        $link = "<p><a href=\"{$_CONF['site_url']}/forum/index.php\">{$LANG_GF02['msg175']}</a></p>";
         $report->set_var ('bottomlink',$link);
     }
 
@@ -313,10 +326,10 @@ if ($op == 'search') {
     }
 
     if ($forum == 0) {
-        $link = "<p><a href=\"{$_CONF['site_url']}/forum/index.php\">{$LANG_GF02['msg175']}</a><p />";
+        $link = "<p><a href=\"{$_CONF['site_url']}/forum/index.php\">{$LANG_GF02['msg175']}</a></p>";
         $report->set_var ('bottomlink',$link);
     } else {
-        $link = "<p><a href=\"{$_CONF['site_url']}/forum/index.php?forum=$forum\">{$LANG_GF02['msg175']}</a><p />";
+        $link = "<p><a href=\"{$_CONF['site_url']}/forum/index.php?forum=$forum\">{$LANG_GF02['msg175']}</a></p>";
         $report->set_var ('bottomlink',$link);
     }
     $report->parse ('output', 'report');
@@ -409,10 +422,10 @@ if ($op == 'popular') {
     }
 
     if ($forum == 0) {
-        $link = "<p><a href=\"{$_CONF['site_url']}/forum/index.php\">{$LANG_GF02['msg175']}</a><p />";
+        $link = "<p><a href=\"{$_CONF['site_url']}/forum/index.php\">{$LANG_GF02['msg175']}</a></p>";
         $report->set_var ('bottomlink',$link);
     } else {
-        $link = "<p><a href=\"{$_CONF['site_url']}/forum/index.php?forum=$forum\">{$LANG_GF02['msg175']}</a><p />";
+        $link = "<p><a href=\"{$_CONF['site_url']}/forum/index.php?forum=$forum\">{$LANG_GF02['msg175']}</a></p>";
         $report->set_var ('bottomlink',$link);
     }
     $report->parse ('output', 'report');
@@ -493,7 +506,7 @@ if ($forum == 0) {
     $forumlisting->set_var ('forumindeximg','<img src="'.gf_getImage('forumindex').'">');
     $forumlisting->set_var ('phpself', $_CONF['site_url'] .'/forum/index.php');
     $forumlisting->set_var('layout_url', $_CONF['layout_url']);
-	$viewnewpostslink = false;  // Set true when we have set the view newposts link template var
+    $viewnewpostslink = false;  // Set true when we have set the view newposts link template var
 
     for ($i=1; $i <= $numCategories; $i++) {
         //$exectime = $mytimer->stopTimer();
@@ -557,7 +570,10 @@ if ($forum == 0) {
             $numForumsDisplayed ++;
             if ($postCount > 0) {
                 if ( strlen($B['subject']) > 25 ) {
-                    $B['subject'] = substr($B['subject'],0,25);
+                    //@@@@@20070321update---->
+                    //$B['subject'] = substr($B['subject'],0,25);
+                    $B['subject'] = mb_substr($B['subject'],0,25);
+                    //@@@@@20070321update<----
                     $B['subject'] .= "..";
                 }
                 if ($_USER['uid'] > 1) {
@@ -580,7 +596,11 @@ if ($forum == 0) {
                     $lastdate = COM_getUserDateTimeFormat($B['date']);
                     $lastdate = $lastdate[0];
                 } else {
-                    $lastdate =strftime('%b/%d/%y %I:%M&nbsp;%p',$B['date']);
+                    //@@@@@20070327(20070201)----->
+                    //$lastdate =strftime('%b/%d/%y %I:%M&nbsp;%p',$B['date']);
+                    //$lastdate =strftime('%y/%m/%d/ %I:%M&nbsp;%p',$B['date']);
+                    $lastdate =strftime($CONF_FORUM['default_Datetime_format'],$B['date']);
+                    //@@@@@20070327(20070201)<-----
                 }
 
                 $lastpostmsgDate  = '<font class="forumtxt">' . $LANG_GF01['ON']. '</font>' .$lastdate;
@@ -621,24 +641,24 @@ if ($forum == 0) {
         }
 
         if ($numForumsDisplayed > 0 ) {
-        	if (isset($_USER['uid']) AND $_USER['uid'] > 1) {
-            	$link = "href=\"{$_CONF['site_url']}/forum/index.php?op=markallread&amp;cat_id={$A['id']}\">";
-	            $forumlisting->set_var ('markreadlink',$link);
-	            $forumlisting->set_var ('LANG_markread', $LANG_GF02['msg84']);
-    	        $forumlisting->parse ('markread_link','markread');
-				if (!$viewnewpostslink) {
-	            	$newpostslink = 'href="'.$_CONF['site_url'] .'/forum/index.php?op=newposts">';
-    	            $forumlisting->set_var ('newpostslink', $newpostslink);
-	    	        $forumlisting->set_var ('LANG_newposts', $LANG_GF02['msg112']);
-					$viewnewpostslink = true;
-	   	    	    $forumlisting->parse ('newposts_link','newposts');
+            if (isset($_USER['uid']) AND $_USER['uid'] > 1) {
+                $link = "href=\"{$_CONF['site_url']}/forum/index.php?op=markallread&amp;cat_id={$A['id']}\">";
+                $forumlisting->set_var ('markreadlink',$link);
+                $forumlisting->set_var ('LANG_markread', $LANG_GF02['msg84']);
+                $forumlisting->parse ('markread_link','markread');
+                if (!$viewnewpostslink) {
+                    $newpostslink = 'href="'.$_CONF['site_url'] .'/forum/index.php?op=newposts">';
+                    $forumlisting->set_var ('newpostslink', $newpostslink);
+                    $forumlisting->set_var ('LANG_newposts', $LANG_GF02['msg112']);
+                    $viewnewpostslink = true;
+                    $forumlisting->parse ('newposts_link','newposts');
                 } else {
-	        	    $forumlisting->set_var ('newposts_link', '');
-				}
-    	    } else {
-        	    $forumlisting->set_var ('newposts_link', '');
-            	$forumlisting->set_var ('markread_link', "");
-	        }
+                    $forumlisting->set_var ('newposts_link', '');
+                }
+            } else {
+                $forumlisting->set_var ('newposts_link', '');
+                $forumlisting->set_var ('markread_link', "");
+            }
             $forumlisting->parse ('category_records', 'category_record',true);
             $forumlisting->parse ('forum_records', '');
         }
@@ -851,33 +871,55 @@ if ($forum > 0) {
             $lastreplysql = DB_query("SELECT * FROM {$_TABLES['gf_topic']} WHERE id={$record['last_reply_rec']}");
             $lastreply = DB_fetchArray($lastreplysql);
             if(strlen ($lastreply['subject']) > $CONF_FORUM['show_subject_length']){
-                $lastreply['subject'] = substr($record['subject'], 0, $CONF_FORUM['show_subject_length']);
+                //@@@@@20070327update---->
+                //$lastreply['subject'] = substr($record['subject'], 0, $CONF_FORUM['show_subject_length']);
+                $lastreply['subject'] = mb_substr($record['subject'], 0, $CONF_FORUM['show_subject_length']);
+                //@@@@@20070327update<----
                 $lastreply['subject'] .= "...";
             }
-            $lastdate1 = strftime('%m/%d/%Y', $lastreply['date']);
-            if ($lastdate1 == date('m/d/Y')) {
+            //@@@@@20070327(20070201)update---->
+            //$lastdate1 = strftime('%m/%d/%Y', $lastreply['date']);
+            //if ($lastdate1 == date('m/d/Y')) {
+            $lastdate1 = strftime('%Y/%m/%d', $lastreply['date']);
+            if ($lastdate1 == date('Y/m/d')) {
+            //@@@@@20070327(20070201)update<----
                 $lasttime = strftime('%H:%M&nbsp;%p', $lastreply['date']);
                 $lastdate = $LANG_GF01['TODAY'] . $lasttime;
             } elseif ($CONF_FORUM['use_userdate_format']) {
                 $lastdate = COM_getUserDateTimeFormat($lastreply['date']);
                 $lastdate = $lastdate[0];
             } else {
-                $lastdate = strftime('%b/%d/%y %I:%M&nbsp;%p',$lastreply['date']);
+                //@@@@@20070327(20070201)update---->
+                //$lastdate = strftime('%b/%d/%y %I:%M&nbsp;%p',$lastreply['date']);
+                //$lastdate = strftime('%Y/%m/%d %I:%M&nbsp;%p',$lastreply['date']);
+                $lastdate = strftime($CONF_FORUM['default_Datetime_format'],$lastreply['date']);
+                //@@@@@20070327(20070201)update<----
             }
         } else {
-            $lastdate = strftime('%b/%d/%y %I:%M&nbsp;%p',$record['lastupdated']);
+            //@@@@@20070327(20070201)update---->
+            //$lastdate = strftime('%b/%d/%y %I:%M&nbsp;%p',$record['lastupdated']);
+            //$lastdate = strftime('%Y/%m/%d %I:%M&nbsp;%p',$record['lastupdated']);
+            $lastdate = strftime($CONF_FORUM['default_Datetime_format'],$record['lastupdated']);
+            //@@@@@20070327(20070201)update<----
             $lastreply = $record;
         }
-
-        $firstdate1 = strftime('%m/%d/%Y', $record['date']);
-        if ($firstdate1 == date('m/d/Y')) {
+        //@@@@@20070327(20070201)update---->
+        //$firstdate1 = strftime('%m/%d/%Y', $record['date']);
+        //if ($firstdate1 == date('m/d/Y')) {
+        $firstdate1 = strftime('%Y/%m/%d/', $record['date']);
+        if ($firstdate1 == date('Y/m/d')) {
+        //@@@@@20070327(20070201)update<----
             $firsttime = strftime('%H:%M&nbsp;%p', $record['date']);
             $firstdate = $LANG_GF01['TODAY'] . $firsttime;
         } elseif ($CONF_FORUM['use_userdate_format']) {
             $firstdate = COM_getUserDateTimeFormat($record['date']);
             $firstdate = $firstdate[0];
         } else {
-            $firstdate = strftime('%b/%d/%y %I:%M&nbsp;%p',$record['date']);
+            //@@@@@20070327(20070201)update---->
+            //$firstdate = strftime('%b/%d/%y %I:%M&nbsp;%p',$record['date']);
+            //$firstdate = strftime('%y/%m/%d %I:%M&nbsp;%p',$record['date']);
+            $firstdate = strftime($CONF_FORUM['default_Datetime_format'],$record['date']);
+            //@@@@@20070327(20070201)update<----
         }
 
         if ($_USER['uid'] > 1) {
@@ -923,7 +965,10 @@ if ($forum > 0) {
         }
 
         if(strlen ($record['subject']) > $CONF_FORUM['show_subject_length']) {
-            $subject = substr($record['subject'], 0, $CONF_FORUM['show_subject_length']) . '....';
+            //@@@@@20070602(0327)update---->
+            //$subject = substr($record['subject'], 0, $CONF_FORUM['show_subject_length']) . '....';
+            $subject = mb_substr($record['subject'], 0, $CONF_FORUM['show_subject_length']) . '....';
+            //@@@@@20070602(0327)update<----
         } else {
             $subject = $record['subject'];
         }
@@ -933,7 +978,10 @@ if ($forum > 0) {
             $firstposterName = $record['name'];
         }
         $topicinfo =  "<b>{$LANG_GF01['STARTEDBY']}{$firstposterName}, {$firstdate}</b><br />";
-        $topicinfo .= wordwrap(strip_tags(substr($record['comment'],0,$CONF_FORUM['contentinfo_numchars'])),$CONF_FORUM['linkinfo_width'],"<br />\n");
+        //@@@@@20070327update---->
+        //$topicinfo .= wordwrap(strip_tags(substr($record['comment'],0,$CONF_FORUM['contentinfo_numchars'])),$CONF_FORUM['linkinfo_width'],"<br />\n");
+        $topicinfo .= wordwrap(strip_tags(mb_substr($record['comment'],0,$CONF_FORUM['contentinfo_numchars'])),$CONF_FORUM['linkinfo_width'],"<br />\n");
+        //@@@@@20070327update<----
 
         $topiclisting->set_var ('folderimg', $folderimg);
         $topiclisting->set_var ('topicinfo', $topicinfo);

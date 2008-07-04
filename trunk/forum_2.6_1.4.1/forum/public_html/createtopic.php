@@ -32,6 +32,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 //
+//@@@@@20070831 toukousya mojibake
 
 require_once('../lib-common.php'); // Path to your lib-common.php
 require_once ($_CONF['path_html'] . 'forum/include/include_html.php');
@@ -689,7 +690,10 @@ if(($method == 'newtopic' || $method == 'postreply' || $method == 'edit') || ($p
         }
 
         $submissionformtop->set_var ('username', $username);
-        $submissionformtop->set_var ('xusername', urlencode($username));
+        //20070831update---->
+        //$submissionformtop->set_var ('xusername', urlencode($username));
+        $submissionformtop->set_var ('xusername', $username);
+        //20070831update<----
         $submissionformtop->parse ('output', 'submissionformtop');
         echo $submissionformtop->finish($submissionformtop->get_var('output'));
     }
@@ -708,7 +712,12 @@ if(($method == 'newtopic' || $method == 'postreply' || $method == 'edit') || ($p
                     if($file == $edittopic['mood']) {
                         $moodoptions .= "<OPTION SELECTED>" . $file. "\n";
                     } else {
-                        $moodoptions .= "<OPTION>" .$file. "\n";
+
+// Geeklog Japanese Ivy 2007 4.22
+//                        $moodoptions .= "<OPTION>" .$file. "\n";
+                        $moodoptions .= "<OPTION  value=$file style=\"height:40px; background-repeat: no-repeat; text-align:right; background-image:URL('/layout/professional/forum/image_set/moods/$file.gif')\">" .$file ."\n";
+
+
                     }
                 } else {
                     $moodoptions .= '';

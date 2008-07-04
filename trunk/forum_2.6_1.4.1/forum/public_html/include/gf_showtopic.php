@@ -32,6 +32,8 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 //
+//@@@@@20070212 update %m/%d/%y -> %y/%m/%d
+//@@@@@20070327(20070212) update %y/%m/%d ->$_CONF['shortdate']
 
 // this file can't be used on its own
 if (strpos ($_SERVER['PHP_SELF'], 'gf_showtopic.php') !== false)
@@ -125,7 +127,12 @@ function showtopic($showtopic,$mode='',$onetwo=1,$page=1) {
         $avatar = USER_getPhoto($showtopic['uid'],'','',$CONF_FORUM['avatar_width']);
         $min_height = $min_height + 50;
 
-        $regdate = $LANG_GF01['REGISTERED']. ': ' . strftime('%m/%d/%y',strtotime($userarray['regdate'])). '<br>';
+        //@@@@@20070327(20070212)update ---->
+        //$regdate = $LANG_GF01['REGISTERED']. ': ' . strftime('%m/%d/%y',strtotime($userarray['regdate'])). '<br>';
+        //$regdate = $LANG_GF01['REGISTERED']. ': ' . strftime('%y/%m/%d',strtotime($userarray['regdate'])). '<br>';
+        $regdate = $LANG_GF01['REGISTERED']. ': ' . strftime($_CONF['shortdate'],strtotime($userarray['regdate'])). '<br>';
+        //@@@@@20070327(20070212)update <----
+
         $numposts = $LANG_GF01['POSTS']. ': ' .$posts;
         if (DB_count( $_TABLES['sessions'], 'uid', $showtopic['uid']) > 0 AND DB_getItem($_TABLES['userprefs'],'showonline',"uid={$showtopic['uid']}") == 1) {
             $avatar .= '<br>' .$LANG_GF01['STATUS']. ' ' .$LANG_GF01['ONLINE'];
