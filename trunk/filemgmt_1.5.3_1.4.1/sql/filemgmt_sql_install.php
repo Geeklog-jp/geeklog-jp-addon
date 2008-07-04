@@ -103,5 +103,12 @@ $_SQL[] = "CREATE TABLE {$_FM_TABLES['filemgmt_history']} (
   KEY uid (uid)
 ) TYPE=MyISAM";
 
+//@@@@@add20080115---->
+$_SQL[] = "INSERT INTO {$_FM_TABLES['filemgmt_cat']} (
+  cid, pid, title, imgurl, grp_access
+  ) VALUES (
+  1, 0, '--Select Categori', '', 2
+  )";
+//@@@@@add20080115<----
 
 ?>
