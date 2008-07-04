@@ -27,6 +27,7 @@
 // |                                                                         |
 // +-------------------------------------------------------------------------+
 //
+//@@@@@20080115,20060405,20060418 what's new mojigire
 
 $langfile = $_CONF['path'] . 'plugins/filemgmt/language/' . $_CONF['language'] . '.php';
 if (file_exists ($langfile)) {
@@ -733,7 +734,11 @@ function plugin_getwhatsnew_filemgmt() {
             for( $i = 0; $i < $nrows1; $i++ ) {
                 list($lid, $title) = DB_fetchArray( $result );
                 $str = "<a href=\"{$_CONF['site_url']}/filemgmt/index.php?id=$lid\">";
-                $str .= stripslashes(substr($title,0,$filemgmtWhatsNewTitleLength));
+                //@@@@@ 20080115 mystral_kk ----->
+                //$str .= stripslashes(substr($title,0,$filemgmtWhatsNewTitleLength));
+                $str .= COM_truncate(stripslashes($title),$filemgmtWhatsNewTitleLength, '...');
+                //@@@@@ 20080115 mystral_kk <-----
+
                 $str .= '</a>';
                 $items[] = $str;
             }
@@ -757,7 +762,11 @@ function plugin_getwhatsnew_filemgmt() {
                     $titleLength = $filemgmtWhatsNewTitleLength + 13;        // Compensate for the added HTML
                     $title = "<b>C:</b>&nbsp;".$title;
                     $str = "<a href=\"{$_CONF['site_url']}/filemgmt/index.php?id=$lid\">";
-                    $str .= stripslashes(substr($title,0,$titleLength));
+                    //@@@@@ 2008/01/15 mystral_kk update----->
+                    //$str .= stripslashes(substr($title,0,$titleLength));
+                    $str .= COM_truncate(stripslashes($title),$titleLength, '...');
+                    //@@@@@ 2008/01/15 mystral_kk update<-----
+
                     $str .= '</a>';
                     $items[] = $str;
                 }

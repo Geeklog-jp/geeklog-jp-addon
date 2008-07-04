@@ -13,11 +13,11 @@ $mydownloads_uploadpublic = 1;
 $mydownloads_useshots     = 1;
 $mydownloads_shotwidth    = 50;
 $filemgmt_Emailoption     = 1;
-$filemgmt_FileStore        = "D:/web1/Geeklog-1.x/public_html/filemgmt_data/files/";
-$filemgmt_SnapStore        = "D:/web1/Geeklog-1.x/public_html/filemgmt_data/snaps/";
-$filemgmt_SnapCat          = "D:/web1/Geeklog-1.x/public_html/filemgmt_data/category_snaps/";
-$filemgmt_FileStoreURL     = "http://localhost/geeklogcvs/filemgmt_data/files/";
-$filemgmt_FileSnapURL      = "http://localhost/geeklogcvs/filemgmt_data/snaps/";
-$filemgmt_SnapCatURL       = "http://localhost/geeklogcvs/filemgmt_data/category_snaps/";
+$filemgmt_FileStore        = "";
+$filemgmt_SnapStore        = "";
+$filemgmt_SnapCat          = "";
+$filemgmt_FileStoreURL     = "";
+$filemgmt_FileSnapURL      = "";
+$filemgmt_SnapCatURL       = "";
 
 ?>

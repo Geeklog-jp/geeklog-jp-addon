@@ -30,7 +30,7 @@
 // |                                                                         |
 // +-------------------------------------------------------------------------+
 //
-
+//@@@@@20080129update datetime format multilang 20080118 hiroron 
 
 function newdownloadgraphic($time, $status) {
     global $_CONF;
@@ -98,10 +98,13 @@ function getTotalItems($sel_id, $status=''){
 * Function to display formatted times in user timezone
 */
 function formatTimestamp($usertimestamp) {
-    $datetime = date("M.d.y", $usertimestamp);
-    $datetime = ucfirst($datetime);
+//@@@@ 2008/01/29 multilang 20080118 hiroron  -->
+//  $datetime = date("M.d.y", $usertimestamp);
+$datetime = strftime($_CONF['shortdate'], $usertimestamp);
+//@@@@ 2008/01/29 multilang 20080118 hiroron  <--
     return $datetime;
 }
+
 
 function PrettySize($size) {
     $mb = 1024*1024;
