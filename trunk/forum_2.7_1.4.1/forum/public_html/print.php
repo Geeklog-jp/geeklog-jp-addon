@@ -31,6 +31,8 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 //
+//@@@@@20070327(20070202) update date format
+//@@@@@20070327(20070202) update  font style add 注意：utf-8用です
 
 require_once("../lib-common.php"); // Path to your lib-common.php
 require_once ($_CONF['path_html'] . 'forum/include/gf_format.php');
@@ -112,11 +114,23 @@ $A["subject"] = htmlspecialchars($A["subject"],ENT_QUOTES,$CONF_FORUM['charset']
 
 $A['comment'] = gf_FormatForPrint( $A['comment'], $A['postmode'] );
 
-$date = strftime('%B %d %Y @ %I:%M %p', $A['date']);
+//@@@@@20070327(20070202)update---->
+//$date = strftime('%B %d %Y @ %I:%M %p', $A['date']);
+//$date = strftime('%Y/%m/%d @ %I:%M %p', $A['date']);
+$date = strftime($CONF_FORUM['default_Datetime_format'], $A['date']);
+//@@@@@20070327(20070202)update<----
+//@@@@@20070327(20070202)update  font style add
 echo"
     <html>
     <head>
         <title>$_CONF[site_name] - ".$LANG_GF02['msg147']." $A[id]]</title>
+<style>
+<!--
+body         { font-size:small; font-family: ＭＳ Ｐ明朝 }
+table         { font-size:small;font-family: ＭＳ Ｐ明朝 }
+h1         { font-size:middle;font-family: ＭＳ Ｐ明朝 }
+-->
+</style>
     </head>
     <body>
         <font face=\"verdana\" size=\"2\">
@@ -138,7 +152,12 @@ echo"
 
 $result2 = DB_query("SELECT * FROM {$_TABLES['gf_topic']} WHERE (pid='$id')");
 while($B = DB_fetchArray($result2)){
-$date = strftime('%B %d %Y @ %I:%M %p', $B['date']);
+
+//@@@@@20070327(20070202)update---->
+//$date = strftime('%B %d %Y @ %I:%M %p', $B['date']);
+//$date = strftime('%Y/%m/%d @ %I:%M %p', $B['date']);
+$date = strftime($CONF_FORUM['default_Datetime_format'], $B['date']);
+//@@@@@20070327(20070202)update<----
 
 echo"
 
