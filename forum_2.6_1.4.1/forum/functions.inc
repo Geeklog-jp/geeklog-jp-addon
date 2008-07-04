@@ -35,6 +35,10 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 //
+//@@@@@20070327(20070202) mojigire taiou
+//@@@@@20070327(20070205) del $_TABLES['plugins']= $_DB_table_prefix . 'plugins'
+//@@@@@20070424(20060327) admin menu label (plugin_getadminoption_forum)
+//@@@@@20070427 date format (plugin_dopluginsearch_forum)
 
 $langfile = $_CONF['path'] . 'plugins/forum/language/' . $_CONF['language'] . '.php';
 if (file_exists ($langfile))
@@ -48,7 +52,8 @@ else
 
 // Need to add this line because PLG_enableStateChange does an include of this file inside a plugin function and $_TABLES is not global.
 // This will be fixed in GL 1.4.1 Final
-$_TABLES['plugins']             = $_DB_table_prefix . 'plugins';
+//@@@@@20070327(20070205) del $_TABLES['plugins']
+//$_TABLES['plugins']             = $_DB_table_prefix . 'plugins';
 
 $pi_version = floatval (DB_getItem($_TABLES['plugins'], 'pi_version', "pi_name='forum'"));
 require_once ($_CONF['path_system'] . 'lib-portalparts.php');
@@ -109,10 +114,14 @@ function plugin_cclabel_forum()
 function plugin_getadminoption_forum()
 {
     global $_TABLES, $_CONF;
+    global $LANG_GF00;    //@@@@@20070424add
 
     if (SEC_hasRights('forum.edit')) {
         $numtopics = DB_getITEM($_TABLES['gf_topic'],"count(*)");
-        return array('Forum', $_CONF['site_admin_url'] . '/plugins/forum/index.php', $numtopics);
+        //@@@@@20070424---->
+        //return array('Forum', $_CONF['site_admin_url'] . '/plugins/forum/index.php', $numtopics);
+        return array($LANG_GF00['pluginlabel'], $_CONF['site_admin_url'] . '/plugins/forum/index.php', $numtopics);
+        //@@@@@20070424<----
     }
 
 }
@@ -459,7 +468,11 @@ function plugin_dopluginsearch_forum($query, $datestart, $dateend, $topic, $type
         $sd = explode($delim,$datestart);
         $ed = explode($delim,$dateend);
         $startdate = mktime(0,0,0,$sd[1],$sd[2],$sd[0]);
-        $enddate = mktime(0,0,0,$ed[1],$ed[2],$ed[0]) + 3600;
+
+// Geeklog Japanese ivy from dengen
+//        $enddate = mktime(0,0,0,$ed[1],$ed[2],$ed[0]) + 3600;
+        $enddate = mktime(0,0,0,$ed[1],$ed[2],$ed[0]) + ( 3600 * 24 ) - 1;
+
         $sqltmp .= " AND date BETWEEN '$startdate' AND '$enddate'";
     }
    
@@ -508,7 +521,11 @@ function plugin_dopluginsearch_forum($query, $datestart, $dateend, $topic, $type
             $searchcount++;
             $forumname = DB_getItem($_TABLES['gf_forums'],"forum_name","forum_id='{$A['forum']}'");
             $subject = wordwrap($A['subject'],40,"<br>");
-            $date = strftime('%b %d %Y @ %I:%M %p', $A['date']);
+            //@@@@@update20070427---->
+            //@@@@@$date = strftime('%b %d %Y @ %I:%M %p', $A['date']);
+            $thetime = COM_getUserDateTimeFormat ($A['date']);
+            $date = $thetime[0];
+            //@@@@@update20070427<----
             $url = $_CONF['site_url']. "/forum/viewtopic.php?forum={$A['forum']}&amp;showtopic={$A['id']}";
             $row = array($forumname, "<a href=\"$url\">" . COM_truncate($subject,$CONF_FORUM['show_subject_length'],'...') . "</a>",$date,$A['views']);
             $plugin_results->addSearchResult($row);
@@ -623,7 +640,10 @@ function plugin_getfeedcontent_forum ($feed, &$link, &$update)
         if ($F['content_length'] == 0) {
             $comment = '';
         } elseif ($F['content_length'] > 1) {
-            $comment = substr($A['comment'],0,$F['content_length']);
+            //@@@@@20070327(20070202)update---->
+            //$comment = substr($A['comment'],0,$F['content_length']);
+            $comment = mb_substr($A['comment'],0,$F['content_length']);
+            //@@@@@20070327(20070202)update<----
         } else {
             $comment = $A['comment'];
             $preface = $LANG_GF01['BY'] . ' ';
@@ -1068,7 +1088,10 @@ function phpblock_forum_newposts() {
                 $displaycount++;
                 $fullsubject = $A['subject'];
                 if (strlen ($A['subject']) > $CONF_FORUM['sb_subject_size']) {
-                    $A['subject'] = substr($A['subject'], 0, $CONF_FORUM['sb_subject_size']);
+                    //@@@@@20070327(20070202)---->
+                    //$A['subject'] = substr($A['subject'], 0, $CONF_FORUM['sb_subject_size']);
+                      $A['subject'] = mb_substr($A['subject'], 0, $CONF_FORUM['sb_subject_size']);
+                    //@@@@@20070327(20070202)<----
                     $A['subject'] .= '..';
                     $profilelink = '';
                 }
@@ -1226,7 +1249,10 @@ function plugin_centerblock_forum ($where = 1, $page = 1, $topic = '')
         while ($A = DB_fetchArray ($result)) {
             $fullsubject = "{$A['subject']}\n{$LANG_GF01['POSTEDBY']}:{$A['name']}{$LANG_GF01['VIEWS']}:{$A['views']}, {$LANG_GF01['REPLIES']}:{$A['replies']}";
             if(strlen ($A['subject']) > $CONF_FORUM['cb_subject_size']) {
-                $A['subject'] = substr ($A['subject'], 0, $CONF_FORUM['cb_subject_size']);
+                //@@@@@20070327(20070202)update---->
+                //$A['subject'] = substr ($A['subject'], 0, $CONF_FORUM['cb_subject_size']);
+                $A['subject'] = mb_substr ($A['subject'], 0, $CONF_FORUM['cb_subject_size']);
+                //@@@@@20070327(20070202)update<----
                 $A['subject'] .= '...';
             }
 

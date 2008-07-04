@@ -15,21 +15,21 @@
         <br><br>
             {LANG_fontcolor}:
             <select name="addbbcode18" onChange="bbfontstyle('[color=' + this.form.addbbcode18.options[this.form.addbbcode18.selectedIndex].value + ']', '[/color]')" onMouseOver="helpline('s')">
-                <option style="color:black; value="#">{LANG_default}</option>
-                <option style="color:darkred; value="darkred">{LANG_dkred}</option>
-                <option style="color:red; value="red">{LANG_red}</option>
-                <option style="color:orange; value="orange">{LANG_orange}</option>
-                <option style="color:brown;value="brown">{LANG_brown}</option>
-                <option style="color:yellow; value="yellow">{LANG_yellow}</option>
-                <option style="color:green; value="green">{LANG_green}</option>
-                <option style="color:olive; value="olive">{LANG_olive}</option>
-                <option style="color:cyan; value="cyan">{LANG_cyan}</option>
-                <option style="color:blue; value="blue">{LANG_blue}</option>
-                <option style="color:darkblue; value="darkblue">{LANG_dkblue}</option>
-                <option style="color:indigo; value="indigo">{LANG_indigo}</option>
-                <option style="color:violet; value="violet">{LANG_violet}</option>
-                <option style="color:white; value="white">{LANG_white}</option>
-                <option style="color:black; value="black">{LANG_black}</option>
+                <option style="color:black;" value="#">{LANG_default}</option>
+                <option style="color:darkred;" value="darkred">{LANG_dkred}</option>
+                <option style="color:red;" value="red">{LANG_red}</option>
+                <option style="color:orange;" value="orange">{LANG_orange}</option>
+                <option style="color:brown;" value="brown">{LANG_brown}</option>
+                <option style="color:yellow;" value="yellow">{LANG_yellow}</option>
+                <option style="color:green;" value="green">{LANG_green}</option>
+                <option style="color:olive;" value="olive">{LANG_olive}</option>
+                <option style="color:cyan;" value="cyan">{LANG_cyan}</option>
+                <option style="color:blue;" value="blue">{LANG_blue}</option>
+                <option style="color:darkblue;" value="darkblue">{LANG_dkblue}</option>
+                <option style="color:indigo;" value="indigo">{LANG_indigo}</option>
+                <option style="color:violet;" value="violet">{LANG_violet}</option>
+                <option style="color:white;" value="white">{LANG_white}</option>
+                <option style="color:black;" value="black">{LANG_black}</option>
         </select>
         {LANG_fontsize}:
         <select name="addbbcode20" onChange="bbfontstyle('[size=' + this.form.addbbcode20.options[this.form.addbbcode20.selectedIndex].value + ']', '[/size]')" onMouseOver="helpline('f')">

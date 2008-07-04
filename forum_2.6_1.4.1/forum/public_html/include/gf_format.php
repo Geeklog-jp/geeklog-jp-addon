@@ -31,6 +31,7 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 //
+//@@@@@20070327del //$footer->set_var ('forum_time', f_forumtime() );
 
 // this file can't be used on its own
 if (strpos ($_SERVER['PHP_SELF'], 'gf_format.php') !== false)
@@ -407,8 +408,8 @@ function gf_formatTextBlock($str,$postmode='html',$mode='') {
                           'list', array ('inline','block', 'listitem'), array ());
         $bbcode->addCode ('*', 'simple_replace', null, array ('start_tag' => '<li>', 'end_tag' => '</li>'),
                           'listitem', array ('list'), array ());
-    	$bbcode->addCode ('quote','simple_replace',null,array('start_tag' => '<div class="quotemain">', 'end_tag' => '</div>'),
-        	              'inline', array('listitem','block','inline','link'), array());                          
+        $bbcode->addCode ('quote','simple_replace',null,array('start_tag' => '<div class="quotemain">', 'end_tag' => '</div>'),
+                          'inline', array('listitem','block','inline','link'), array());                          
         $bbcode->addCode ('url', 'usecontent?', 'do_bbcode_url', array ('usecontent_param' => 'default'),
                           'link', array ('listitem', 'block', 'inline'), array ('link'));
         $bbcode->addCode ('link', 'callback_replace_single', 'do_bbcode_url', array (),
@@ -624,13 +625,15 @@ function BaseFooter($showbottom=true) {
         $footer->parse('outline_header','header',true);
         $footer->parse('outline_footer','footer',true);
         if ($forum == '') {
-            $footer->set_var ('forum_time', f_forumtime() );
+            //@@@@@20070327del
+            //$footer->set_var ('forum_time', f_forumtime() );
             if ($showbottom == "true") {
                 $footer->set_var ('forum_legend', f_legend() );
                 $footer->set_var ('forum_whosonline', f_whosonline() );
             }
           } else {
-            $footer->set_var ('forum_time', f_forumtime() );
+            //@@@@@20070327del
+            //$footer->set_var ('forum_time', f_forumtime() );
             if ($showbottom == "true") {
                 $footer->set_var ('forum_legend', f_legend() );
                 $footer->set_var ('forum_rules', f_forumrules() );
