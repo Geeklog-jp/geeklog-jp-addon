@@ -33,6 +33,10 @@
 // +---------------------------------------------------------------------------+
 //
 
+if (!defined('XHTML')) {
+	define('XHTML', '');
+}
+
 include_once('gf_functions.php');
 require_once($_CONF['path'] . 'plugins/forum/debug.php');  // Common Debug Code
 
@@ -44,7 +48,7 @@ if(DB_count($_TABLES['gf_forums']) == 0) {
     echo '<table width="100%" border="0" cellspacing="0" cellpadding="0">';
     echo '<tr><td align="middle">';
     echo  $LANG_GF93['moderatorwarning'];
-    echo '</td><tr><td align="middle"><br><input type="button" value="' .$LANG_GF93['back'] .'" onclick="javascript:history.go(-1)">';
+    echo '</td><tr><td align="middle"><br' . XHTML . '><input type="button" value="' .$LANG_GF93['back'] .'" onclick="javascript:history.go(-1)"' . XHTML . '>';
     echo '</td></tr></table>';
 } else {
     $operation = COM_applyFilter($_POST['operation']);

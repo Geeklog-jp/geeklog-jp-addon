@@ -55,14 +55,14 @@ function selectHTML_forum($selected='') {
             $groupname = DB_getItem($_TABLES['groups'],'grp_name',"grp_id='{$B['grp_id']}'");
             if (SEC_inGroup($groupname)) {
                 if ($firstforum) {
-                    $selectHTML .= '<OPTION value="-1">-------------------';
-                    $selectHTML .= '<OPTION value="-1">' .$A['cat_name']. '';
+                    $selectHTML .= '<option value="-1">-------------------';
+                    $selectHTML .= '<option value="-1">' .$A['cat_name']. '';
                  }
                 $firstforum = false;
                 if ($B['forum_id'] == $selected) { 
-                    $selectHTML .= LB .'<OPTION value="' .$B['forum_id']. '" SELECTED>&nbsp;&#187&nbsp;&nbsp;' .$B['forum_name']. '';
+                    $selectHTML .= LB .'<option value="' .$B['forum_id']. '" selected="selected">&nbsp;&#187&nbsp;&nbsp;' .$B['forum_name']. '';
                 } else {
-                    $selectHTML .= LB .'<OPTION value="' .$B['forum_id']. '">&nbsp;&#187&nbsp;&nbsp;' .$B['forum_name']. '';
+                    $selectHTML .= LB .'<option value="' .$B['forum_id']. '">&nbsp;&#187&nbsp;&nbsp;' .$B['forum_name']. '';
                 }
             }
         }
@@ -191,7 +191,7 @@ if ($num_messages == 0) {
     while($A = DB_fetchArray($query)){
         $report->set_var ('id', $A['id']);
         if ($A['uid'] > 1) {
-               $report->set_var ('name', '<A HREF="' .$_CONF['site_url']. '/users.php?mode=profile&uid=' .$A['uid']. '">' .$A['name']. '</a>');
+               $report->set_var ('name', '<A HREF="' .$_CONF['site_url']. '/users.php?mode=profile&amp;uid=' .$A['uid']. '">' .$A['name']. '</a>');
         } else {
             $report->set_var ('name', $A['name']);
         }

@@ -184,7 +184,7 @@ $notifications = DB_query($sql);
 $nrows = DB_numRows($notifications);
 $numpages = ceil($nrows / $show);
 $offset = ($page - 1) * $show;
-$base_url = $_CONF['site_url'] . "/forum/notify.php?filter={$notifytype}&forum=$forum&show={$show}";
+$base_url = $_CONF['site_url'] . "/forum/notify.php?filter={$notifytype}&amp;forum=$forum&amp;show={$show}";
 
 $sql .= " LIMIT $offset, $show";
 $notifications = DB_query($sql);
@@ -209,9 +209,9 @@ while (list($notify_recid,$forum_id,$topic_id,$date_added) = DB_fetchARRAY($noti
         if ($A['subject'] == '') {
             $subject = $LANG_GF01['MISSINGSUBJECT'];
         } elseif(strlen($A['subject']) > 50) {
-            $subject = htmlspecialchars(substr($A['subject'], 0, 50),ENT_QUOTES,$CONF_FORUM['charset']) . ' ...';
+            $subject = htmlspecialchars(COM_truncate($A['subject'], 50, '...'), ENT_QUOTES, $CONF_FORUM['charset']);
         } else {
-            $subject = htmlspecialchars($A['subject']);
+            $subject = htmlspecialchars($A['subject'], ENT_QUOTES, $CONF_FORUM['charset']);
         }
         $topic_link = '<a href="' .$_CONF['site_url']. '/forum/viewtopic.php?showtopic=' .$topic_id. '" title="';
         $topic_link .= $subject. '">' .$subject. '</a>';

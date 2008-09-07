@@ -152,7 +152,7 @@ if (($_POST['submit'] == $LANG_GF01['SUBMIT']) && ($_POST['editpost'] == 'yes'))
                 // Check for any users subscribed notifications
                 gf_chknotifications($forum,$editid,$uid);
             }
-            $link = "{$_CONF['site_url']}/forum/viewtopic.php?showtopic=$topicparent&page=$page#$editid";
+            $link = "{$_CONF['site_url']}/forum/viewtopic.php?showtopic=$topicparent&amp;page=$page#$editid";
             forum_statusMessage($LANG_GF02['msg19'],$link,$LANG_GF02['msg19']);
         } else {
             alertMessage($LANG_GF02['msg18']);
@@ -216,7 +216,7 @@ if ($_POST['submit'] == $LANG_GF01['SUBMIT']) {
                     $subject = gf_preparefordb(strip_tags($_POST['subject']),'text');
 
                     if ( strlen ( $subject ) > 100 ) {
-                        $subject = substr($subject,0,99);
+                        $subject = COM_truncate($subject, 99, '...');
                     }
                     $comment = gf_preparefordb($_POST['comment'],$postmode);
                     $mood = COM_applyFilter($_POST['mood']);
@@ -348,7 +348,7 @@ if ($_POST['submit'] == $LANG_GF01['SUBMIT']) {
                         DB_query("INSERT INTO {$_TABLES['gf_watch']} (forum_id,topic_id,uid,date_added) VALUES ('$forum','$nid','$uid',now() )");
                     }
                     COM_updateSpeedlimit ('forum');
-                    $link = "{$_CONF['site_url']}/forum/viewtopic.php?showtopic=$id&lastpost=true#$lastid";
+                    $link = "{$_CONF['site_url']}/forum/viewtopic.php?showtopic=$id&amp;lastpost=true#$lastid";
                     forum_statusMessage($LANG_GF02['msg19'],$link,$LANG_GF02['msg19'],true,$forum);
                 }
 
@@ -387,7 +387,7 @@ if ($method == 'edit') {
     $editAllowed = false;
     if (forum_modPermission($edittopic['forum'],$_USER['uid'],'mod_edit')) {
         $editAllowed = true;
-        echo '<INPUT TYPE="hidden" NAME="modedit" VALUE="1">';
+        echo '<input type="hidden" name="modedit" VALUE="1"' . XHTML . '>';
     } else {
         // User is trying to edit their topic post - this is allowed
         if ($edittopic['date'] > 0 ) {
@@ -468,7 +468,7 @@ if ($_REQUEST['preview'] == $LANG_GF01['PREVIEW']) {
     $forum_outline_footer->set_var ('imgset', $CONF_FORUM['imgset']);
     $forum_outline_footer->parse ('output', 'forum_outline_footer');
     echo $forum_outline_footer->finish ($forum_outline_footer->get_var('output'));
-    echo '<br>';
+    echo '<br' . XHTML . '>';
 
     // If Moderator and editing the parent topic - see if form has skicky or locked checkbox on
     if ($editmoderator AND $editpid == 0) {
@@ -491,7 +491,7 @@ if(($method == 'newtopic' || $method == 'postreply' || $method == 'edit') || ($p
     // validate the forum is actually the forum the topic belongs in...
     if ( $method == 'postreply' || $method=='edit') {
         if ( ($forum != 0) && $forum != $edittopic['forum'] ) {
-            echo '<br>';
+            echo '<br' . XHTML . '>';
             BlockMessage('ERROR',$LANG_GF02['msg87'],false);
             $forum_outline_footer= new Template($_CONF['path_layout'] . 'forum/layout');
             $forum_outline_footer->set_file (array ('forum_outline_footer'=>'forum_outline_footer.thtml'));
@@ -505,7 +505,7 @@ if(($method == 'newtopic' || $method == 'postreply' || $method == 'edit') || ($p
     if ( $method == 'newtopic' && ($newtopic['is_readonly'] == 1 ) ) {
         /* Check if this user has moderation rights now to allow a post to a locked topic */
         if (!forum_modPermission($forum,$_USER['uid'],'mod_edit')) {
-            echo '<br>';
+            echo '<br' . XHTML . '>';
             BlockMessage('ERROR',$LANG_GF02['msg87'],false);
             $forum_outline_footer= new Template($_CONF['path_layout'] . 'forum/layout');
             $forum_outline_footer->set_file (array ('forum_outline_footer'=>'forum_outline_footer.thtml'));
@@ -519,7 +519,7 @@ if(($method == 'newtopic' || $method == 'postreply' || $method == 'edit') || ($p
     if ($method == 'postreply' AND ( $edittopic['locked'] == 1 || $edittopic['is_readonly'] == 1 )) {
         /* Check if this user has moderation rights now to allow a post to a locked topic */
         if (!forum_modPermission($edittopic['forum'],$_USER['uid'],'mod_edit')) {
-            echo '<br>';
+            echo '<br' . XHTML . '>';
             BlockMessage('ERROR',$LANG_GF02['msg87'],false);
             $forum_outline_footer= new Template($_CONF['path_layout'] . 'forum/layout');
             $forum_outline_footer->set_file (array ('forum_outline_footer'=>'forum_outline_footer.thtml'));
@@ -828,7 +828,7 @@ if(($method == 'newtopic' || $method == 'postreply' || $method == 'edit') || ($p
         } else {
             $notify_val = '';
         }
-        $notify_prompt = $LANG_GF02['msg38']. '<br><input type="checkbox" name="notify" ' .$notify_val. '>';
+        $notify_prompt = $LANG_GF02['msg38']. '<br' . XHTML . '><input type="checkbox" name="notify" ' . $notify_val . XHTML . '>';
 
         // check that this is the parent topic - only able to make it skicky or locked
         if ($editpid == 0) {
@@ -840,8 +840,8 @@ if(($method == 'newtopic' || $method == 'postreply' || $method == 'edit') || ($p
                     $sticky_val = 'checked="checked"';
                 }
             }
-            $locked_prompt = $LANG_GF02['msg109']. '<br><input type="checkbox" name="locked_switch" ' .$locked_val. ' VALUE=1>';
-            $sticky_prompt = $LANG_GF02['msg61']. '<br><input type="checkbox" name="sticky_switch" ' .$sticky_val. ' VALUE=1>';
+            $locked_prompt = $LANG_GF02['msg109']. '<br' . XHTML . '><input type="checkbox" name="locked_switch" ' .$locked_val. ' value="1"' . XHTML . '>';
+            $sticky_prompt = $LANG_GF02['msg61']. '<br' . XHTML . '><input type="checkbox" name="sticky_switch" ' .$sticky_val. ' value="1"' . XHTML . '>';
         }
     } else {
         if ($uid > 1) {
@@ -850,7 +850,7 @@ if(($method == 'newtopic' || $method == 'postreply' || $method == 'edit') || ($p
             } else {
                 $notify_val = '';
             }
-            $notify_prompt = $LANG_GF02['msg38']. '<br><input type="checkbox" name="notify" ' .$notify_val. '>';
+            $notify_prompt = $LANG_GF02['msg38']. '<br' . XHTML . '><input type="checkbox" name="notify" ' .$notify_val. XHTML . '>';
             $locked_prompt = '';
         } else {
             $notify_prompt = '';
@@ -864,7 +864,7 @@ if(($method == 'newtopic' || $method == 'postreply' || $method == 'edit') || ($p
          $postmode_msg = $LANG_GF01['HTMLMODE'];
     }
     if($CONF_FORUM['allow_html'] || SEC_inGroup( 'Root' )) {
-        $mode_prompt = $postmode_msg. '<br><input type="checkbox" name="postmode_switch" value="1"><input type="hidden" name="postmode" value="{postmode}">';
+        $mode_prompt = $postmode_msg. '<br' . XHTML . '><input type="checkbox" name="postmode_switch" value="1"' . XHTML . '><input type="hidden" name="postmode" value="{postmode}"' . XHTML . '>';
     }
 
     if($method == 'edit') {
@@ -874,11 +874,11 @@ if(($method == 'newtopic' || $method == 'postreply' || $method == 'edit') || ($p
             $comment = str_replace( '<pre>', '[code]', $comment );
             $comment = str_replace( '</pre>', '[/code]', $comment );
         }
-        $edit_prompt = $LANG_GF02['msg190'] . '<br><input type="checkbox" name="silentedit" ';
+        $edit_prompt = $LANG_GF02['msg190'] . '<br' . XHTML . '><input type="checkbox" name="silentedit" ';
         if ($_POST['silentedit'] == 1 OR ( !isset($_POST['modedit']) AND $CONF_FORUM['silent_edit_default'])) {
              $edit_prompt .= 'checked="checked" ';
         }
-        $edit_prompt .= 'value="1">';
+        $edit_prompt .= 'value="1"' . XHTML . '>';
 
     } else {
         $edit_prompt = '&nbsp;';
@@ -937,7 +937,7 @@ if(($method == 'newtopic' || $method == 'postreply' || $method == 'edit') || ($p
     //Topic Review
     if(($method != 'newtopic' && $_POST['editpost'] != 'yes') && ($method == 'postreply' || $preview == 'Preview')) {
         if ($CONF_FORUM['show_topicreview']) {
-            echo "<IFRAME SRC=\"{$_CONF['site_url']}/forum/viewtopic.php?mode=preview&showtopic=$id&onlytopic=1&lastpost=true\" HEIGHT=\"300\" WIDTH=\"100%\"></IFRAME>";
+            echo "<IFRAME SRC=\"{$_CONF['site_url']}/forum/viewtopic.php?mode=preview&amp;showtopic=$id&amp;onlytopic=1&amp;lastpost=true\" HEIGHT=\"300\" WIDTH=\"100%\"></IFRAME>";
         }
     }
     //End Topic Review

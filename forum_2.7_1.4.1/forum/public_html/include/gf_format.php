@@ -748,9 +748,9 @@ function f_forumjump($action='',$selected=0) {
                  }
                 $firstforum=false;
                 if ($selected > 0 AND $selected == $B['forum_id']) {
-                    $selecthtml .= LB .'<OPTION value="' .$B['forum_id']. '" SELECTED>&#187;&nbsp;' .$B['forum_name']. '';
+                    $selecthtml .= LB .'<option value="' .$B['forum_id']. '" selected="selected">&#187;&nbsp;' .$B['forum_name']. '';
                 } else {
-                    $selecthtml .= LB .'<OPTION value="' .$B['forum_id']. '">&#187;&nbsp;' .$B['forum_name']. '';
+                    $selecthtml .= LB .'<option value="' .$B['forum_id']. '">&#187;&nbsp;' .$B['forum_name']. '';
                 }
             }
         }

@@ -33,6 +33,10 @@
 // +---------------------------------------------------------------------------+
 //
 
+if (!defined('XHTML')) {
+	define('XHTML', '');
+}
+
 // this file can't be used on its own
 if (strpos ($_SERVER['PHP_SELF'], 'gf_showtopic.php') !== false)
 {
@@ -94,7 +98,7 @@ function showtopic($showtopic,$mode='',$onetwo=1,$page=1) {
         $postcount = DB_query("SELECT * FROM {$_TABLES['gf_topic']} WHERE uid='{$showtopic['uid']}'");
         $posts = DB_numRows($postcount);
         // STARS CODE
-        $starimage = "<IMG SRC=\"%s\" ALT=\"{$LANG_GF01['FORUM']} %s\" TITLE=\"{$LANG_GF01['FORUM']} %s\">";
+        $starimage = "<img src=\"%s\" alt=\"{$LANG_GF01['FORUM']} %s\" TITLE=\"{$LANG_GF01['FORUM']} %s\">";
         if ($posts < $CONF_FORUM['level2']) {
             $user_level = sprintf($starimage, gf_getImage('rank1','ranks'), $CONF_FORUM['level1name'],$CONF_FORUM['level1name']);
             $user_levelname = $CONF_FORUM['level1name'];
@@ -126,17 +130,17 @@ function showtopic($showtopic,$mode='',$onetwo=1,$page=1) {
             $avatar = USER_getPhoto($showtopic['uid'],'','',$CONF_FORUM['avatar_width']);
             $min_height = $min_height + 50;
         }
-        $regdate = $LANG_GF01['REGISTERED']. ': ' . strftime('%m/%d/%y',strtotime($userarray['regdate'])). '<br>';
+        $regdate = $LANG_GF01['REGISTERED']. ': ' . strftime('%m/%d/%y',strtotime($userarray['regdate'])). '<br' . XHTML . '>';
         $numposts = $LANG_GF01['POSTS']. ': ' .$posts;
         if (DB_count( $_TABLES['sessions'], 'uid', $showtopic['uid']) > 0 AND DB_getItem($_TABLES['userprefs'],'showonline',"uid={$showtopic['uid']}") == 1) {
-            $avatar .= '<br>' .$LANG_GF01['STATUS']. ' ' .$LANG_GF01['ONLINE'];
+            $avatar .= '<br' . XHTML . '>' .$LANG_GF01['STATUS']. ' ' .$LANG_GF01['ONLINE'];
         } else {
-            $avatar .= '<br>' .$LANG_GF01['STATUS']. ' ' .$LANG_GF01['OFFLINE'];
+            $avatar .= '<br' . XHTML . '>' .$LANG_GF01['STATUS']. ' ' .$LANG_GF01['OFFLINE'];
         }
 
         if($userarray['sig'] != '') {
-            $sig = '<hr width="95%" size="1" style="color=:black; text-align:left; margin-left:0; margin-bottom:5;padding:0" noshade>';
-            $sig .= '<B>' .$userarray['sig']. '</B>';
+            $sig = '<hr width="95%" size="1" style="color=:black; text-align:left; margin-left:0; margin-bottom:5;padding:0" noshade' . XHTML . '>';
+            $sig .= '<b>' .$userarray['sig']. '</b>';
             $min_height = $min_height + 30;
         }
 
@@ -148,7 +152,7 @@ function showtopic($showtopic,$mode='',$onetwo=1,$page=1) {
     }
 
     if ($CONF_FORUM['show_moods'] &&  $showtopic['mood'] != "") {
-        $moodimage = '<img align="absmiddle" src="'.gf_getImage($showtopic['mood'],'moods') .'" title="'.$showtopic['mood'].'"><br>';
+        $moodimage = '<img align="absmiddle" src="'.gf_getImage($showtopic['mood'],'moods') .'" title="'.$showtopic['mood'].'"><br'. XHTML . '>';
         $min_height = $min_height + 30;
     }
 
@@ -170,7 +174,7 @@ function showtopic($showtopic,$mode='',$onetwo=1,$page=1) {
         }
         $showtopic['comment'] = str_ireplace("[code]<code>",'[code]',$showtopic['comment']);
         $showtopic['comment'] = str_ireplace("</code>[/code]",'[/code]',$showtopic['comment']);
-        $showtopic['comment'] = str_replace(array("<br />\r\n","<br />\n\r","<br />\r","<br />\n"), '<br />', $showtopic['comment'] );
+        $showtopic['comment'] = str_replace(array("<br" . XHTML . ">\r\n","<br" . XHTML . ">\n\r","<br" . XHTML . ">\r","<br" . XHTML . ">\n"), '<br' . XHTML . '>', $showtopic['comment'] );
         $showtopic['comment'] = preg_replace("/\[QUOTE\sBY=\s(.+?)\]/i","[QUOTE] Quote by $1:",$showtopic['comment']);
         /* Reformat code blocks - version 2.3.3 and prior */
         $showtopic['comment'] = str_replace( '<pre class="forumCode">', '[code]', $showtopic['comment'] );
@@ -187,8 +191,7 @@ function showtopic($showtopic,$mode='',$onetwo=1,$page=1) {
     $showtopic['subject'] = gf_formatTextBlock($showtopic['subject'],'text',$mode);
 
     if(strlen ($showtopic['subject']) > $CONF_FORUM['show_subject_length']) {
-        $showtopic['subject'] = substr("$showtopic[subject]", 0, $CONF_FORUM['show_subject_length']);
-        $showtopic['subject'] .= "...";
+        $showtopic['subject'] = COM_truncate("$showtopic[subject]", $CONF_FORUM['show_subject_length'], '...');
     }
 
     //$intervalTime = $mytimer->stopTimer();
@@ -207,7 +210,7 @@ function showtopic($showtopic,$mode='',$onetwo=1,$page=1) {
             $editAllowed = true;
         }
         if ($editAllowed) {
-            $editlink = "{$_CONF['site_url']}/forum/createtopic.php?method=edit&forum={$showtopic['forum']}&id={$showtopic['id']}&editid={$showtopic['id']}&amp;page=$page";
+            $editlink = "{$_CONF['site_url']}/forum/createtopic.php?method=edit&amp;forum={$showtopic['forum']}&amp;id={$showtopic['id']}&amp;editid={$showtopic['id']}&amp;page=$page";
             $editlinkimg = '<img src="'.gf_getImage('edit_button').'" border="0" align="absmiddle" alt="'.$LANG_GF01['EDITICON'].'" TITLE="'.$LANG_GF01['EDITICON'].'">';
             $topictemplate->set_var ('editlink', $editlink);
             $topictemplate->set_var ('editlinkimg', $editlinkimg);
@@ -247,7 +250,7 @@ function showtopic($showtopic,$mode='',$onetwo=1,$page=1) {
         if ($is_lockedtopic == 0) {
             $is_readonly = DB_getItem($_TABLES['gf_forums'],'is_readonly','forum_id=' . $showtopic['forum']);
             if ($is_readonly == 0 OR forum_modPermission($showtopic['forum'],$_USER['uid'],'mod_edit')) {
-                $quotelink = "{$_CONF['site_url']}/forum/createtopic.php?method=postreply&forum={$showtopic['forum']}&id=$replytopicid&quoteid={$showtopic['id']}";
+                $quotelink = "{$_CONF['site_url']}/forum/createtopic.php?method=postreply&amp;forum={$showtopic['forum']}&amp;id=$replytopicid&amp;quoteid={$showtopic['id']}";
                 $quotelinkimg = '<img src="'.gf_getImage('quote_button').'" border="0" align="absmiddle" alt="'.$LANG_GF01['QUOTEICON'].'" TITLE="'.$LANG_GF01['QUOTEICON'].'">';
                 $topictemplate->set_var ('quotelink', $quotelink);
                 $topictemplate->set_var ('quotelinkimg', $quotelinkimg);
@@ -261,7 +264,7 @@ function showtopic($showtopic,$mode='',$onetwo=1,$page=1) {
 
         $mod_functions = forum_getmodFunctions($showtopic);
         if($showtopic['uid'] > 1 && $uservalid) {
-            $profile_link = "{$_CONF['site_url']}/users.php?mode=profile&uid={$showtopic['uid']}";
+            $profile_link = "{$_CONF['site_url']}/users.php?mode=profile&amp;uid={$showtopic['uid']}";
             $profile_linkimg = '<img src="'.gf_getImage('profile_button').'" border="0" align="absmiddle" alt="'.$LANG_GF01['ProfileLink'].'" TITLE="'.$LANG_GF01['ProfileLink'].'">';
             $topictemplate->set_var ('profilelink', $profile_link);
             $topictemplate->set_var ('profilelinkimg', $profile_linkimg);
@@ -371,27 +374,27 @@ function forum_getmodFunctions($showtopic) {
     $retval = '';
     $options = '';
     if (forum_modPermission($showtopic['forum'],$_USER['uid'],'mod_edit')) {
-        $options .= '<OPTION VALUE="editpost">' .$LANG_GF03['edit'];
+        $options .= '<option value="editpost">' .$LANG_GF03['edit'];
         if ($showtopic['locked'] == 1) {
-            $options .= '<OPTION VALUE="lockedpost">' .$LANG_GF03['lockedpost'];
+            $options .= '<option value="lockedpost">' .$LANG_GF03['lockedpost'];
         }
     }
     if (forum_modPermission($showtopic['forum'],$_USER['uid'],'mod_delete')) {
-        $options .= '<OPTION VALUE="deletepost">' .$LANG_GF03['delete'];
+        $options .= '<option value="deletepost">' .$LANG_GF03['delete'];
     }
     if (forum_modPermission($showtopic['forum'],$_USER['uid'],'mod_ban')) {
-        $options .= '<OPTION VALUE="banip">' .$LANG_GF03['ban'];
+        $options .= '<option value="banip">' .$LANG_GF03['ban'];
     }
     if ($showtopic['pid'] == 0) {
         if (forum_modPermission($showtopic['forum'],$_USER['uid'],'mod_move')) {
-            $options .= '<OPTION VALUE="movetopic">' .$LANG_GF03['move'];
+            $options .= '<option value="movetopic">' .$LANG_GF03['move'];
         }
     } elseif (forum_modPermission($showtopic['forum'],$_USER['uid'],'mod_move')) {
-        $options .= '<OPTION VALUE="movetopic">' .$LANG_GF03['split'];
+        $options .= '<option value="movetopic">' .$LANG_GF03['split'];
     }
 
     if ($options != '') {
-        $retval .= '<FORM ACTION="moderation.php" METHOD="POST" style="margin:0px;"><SELECT NAME="modfunction">';
+        $retval .= '<form action="moderation.php" method="post" style="margin:0px;"><select name="modfunction">';
         $retval .= $options;
 
         if ($showtopic['pid'] == 0) {
@@ -401,13 +404,13 @@ function forum_getmodFunctions($showtopic) {
             $msgpid = $showtopic['pid'];
             $top = "no";
         }
-        $retval .= '</SELECT><INPUT TYPE="hidden" NAME="fortopicid" VALUE="' .$showtopic['id']. '">';
-        $retval .= '<INPUT TYPE="hidden" NAME="forum" VALUE="' .$showtopic['forum']. '">';
-        $retval .= '<INPUT TYPE="hidden" NAME="msgpid" VALUE="' .$msgpid. '">';
-        $retval .= '<INPUT TYPE="hidden" NAME="top" VALUE="' .$top. '">';
-        $retval .= '<INPUT TYPE="hidden" NAME="page" VALUE="' .$page. '">';
-        $retval .= '&nbsp;&nbsp;<INPUT TYPE="submit" NAME="submit" VALUE="' .$LANG_GF01['GO'].'!">';
-        $retval .= '</FORM>';
+        $retval .= '</select><input type="hidden" name="fortopicid" value="' .$showtopic['id']. '"' . XHTML . '>';
+        $retval .= '<input type="hidden" name="forum" value="' .$showtopic['forum']. '"' . XHTML . '>';
+        $retval .= '<input type="hidden" name="msgpid" value="' .$msgpid. '"' . XHTML . '>';
+        $retval .= '<input type="hidden" name="top" value="' .$top. '"' . XHTML . '>';
+        $retval .= '<input type="hidden" name="page" value="' .$page. '"' . XHTML . '>';
+        $retval .= '&nbsp;&nbsp;<input type="submit" name="submit" value="' .$LANG_GF01['GO'].'!"' . XHTML . '>';
+        $retval .= '</form>';
     }
     return $retval;
 }

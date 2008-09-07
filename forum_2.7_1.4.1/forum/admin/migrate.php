@@ -64,7 +64,7 @@ if ($_POST['migrate'] == $LANG_GF01['MIGRATE_NOW'] AND $_POST['selforum'] != "se
        }
     }
     gf_resyncforum($forum);
-    echo COM_refresh($_CONF['site_admin_url'] . "/plugins/forum/migrate.php?num_stories=". $num_stories. "&num_posts=".$num_posts);
+    echo COM_refresh($_CONF['site_admin_url'] . "/plugins/forum/migrate.php?num_stories=". $num_stories. "&amp;num_posts=".$num_posts);
     exit;
 }
 
@@ -305,7 +305,7 @@ if ($numrows > 0) {
         $p->set_var ('sid',$sid);
         $p->set_var ('topic',stripslashes($topic));
         if($_POST['seltopic'] == "submissions") {
-            $p->set_var ('story_link', $_CONF['site_admin_url'] . '/story.php?mode=editsubmission&id=' . $sid);
+            $p->set_var ('story_link', $_CONF['site_admin_url'] . '/story.php?mode=editsubmission&amp;id=' . $sid);
         } else {
             $p->set_var ('story_link', $_CONF['site_url'] . '/article.php?story=' . $sid);
         }
