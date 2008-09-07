@@ -36,6 +36,10 @@
 // +---------------------------------------------------------------------------+
 //
 
+if (!defined('XHTML')) {
+	define('XHTML', '');
+}
+
 $langfile = $_CONF['path'] . 'plugins/forum/language/' . $_CONF['language'] . '.php';
 if (file_exists ($langfile))
 {
@@ -507,7 +511,7 @@ function plugin_dopluginsearch_forum($query, $datestart, $dateend, $topic, $type
             }
             $searchcount++;
             $forumname = DB_getItem($_TABLES['gf_forums'],"forum_name","forum_id='{$A['forum']}'");
-            $subject = wordwrap($A['subject'],40,"<br>");
+            $subject = wordwrap($A['subject'], 40, '<br' . XHTML .'>');
             $date = strftime('%b %d %Y @ %I:%M %p', $A['date']);
             $url = $_CONF['site_url']. "/forum/viewtopic.php?forum={$A['forum']}&amp;showtopic={$A['id']}";
             $row = array($forumname, "<a href=\"$url\">" . COM_truncate($subject,$CONF_FORUM['show_subject_length'],'...') . "</a>",$date,$A['views']);
@@ -623,7 +627,7 @@ function plugin_getfeedcontent_forum ($feed, &$link, &$update)
         if ($F['content_length'] == 0) {
             $comment = '';
         } elseif ($F['content_length'] > 1) {
-            $comment = substr($A['comment'],0,$F['content_length']);
+            $comment = COM_truncate($A['comment'], $F['content_length'], '...');
         } else {
             $comment = $A['comment'];
             $preface = $LANG_GF01['BY'] . ' ';
@@ -632,7 +636,7 @@ function plugin_getfeedcontent_forum ($feed, &$link, &$update)
             } else {
                 $preface .= $A['name'];
             }
-            $preface .= '<br /><br />';
+            $preface .= '<br' . XHTML . '><br' . XHTML . '>';
         }
         // Handle Pre ver 2.5 quoting and New Line Formatting - consider adding this to a migrate function
         if ($CONF_FORUM['pre2.5_mode']) {
@@ -640,7 +644,7 @@ function plugin_getfeedcontent_forum ($feed, &$link, &$update)
                 $comment = str_replace('<pre>','[code]',$comment);
                 $comment = str_replace('</pre>','[/code]',$comment);
             }
-            $comment = str_replace(array("<br />\r\n","<br />\n\r","<br />\r","<br />\n"), '<br />', $comment );
+            $comment = str_replace(array("<br" . XHTML . ">\r\n","<br" . XHTML . ">\n\r","<br" . XHTML . ">\r","<br" . XHTML . ">\n"), '<br' . XHTML . '>', $comment );
             $comment = preg_replace("/\[QUOTE\sBY=\s(.+?)\]/i","[QUOTE] Quote by $1:",$comment);
             /* Reformat code blocks - version 2.3.3 and prior */
             $comment = str_replace( '<pre class="forumCode">', '[code]', $comment );
@@ -841,7 +845,7 @@ function forum_chkUsercanPost() {
     if($CONF_FORUM['registered_to_post'] && $_USER['uid'] < 2){
         $url = $_CONF['site_url']. '/users.php?mode=new';
         $display .= COM_startBlock($LANG_GF00['access_denied']);
-        $display .= '<br>' .$LANG_GF01['loginreqpost']. '<p>';
+        $display .= '<br' . XHTML . '>' .$LANG_GF01['loginreqpost']. '<p>';
         $display .= '<meta http-equiv="refresh" content="3; URL=' .$url. '">';
         $display .= COM_endBlock();
         $display .= COM_siteFooter();
@@ -872,7 +876,7 @@ function forum_chkUsercanAccess($secure=false) {
         echo COM_siteFooter();
         exit;
     } elseif($secure AND empty($_USER['uid'])) {
-        echo '<br>';
+        echo '<br' . XHTML . '>';
         BlockMessage($LANG_GF01['ACCESSERROR'],$LANG_GF02['msg83'],false);
         echo COM_siteFooter();
         exit;
@@ -1073,8 +1077,7 @@ function phpblock_forum_newposts() {
                 $displaycount++;
                 $fullsubject = $A['subject'];
                 if (strlen ($A['subject']) > $CONF_FORUM['sb_subject_size']) {
-                    $A['subject'] = substr($A['subject'], 0, $CONF_FORUM['sb_subject_size']);
-                    $A['subject'] .= '..';
+                    $A['subject'] = COM_truncate($A['subject'], $CONF_FORUM['sb_subject_size'], '..');
                     $profilelink = '';
                 }
 
@@ -1233,8 +1236,7 @@ function plugin_centerblock_forum ($where = 1, $page = 1, $topic = '')
         while ($A = DB_fetchArray ($result)) {
             $fullsubject = "{$A['subject']}\n{$LANG_GF01['POSTEDBY']}:{$A['name']}{$LANG_GF01['VIEWS']}:{$A['views']}, {$LANG_GF01['REPLIES']}:{$A['replies']}";
             if(strlen ($A['subject']) > $CONF_FORUM['cb_subject_size']) {
-                $A['subject'] = substr ($A['subject'], 0, $CONF_FORUM['cb_subject_size']);
-                $A['subject'] .= '...';
+                $A['subject'] = COM_truncate($A['subject'], $CONF_FORUM['cb_subject_size'], '...');
             }
 
             if ($CONF_FORUM['allow_user_dateformat']) {
@@ -1247,17 +1249,17 @@ function plugin_centerblock_forum ($where = 1, $page = 1, $topic = '')
                 $lastdate = strftime($CONF_FORUM['default_Datetime_format'], $A['lastupdated']);
             }
             if ($A['uid'] > 1) {
-                $topicinfo = "{$A['subject']}<br>{$LANG_GF01['STARTEDBY']} " . COM_getDisplayName($A['uid']) . ', ';                  
+                $topicinfo = "{$A['subject']}<br" . XHTML . ">{$LANG_GF01['STARTEDBY']} " . COM_getDisplayName($A['uid']) . ', ';                  
                 //$topicinfo .= sprintf($LANG_GF01['LASTREPLYBY'],COM_getDisplayName($A['uid']));                     
             } else {
-                $topicinfo = "{$A['subject']}<br>{$LANG_GF01['STARTEDBY']},{$A['name']},";
+                $topicinfo = "{$A['subject']}<br" . XHTML . ">{$LANG_GF01['STARTEDBY']},{$A['name']},";
             }
 
-            $topicinfo .= "{$firstdate}<br>{$LANG_GF01['VIEWS']}:{$A['views']}, {$LANG_GF01['REPLIES']}:{$A['replies']}<br>";
+            $topicinfo .= "{$firstdate}<br" . XHTML . ">{$LANG_GF01['VIEWS']}:{$A['views']}, {$LANG_GF01['REPLIES']}:{$A['replies']}<br" . XHTML . ">";
 
             if (empty ($A['last_reply_rec']) OR $A['last_reply_rec'] < 1) {
                 $lastid = $A['id'];
-                $lastpostinfo = wordwrap(strip_tags(substr($A['comment'],0,$CONF_FORUM['contentinfo_numchars'])),$CONF_FORUM['linkinfo_width'],"<br />\n");
+                $lastpostinfo = wordwrap(strip_tags(COM_truncate($A['comment'], $CONF_FORUM['contentinfo_numchars'], '...')), $CONF_FORUM['linkinfo_width'],"<br" . XHTML . ">\n");
             } else {
                 $qlreply = DB_query("SELECT uid,name,comment FROM {$_TABLES['gf_topic']} WHERE id={$A['last_reply_rec']}");
                 $B = DB_fetchArray($qlreply);
@@ -1267,7 +1269,7 @@ function plugin_centerblock_forum ($where = 1, $page = 1, $topic = '')
                 } else {
                     $topicinfo .= sprintf($LANG_GF01['LASTREPLYBY'],$B['name']);
                 }
-                $lastpostinfo = wordwrap(strip_tags(substr($lastcomment,0,$CONF_FORUM['contentinfo_numchars'])),$CONF_FORUM['linkinfo_width'],"<br />\n");
+                $lastpostinfo = wordwrap(strip_tags(COM_truncate($lastcomment, $CONF_FORUM['contentinfo_numchars'], '...')), $CONF_FORUM['linkinfo_width'],"<br" . XHTML . ">\n");
             }
 
             $cssid = ($cssid ==1) ? 2: 1;
@@ -1378,7 +1380,7 @@ function forumPLG_restoreEmoticons($str) {
 function forumPLG_getPMlink($member) {
     global $_TABLES,$_CONF;
     if (DB_getItem($_TABLES['plugins'],'pi_enabled',"pi_name='messenger'") == 1) {
-        return "{$_CONF['site_url']}/messenger/index.php?action=newpm&toname={$member};";
+        return "{$_CONF['site_url']}/messenger/index.php?action=newpm&amp;toname={$member};";
     } else {
         return '';
     }
@@ -1391,11 +1393,11 @@ function forumPLG_getMemberBadge($uid) {
         if (!SEC_inGroup('Root',$uid)) {
             foreach ($CONF_FORUM['grouptags'] as $groupid => $buttonimg) {
                 if (SEC_inGroup($groupid,$uid)) {
-                    return "<img src=\"{$CONF_FORUM['imgset']}/badges/{$buttonimg}\"><br>";
+                    return "<img src=\"{$CONF_FORUM['imgset']}/badges/{$buttonimg}\"><br" . XHTML . ">";
                 }
             }
         } else {
-            return "<img src=\"{$CONF_FORUM['imgset']}/badges/{$CONF_FORUM['grouptags']['Root']}\"><br>";
+            return "<img src=\"{$CONF_FORUM['imgset']}/badges/{$CONF_FORUM['grouptags']['Root']}\"><br" . XHTML . ">";
         }
     }
 }

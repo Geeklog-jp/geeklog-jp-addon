@@ -33,6 +33,10 @@
 // +---------------------------------------------------------------------------+
 //
 
+if (!defined('XHTML')) {
+	define('XHTML', '');
+}
+
 include_once('gf_functions.php');
 require_once ($_CONF['path_html'] . 'forum/include/gf_format.php');
 require_once($_CONF['path'] . 'plugins/forum/debug.php');  // Common Debug Code
@@ -377,7 +381,7 @@ while ($A = DB_FetchArray($asql)) {
         /* Check if this is a private forum */
         if ($B['grp_id'] != '2') {
             $grp_name = DB_getItem($_TABLES['groups'],'grp_name', "grp_id='{$B['grp_id']}'");
-            $boards->set_var ('forumdscp', "[{$LANG_GF93['private']}&nbsp;-&nbsp;{$grp_name}]<br>{$B['forum_dscp']}");
+            $boards->set_var ('forumdscp', "[{$LANG_GF93['private']}&nbsp;-&nbsp;{$grp_name}]<br" . XHTML . ">{$B['forum_dscp']}");
         } else {
             $boards->set_var ('forumdscp', $B['forum_dscp']);
         }

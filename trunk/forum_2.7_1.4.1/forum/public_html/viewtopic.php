@@ -119,7 +119,7 @@ if ($page > 1) {
     $offset = 0;
 }
 
-$base_url = "{$_CONF['site_url']}/forum/viewtopic.php?showtopic=$showtopic&mode=$mode&show=$show";
+$base_url = "{$_CONF['site_url']}/forum/viewtopic.php?showtopic=$showtopic&amp;mode=$mode&amp;show=$show";
 $forum_outline_header = new Template($_CONF['path_layout'] . 'forum/layout');
 $forum_outline_header->set_file (array ('forum_outline_header'=>'forum_outline_header.thtml'));
 $forum_outline_header->set_var ('imgset', $CONF_FORUM['imgset']);
@@ -155,10 +155,10 @@ if ($mode != 'preview') {
     }
 
     if ($viewtopic['is_readonly'] == 0 OR forum_modPermission($viewtopic['forum'],$_USER['uid'],'mod_edit')) {
-        $newtopiclink = "{$_CONF['site_url']}/forum/createtopic.php?method=newtopic&forum=$forum";
+        $newtopiclink = "{$_CONF['site_url']}/forum/createtopic.php?method=newtopic&amp;forum=$forum";
         $newtopiclinkimg = '<img src="'.gf_getImage('post_newtopic').'" border="0" align="absmiddle" alt="'.$LANG_GF01['NEWTOPIC'].'" TITLE="'.$LANG_GF01['NEWTOPIC'].'">';
         if($viewtopic['locked'] != 1) {
-            $replytopiclink = "{$_CONF['site_url']}/forum/createtopic.php?method=postreply&forum=$forum&id=$replytopic_id";
+            $replytopiclink = "{$_CONF['site_url']}/forum/createtopic.php?method=postreply&amp;forum=$forum&amp;id=$replytopic_id";
             $replytopiclinkimg = '<img src="'.gf_getImage('post_reply').'" border="0" align="absmiddle" alt="'.$LANG_GF01['POSTREPLY'].'" TITLE="'.$LANG_GF01['POSTREPLY'].'">';
             $topicnavbar->set_var ('replytopiclink', $replytopiclink);
             $topicnavbar->set_var ('replytopiclinkimg', $replytopiclinkimg);
@@ -201,26 +201,26 @@ if ($mode != 'preview') {
         $ntopicid = -$showtopic;  // Negative value
         if (DB_count($_TABLES['gf_watch'], array('forum_id', 'topic_id', 'uid'), array($forumid, $ntopicid,$_USER['uid'])) > 0) {
             $notifylinkimg = '<img src="'.gf_getImage('notify_on').'" border="0" align="absmiddle" alt="'.$LANG_GF02['msg62'].'" TITLE="'.$LANG_GF02['msg62'].'">';
-            $notifylink = "{$_CONF['site_url']}/forum/notify.php?forum=$forumid&submit=save&id=$showtopic";
+            $notifylink = "{$_CONF['site_url']}/forum/notify.php?forum=$forumid&amp;submit=save&amp;id=$showtopic";
             $topicnavbar->set_var ('LANG_notify', $LANG_GF01['SubscribeLink']);
 
         /* Check if user has subscribed to complete forum */
         } elseif (DB_count($_TABLES['gf_watch'], array('forum_id', 'topic_id', 'uid'), array($forumid, '0',$_USER['uid'])) > 0) {
             $notifyID = DB_getItem($_TABLES['gf_watch'],'id', "forum_id='$forumid' AND topic_id='0' AND uid='{$_USER['uid']}'");
             $notifylinkimg = '<img src="'.gf_getImage('notify_off').'" border="0" align="absmiddle" alt="'.$LANG_GF02['msg137'].'" TITLE="'.$LANG_GF02['msg137'].'">';
-            $notifylink = "{$_CONF['site_url']}/forum/notify.php?submit=delete2&id=$notifyID&forum=$forumid&topic=$showtopic";
+            $notifylink = "{$_CONF['site_url']}/forum/notify.php?submit=delete2&amp;id=$notifyID&amp;forum=$forumid&amp;topic=$showtopic";
             $topicnavbar->set_var ('LANG_notify', $LANG_GF01['unSubscribeLink']);
 
         /* Check if user is subscribed to this specific topic */
         } elseif (DB_count($_TABLES['gf_watch'], array('forum_id', 'topic_id', 'uid'), array($forumid, $showtopic,$_USER['uid'])) > 0) {
             $notifyID = DB_getItem($_TABLES['gf_watch'],'id', "forum_id='$forumid' AND topic_id='$showtopic' AND uid='{$_USER['uid']}'");
             $notifylinkimg = '<img src="'.gf_getImage('notify_off').'" border="0" align="absmiddle" alt="'.$LANG_GF02['msg137'].'" TITLE="'.$LANG_GF02['msg137'].'">';
-            $notifylink = "{$_CONF['site_url']}/forum/notify.php?submit=delete2&id=$notifyID&forum=$forumid&topic=$showtopic";
+            $notifylink = "{$_CONF['site_url']}/forum/notify.php?submit=delete2&amp;id=$notifyID&amp;forum=$forumid&amp;topic=$showtopic";
             $topicnavbar->set_var ('LANG_notify', $LANG_GF01['unSubscribeLink']);
 
         } else {
             $notifylinkimg = '<img src="'.gf_getImage('notify_on').'" border="0" align="absmiddle" alt="'.$LANG_GF02['msg62'].'" TITLE="'.$LANG_GF02['msg62'].'">';
-            $notifylink = "{$_CONF['site_url']}/forum/notify.php?forum=$forumid&submit=save&id=$showtopic";
+            $notifylink = "{$_CONF['site_url']}/forum/notify.php?forum=$forumid&amp;submit=save&amp;id=$showtopic";
             $topicnavbar->set_var ('LANG_notify', $LANG_GF01['SubscribeLink']);
         }
 
@@ -335,7 +335,7 @@ if ($mode != 'preview') {
     ));
 
     if ($viewtopic['is_readonly'] == 0 OR forum_modPermission($viewtopic['forum'],$_USER['uid'],'mod_edit')) {
-        $newtopiclink = "{$_CONF['site_url']}/forum/createtopic.php?method=newtopic&forum=$forum";
+        $newtopiclink = "{$_CONF['site_url']}/forum/createtopic.php?method=newtopic&amp;forum=$forum";
         $newtopiclinkimg = '<img src="'.gf_getImage('post_newtopic').'" border="0" align="absmiddle" alt="'.$LANG_GF01['NEWTOPIC'].'" TITLE="'.$LANG_GF01['NEWTOPIC'].'">';
         $topic_footer->set_var('layout_url', $_CONF['layout_url']);
         $topicDisplayTime = $mytimer->stopTimer();
@@ -346,7 +346,7 @@ if ($mode != 'preview') {
         $topic_footer->parse ('newtopic_link', 'new');
 
         if($viewtopic['locked'] != 1) {
-            $replytopiclink = "{$_CONF['site_url']}/forum/createtopic.php?method=postreply&forum=$forum&id=$replytopic_id";
+            $replytopiclink = "{$_CONF['site_url']}/forum/createtopic.php?method=postreply&amp;forum=$forum&amp;id=$replytopic_id";
             $replytopiclinkimg = '<img src="'.gf_getImage('post_reply').'" border="0" align="absmiddle" alt="'.$LANG_GF01['POSTREPLY'].'" TITLE="'.$LANG_GF01['POSTREPLY'].'">';
             $topic_footer->set_var ('replytopiclink', $replytopiclink);
             $topic_footer->set_var ('replytopiclinkimg', $replytopiclinkimg);
@@ -357,7 +357,7 @@ if ($mode != 'preview') {
 
 
 } else {
-    $base_url .= '&onlytopic=1';
+    $base_url .= '&amp;onlytopic=1';
     $topic_footer = new Template($_CONF['path_layout'] . 'forum/layout');
     $topic_footer->set_file (array ('topicfooter'=>'topicfooter_preview.thtml'));
 }

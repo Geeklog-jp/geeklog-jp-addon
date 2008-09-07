@@ -33,6 +33,10 @@
 // +---------------------------------------------------------------------------+
 //
 
+if (!defined('XHTML')) {
+	define('XHTML', '');
+}
+
 require_once("../lib-common.php"); // Path to your lib-common.php
 require_once ($_CONF['path_html'] . 'forum/include/gf_format.php');
 require_once($_CONF['path'] . 'plugins/forum/debug.php');  // Common Debug Code
@@ -146,7 +150,7 @@ if ($op == 'newposts' AND $_USER['uid'] > 1) {
     $report->set_var ('spacerwidth', '40%');
     $report->set_var ('prevorder', $order);
     $report->set_var ('direction', $direction);
-    $report->set_var ('op', '&op=newposts');
+    $report->set_var ('op', '&amp;op=newposts');
     $report->set_var ('page', '1');
     if ($CONF_FORUM['usermenu'] == 'navbar') {
         $report->set_var('navmenu', forumNavbarMenu());
@@ -585,8 +589,7 @@ if ($forum == 0) {
             $numForumsDisplayed ++;
             if ($postCount > 0) {
                 if ( strlen($B['subject']) > 25 ) {
-                    $B['subject'] = substr($B['subject'],0,25);
-                    $B['subject'] .= "..";
+                    $B['subject'] = COM_truncate($B['subject'], 25, '..');
                 }
                 if ($_USER['uid'] > 1) {
                     // Determine if there are new topics since last visit for this user.
@@ -614,7 +617,7 @@ if ($forum == 0) {
                 $lastpostmsgDate  = '<font class="forumtxt">' . $LANG_GF01['ON']. '</font>' .$lastdate;
                 if($B['uid'] > 1) {
                     $lastposterName = COM_getDisplayName($B['uid']);
-                    $by = '<a href="' .$_CONF['site_url']. '/users.php?mode=profile&uid=' .$B['uid']. '">' .$lastposterName. '</a>';
+                    $by = '<a href="' .$_CONF['site_url']. '/users.php?mode=profile&amp;uid=' .$B['uid']. '">' .$lastposterName. '</a>';
                 } else {
                     $by = $B['name'];
                 }
@@ -879,7 +882,7 @@ if ($forum > 0) {
             $lastreplysql = DB_query("SELECT * FROM {$_TABLES['gf_topic']} WHERE id={$record['last_reply_rec']}");
             $lastreply = DB_fetchArray($lastreplysql);
             if(strlen ($lastreply['subject']) > $CONF_FORUM['show_subject_length']){
-                $lastreply['subject'] = substr($record['subject'], 0, $CONF_FORUM['show_subject_length']);
+                $lastreply['subject'] = COM_truncate($record['subject'], $CONF_FORUM['show_subject_length'], '...');
                 $lastreply['subject'] .= "...";
             }
             $lastdate1 = strftime('%m/%d/%Y', $lastreply['date']);
@@ -951,7 +954,7 @@ if ($forum > 0) {
         }
 
         if(strlen ($record['subject']) > $CONF_FORUM['show_subject_length']) {
-            $subject = substr($record['subject'], 0, $CONF_FORUM['show_subject_length']) . '....';
+            $subject = COM_truncate($record['subject'], $CONF_FORUM['show_subject_length'], '...');
         } else {
             $subject = $record['subject'];
         }
@@ -960,8 +963,8 @@ if ($forum > 0) {
         } else {
             $firstposterName = $record['name'];
         }
-        $topicinfo =  "<b>{$LANG_GF01['STARTEDBY']}{$firstposterName}, {$firstdate}</b><br />";
-        $topicinfo .= wordwrap(strip_tags(substr($record['comment'],0,$CONF_FORUM['contentinfo_numchars'])),$CONF_FORUM['linkinfo_width'],"<br />\n");
+        $topicinfo =  "<b>{$LANG_GF01['STARTEDBY']}{$firstposterName}, {$firstdate}</b><br" . XHTML . ">";
+        $topicinfo .= wordwrap(strip_tags(COM_truncate($record['comment'], $CONF_FORUM['contentinfo_numchars'], '...')), $CONF_FORUM['linkinfo_width'],"<br" . XHTML . ">\n");
 
         $topiclisting->set_var ('folderimg', $folderimg);
         $topiclisting->set_var ('topicinfo', $topicinfo);

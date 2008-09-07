@@ -32,6 +32,10 @@
 // +---------------------------------------------------------------------------+
 //
 
+if (!defined('XHTML')) {
+	define('XHTML', '');
+}
+
 require_once("../lib-common.php"); // Path to your lib-common.php
 require_once ($_CONF['path_html'] . 'forum/include/gf_format.php');
 require_once($_CONF['path'] . 'plugins/forum/debug.php');  // Common Debug Code
@@ -46,7 +50,7 @@ function gf_FormatForPrint( $str, $postmode='html' ) {
             $showtopic['comment'] = str_replace('<pre>','[code]',$showtopic['comment']);
             $showtopic['comment'] = str_replace('</pre>','[/code]',$showtopic['comment']);
         }
-        $showtopic['comment'] = str_replace(array("<br />\r\n","<br />\n\r","<br />\r","<br />\n"), '<br />', $showtopic['comment'] );
+        $showtopic['comment'] = str_replace(array("<br" . XHTML . ">\r\n","<br" . XHTML . ">\n\r","<br" . XHTML . ">\r","<br" . XHTML . ">\n"), '<br' . XHTML . '>', $showtopic['comment'] );
         $showtopic['comment'] = preg_replace("/\[QUOTE\sBY=\s(.+?)\]/i","[QUOTE] Quote by $1:",$showtopic['comment']);
         /* Reformat code blocks - version 2.3.3 and prior */
         $showtopic['comment'] = str_replace( '<pre class="forumCode">', '[code]', $showtopic['comment'] );
@@ -122,18 +126,18 @@ echo"
         <font face=\"verdana\" size=\"2\">
                 <h3>{$LANG_GF01['SUBJECT']}: $A[subject]</h3>
                 <b>{$LANG_GF01['POSTEDON']}:</b> $date
-            <br>
+            <br" . XHTML . ">
                 <b>{$LANG_GF01['BY']}</b> $A[name]
-            <br>
-            <br>
+            <br" . XHTML . ">
+            <br" . XHTML . ">
             <b>{$LANG_GF01['CONTENT']}:</b>
             <p>$A[comment]</p>
-            <hr width=\"25%\" align=\"left\">
+            <hr width=\"25%\" align=\"left\"" . XHTML . ">
 
-        <br>
+        <br" . XHTML . ">
         <b>{$LANG_GF01['REPLIES']}:</b>
-        <hr width=\"50%\" align=\"left\">
-        <br>
+        <hr width=\"50%\" align=\"left\"" . XHTML . ">
+        <br" . XHTML . ">
 ";
 
 $result2 = DB_query("SELECT * FROM {$_TABLES['gf_topic']} WHERE (pid='$id')");
@@ -144,13 +148,13 @@ echo"
 
                 <h4>$B[subject]</h4>
                 <b>{$LANG_GF01['POSTEDON']}:</b> $date
-            <br>
+            <br" . XHTML . ">
                 <b>{$LANG_GF01['BY']}</b> $B[name]
-            <br>
-            <br>
+            <br" . XHTML . ">
+            <br" . XHTML . ">
             <b>{$LANG_GF01['CONTENT']}:</b>
             <p>" . gf_FormatForPrint( $B['comment'], $B['postmode'] ) . "</p>
-            <hr width=\"25%\" align=\"left\">
+            <hr width=\"25%\" align=\"left\"" . XHTML . ">
 
 ";
 
@@ -158,7 +162,7 @@ echo"
 
 echo"
 
-            <p>$_CONF[site_name] - {$LANG_GF01['FORUM']}<br>
+            <p>$_CONF[site_name] - {$LANG_GF01['FORUM']}<br" . XHTML . ">
                     <a href=\"$_CONF[site_url]/forum/viewtopic.php?showtopic=$A[id]\">$_CONF[site_url]/forum/viewtopic.php?showtopic=$A[id]</a>
             </p>
 

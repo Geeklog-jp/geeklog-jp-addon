@@ -66,7 +66,7 @@ if ($op == "last10posts") {
 
     $report->set_var ('imgset', $CONF_FORUM['imgset']);
     $report->set_var ('layout_url', $_CONF['layout_url']);
-    $report->set_var ('phpself', $_CONF['site_url'] .'/forum/memberlist.php?op=last10posts&showuser='.$showuser);
+    $report->set_var ('phpself', $_CONF['site_url'] .'/forum/memberlist.php?op=last10posts&amp;showuser='.$showuser);
     $report->set_var ('startblock', COM_startBlock($LANG_GF02['msg86'] . DB_getItem($_TABLES['users'],"username", "uid=$showuser")) );
     $report->set_var ('endblock', COM_endBlock());
 
@@ -118,8 +118,8 @@ if ($op == "last10posts") {
             $report->parse ('report_records', 'records',true);
         }
     }
-    $link = "<p><a href=\"{$_CONF['site_url']}/forum/memberlist.php?order=$order&prevorder=$prevorder";
-    $link .= "&direction=$direction&page=$page\">{$LANG_GF02['msg169']}</a><p />";
+    $link = "<p><a href=\"{$_CONF['site_url']}/forum/memberlist.php?order=$order&amp;prevorder=$prevorder";
+    $link .= "&amp;direction=$direction&amp;page=$page\">{$LANG_GF02['msg169']}</a><p />";
     $report->set_var ('bottomlink', $link);
     $report->parse ('output', 'report');
     echo $report->finish($report->get_var('output'));
@@ -185,8 +185,8 @@ if ($op == "last10posts") {
     $membercount   = DB_numRows($memberlistsql);
     $numpages = ceil($membercount / $show);
     $offset = ($page - 1) * $show;
-    $base_url = "{$_CONF['site_url']}/forum/memberlist.php?&show={$show}&order={$order}&prevorder={$prevorder}";
-    $base_url .= "&direction={$prevdirection}&chkactivity=$chkactivity";
+    $base_url = "{$_CONF['site_url']}/forum/memberlist.php?&amp;show={$show}&amp;order={$order}&amp;prevorder={$prevorder}";
+    $base_url .= "&amp;direction={$prevdirection}&amp;chkactivity=$chkactivity";
 
     if ($chkactivity) {
         $sql = "SELECT user.uid,user.uid,user.username,user.regdate,user.email,user.homepage, count(*) as posts, userprefs.emailfromuser ";
@@ -235,8 +235,8 @@ if ($op == "last10posts") {
     while($siteMembers = DB_fetchArray($query)) {
         $siteMembers['posts'] = DB_count($_TABLES['gf_topic'],'uid',$siteMembers['uid']);
         if ($siteMembers['posts'] > 0) {
-            $reportlinkURL = $_CONF['site_url'] .'/forum/memberlist.php?op=last10posts&showuser='.$siteMembers['uid'];
-            $reportlinkURL .= '&prevorder='.$order.'&direction='.$direction.'&page='.$page;
+            $reportlinkURL = $_CONF['site_url'] .'/forum/memberlist.php?op=last10posts&amp;showuser='.$siteMembers['uid'];
+            $reportlinkURL .= '&amp;prevorder='.$order.'&amp;direction='.$direction.'&amp;page='.$page;
             $report->set_var ('image', gf_getImage('latestposts'));            
             $report->set_var ('link_url', $reportlinkURL);
             $report->set_var ('LANG_title',sprintf($LANG_GF02['msg86'],$CONF_FORUM['show_last_post_count']));

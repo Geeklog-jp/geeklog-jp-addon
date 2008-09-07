@@ -36,6 +36,10 @@
 // +---------------------------------------------------------------------------+
 //
 
+if (!defined('XHTML')) {
+	define('XHTML', '');
+}
+
 require_once('../../../lib-common.php');
 require_once($_CONF['path'] . 'plugins/forum/config.php');
 require_once($_CONF['path'] . 'plugins/forum/functions.inc');
@@ -128,7 +132,7 @@ function plugin_install_now()
     require_once($_CONF['path'] . 'plugins/forum/sql/mysql_install_2.6.php');
 
     for ($i = 1; $i <= count($_SQL); $i++) {
-        $progress .= "executing " . current($_SQL) . "<br>\n";
+        $progress .= "executing " . current($_SQL) . "<br" . XHTML . ">\n";
         COM_errorLOG("executing " . current($_SQL));
         DB_query(current($_SQL),'1');
         if (DB_error()) {
