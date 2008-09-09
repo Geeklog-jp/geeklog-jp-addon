@@ -1,5 +1,0 @@
-{new_table_row}
-<td nowrap valign="top" align="left">
-    {subcategories}
-</td>
-{end_of_row}
