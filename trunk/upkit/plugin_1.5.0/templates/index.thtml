@@ -1,0 +1,5 @@
+
+{blockheader}
+<p style="margin-bottom:10px">{infotext}</p>
+{listdata}
+{blockfooter}
