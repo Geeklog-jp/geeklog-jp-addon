@@ -1,0 +1,61 @@
+
+<form action="{site_admin_url}/plugins/{plugin}/index.php" method="post">
+  <table border="0" cellspacing="0" cellpadding="2" width="100%">
+    <tr>
+      <td align="right">{lang_title}:</td>
+      <td>
+        <input type="text" size="48" maxlength="96" name="title" value="{val_title}"{xhtml}>
+      </td>
+    </tr>
+    <tr>
+      <td align="right">{lang_value}:</td>
+      <td>
+        <input type="text" size="11" name="value" value="{val_value}"{xhtml}>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="2"><hr{xhtml}></td>
+    </tr>
+    <tr>
+      <td colspan="2"><b>{lang_accessrights}</b></td>
+    </tr>
+    <tr>
+      <td align="right">{lang_owner}:</td>
+      <td>{owner_name}<input type="hidden" name="owner_id" value="{{plugin}_ownerid}"{xhtml}></td>
+    </tr>
+    <tr>
+      <td align="right">{lang_group}:</td>
+      <td>
+{group_dropdown}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><b>{lang_permissions}</b>:</td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+    </tr>
+    <tr>
+      <td colspan="2">{lang_permissionskey}</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+{permissions_editor}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">{lang_lockmsg}</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+      <td colspan="2">
+        <input type="submit" value="{lang_save}" name="mode"{xhtml}>
+        {delete_option}
+        <input type="submit" value="{lang_cancel}" name="mode"{xhtml}>
+        <input type="hidden" value="{up_id}" name="up_id"{xhtml}>
+        <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+      </td>
+    </tr>
+  </table>
+</form>

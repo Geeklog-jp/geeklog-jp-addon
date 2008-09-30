@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="ja">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <title>Geeklog汎用プラグインツールキット 説明書</title>
+    <style type="text/css">
+    <!--
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            margin: 25px;
+        }
+        h1 {
+            font-size: 1.5em;
+            border-bottom: thin outset black;
+        }
+        h2 {
+            margin: 0 0 0.5em 0;
+            font-size: 1em;
+        }
+        h3 {
+            border-bottom: 1px solid #0033FF;
+            border-left: 6px solid #0033FF;
+            padding: 0.25em;
+            font-size: 1em;
+        }
+        h4 {
+            font-size: 0.85em;
+            font-weight: bold;
+            margin: 0.2em 0;
+        }
+        p {
+            font-size: 0.85em;
+            margin: 0.5em 0;
+        }
+        ul {
+            margin-top: 0.5em;
+            margin-bottom: 1em;
+        }
+        li {
+            font-size: 0.8em;
+            margin: 0.5em 0;
+        }
+        li p {
+            font-size: 0.8em;
+            margin: 0.5em 0;
+        }
+        .geeklog {
+            background-color: yellow;
+        }
+        .public {
+            background-color: #99ff00;
+        }
+        .admin {
+            background-color: aqua;
+        }
+        .notice {
+            padding: 5px;
+            background-color: yellow;
+            border: solid 1px black;
+        }
+     -->
+    </style>
+</head>
+
+<body>
+<h1>汎用プラグインツールキット for Geeklog 1.5</h1>
+<h2>バージョン: 1.1.0</h2>
+<h2>公開日:&nbsp;2008.8.10</h2>
+<h2>ライセンス:&nbsp;GPL v2</h2>
+<h2>概要:</h2>
+<p>汎用プラグインツールキット(Universal Plugin Toolkit)は、GeeklogのプラグインAPI要件を満たし、独自のプラグインをさっと書くためのファイルを提供します。自分の書いたコードとGeeklogとのインターフェースを構築するのに必要な全てのファイルで構成されています。同梱されているのは、</p>
+<ul>
+<li>デバッグ済みのインストールページとルーチン</li>
+<li>アンインストールルーチンを含む機能が実装された functions.inc</li>
+<li>管理者用ファイルとindexファイルのスケルトル</li>
+<li>テンプレートを使用した表示。全テンプレート同梱</li>
+<li>インストール/管理者/インデックス用のサンプル言語ファイル（英語・日本語）</li>
+<li>使用法の説明</li></ul>
+<h2>同梱されているファイル:</h2>
+<p>plugin_1.5.0/ ディレクトリ以下のファイルを参照してください。</p>
+
+<h2>汎用プラグインツールキットの使用法:</h2>
+<p>ファイルを適切なディレクトリにコピーした後で最初にすべきことは、プラグインの名前を決め、テキストエディタなどを使って、</p>
+<ol>
+<li>文字列 {plugin} をプラグイン名に</li>
+<li>文字列 {conf_var_prefix} をプラグインの設定値を保持する変数の接頭辞に</li>
+<li>文字列 {lang_var_postfix} を言語ファイルで使用する変数の接尾辞に</li>
+<li>文字列 {display_name} を表示名に</li>
+<li>文字列 {author_name} をプラグイン開発者の名前に</li>
+<li>文字列 {author_email} をプラグイン開発者のメールアドレスに</li>
+  <li>文字列 {pi_url} をプラグインのURLに</li>
+<li>文字列 {gl_version} Geeklogのバージョンに</li>
+</ol>
+<p>置換することです。対象ファイルは、plugin_1.5.0/ディレクトリ以下の全てのファイルです。</p>
+
+<p>なお、配布物の中には、mystral-kk氏が開発した make_pi.php というPHPスクリプトが同梱されています。このスクリプトは、上述の置換を行ってくれますので、どうぞご利用ください。</p>
+
+<p>make_pi_config.phpをテキストエディタで編集し、次のようにスクリプトを実行してください。</p>
+
+<p>php.exe -f make_pi.php</p>
+
+<p class="notice">注意： gl_vars テーブルを使用するので、プラグイン名は15文字以下にしてください。</p>
+
+<p>次に、config.php をエディタで開き、作成するテーブル名を $_TABLES配列に追加します。ファイルの中のサンプルを参考にして、テーブル名を追加・削除してください。プラグインのバージョンも設定してください。</p>
+
+<p>次に、spl/mysql_install.php を開き、作成するテーブルの構造を設定します。$_SQL配列に、ファイルの中のサンプルを参考にして、SQL文を追加・削除してください。</p>
+
+<p>次に、admin/install.phpを開き、同ファイル内の4つの配列に値を設定します。</p>
+<ul>
+<li>1番目の配列($GROUPS)には、セキュリティグループが入っています。</li>
+<li>2番目の配列($FEATURES)には、セキュリティ項目(security features)が入っています。</li>
+<li>3番目の配列($MAPPINGS)では、セキュリティ項目とセキュリティグループの関連づけを設定しています。</li>
+<li>4番目の配列($DEFVALUES)には、テーブルにサンプルないしデフォルトのデータを追加するためのSQL文が入っています。</li>
+</ul>
+
+<p>最後に、functions.inc を開き、プラグインをアンインストールできるよう、アンインストール関数 ( plugin_autouninstall_{plugin}
+  ) にテーブルとセキュリティ項目を追加します。</p>
+
+<p>この時点で動作するプラグインの骨格ができているはずです。インストールすれば、Geeklogに表示されるでしょう。さあ、コードを書いて、Geeklogのコミュニティと共有しましょう。</p>
+
+<p>プラグインが動作するようになったら、プラグインのルートディレクトリにあるINSTALLドキュメント（とINSTALL_ja）とinstall.html（とinstall_ja.html）を編集するとよいでしょう。</p>
+
+<p>ここまで述べてきたことにピンと来なければ、Links や Polls などの標準的なプラグインを調べてみてください。</p>
+</body>
+</html>

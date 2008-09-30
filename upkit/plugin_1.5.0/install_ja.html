@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <title>Geeklog {plugin} プラグイン説明書</title>
+    <style type="text/css">
+    <!--
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            margin: 25px;
+        }
+        h1 {
+            font-size: 1.5em;
+            border-bottom: thin outset black;
+        }
+        h2 {
+            margin: 0 0 0.5em 0;
+            font-size: 1em;
+        }
+        h3 {
+            border-bottom: 1px solid #0033FF;
+            border-left: 6px solid #0033FF;
+            padding: 0.25em;
+            font-size: 1em;
+        }
+        h4 {
+            font-size: 0.85em;
+            font-weight: bold;
+            margin: 0.2em 0;
+        }
+        p {
+            font-size: 0.85em;
+            margin: 0.5em 0;
+        }
+        ul {
+            margin-top: 0.5em;
+            margin-bottom: 1em;
+        }
+        li {
+            font-size: 0.8em;
+            margin: 0.5em 0;
+        }
+        li p {
+            font-size: 0.8em;
+            margin: 0.5em 0;
+        }
+        .geeklog {
+            background-color: yellow;
+        }
+        .public {
+            background-color: #99ff00;
+        }
+        .admin {
+            background-color: aqua;
+        }
+        .notice {
+            padding: 5px;
+            background-color: yellow;
+            border: solid 1px black;
+        }
+     -->
+    </style>
+</head>
+
+<body>
+    <h1>Geeklog {plugin} プラグイン</h1>
+    <h2>バージョン: 1.0.0</h2>
+    <h2>作成者: {author_name}</h2>
+    <h2>公開日:&nbsp;2008.8.10</h2>
+    <h2>ライセンス:&nbsp;GPL v2</h2>
+
+    <p>以下の説明で、</p>
+    <ul>
+        <li><span class="geeklog">&lt;geeklog_dir&gt;</span>は、システムの config.php が存在するディレクトリ</li>
+        <li><span class="public">&lt;public_html&gt;</span>は、lib-common.php が存在するディレクトリ</li>
+        <li><span class="admin">&lt;admin&gt;</span>は、管理者用ファイルが存在するディレクトリ（ふつうは、<span class="public">&lt;public_html&gt;</span>ディレクトリの下）</li>
+    </ul>
+    <p>を表しています。</p>
+
+    <h2>インストール:</h2>
+    
+    <ol>
+        <li>{plugin} プラグインはテーブルを追加するので、管理者メニューの「DBのバックアップ」やphpMyAdminを使用して、事前にGeeklogのデータベースをバックアップしておきます。</li>
+        <li>{plugin}プラグインのアーカイブを<span class="geeklog">&lt;geeklog_dir&gt;</span>/pluginsディレクトリに展開します。{plugin}という名前のディレクトリができます。</li>
+        <li>public_htmlディレクトリとadminディレクトリを作ります。htmlファイルを納めるディレクトリ（普通は <span class="public">&lt;public_html&gt;</span>）の下に、{plugin}という名前のディレクトリを作ります。<span class="admin">&lt;admin&gt;</span>/plugins/ ディレクトリの下にも {plugin}という名前のディレクトリを作ります。</li>
+        <li><span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins/{plugin}/ ディレクトリに移動します。adminディレクトリの内容を、3.で作成した <span class="admin">&lt;admin&gt;</span>/plugins/{plugin}/ ディレクトリにコピーします。public_htmlディレクトリの内容を、3.で作成した <span class="public">&lt;public_html&gt;</span>/{plugin}/ ディレクトリにコピーします。</li>
+        <li>{plugin}ディレクトリの config.php ファイルを編集し、データベースのテーブルのプレフィックスとゲストユーザーのアクセス権、表示設定などを確認します。デフォルトでは、Geeklogのテーブルのプレフィックスを使用し、ゲストユーザーのアクセスを認めないようになっています。</li>
+        <li>Rootユーザーとしてログインし、プラグインエディタからインストールを実行します。失敗した場合には、エラーログ（error.log）を調べます。この時点で、{plugin} プラグインはインストールされ、機能しているはずです。{plugin} アイコンをクリックすると、管理機能ページへジャンプするでしょう。</li>
+        <li>セキュリティを設定します。インストール直後には、{plugin}プラグインの管理権限を持っているのは、Rootユーザーだけです。ユーザーエディタやグループエディタを使用して、管理権限を他の人やグループに委譲することができます</li>
+    </ol>
+
+    <h2>アンインストール:</h2>
+
+    <ol>
+        <li>プラグインエディタから、{plugin} プラグインをアンインストールします。このとき、{plugin}プラグインが使用していたテーブルは破棄され、その中に記録されていたデータも削除されます。</li>
+        <li>インストールの過程で作成した3つのディレクトリ（<span class="geeklog">&lt;geeklog-dir&gt;</span>/plugins/{plugin}/ <span class="public">&lt;public_html&gt;</span>/{plugin}/ and <span class="admin">&lt;admin&gt;</span>/plugins/{plugin}/ を削除します。</li>
+    </ol>
+
+    <p>これでおしまいです。</p>
+
+</body>
+</html>

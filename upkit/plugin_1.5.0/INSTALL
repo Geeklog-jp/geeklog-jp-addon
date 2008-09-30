@@ -1,0 +1,40 @@
+Install/Uninstall instruction for the Geeklog {plugin} plugin.
+
+INSTALL:
+
+Step 1:  Back up your Geeklog Database.  The {plugin} plugin adds tables to your Geeklog database.  You can do
+this with the built in admin backup facility.
+
+Step 2:  Uncompress the {plugin} plugin archive while in the <geeklog_dir>/plugins directory.  The archive will
+create a directory called {plugin} in the plugins directory.
+
+Step 3:  Create the public_html and admin directories.  Under your html directory (usually public_html) 
+create a directory called {plugin}.  Under your admin/plugins/ directory create a directory called {plugin}.
+
+Step 4:  Change to your <geeklog_dir>/plugins/{plugin}/ directory.  Copy the files in the admin directory 
+to the admin/plugins/{plugin}/ directory your created in step 3.  Copy the files and directories in the 
+public_html directory to the public_html/{plugin}/ directory your created in step 3.
+
+Step 5:  Edit the config.php in the {plugin} directory and confirm the table prefix and anonymous access 
+settings and other display settings.  The default is to use the geeklog table prefix and not allow 
+anonymous access.
+
+Step 6:  Log in to your Geeklog as a root user and run install.php in your admin/plugins/{plugin}/ directory.
+The install page will tell you if the install was successful or not.  If not examine Geeklog system errorlog
+for possible problems.
+
+The {plugin} plugin should now be installed and functioning.  Clicking on the {plugin} Icon will
+take you to the admin page.  
+
+Step 7: Set up security.  On install only the root users have access to {plugin} administration and Viewing.  
+You can delegate control for either of these functions through the user and group editors.
+
+UNINSTALL:
+
+Step 1:  Run the install.php page in your admin/plugins/{plugin} directory.  This will remove all the data from
+your database.
+
+Step 2:  Delete the three plugin directories created in the install process:  <geeklog-dir>plugins/{plugin}/ 
+<public_html>/{plugin}/ and <admin>/plugins/{plugin}/
+
+That's it.
