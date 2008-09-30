@@ -35,6 +35,10 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
+if (strpos(strtolower($_SERVER['PHP_SELF']), 'config.php') !== false) {
+    die('This file can not be used on its own.');
+}
+
 $_{conf_var_prefix}_CONF['version'] = '1.0.0';   // Plugin Version
 
 /*
