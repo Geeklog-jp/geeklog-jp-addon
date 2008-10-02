@@ -1,0 +1,12 @@
+
+<!-- notifications_line.thtml -->
+<tr class="aligncenter pluginRow{csscode}">
+    <td style="padding:2px 5px 2px 5px;"><input type="checkbox" name="chkrecid[]" value="{id}"{xhtml}></td>
+    <td class="alignleft" style="padding:2px 5px 2px 5px; white-space:nowrap;">{forum}</td>
+    <td class="alignleft" style="text-align:left;padding:2px 0px 2px 5px; white-space:nowrap;">{is_forum}&nbsp;{topic_link}</td>
+    <td style="width:20%; padding:2px 5px 2px 5px;">{date_added}</td>
+    <td style="width:20%; padding:2px 5px 2px 5px;"><a href="{site_url}/users.php?mode=profile&uid={uid}">{topicauthor}</a></td>
+    <td style="width:20%; padding:2px 5px 2px 5px;">{views}</td>
+    <td style="width:20%; padding:2px 5px 2px 5px;">{replies}</td>
+    <td style="width:20%; padding:2px 5px 2px 5px;"><a href="notify.php?submit=delete&id={notify_id}&filter={notifytype}">{LANG_REMOVE}</a></td>
+</tr>

@@ -1,0 +1,34 @@
+
+<!-- start userprefs/navbar.thtml -->
+<head>
+    <script type="text/javascript" src="{layout_url}/forum/javascript/mainheader.js"></script>
+</script>
+</head>
+<table class="pluginSolidFill" width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td width="5" background="{imgset}/lb-tl.gif"><img src="{imgset}/pixel.gif" width="5" height="5"{xhtml}></td>
+        <td height="5" background="{imgset}/lb-t.gif"><img src="{imgset}/pixel.gif" height="5"{xhtml}></td>
+        <td width="5" background="{imgset}/lb-tr.gif"><img src="{imgset}/pixel.gif" width="5" height="5"{xhtml}></td>
+    </tr>
+    <tr>
+        <td width="5" background="{imgset}/lb-l.gif"><img src="{imgset}/pixel.gif" width="5" height="5"{xhtml}></td>
+        <td width="100%">
+            <table width="100%" border="0" cellspacing="1" cellpadding="0">
+                <tr>
+                    <td style="background: center url({imgset}/button.gif); width:20%; white-space:nowrap;"><a class="pluginButton" href="{site_url}/forum/index.php">{LANG_viewforums}</a></td>
+                    <td style="background: center url({imgset}/button.gif); width:20%; white-space:nowrap;"><a class="pluginButton" href="{site_url}/forum/userprefs.php">{LANG_userprefs}</a></td>
+                    <td style="background: center url({imgset}/button.gif); width:20%; white-space:nowrap;"><a class="pluginButton" href="{site_url}/forum/index.php?op=popular">{LANG_POPULAR}</a></td>
+                    <td style="background: center url({imgset}/button.gif); width:20%; white-space:nowrap;"><a class="pluginButton" href="{site_url}/forum/notify.php">{LANG_NOTIFY}</a></td>
+                    <td style="background: center url({imgset}/button.gif); width:20%; white-space:nowrap;"><a class="pluginButton" href="{site_url}/forum/memberlist.php">{LANG_MEMBERS}</a></td>
+                </tr>
+        </table>
+        </td>
+        <td width="5" background="{imgset}/lb-r.gif"><img src="{imgset}/pixel.gif" width="5" height="5"{xhtml}></td>
+    </tr>
+    <tr>
+        <td style="width:5px; height:5px" background="{imgset}/lb-bl.gif"><img src="{imgset}/pixel.gif" height="5"{xhtml}></td>
+        <td style="height:5px" background="{imgset}/lb-b.gif"><img src="{imgset}/pixel.gif" height="5"{xhtml}></td>
+        <td style="height:5px" background="{imgset}/lb-br.gif"><img src="{imgset}/pixel.gif" width="5" height="5"{xhtml}></td>
+    </tr>
+</table><br{xhtml}>
+<!-- end userprefs/navbar.thtml -->

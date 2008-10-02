@@ -1,0 +1,10 @@
+
+<!-- start block_displayline.thtml -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0" >
+<tr>
+    <td class="pluginRow{css_id} alignleft" style="width:100%">
+        <img alt="red arrow" src="{img_dir}/redarrow.gif"{xhtml}><b><a href="{site_url}/forum/viewtopic.php?showtopic={topic_id}&amp;fromblock=yes" title="{fullsubject}">{topic_subject}</a></b><br{xhtml}>&nbsp;<small><b>{LANG_BY}</b>&nbsp;{user_name}</small><br{xhtml}>&nbsp;<small><b>{LANG_ON}</b>&nbsp;{date}</small><br{xhtml}>&nbsp;<small><b>{LANG_VIEWS}</b>&nbsp;{views}&nbsp;<b>{LANG_REPLIES}</b>&nbsp;{replies}</small><br{xhtml}>
+    </td>
+</tr>
+</table> 
+<!-- end block_displayline.thtml -->
