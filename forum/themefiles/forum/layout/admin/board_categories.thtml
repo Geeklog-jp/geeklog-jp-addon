@@ -1,0 +1,51 @@
+
+<!-- start board_categories.thtml -->
+<table width="100%" cellspacing="0" cellpadding="3" style="margin-top:10px; margin-bottom:20px; border:0 none;">
+    <tr>
+        <td>
+            <table width="100%" cellspacing="0" cellpadding="0" style="border:0 none;">
+                <tr>
+                    <td style="height:8px; width:10px;"><img src="{imgset}/forumindex.png" border="0"{xhtml}></td>
+                    <td class="pluginHeader alignleft" style="white-space:nowrap;">&nbsp;{catname}:</td>
+                    <td class="alignright" style="white-space:nowrap;">{catorder}:&nbsp;{order}&nbsp;&nbsp;</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td style="padding:0px;">
+            <table width="100%" cellspacing="1" cellpadding="3" class="pluginSolidOutline" style="border:0 none;">
+                <tr>
+                    <td class="pluginCellTitle" style="padding-left:5px width:15%;">{LANG_action}</td>
+                    <td class="pluginCellTitle" style="width:70%;">{LANG_forumdesc}</td>
+                    <td class="pluginCellTitle" style="width:5%; white-space:nowrap;">{LANG_posts}</td>
+                    <td class="pluginCellTitle" style="width:10%;">{LANG_order}</td>
+                </tr>
+{forum_records}
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td class="pluginSolidOutline pluginCellSubTitle">
+            <table width="100%" cellspacing="1" cellpadding="4" style="border:0 none;">
+                <tr>
+                    <td style="white-space:nowrap;">
+                        <form action="{phpself}" method="post">
+                            <fieldset><legend style="padding-bottom:5px;">Category</legend>
+                                <input type="hidden" name="type" value="category"{xhtml}>
+                                <input type="hidden" name="forumname" value="{forumname}"{xhtml}>
+                                <input type="hidden" name="id" value="{catid}"{xhtml}>
+                                <input type="hidden" name="{gltoken_name}" value="{gltoken}"{xhtml}>
+                                <input type="submit" name="mode" value="{delete}"{xhtml}>&nbsp;
+                                <input type="submit" name="mode" value="{edit}"{xhtml}>&nbsp;
+                                <input type="submit" name="mode" value="{resync_cat}" style="display:{hide_options};"{xhtml}>
+                            </fieldset>
+                        </form>
+                    </td>
+                    <td class="alignright" style="width:60%; white-space:nowrap;">[&nbsp;<a href="{phpself}?mode=add&amp;type=forum&amp;category={catid}&amp;catname={catname}">{addforum}</a>&nbsp;]&nbsp;&nbsp;<br{xhtml}><p{xhtml}></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<!-- end board_categories.thtml -->

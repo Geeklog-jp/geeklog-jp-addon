@@ -1,0 +1,9 @@
+<!-- start topicfooter_preview.thtml -->
+</table>
+<p></p>
+<table width="100%" border="0" cellspacing="0" cellpadding="4" style="margin-bottom:10px">
+        <tr>
+           <td class="aligncenter" style="white-space:nowrap;">{pagenavigation}</td>
+        </tr>
+</table>
+<!-- end topicfooter_preview.thtml -->

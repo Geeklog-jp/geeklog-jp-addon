@@ -1,0 +1,26 @@
+<!-- start memberlist.thtml -->
+{navmenu}
+<form method="post" action="{site_url}/forum/memberlist.php" style="margin:0px;">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td colspan="3" class="pluginHeader" style="padding:5px;width:95%;">{LANG_TITLE}</td>
+        <td colspan="5" class="pluginHeader" style="padding:5px;text-align:right; white-space:nowrap;">{LANG_ACTIVITY}&nbsp;<input type="checkbox" name="chkactivity" value="1" {chk_activity} onclick="submit();"{xhtml}></td>
+    </tr>
+</table>
+<table width="100%" border="0" cellspacing="1" cellpadding="3" class="plugin" style="margin-bottom:10px;">    
+    <tr>
+        <td class="pluginBreadCrumbs pluginCellTitle aligncenter" style="padding:2px 5px 2px 5px; width:40%; white-space:nowrap;"><a href="{phpself}?order=1&prevorder={prevorder}&direction={direction}&page={page}&chkactivity={chkactivity}">{LANG_Heading1}</a></td>
+        <td class="pluginBreadCrumbs pluginCellTitle" style="padding:2px 5px 2px 5px; white-space:nowrap;"><a href="{phpself}?order=2&prevorder={prevorder}&direction={direction}&page={page}&chkactivity={chkactivity}">{LANG_Heading2}</a></td>
+        <td class="pluginBreadCrumbs pluginCellTitle aligncenter" style="padding:2px 5px 2px 5px; width:120%; white-space:nowrap;"><a href="{phpself}?order=3&prevorder={prevorder}&direction={direction}&page={page}&chkactivity={chkactivity}">{LANG_Heading3}</a></td>
+        <td class="pluginBreadCrumbs pluginCellTitle aligncenter" style="padding:2px 5px 2px 5px; width:40%; white-space:nowrap;"><a href="{phpself}?order=4&prevorder={prevorder}&direction={direction}&page={page}&chkactivity={chkactivity}">{LANG_Heading4}</a></td>
+        <td class="pluginCellTitle" colspan="4" style="padding:2px 0px 2px 5px; white-space:nowrap; width:120%;">&nbsp;</td>
+    </tr>
+        {report_records}
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+            <td class="aligncenter">{pagenavigation}</td>
+    </tr>
+</table>
+</form>
+<!-- start memberlist.thtml -->

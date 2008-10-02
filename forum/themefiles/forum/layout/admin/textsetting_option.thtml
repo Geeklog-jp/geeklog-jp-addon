@@ -1,0 +1,14 @@
+
+<!-- start textsetting_option.thtml -->
+<tr style="vertical-align:middle;">
+<td class="pluginCellSubTitle" style="width:160px;">{LANG_title}</td>
+<td class="pluginCellText pluginCellFill">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td style="padding-right:15px;">{LANG_description} </td>
+            <td style="text-align:right; width:160px; white-space:nowrap;"><input type="text" name="{parm_name}" size="6" maxlength="4" value="{parm_value}"{xhtml}></td>
+        </tr>
+    </table>
+</td>
+</tr>
+<!-- end textsetting_option.thtml -->
