@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <title>Universal Plugin Toolkit Guide</title>
+    <style type="text/css">
+    <!--
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            margin: 25px;
+        }
+        h1 {
+            font-size: 1.5em;
+            border-bottom: thin outset black;
+        }
+        h2 {
+            margin: 0 0 0.5em 0;
+            font-size: 1em;
+        }
+        h3 {
+            border-bottom: 1px solid #0033FF;
+            border-left: 6px solid #0033FF;
+            padding: 0.25em;
+            font-size: 1em;
+        }
+        h4 {
+            font-size: 0.85em;
+            font-weight: bold;
+            margin: 0.2em 0;
+        }
+        p {
+            font-size: 0.85em;
+            margin: 0.5em 0;
+        }
+        ul {
+            margin-top: 0.5em;
+            margin-bottom: 1em;
+        }
+        li {
+            font-size: 0.8em;
+            margin: 0.5em 0;
+        }
+        li p {
+            font-size: 0.8em;
+            margin: 0.5em 0;
+        }
+        .geeklog {
+            background-color: yellow;
+        }
+        .public {
+            background-color: #99ff00;
+        }
+        .admin {
+            background-color: aqua;
+        }
+        .notice {
+            padding: 5px;
+            background-color: yellow;
+            border: solid 1px black;
+        }
+     -->
+    </style>
+</head>
+
+<body>
+<h1>Universal Plugin Toolkit for Geeklog 1.5</h1>
+<h2>Version: 1.1.0</h2>
+<h2>Date:&nbsp;August 10, 2008</h2>
+<h2>License:&nbsp;GPL v2</h2>
+<h2>Abstract:</h2>
+<p>The Universal Plugin Toolkit provides the files to quickly get past the requirements of the plugin API in
+Geeklog and get down to the business of writing your plugin application.  It consists of all the necessary files
+you will need to interface your code with Geeklog.  It includes:</p>
+<ul>
+<li>A debugged reusable Install page and routine</li>
+<li>A fleshed out functions.inc that includes the uninstall routine</li>
+<li>Skeletal admin and index files</li>
+<li>Template Based and all templates included</li>
+<li>Sample language files containing language for Install/Admin/Index pages (English, Japanese)</li>
+<li>Instructions on how to use it</li></ul>
+<h2>Included Files:</h2>
+<p>Please refer to the all files under the plugin_1.5.0/ directory.</p>
+
+<h2>How to use the Universal Plugin Toolkit:</h2>
+<p>After copying the files to their proper locations, the first thing you should do is decide on a name for
+your plugin.  Then, using your text editor,</p>
+<ol>
+<li>replace all instances of {plugin} with the name of plugin</li>
+<li>replace all instances of {conf_var_prefix} with the prefix of the plugin's config array (defined in config.php)</li>
+<li>replace all instances of {lang_var_postfix} with the postfix of the plugin's language array (defined in the plugin's language files)</li>
+<li>replace all instances of {display_name} with the display name of plugin</li>
+<li>replace all instances of {author_name} with the plugin author's name</li>
+<li>replace all instances of {author_email} with the plugin author's e-mail address</li>
+
+<li>replace all instances of {pi_url} with the plugin URL</li>
+<li>replace all instances of {gl_version} with the version of the Geeklog</li>
+</ol>
+
+<p>in all files under the plugin_1.5.0/ directory.</p>
+
+<p>The PHP script named make_pi.php developed by mystral-kk is bundled in this distribution. This script will make these changes for you. You might give it a try.</p>
+
+<p>Edit make_pi_config.php with text editor, and execute the script as follows.</p>
+
+<p>php.exe -f make_pi.php</p>
+
+<p class="notice">Note: due to the use of the gl_vars table your plugin name should not be over 15 characters.</p>
+
+<p>Second open up config.php and insert the names of any tables you want to create. This allows them to be
+included in the $_TABLES array. You should also update the variables containing your plugin version.</p>
+
+<p>Next open up the spl/mysql_install.php file, and set the structure of the table. Add and delete SQL commands referring to the sample in the file the $_SQL array. (In the same way, edit spl/mssql_install.php. )</p>
+
+<p>Next open up the admin/install.php file, and set the value to four arrays in this file.</p>
+<ul>
+<li>The first array ($GROUPS) contains your security groups. </li>
+<li>The second array ($FEATURES) contains your security features. </li>
+<li>The third array ($MAPPINGS) set the relation of your security features and security groups. </li>
+<li>The fourth array ($DEFVALUES) contains your SQL commands required to insert any sample or default data in your tables. </li>
+</ul>
+
+<p>Finally open up functions.inc and insert in the plugin_autouninstall_{plugin} function the names of your tables and
+security features, so that the plugin can be uninstalled.</p>
+
+<p>At this point you should have a skeletal functioning plugin -- run the install page and it will show up
+in Geeklog.  Now write your code and share it with the rest of the Geeklog community.</p>
+
+<p>After you get your plugin functioning, you should edit the INSTALL document and the install.html in the root of the plugin directory.</p>
+
+<p>If any of this is confusing (how could that be?), you can also examine the standard Links plugin and Polls plugin, etc.</p>
+</body>
+</html>
