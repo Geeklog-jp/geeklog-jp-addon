@@ -1,0 +1,19 @@
+body { color:black; background-color:white; line-height:1.5em; }
+h1 { border-left:solid 15px #333399; border-bottom:solid 2px #333399; padding:3px 3px 3px 10px;}
+h2 { border-left:solid 15px #333399; border-bottom:solid 2px #333399; padding-left:5px; }
+dl { width:500px; border:dotted 1px black; }
+dt { padding:5px; font-style:italic; }
+table { border:solid 1px black; border-collapse:collapse; }
+tr.header { background-color:#ccccff; }
+th, td { border:solid 1px black; padding:5px; }
+.geeklog { background-color:yellow; }
+.public { background-color:#99ff00; }
+.admin { background-color:aqua; }
+li { padding:5px; }
+code { padding:3px; margin:5px; background-color:#ccffff; border:dotted 1px black; }
+tt { font-family:Arial, sans-serif; font-weight:bold; }
+.warning { padding:5px; background-color:#ff99ff; border:solid 1px black; }
+.back_to_top { font-size:0.8em; text-align:right; }
+.fix { color:#cc0033; font-weight:bold; }
+.new { color:#33cc66; font-weight:bold; }
+.footer { border:solid 1px black; background-color:#ffff66; padding:5px; }

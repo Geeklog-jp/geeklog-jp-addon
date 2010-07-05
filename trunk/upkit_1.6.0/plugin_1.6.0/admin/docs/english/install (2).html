@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>Geeklog {display_name} プラグイン説明書</title>
+  <link rel="stylesheet" type="text/css" href="style.css" title="Doc Stylesheet">
+</head>
+
+<body>
+  <a name="top"></a>
+  <h1>Geeklog {display_name} プラグイン</h1>
+  <dl>
+    <dt>作者</dt><dd>{author_name} &lt;{author_email}&gt;</dd>
+    <dt>バージョン</dt><dd>1.0.0</dd>
+    <dt>公開日</dt><dd>2010-04-12</dd>
+    <dt>ライセンス</dt><dd>GPLv2以降</dd>
+    <dt>必要条件</dt><dd><strong>Geeklog-{gl_version}以降</strong></dd>
+  </dl>
+
+  <a name="introduction"></a>
+  <h2>概要</h2>
+  <p>Geeklog {display_name} プラグインは、{display_name}の機能を提供します。</p>
+
+  <div class="back_to_top"><a href="#top">TOPへ戻る</a></div>
+
+  <a name="install"></a>
+  <h2>インストール</h2>
+
+  <p>以下の説明で、</p>
+  <ul>
+    <li><span class="geeklog">&lt;geeklog_dir&gt;</span>は、Geeklogシステムの<tt>db-config.php</tt>が存在するフォルダ（ディレクトリ）</li>
+    <li><span class="public">&lt;public_html&gt;</span>は、<tt>lib-common.php</tt>のあるフォルダ</li>
+    <li><span class="admin">&lt;admin&gt;</span>は、管理用ファイルがあるフォルダ（ふつうは、<span class="public">&lt;public_html&gt;</span>ディレクトリの直下）</li>
+  </ul>
+  <p>を表しています。</p>
+
+  <ol>
+    <li>{display_name} プラグインはテーブルを追加するので、管理者メニューの「データベース」やphpMyAdminを使用して、データベースのバックアップを取ります。</li>
+    <li>{display_name} プラグインのアーカイブを <span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins フォルダ内に展開（解凍）します。<tt>plugins</tt> フォルダ内に <tt>{plugin}</tt> というフォルダができます。</li>
+    <li><span class="public">&lt;public_html&gt;</span>/ フォルダ内に<tt>{plugin}</tt>という名前のフォルダを、また、<span class="admin">&lt;admin&gt;</span>/plugins/ フォルダ内にも <tt>{plugin}</tt>という名前のフォルダを作成します。</li>
+    <li><span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins/{plugin}/ フォルダに移動し、<tt>public_hrml</tt>フォルダの内容を先ほど作成した<span class="public">&lt;public_html&gt;</span>/{plugin}/フォルダ内にコピーします。また、<tt>admin</tt>フォルダの内容を<span class="admin">&lt;admin&gt;</span>/plugins/{plugin}/フォルダ内にコピーします。</li>
+    <li>管理者としてサイトにログインし、プラグインエディタで"{plugin}"をクリックします。インストールに失敗した場合は、エラーログ(<tt>&lt;geeklog_dir&gt;/logs/error.log</tt>)を調べてください。</li>
+  </ol>
+
+  <div class="back_to_top"><a href="#top">TOPへ戻る</a></div>
+
+  <a name="how_to_use"></a>
+  <h2>使用方法</h2>
+
+  <h3>１．○○</h3>
+
+  <p>ここに○○の使用方法の説明がきます。</p>
+
+  <h3>２．□□</h3>
+
+  <p>ここに□□の使用方法の説明がきます。</p>
+
+  <div class="back_to_top"><a href="#top">TOPへ戻る</a></div>
+
+  <a name="uninstall"></a>
+  <h2>アンインストール</h2>
+
+  <ol>
+    <li>管理者としてサイトにログインし、「プラグイン」をクリックします。"{plugin}"を削除すると、関連するデータがデータベースから自動的に削除します。</li>
+    <li>インストール時に作成した3つのフォルダ(<span class="geeklog">&lt;geeklog-dir&gt;</span>/plugins/{plugin}/、<span class="public">&lt;public_html&gt;</span>/{plugin}/、<span class="admin">&lt;admin&gt;</span>/plugins/{plugin}/)を削除します。</li>
+  </ol>
+
+  <div class="back_to_top"><a href="#top">TOPへ戻る</a></div>
+
+  <a name="history"></a>
+  <h2>更新履歴</h2>
+  <table summary="revision history of the {plugin} plugin">
+    <tr class="header">
+      <th>日付(YYYY-MM-DD)</th><th>バージョン</td><th>説明</th>
+    </tr>
+    <tr>
+      <td>2010-04-12</td><td>1.0.0</td>
+      <td>
+        <span class="new">[新規]</span> 初公開。<br>
+        <span class="fix">[修正]</span> 修正のサンプル。
+      </td>
+    </tr>
+  </table>
+
+  <p class="footer">2010 &copy; {author_name} at <a href="{pi_url}">{pi_url}</a> &nbsp; (docstyle at <a href="http://mystral-kk.net/">mystral-kk</a> & <a href="http://hiroron.com">hiroron</a>)</p>
+</body>
+</html>
