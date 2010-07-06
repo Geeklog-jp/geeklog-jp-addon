@@ -212,7 +212,9 @@ echo "Replacing \"{pi_url}\" with \"{$_UPKIT_CONF['pi_url']}\"\n";
 
 
 copyDir($_UPKIT_CONF['plugin_template'], $_UPKIT_CONF['pi_name']);
-unlink($_UPKIT_CONF['pi_name'] . '/functions-advanced.inc'); // Nonsupport
+if (file_exists($_UPKIT_CONF['pi_name'] . '/functions-advanced.inc')) {
+    unlink($_UPKIT_CONF['pi_name'] . '/functions-advanced.inc'); // Nonsupport
+}
 
 // Files to be processed
 
