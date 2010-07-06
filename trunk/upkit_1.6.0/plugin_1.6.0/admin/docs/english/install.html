@@ -1,102 +1,87 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="Content-Style-Type" content="text/css">
-    <title>Geeklog {plugin} plugin Guide</title>
-    <style type="text/css">
-    <!--
-        body {
-            font-family: Helvetica, Arial, sans-serif;
-            margin: 25px;
-        }
-        h1 {
-            font-size: 1.5em;
-            border-bottom: thin outset black;
-        }
-        h2 {
-            margin: 0 0 0.5em 0;
-            font-size: 1em;
-        }
-        h3 {
-            border-bottom: 1px solid #0033FF;
-            border-left: 6px solid #0033FF;
-            padding: 0.25em;
-            font-size: 1em;
-        }
-        h4 {
-            font-size: 0.85em;
-            font-weight: bold;
-            margin: 0.2em 0;
-        }
-        p {
-            font-size: 0.85em;
-            margin: 0.5em 0;
-        }
-        ul {
-            margin-top: 0.5em;
-            margin-bottom: 1em;
-        }
-        li {
-            font-size: 0.8em;
-            margin: 0.5em 0;
-        }
-        li p {
-            font-size: 0.8em;
-            margin: 0.5em 0;
-        }
-        .geeklog {
-            background-color: yellow;
-        }
-        .public {
-            background-color: #99ff00;
-        }
-        .admin {
-            background-color: aqua;
-        }
-        .notice {
-            padding: 5px;
-            background-color: yellow;
-            border: solid 1px black;
-        }
-     -->
-    </style>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>Geeklog {plugin} plugin Guide</title>
+  <link rel="stylesheet" type="text/css" href="../style.css" title="Doc Stylesheet">
 </head>
 
 <body>
-    <h1>Geeklog {plugin} plugin</h1>
-    <h2>Version: 1.0.0</h2>
-    <h2>Author: {author_name}</h2>
-    <h2>Date:&nbsp;August 10, 2008</h2>
-    <h2>License:&nbsp;GPL v2</h2>
+  <a name="top"></a>
+  <h1>Geeklog {plugin} plugin</h1>
+  <dl>
+    <dt>Author</dt><dd>{author_name} &lt;{author_email}&gt;</dd>
+    <dt>Version</dt><dd>1.0.0</dd>
+    <dt>Date</dt><dd>2010-04-12</dd>
+    <dt>License</dt><dd>GPLv2 or later</dd>
+    <dt>Requirements</dt><dd><strong>Geeklog-{gl_version} or later</strong></dd>
+  </dl>
 
-    <p>In the following descriptions</p>
-    <ul>
-        <li><span class="geeklog">&lt;geeklog_dir&gt;</span> is the directory where the system config.php file resides</li>
-        <li><span class="public">&lt;public_html&gt;</span> is the directory where the lib-common.php file resides</li>
-        <li><span class="admin">&lt;admin&gt;</span> is the directory where the administration files reside (usually, under <span class="public">&lt;public_html&gt;</span>)</li>
-    </ul>
+  <a name="introduction"></a>
+  <h2>Introduction</h2>
+  <p>Geeklog {display_name} plugin, {display_name} provides for.</p>
 
-    <h2>INSTALL:</h2>
+  <div class="back_to_top"><a href="#top">Back to TOP</a></div>
 
-    <ol>
-        <li>Back up your Geeklog Database.  The {plugin} plugin adds tables to your Geeklog database.  You can do this with the built in admin backup facility.</li>
-        <li>Uncompress the {plugin} plugin archive while in the <span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins directory.  The archive will create a directory called {plugin} in the plugins directory.</li>
-        <li>Create the public_html and admin directories.  Under your html directory (usually <span class="public">&lt;public_html&gt;</span>) create a directory called {plugin}.  Under your <span class="admin">&lt;admin&gt;</span>/plugins/ directory create a directory called {plugin}.</li>
-        <li>Change to your <span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins/{plugin}/ directory.  Copy the files in the admin directory to the <span class="admin">&lt;admin&gt;</span>/plugins/{plugin}/ directory your created in step 3.  Copy the files and directories in the public_html directory to the <span class="public">&lt;public_html&gt;</span>/{plugin}/ directory your created in step 3.</li>
-        <li>Edit the config.php in the {plugin} directory and confirm the table prefix and anonymous access settings and other display settings.  The default is to use the geeklog table prefix and not allow anonymous access.</li>
-        <li>Log in to your Geeklog as a root user and run install.php in your <span class="admin">&lt;admin&gt;</span>/plugins/{plugin}/ directory.  The install page will tell you if the install was successful or not.  If not, examine Geeklog system errorlog for possible problems.  The {plugin} plugin should now be installed and functioning.  Clicking on the {plugin} Icon will take you to the admin page.</li>
-        <li>Set up security.  On install only the root users have access to {plugin} administration and Viewing.  You can delegate control for either of these functions through the user and group editors.</li>
-    </ol>
+  <a name="install"></a>
+  <h2>Installation</h2>
 
-    <h2>UNINSTALL:</h2>
+  <p>In the description below:</p>
+  <ul>
+    <li><span class="geeklog">&lt;geeklog_dir&gt;</span> is a folder (directory) in which Geeklogs's <tt>db-config.php</tt> resides</li>
+    <li><span class="public">&lt;public_html&gt;</span> is a folder (directory) in which <tt>lib-common.php</tt> resides</li>
+    <li><span class="admin">&lt;admin&gt;</span> is a folder (directory) in which files for admin resides (Usually, the child directory of <span class="public">&lt;public_html&gt;</span>)</li>
+  </ul>
 
-    <ol>
-        <li>Run the install.php page in your <span class="admin">&lt;admin&gt;</span>/plugins/{plugin} directory.  This will remove all the data from your database.</li>
-        <li>Delete the three plugin directories created in the install process:  <span class="geeklog">&lt;geeklog-dir&gt;</span>/plugins/{plugin}/, <span class="public">&lt;public_html&gt;</span>/{plugin}/ and <span class="admin">&lt;admin&gt;</span>/plugins/{plugin}/</li>
-    </ol>
+  <ol>
+    <li>Back up your database by using admin's database utility or a GUI tool like phpMyAdmin, since {plugin} plugin modifies the database.</li>
+    <li>Unpack a archive file of the plugin into <span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins folder.  A folder named <tt>{plugin}</tt> will be created in the <tt>plugins</tt> folder.</li>
+    <li>In the <span class="public">&lt;public_html&gt;</span>/ folder, create a folder named <tt>{plugin}</tt>, and in the <span class="admin">&lt;admin&gt;</span>/plugins/ folder, create a folder named <tt>{plugin}</tt> as well.</li>
+    <li>Move to <span class="geeklog">&lt;geeklog_dir&gt;</span>/plugins/{plugin}/ folder and copy all the contents of the <tt>public_html</tt> folder into the <span class="public">&lt;public_html&gt;</span>/{plugin} folder you created in the previous step.  Likewise, copy all the contents of the <tt>admin</tt>folder into the <span class="admin">&lt;admin&gt;</span>/plugins/{plugin}/ folder.</li>
+    <li>Log in to your site as admin, go to the plugin editor and click on the "{plugin}" link.  When installation failed, please check the error log (<span class="geeklog">&lt;geeklog_dir&gt;</span><tt>/logs/error.log</tt>).</li>
+  </ol>
 
-    <p>Thats it.</p>
+  <div class="back_to_top"><a href="#top">Back to TOP</a></div>
 
+  <a name="how_to_use"></a>
+  <h2>Usage</h2>
+
+  <h3>1. Using one sample</h3>
+
+  <p>Enter a description of how to use here.</p>
+
+  <h3>2. Using two sample</h3>
+
+  <p>Enter a description of how to use here.</p>
+
+  <div class="back_to_top"><a href="#top">Back to TOP</a></div>
+
+  <a name="uninstall"></a>
+  <h2>Uninstallation</h2>
+
+  <ol>
+    <li>Log in to your site as admin, go to the plugin editor and click on the "{plugin}" link.  All relevant database data will be erased.</li>
+    <li>Then, remove the three folders you created when installing the plugin: <span class="geeklog">&lt;geeklog-dir&gt;</span>/plugins/{plugin}/, <span class="public">&lt;public_html&gt;</span>/{plugin}/ and <span class="admin">&lt;admin&gt;</span>/plugins/{plugin}/.</li>
+  </ol>
+
+  <div class="back_to_top"><a href="#top">Back to TOP</a></div>
+
+  <a name="history"></a>
+  <h2>History</h2>
+  <table summary="revision history of the {plugin} plugin">
+    <tr class="header">
+      <th>Date(YYYY-MM-DD)</th><th>Version</td><th>Description</th>
+    </tr>
+    <tr>
+      <td>2010-04-12</td><td>1.0.0</td>
+      <td>
+        <span class="new">[New]</span> First public release. <br>
+        <span class="fix">[Fix]</span> Fixed sample.
+      </td>
+    </tr>
+  </table>
+
+  <p class="footer">2010 &copy; {author_name} at <a href="{pi_url}">{pi_url}</a> &nbsp; (docstyle at <a href="http://mystral-kk.net/">mystral-kk</a> & <a href="http://hiroron.com">hiroron</a>)</p>
 </body>
 </html>
